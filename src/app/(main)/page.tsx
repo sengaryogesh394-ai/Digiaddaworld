@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -65,7 +66,7 @@ export default function HomePage() {
             <h2 className="text-3xl font-headline text-center mb-8">Featured Products</h2>
           </AnimateOnView>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {featuredProducts.map((product, i) => (
+            {featuredProducts.slice(0, 4).map((product, i) => (
               <AnimateOnView key={product.id} delay={i * 0.1}>
                 <ProductCard product={product} />
               </AnimateOnView>
