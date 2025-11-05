@@ -1,15 +1,17 @@
+
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { mockProducts } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
 import { X } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 export default function CartPage() {
-  const cartItems = mockProducts.slice(0, 2);
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const { cart, removeFromCart } = useCart();
+  const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
   const tax = subtotal * 0.08;
   const total = subtotal + tax;
 
@@ -19,7 +21,7 @@ export default function CartPage() {
         <h1 className="text-5xl font-headline">Your Shopping Cart</h1>
       </header>
 
-      {cartItems.length === 0 ? (
+      {cart.length === 0 ? (
         <div className="text-center">
           <p className="text-lg text-muted-foreground">Your cart is empty.</p>
           <Button asChild className="mt-4">
@@ -31,7 +33,7 @@ export default function CartPage() {
           {/* Cart Items */}
           <div className="lg:col-span-2">
             <div className="space-y-6">
-              {cartItems.map((item) => (
+              {cart.map((item) => (
                 <Card key={item.id} className="flex items-center p-4">
                   <div className="relative w-24 h-24 rounded-md overflow-hidden">
                     <Image
@@ -47,8 +49,8 @@ export default function CartPage() {
                     <p className="text-sm text-muted-foreground">${item.price.toFixed(2)}</p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <Input type="number" defaultValue={1} className="w-16 h-9" />
-                    <Button variant="ghost" size="icon">
+                    <Input type="number" defaultValue={1} className="w-16 h-9" readOnly />
+                    <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)}>
                       <X className="h-4 w-4" />
                     </Button>
                   </div>

@@ -71,7 +71,7 @@ export default function HomePage() {
       </div>
 
       {/* Categories Section */}
-      <section className="py-16 bg-[#3945b9]">
+      <section className="py-16 bg-[#5f69c5]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-headline text-center mb-8 text-white">Browse by Category</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -128,7 +128,7 @@ export default function HomePage() {
       </section>
 
       {/* From the Blog Section */}
-      <section className="py-16 bg-[#3945b9]">
+      <section className="py-16 bg-[#5f69c5]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <h2 className="text-3xl font-headline text-center mb-8 text-white">From Our Blog</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
