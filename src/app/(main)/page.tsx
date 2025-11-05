@@ -1,4 +1,7 @@
 
+'use client';
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -25,14 +28,29 @@ const printOnDemandProducts = [
   { name: 'Baseball cap', image: 'https://picsum.photos/seed/pod5/400/400', hint: 'white cap' },
 ];
 
+const heroColors = ['#14a800', '#202988', '#EADFCB'];
+
 export default function HomePage() {
   const featuredProducts = mockProducts.filter((p) => p.isFeatured);
   const heroImages = PlaceHolderImages.filter(img => img.id.startsWith('hero-'));
 
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentColorIndex((prevIndex) => (prevIndex + 1) % heroColors.length);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center bg-primary text-primary-foreground -mt-16 text-center">
+      <section 
+        className="relative w-full min-h-screen flex items-center justify-center text-primary-foreground -mt-16 text-center transition-colors duration-1000"
+        style={{ backgroundColor: heroColors[currentColorIndex] }}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnView>
             <div className="max-w-4xl mx-auto">
