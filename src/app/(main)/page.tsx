@@ -71,9 +71,9 @@ export default function HomePage() {
       </div>
 
       {/* Categories Section */}
-      <section className="py-16 bg-secondary">
+      <section className="py-16 bg-[#202988]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-headline text-center mb-8">Browse by Category</h2>
+          <h2 className="text-3xl font-headline text-center mb-8 text-white">Browse by Category</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {mockCategories.map((category) => (
               <Link href={`/shop?category=${category.id}`} key={category.id}>
@@ -127,22 +127,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* From the Blog Section */}
-        <section>
-          <h2 className="text-3xl font-headline text-center mb-8">From Our Blog</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {mockBlogPosts.slice(0, 3).map((post) => (
-              <BlogPostCard key={post.id} post={post} />
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <Button asChild variant="outline">
-              <Link href="/blog">Read More Posts</Link>
-            </Button>
-          </div>
-        </section>
-      </div>
+      {/* From the Blog Section */}
+      <section className="py-16 bg-[#202988]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <h2 className="text-3xl font-headline text-center mb-8 text-white">From Our Blog</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {mockBlogPosts.slice(0, 3).map((post) => (
+                <BlogPostCard key={post.id} post={post} />
+                ))}
+            </div>
+            <div className="text-center mt-8">
+                <Button asChild variant="secondary">
+                <Link href="/blog">Read More Posts</Link>
+                </Button>
+            </div>
+        </div>
+      </section>
     </div>
   );
 }
