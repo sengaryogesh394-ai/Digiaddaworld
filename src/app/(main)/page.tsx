@@ -81,7 +81,7 @@ export default function HomePage() {
       </div>
 
       {/* Categories Section */}
-      <section className="py-16 bg-secondary">
+      <section className="py-16" style={{ backgroundColor: '#E9EAFB' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnView>
             <h2 className="text-3xl font-headline text-center mb-8">Browse by Category</h2>
@@ -148,7 +148,7 @@ export default function HomePage() {
       </section>
 
       {/* From the Blog Section */}
-      <section className="py-16 bg-secondary">
+      <section className="py-16" style={{ backgroundColor: '#E9EAFB' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <AnimateOnView>
               <h2 className="text-3xl font-headline text-center mb-8">From Our Blog</h2>
