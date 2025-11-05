@@ -32,27 +32,27 @@
     },
     {
       "id": "prod-speaker-1",
-      "imageUrl": "https://images.unsplash.com/photo-1589256469027-592537634ac4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1594998893011-a08b33036667?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
       "imageHint": "bluetooth speaker"
     },
     {
       "id": "prod-coffeemaker-1",
-      "imageUrl": "https://images.unsplash.com/photo-1618230159336-f9f688a2c2a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkaWdpdGFsJTIwY29mZmVlJTIwbWFrZXJ8ZW58MHx8fHwxNzYzNTYxMjE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "drip coffeemaker"
+      "imageUrl": "https://images.unsplash.com/photo-1563869342512-88f9c15a013a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+      "imageHint": "coffee maker"
     },
     {
       "id": "prod-blender-1",
-      "imageUrl": "https://images.unsplash.com/photo-1587135002446-2d79075e8486?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1565193566173-7bf141101966?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
       "imageHint": "kitchen blender"
     },
     {
       "id": "prod-vacuum-1",
-      "imageUrl": "https://images.unsplash.com/photo-1606917846026-6a59c0f33190?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyb2JvdCUyMHZhY3V1bSUyMGNsZWFuZXJ8ZW58MHx8fHwxNzYzNTYxMTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1628269739812-895a315f0292?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
       "imageHint": "robotic vacuum"
     },
     {
       "id": "prod-laptop-1",
-      "imageUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=726&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
       "imageHint": "modern laptop"
     },
     {
