@@ -6,7 +6,7 @@ import { useCart } from '@/context/CartContext';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Badge } from '@/components/ui/badge';
 
@@ -53,6 +53,7 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="pr-0">
+                <SheetTitle className="sr-only">Main Menu</SheetTitle>
               <Link href="/" className="mr-6 flex items-center space-x-2 px-4">
                  <span className="font-bold font-headline text-2xl">Digiaddaworld</span>
               </Link>
@@ -99,3 +100,5 @@ export function Header() {
     </header>
   );
 }
+
+    
