@@ -1,5 +1,7 @@
+
+'use client';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { mockProducts } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -11,13 +13,31 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Star } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
+import { useToast } from '@/hooks/use-toast';
 
 export default function ProductDetailsPage({ params }: { params: { productId: string } }) {
+  const router = useRouter();
+  const { toast } = useToast();
   const product = mockProducts.find((p) => p.id === params.productId);
+  const { addToCart } = useCart();
 
   if (!product) {
     notFound();
   }
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    toast({
+        title: "Added to cart",
+        description: `${product.name} has been added to your cart.`,
+    })
+  };
+
+  const handleBuyNow = () => {
+    addToCart(product);
+    router.push('/cart');
+  };
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -70,8 +90,8 @@ export default function ProductDetailsPage({ params }: { params: { productId: st
           </div>
           
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="flex-1">Add to Cart</Button>
-            <Button size="lg" variant="outline" className="flex-1">Buy Now</Button>
+            <Button size="lg" className="flex-1" onClick={handleAddToCart}>Add to Cart</Button>
+            <Button size="lg" variant="outline" className="flex-1" onClick={handleBuyNow}>Buy Now</Button>
           </div>
 
         </div>

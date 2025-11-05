@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { Menu, Search, ShoppingCart, User } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Badge } from '@/components/ui/badge';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -18,6 +20,7 @@ const navLinks = [
 
 export function Header() {
   const isMobile = useIsMobile();
+  const { cart } = useCart();
 
   const renderNavLinks = () => (
     <>
@@ -77,8 +80,11 @@ export function Header() {
             </form>
           </div>
           <Button variant="ghost" size="icon" asChild>
-             <Link href="/cart">
+             <Link href="/cart" className="relative">
                 <ShoppingCart className="h-5 w-5" />
+                {cart.length > 0 && (
+                    <Badge variant="destructive" className="absolute -right-2 -top-2 h-5 w-5 justify-center p-0">{cart.length}</Badge>
+                )}
                 <span className="sr-only">Cart</span>
              </Link>
           </Button>
