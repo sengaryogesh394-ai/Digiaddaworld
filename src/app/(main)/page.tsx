@@ -31,8 +31,8 @@ export default function HomePage() {
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section className="relative w-full py-20 md:py-32 lg:py-40 bg-primary text-primary-foreground -mt-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative w-full min-h-screen flex items-center justify-center bg-primary text-primary-foreground -mt-16 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnView>
             <div className="max-w-4xl mx-auto">
                 <p className="text-lg bg-black/20 text-white inline-block px-4 py-1 rounded-full mb-4">Your Marketplace for Digital Goods</p>
