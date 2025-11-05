@@ -19,7 +19,8 @@ import { useToast } from '@/hooks/use-toast';
 export default function ProductDetailsPage({ params }: { params: { productId: string } }) {
   const router = useRouter();
   const { toast } = useToast();
-  const product = mockProducts.find((p) => p.id === params.productId);
+  const { productId } = params;
+  const product = mockProducts.find((p) => p.id === productId);
   const { addToCart } = useCart();
 
   if (!product) {
