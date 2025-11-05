@@ -37,7 +37,7 @@ export default function HomePage() {
             <div className="max-w-4xl mx-auto">
                 <p className="text-lg bg-black/20 text-white inline-block px-4 py-1 rounded-full mb-4">Your Marketplace for Digital Goods</p>
                 <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter">
-                  DISCOVER & SELL
+                  DISCOVER & BUY
                   <br />
                   AMAZING DIGITAL PRODUCTS.
                 </h1>
@@ -80,10 +80,10 @@ export default function HomePage() {
       </div>
 
       {/* Categories Section */}
-      <section className="py-16 bg-[#b2b8f1]">
+      <section className="py-16 bg-[#e0e3fa]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnView>
-            <h2 className="text-3xl font-headline text-center mb-8 text-white">Browse by Category</h2>
+            <h2 className="text-3xl font-headline text-center mb-8 text-black">Browse by Category</h2>
           </AnimateOnView>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {mockCategories.map((category, i) => (
