@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import * as React from 'react';
 import { Menu, Search, ShoppingCart, User } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
@@ -21,12 +22,13 @@ const navLinks = [
 export function Header() {
   const isMobile = useIsMobile();
   const { cart } = useCart();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const renderNavLinks = () => (
     <>
       {navLinks.map((link) => (
         <Button key={link.href} variant="ghost" asChild>
-          <Link href={link.href}>{link.label}</Link>
+          <Link href={link.href} onClick={() => setIsMobileMenuOpen(false)}>{link.label}</Link>
         </Button>
       ))}
     </>
@@ -45,7 +47,7 @@ export function Header() {
         </div>
 
         {isMobile && (
-          <Sheet>
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="mr-2">
                 <Menu className="h-6 w-6" />
@@ -54,7 +56,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="pr-0">
                 <SheetTitle className="sr-only">Main Menu</SheetTitle>
-              <Link href="/" className="mr-6 flex items-center space-x-2 px-4">
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="mr-6 flex items-center space-x-2 px-4">
                  <span className="font-bold font-headline text-2xl">Digiaddaworld</span>
               </Link>
               <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
@@ -100,5 +102,3 @@ export function Header() {
     </header>
   );
 }
-
-    
