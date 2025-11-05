@@ -28,7 +28,7 @@ const printOnDemandProducts = [
   { name: 'Baseball cap', image: 'https://picsum.photos/seed/pod5/400/400', hint: 'white cap' },
 ];
 
-const heroColors = ['#14a800', '#202988', '#EADFCB'];
+const heroColors = ['#14a800', '#3E4AAB', '#E0CDB8'];
 
 export default function HomePage() {
   const featuredProducts = mockProducts.filter((p) => p.isFeatured);
