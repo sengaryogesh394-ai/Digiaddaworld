@@ -32,33 +32,33 @@
     },
     {
       "id": "prod-speaker-1",
-      "imageUrl": "https://images.unsplash.com/photo-1594998893011-a08b33036667?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      "imageHint": "bluetooth speaker"
+      "imageUrl": "https://images.unsplash.com/photo-1612999015383-7d7b5d79b940?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageHint": "portable speaker"
     },
     {
       "id": "prod-coffeemaker-1",
-      "imageUrl": "https://images.unsplash.com/photo-1563869342512-88f9c15a013a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      "imageHint": "coffee maker"
+      "imageUrl": "https://images.unsplash.com/photo-1622832415951-6d15b00b84f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageHint": "drip coffeemaker"
     },
     {
       "id": "prod-blender-1",
-      "imageUrl": "https://images.unsplash.com/photo-1565193566173-7bf141101966?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      "imageHint": "kitchen blender"
+      "imageUrl": "https://images.unsplash.com/photo-1589363351959-5553e4b025a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageHint": "countertop blender"
     },
     {
       "id": "prod-vacuum-1",
-      "imageUrl": "https://images.unsplash.com/photo-1628269739812-895a315f0292?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      "imageHint": "robotic vacuum"
+      "imageUrl": "https://images.unsplash.com/photo-1596700254025-a894a4c02283?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageHint": "robot vacuum"
     },
     {
       "id": "prod-laptop-1",
-      "imageUrl": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
-      "imageHint": "modern laptop"
+      "imageUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "imageHint": "silver laptop"
     },
     {
       "id": "prod-airfryer-1",
-      "imageUrl": "https://images.unsplash.com/photo-1632558532454-a39151fb7896?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80",
-      "imageHint": "air fryer"
+      "imageUrl": "https://images.unsplash.com/photo-1631109422695-b5b630c5002b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageHint": "modern airfryer"
     },
     {
       "id": "cat-electronics",
@@ -67,7 +67,7 @@
     },
     {
       "id": "cat-home-kitchen",
-      "imageUrl": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%G%3D&auto=format&fit=crop&w=870&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
       "imageHint": "modern kitchen"
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "id": "about-us",
-      "imageUrl": "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyNzQ3Njd8MA&ixlibrb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyNzQ3Njd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "team collaboration"
     },
     {
