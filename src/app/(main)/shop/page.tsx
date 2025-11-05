@@ -1,6 +1,8 @@
+
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,10 +12,20 @@ import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 
 export default function ShopPage() {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category');
+  
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategory ? [initialCategory] : []);
   const [priceRange, setPriceRange] = useState<number[]>([1000]);
 
   const maxPrice = useMemo(() => Math.max(...mockProducts.map(p => p.price)), []);
+
+  useEffect(() => {
+    const category = searchParams.get('category');
+    if (category) {
+      setSelectedCategories([category]);
+    }
+  }, [searchParams]);
 
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategories((prev) =>
@@ -27,7 +39,7 @@ export default function ShopPage() {
     return mockProducts.filter((product) => {
       const categoryMatch =
         selectedCategories.length === 0 ||
-        selectedCategories.includes(product.category.toLowerCase().replace(' & ', '-'));
+        selectedCategories.includes(product.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-'));
       const priceMatch = product.price <= priceRange[0];
       return categoryMatch && priceMatch;
     });
