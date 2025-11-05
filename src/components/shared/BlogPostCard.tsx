@@ -22,7 +22,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       </div>
       <CardHeader>
         <CardTitle className="font-headline text-2xl leading-tight">{post.title}</CardTitle>
-        <p className="text-sm text-muted-foreground pt-2">By {post.author} on {new Date(post.date).toLocaleDateString()}</p>
+        <p className="text-sm text-muted-foreground pt-2">By {post.author} on {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </CardHeader>
       <CardContent className="flex-grow">
         <CardDescription>{post.excerpt}</CardDescription>
