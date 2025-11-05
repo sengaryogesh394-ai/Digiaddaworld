@@ -1,11 +1,43 @@
+'use client';
+
+import { useState, useMemo } from 'react';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
+import { Button } from '@/components/ui/button';
 
 export default function ShopPage() {
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [priceRange, setPriceRange] = useState<number[]>([1000]);
+
+  const maxPrice = useMemo(() => Math.max(...mockProducts.map(p => p.price)), []);
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(categoryId)
+        ? prev.filter((id) => id !== categoryId)
+        : [...prev, categoryId]
+    );
+  };
+
+  const filteredProducts = useMemo(() => {
+    return mockProducts.filter((product) => {
+      const categoryMatch =
+        selectedCategories.length === 0 ||
+        selectedCategories.includes(product.category.toLowerCase().replace(' & ', '-'));
+      const priceMatch = product.price <= priceRange[0];
+      return categoryMatch && priceMatch;
+    });
+  }, [mockProducts, selectedCategories, priceRange]);
+
+  const clearFilters = () => {
+    setSelectedCategories([]);
+    setPriceRange([maxPrice]);
+  };
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <header className="text-center mb-12">
@@ -17,7 +49,12 @@ export default function ShopPage() {
         <aside className="lg:col-span-1">
           <Card>
             <CardHeader>
-              <CardTitle>Filters</CardTitle>
+              <div className="flex justify-between items-center">
+                <CardTitle>Filters</CardTitle>
+                <Button variant="ghost" size="sm" onClick={clearFilters}>
+                  Clear
+                </Button>
+              </div>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
@@ -25,7 +62,11 @@ export default function ShopPage() {
                 <div className="space-y-2">
                   {mockCategories.map((category) => (
                     <div key={category.id} className="flex items-center space-x-2">
-                      <Checkbox id={category.id} />
+                      <Checkbox
+                        id={category.id}
+                        checked={selectedCategories.includes(category.id)}
+                        onCheckedChange={() => handleCategoryChange(category.id)}
+                      />
                       <Label htmlFor={category.id}>{category.name}</Label>
                     </div>
                   ))}
@@ -33,10 +74,15 @@ export default function ShopPage() {
               </div>
               <div>
                 <h3 className="font-semibold mb-4">Price Range</h3>
-                <Slider defaultValue={[500]} max={1200} step={10} />
+                <Slider
+                  value={priceRange}
+                  onValueChange={setPriceRange}
+                  max={maxPrice}
+                  step={10}
+                />
                 <div className="flex justify-between text-sm text-muted-foreground mt-2">
                   <span>$0</span>
-                  <span>$1200</span>
+                  <span>${priceRange[0].toFixed(0)}</span>
                 </div>
               </div>
             </CardContent>
@@ -45,11 +91,18 @@ export default function ShopPage() {
 
         {/* Products Grid */}
         <main className="lg:col-span-3">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-            {mockProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+                <h3 className="text-2xl font-semibold">No Products Found</h3>
+                <p className="text-muted-foreground mt-2">Try adjusting your filters.</p>
+            </div>
+          )}
         </main>
       </div>
     </div>

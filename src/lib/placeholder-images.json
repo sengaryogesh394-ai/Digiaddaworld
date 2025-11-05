@@ -7,12 +7,12 @@
     },
     {
       "id": "hero-2",
-      "imageUrl": "https://images.unsplash.com/photo-1750106749375-05f6275168d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaWdpdGFsJTIwbGFuZHNjYXBlfGVufDB8fHx8MTc2MjMxODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1750106749375-05f6275168d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaWdpdGFsJTIwbGFuZHNjYXBlfGVufDB8fHx8fDE3NjIzMTg5NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "digital landscape"
     },
     {
       "id": "hero-3",
-      "imageUrl": "https://images.unsplash.com/photo-1572756317709-fe9c15ced298?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnZW9tZXRyaWMlMjBwYXR0ZXJufGVufDB8fHx8MTc2MjE5Mzg2NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1572756317709-fe9c15ced298?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnZW9tZXRyaWMlMjBwYXR0ZXJufGVufDB8fHx8fDE3NjIxOTM4NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "geometric pattern"
     },
     {
@@ -31,33 +31,28 @@
       "imageHint": "wireless headphones"
     },
     {
-      "id": "prod-speaker-1",
-      "imageUrl": "https://images.unsplash.com/photo-1612999015383-7d7b5d79b940?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
-      "imageHint": "portable speaker"
-    },
-    {
       "id": "prod-coffeemaker-1",
-      "imageUrl": "https://images.unsplash.com/photo-1622832415951-6d15b00b84f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1710270106372-6dd5708cf2ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkcmlwJTIwY29mZmVlbWFrZXJ8ZW58MHx8fHwxNzYyMzI1Mjk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "drip coffeemaker"
     },
     {
       "id": "prod-blender-1",
-      "imageUrl": "https://images.unsplash.com/photo-1589363351959-5553e4b025a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1631390179103-56176154bc95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb3VudGVydG9wJTIwYmxlbmRlcnxlbnwwfHx8fDE3NjIzMjUyOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "countertop blender"
     },
     {
       "id": "prod-vacuum-1",
-      "imageUrl": "https://images.unsplash.com/photo-1596700254025-a894a4c02283?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1653990480360-31a12ce9723e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyb2JvdCUyMHZhY3V1bXxlbnwwfHx8fDE3NjIyMzI5MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "robot vacuum"
     },
     {
       "id": "prod-laptop-1",
-      "imageUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1588103645565-25bcf9f5ec0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzaWx2ZXIlMjBsYXB0b3B8ZW58MHx8fHwxNzYyMjgzODI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "silver laptop"
     },
     {
       "id": "prod-airfryer-1",
-      "imageUrl": "https://images.unsplash.com/photo-1631109422695-b5b630c5002b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+      "imageUrl": "https://images.unsplash.com/photo-1709432767122-d3cb5326911a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb2Rlcm4lMjBhaXJmcnllcnxlbnwwfHx8fDE3NjIzMjUyOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern airfryer"
     },
     {
@@ -81,8 +76,18 @@
       "imageHint": "book stack"
     },
     {
+      "id": "cat-software",
+      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGNvZGV8ZW58MHx8fHwxNzYyMzI1Mjk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "software code"
+    },
+    {
+      "id": "cat-digital-art",
+      "imageUrl": "https://images.unsplash.com/photo-1633098096956-afdc8bcc8552?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGRpZ2l0YWx8ZW58MHx8fHwxNzYyMjYyNTkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract digital"
+    },
+    {
       "id": "blog-1",
-      "imageUrl": "https://images.unsplash.com/photo-1654372066395-38cb7a791c6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjcmVhdGl2ZSUyMHdvcmtzcGFjZXxlbnwwfHx8fDE3NjIzMTg5NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1654372066395-38cb7a79b96b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjcmVhdGl2ZSUyMHdvcmtzcGFjZXxlbnwwfHx8fDE3NjIzMTg5NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "creative workspace"
     },
     {
@@ -97,13 +102,48 @@
     },
     {
       "id": "about-us",
-      "imageUrl": "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyNzQ3Njd8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyNzQ3Njd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "team collaboration"
     },
     {
       "id": "contact-us",
       "imageUrl": "https://images.unsplash.com/photo-1762014270399-f1e1c0a895cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21tdW5pY2F0aW9uJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYyMjcwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "communication abstract"
+    },
+    {
+      "id": "prod-tshirt-1",
+      "imageUrl": "https://images.unsplash.com/photo-1655141559952-de52ac91617e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Z3JhcGhpYyUyMHQtc2hpcnR8ZW58MHx8fHwxNzYyMjQ3MTIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "graphic t-shirt"
+    },
+    {
+      "id": "prod-ebook-1",
+      "imageUrl": "https://images.unsplash.com/photo-1535398089889-dd807df1dfaa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzYyMjE0MjIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "prod-photo-editor-1",
+      "imageUrl": "https://images.unsplash.com/photo-1754548930550-be9fa88874f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGludGVyZmFjZXxlbnwwfHx8fDE3NjIyMTk5NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "software interface"
+    },
+    {
+      "id": "prod-abstract-art-1",
+      "imageUrl": "https://images.unsplash.com/photo-1579546929662-711aa81148cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb2xvcmZ1bCUyMGFic3RyYWN0fGVufDB8fHx8MTc2MjIzODM0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "colorful abstract"
+    },
+    {
+      "id": "prod-font-pack-1",
+      "imageUrl": "https://images.unsplash.com/photo-1721492134985-1dd5b72a3dd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc2MjMxNTkwOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "typography design"
+    },
+    {
+      "id": "prod-3d-model-1",
+      "imageUrl": "https://images.unsplash.com/photo-1627637819794-fba32f82be16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHwzZCUyMHJlbmRlcnxlbnwwfHx8fDE3NjIyNTQ1NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "3d render"
+    },
+    {
+      "id": "prod-music-pack-1",
+      "imageUrl": "https://images.unsplash.com/photo-1650902565793-c2eb262aefbc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMG5vdGVzfGVufDB8fHx8MTc2MjI0NDQxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "music notes"
     }
   ]
 }
