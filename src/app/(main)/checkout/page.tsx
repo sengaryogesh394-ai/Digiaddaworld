@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -11,10 +12,17 @@ import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 
 export default function CheckoutPage() {
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
+  const router = useRouter();
   const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
   const tax = subtotal * 0.08;
   const total = subtotal + tax;
+
+  const handlePlaceOrder = () => {
+    // In a real app, you would process the payment here.
+    // For now, we'll just navigate to the order confirmation page.
+    router.push('/order');
+  };
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-secondary">
@@ -109,7 +117,7 @@ export default function CheckoutPage() {
                     <p>${total.toFixed(2)}</p>
                     </div>
                 </div>
-                <Button size="lg" className="w-full mt-6">Place Order</Button>
+                <Button size="lg" className="w-full mt-6" onClick={handlePlaceOrder}>Place Order</Button>
                 </CardContent>
             </Card>
             </div>
