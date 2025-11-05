@@ -16,69 +16,69 @@
       "imageHint": "geometric pattern"
     },
     {
-      "id": "prod-1-1",
-      "imageUrl": "https://images.unsplash.com/photo-1643913398973-f8e24bf6d1c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlYm9vayUyMGNvdmVyfGVufDB8fHx8MTc2MjI5ODkxN3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "ebook cover"
+      "id": "prod-smartwatch-1",
+      "imageUrl": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80",
+      "imageHint": "smart watch"
     },
     {
-      "id": "prod-1-2",
-      "imageUrl": "https://images.unsplash.com/photo-1630734242404-518aeda7f3d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb2NrdXAlMjBkZXNpZ258ZW58MHx8fHwxNzYyMjY0NjYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "mockup design"
+      "id": "prod-smartwatch-2",
+      "imageUrl": "https://images.unsplash.com/photo-1579586337278-35d9addb018d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "imageHint": "watch face"
     },
     {
-      "id": "prod-2-1",
-      "imageUrl": "https://images.unsplash.com/photo-1754548930550-be9fa88874f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGludGVyZmFjZXxlbnwwfHx8fDE3NjIyMTk5NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "software interface"
+      "id": "prod-headphones-1",
+      "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "imageHint": "wireless headphones"
     },
     {
-      "id": "prod-3-1",
-      "imageUrl": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsb2dvJTIwZGVzaWdufGVufDB8fHx8MTc2MjI3Nzg4OXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "logo design"
+      "id": "prod-speaker-1",
+      "imageUrl": "https://images.unsplash.com/photo-1589256469027-592537634ac4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "imageHint": "bluetooth speaker"
     },
     {
-      "id": "prod-4-1",
-      "imageUrl": "https://images.unsplash.com/photo-1608915324430-f2eb1d9ecb49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwaG90byUyMGZpbHRlcnxlbnwwfHx8fDE3NjIzMTU5MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "photo filter"
+      "id": "prod-coffeemaker-1",
+      "imageUrl": "https://images.unsplash.com/photo-1563868348624-782d854de369?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+      "imageHint": "coffee maker"
     },
     {
-      "id": "prod-5-1",
-      "imageUrl": "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtdXNpYyUyMHRyYWNrfGVufDB8fHx8MTc2MjMxODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "music track"
+      "id": "prod-blender-1",
+      "imageUrl": "https://images.unsplash.com/photo-1587135002446-2d79075e8486?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+      "imageHint": "kitchen blender"
     },
     {
-      "id": "prod-6-1",
-      "imageUrl": "https://images.unsplash.com/photo-1694878982114-ff9d58bd9d9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx2aWRlbyUyMHRlbXBsYXRlfGVufDB8fHx8MTc2MjMxODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "video template"
+      "id": "prod-vacuum-1",
+      "imageUrl": "https://images.unsplash.com/photo-1628468683783-91ab7a4885c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "imageHint": "robot vacuum"
     },
     {
-      "id": "prod-7-1",
-      "imageUrl": "https://images.unsplash.com/photo-1659841064804-5f507b1b488a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3ZWJzaXRlJTIwdGhlbWV8ZW58MHx8fHwxNzYyMzE4OTc2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "website theme"
+      "id": "prod-laptop-1",
+      "imageUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=726&q=80",
+      "imageHint": "modern laptop"
     },
     {
-      "id": "prod-8-1",
-      "imageUrl": "https://picsum.photos/seed/prod81/600/600",
-      "imageHint": "font pack"
+      "id": "prod-airfryer-1",
+      "imageUrl": "https://images.unsplash.com/photo-1632558532454-a39151fb7896?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80",
+      "imageHint": "air fryer"
     },
     {
-      "id": "cat-ebooks",
-      "imageUrl": "https://images.unsplash.com/photo-1568667256531-7d5ac92eaa7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib29rcyUyMGxpYnJhcnl8ZW58MHx8fHwxNzYyMjIxODAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "books library"
+      "id": "cat-electronics",
+      "imageUrl": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
+      "imageHint": "tech gadgets"
     },
     {
-      "id": "cat-presets",
-      "imageUrl": "https://images.unsplash.com/photo-1608186286925-8c0e1c1fbeac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjYW1lcmElMjBsZW5zfGVufDB8fHx8MTc2MjMwNTg4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "camera lens"
+      "id": "cat-home-kitchen",
+      "imageUrl": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "imageHint": "modern kitchen"
     },
     {
-      "id": "cat-templates",
-      "imageUrl": "https://images.unsplash.com/photo-1747940920075-a7d374028543?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZXNpZ24lMjBncmlkfGVufDB8fHx8MTc2MjMxODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "design grid"
+      "id": "cat-apparel",
+      "imageUrl": "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "imageHint": "fashion clothing"
     },
     {
-      "id": "cat-music",
-      "imageUrl": "https://images.unsplash.com/photo-1653082658341-d18280d0c149?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhdWRpbyUyMHdhdmVzfGVufDB8fHx8MTc2MjIzODk0NHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "audio waves"
+      "id": "cat-books-new",
+      "imageUrl": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "imageHint": "book stack"
     },
     {
       "id": "blog-1",

@@ -6,10 +6,10 @@ const sections = [
   {
     title: 'Shop',
     links: [
-      { name: 'E-books', href: '/shop?category=ebooks' },
-      { name: 'Presets', href: '/shop?category=presets' },
-      { name: 'Templates', href: '/shop?category=templates' },
-      { name: 'Music', href: '/shop?category=music' },
+      { name: 'Electronics', href: '/shop?category=electronics' },
+      { name: 'Home & Kitchen', href: '/shop?category=home-kitchen' },
+      { name: 'Apparel', href: '/shop?category=apparel' },
+      { name: 'Books', href: '/shop?category=books' },
     ],
   },
   {
@@ -55,7 +55,7 @@ export function Footer() {
               </Link>
             </div>
             <p className="max-w-[70%] text-sm text-muted-foreground">
-              Your marketplace for digital goods.
+              Your marketplace for amazing products.
             </p>
             <ul className="flex items-center space-x-6 text-muted-foreground">
               {socialLinks.map((social, idx) => (

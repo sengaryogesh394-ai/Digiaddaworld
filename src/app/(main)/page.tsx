@@ -35,14 +35,14 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnView>
             <div className="max-w-4xl mx-auto">
-                <p className="text-lg bg-black/20 text-white inline-block px-4 py-1 rounded-full mb-4">Your Marketplace for Digital Goods</p>
+                <p className="text-lg bg-black/20 text-white inline-block px-4 py-1 rounded-full mb-4">Your One-Stop Online Shop</p>
                 <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter">
                   DISCOVER & BUY
                   <br />
-                  AMAZING DIGITAL PRODUCTS.
+                  AMAZING PRODUCTS.
                 </h1>
                 <p className="mt-6 text-lg md:text-xl max-w-2xl mx-auto">
-                  Explore a universe of digital creations. From e-books and templates to music and art, find everything you need to create and inspire.
+                  From the latest electronics to stylish home goods, find everything you need in one place.
                 </p>
                 <div className="mt-8">
                   <Button size="lg" variant="secondary" asChild>
@@ -80,10 +80,10 @@ export default function HomePage() {
       </div>
 
       {/* Categories Section */}
-      <section className="py-16 bg-[#e0e3fa]">
+      <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnView>
-            <h2 className="text-3xl font-headline text-center mb-8 text-black">Browse by Category</h2>
+            <h2 className="text-3xl font-headline text-center mb-8">Browse by Category</h2>
           </AnimateOnView>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {mockCategories.map((category, i) => (
@@ -147,10 +147,10 @@ export default function HomePage() {
       </section>
 
       {/* From the Blog Section */}
-      <section className="py-16 bg-[#5f69c5]">
+      <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <AnimateOnView>
-              <h2 className="text-3xl font-headline text-center mb-8 text-white">From Our Blog</h2>
+              <h2 className="text-3xl font-headline text-center mb-8">From Our Blog</h2>
             </AnimateOnView>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {mockBlogPosts.slice(0, 3).map((post, i) => (
