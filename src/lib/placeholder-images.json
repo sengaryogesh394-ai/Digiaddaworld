@@ -1,0 +1,109 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "imageUrl": "https://images.unsplash.com/photo-1618331833071-ce81bd50d300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGFydHxlbnwwfHx8fDE3NjIyNTEwODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract art"
+    },
+    {
+      "id": "hero-2",
+      "imageUrl": "https://images.unsplash.com/photo-1750106749375-05f6275168d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaWdpdGFsJTIwbGFuZHNjYXBlfGVufDB8fHx8MTc2MjMxODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "digital landscape"
+    },
+    {
+      "id": "hero-3",
+      "imageUrl": "https://images.unsplash.com/photo-1572756317709-fe9c15ced298?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnZW9tZXRyaWMlMjBwYXR0ZXJufGVufDB8fHx8MTc2MjE5Mzg2NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "geometric pattern"
+    },
+    {
+      "id": "prod-1-1",
+      "imageUrl": "https://images.unsplash.com/photo-1643913398973-f8e24bf6d1c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlYm9vayUyMGNvdmVyfGVufDB8fHx8MTc2MjI5ODkxN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ebook cover"
+    },
+    {
+      "id": "prod-1-2",
+      "imageUrl": "https://images.unsplash.com/photo-1630734242404-518aeda7f3d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb2NrdXAlMjBkZXNpZ258ZW58MHx8fHwxNzYyMjY0NjYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mockup design"
+    },
+    {
+      "id": "prod-2-1",
+      "imageUrl": "https://images.unsplash.com/photo-1754548930550-be9fa88874f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGludGVyZmFjZXxlbnwwfHx8fDE3NjIyMTk5NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "software interface"
+    },
+    {
+      "id": "prod-3-1",
+      "imageUrl": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsb2dvJTIwZGVzaWdufGVufDB8fHx8MTc2MjI3Nzg4OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "logo design"
+    },
+    {
+      "id": "prod-4-1",
+      "imageUrl": "https://images.unsplash.com/photo-1608915324430-f2eb1d9ecb49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwaG90byUyMGZpbHRlcnxlbnwwfHx8fDE3NjIzMTU5MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "photo filter"
+    },
+    {
+      "id": "prod-5-1",
+      "imageUrl": "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtdXNpYyUyMHRyYWNrfGVufDB8fHx8MTc2MjMxODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "music track"
+    },
+    {
+      "id": "prod-6-1",
+      "imageUrl": "https://images.unsplash.com/photo-1694878982114-ff9d58bd9d9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx2aWRlbyUyMHRlbXBsYXRlfGVufDB8fHx8MTc2MjMxODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "video template"
+    },
+    {
+      "id": "prod-7-1",
+      "imageUrl": "https://images.unsplash.com/photo-1659841064804-5f507b1b488a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3ZWJzaXRlJTIwdGhlbWV8ZW58MHx8fHwxNzYyMzE4OTc2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "website theme"
+    },
+    {
+      "id": "prod-8-1",
+      "imageUrl": "https://picsum.photos/seed/prod81/600/600",
+      "imageHint": "font pack"
+    },
+    {
+      "id": "cat-ebooks",
+      "imageUrl": "https://images.unsplash.com/photo-1568667256531-7d5ac92eaa7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib29rcyUyMGxpYnJhcnl8ZW58MHx8fHwxNzYyMjIxODAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "books library"
+    },
+    {
+      "id": "cat-presets",
+      "imageUrl": "https://images.unsplash.com/photo-1608186286925-8c0e1c1fbeac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjYW1lcmElMjBsZW5zfGVufDB8fHx8MTc2MjMwNTg4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "camera lens"
+    },
+    {
+      "id": "cat-templates",
+      "imageUrl": "https://images.unsplash.com/photo-1747940920075-a7d374028543?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZXNpZ24lMjBncmlkfGVufDB8fHx8MTc2MjMxODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design grid"
+    },
+    {
+      "id": "cat-music",
+      "imageUrl": "https://images.unsplash.com/photo-1653082658341-d18280d0c149?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhdWRpbyUyMHdhdmVzfGVufDB8fHx8MTc2MjIzODk0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "audio waves"
+    },
+    {
+      "id": "blog-1",
+      "imageUrl": "https://images.unsplash.com/photo-1654372066395-38cb7a791c6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjcmVhdGl2ZSUyMHdvcmtzcGFjZXxlbnwwfHx8fDE3NjIzMTg5NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "creative workspace"
+    },
+    {
+      "id": "blog-2",
+      "imageUrl": "https://images.unsplash.com/photo-1715210471871-590883e6a720?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbm9tYWR8ZW58MHx8fHwxNzYyMjk3NTM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "digital nomad"
+    },
+    {
+      "id": "blog-3",
+      "imageUrl": "https://images.unsplash.com/photo-1758873272414-c0bf30332738?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFya2V0aW5nJTIwY2hhcnR8ZW58MHx8fHwxNzYyMjQ3MzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "marketing chart"
+    },
+    {
+      "id": "about-us",
+      "imageUrl": "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyNzQ3Njd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "team collaboration"
+    },
+    {
+      "id": "contact-us",
+      "imageUrl": "https://images.unsplash.com/photo-1762014270399-f1e1c0a895cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21tdW5pY2F0aW9uJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYyMjcwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "communication abstract"
+    }
+  ]
+}
