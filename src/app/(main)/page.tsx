@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import Image from 'next/image';
@@ -8,19 +7,41 @@ import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { AnimateOnView } from '@/components/shared/AnimateOnView';
 import { motion } from 'framer-motion';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { useEffect, useState } from 'react';
 
 export default function HomePage() {
+  const [heroApi, setHeroApi] = useState<any>(null);
+
+  useEffect(() => {
+    if (!heroApi) return;
+    const id = setInterval(() => heroApi.scrollNext(), 5000);
+    return () => clearInterval(id);
+  }, [heroApi]);
+
 
   function getImage(id: string) {
     const image = PlaceHolderImages.find(img => img.id === id);
     return { id: image?.id || '', url: image?.imageUrl || '', hint: image?.imageHint || '' };
   }
+
+  const heroImages = [
+    getImage('prod-instagram-course-1'),
+    getImage('prod-graphic-design-bundle-1'),
+    getImage('prod-adobe-suite-1'),
+  ];
 
   const featuredProducts = mockProducts.filter(p => p.isFeatured).slice(0, 4);
   const newProducts = mockProducts.slice(0, 8);
@@ -29,18 +50,32 @@ export default function HomePage() {
   return (
     <div className="space-y-16 pb-16 bg-background">
       {/* Hero Section */}
-      <section className="bg-secondary/50 py-20">
-        <div className="container text-center">
-            <h1 className="text-5xl font-headline text-foreground/80">Everything you need for your next project</h1>
-            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-                Templates, presets, bundles and more. Explore thousands of high-quality digital assets.
-            </p>
-            <form className="mt-8 max-w-xl mx-auto">
-                <div className="flex gap-2">
-                    <Input placeholder="Search templates, presets, bundles…" className="h-12 bg-white text-black placeholder:text-neutral-500 flex-grow" />
-                    <Button size="lg" className="h-12 bg-primary hover:bg-primary/90">Search</Button>
-                </div>
-            </form>
+      <section className="relative h-[420px] md:h-[520px] w-full overflow-hidden text-white flex items-center">
+        <div className="absolute inset-0 -z-10">
+          <Carousel setApi={setHeroApi} opts={{ loop: true }}>
+            <CarouselContent>
+              {heroImages.map((image, i) => (
+                <CarouselItem key={i}>
+                  <div className="relative h-[420px] md:h-[520px] w-full">
+                    <Image src={image.url} alt={image.hint} fill className="object-cover" />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="container relative z-10 text-center">
+          <h1 className="text-4xl md:text-5xl font-headline">Everything you need for your next project</h1>
+          <p className="mt-4 max-w-2xl mx-auto text-white/80">
+            Templates, presets, bundles and more. Explore thousands of high-quality digital assets.
+          </p>
+          <form className="mt-8 max-w-xl mx-auto">
+            <div className="flex gap-2">
+              <Input placeholder="Search templates, presets, bundles…" className="h-12 bg-white text-black placeholder:text-neutral-500 flex-grow" />
+              <Button size="lg" className="h-12 bg-primary hover:bg-primary/90">Search</Button>
+            </div>
+          </form>
         </div>
       </section>
 
