@@ -159,6 +159,36 @@
       "id": "creative-subscription",
       "imageUrl": "https://images.unsplash.com/photo-1741151749309-8bb17563c701?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjcmVhdGl2ZSUyMGFzc2V0cyUyMGdyaWR8ZW58MHx8fHwxNzYyNDA5MTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "creative assets grid"
+    },
+    {
+      "id": "promo-wedding-1",
+      "imageUrl": "https://images.unsplash.com/photo-1599366279015-524df1ed5d5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3ZWRkaW5nJTIwaW52aXRhdGlvbiUyMG1vYmlsZXxlbnwwfHx8fDE3NjI0MTEyMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding invitation mobile"
+    },
+    {
+      "id": "promo-wedding-2",
+      "imageUrl": "https://images.unsplash.com/photo-1597665407761-16ef09c4386c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxpbnZpdGF0aW9uJTIwZGVzaWduJTIwbW9iaWxlfGVufDB8fHx8MTc2MjQxMTIzNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "invitation design mobile"
+    },
+    {
+      "id": "promo-guarantee",
+      "imageUrl": "https://images.unsplash.com/photo-1587567818566-3272be7d64c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYXRpc2ZhY3Rpb24lMjBndWFyYW50ZWUlMjBiYWRnZXxlbnwwfHx8fDE3NjI0MTEyMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "satisfaction guarantee badge"
+    },
+    {
+      "id": "promo-testimonial-1",
+      "imageUrl": "https://images.unsplash.com/photo-1603899122332-81418ddc0e12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaGF0JTIwdGVzdGltb25pYWx8ZW58MHx8fHwxNzYyNDExMjM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chat testimonial"
+    },
+    {
+      "id": "promo-testimonial-2",
+      "imageUrl": "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjdXN0b21lciUyMGZlZWRiYWNrfGVufDB8fHx8MTc2MjM1ODIyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "customer feedback"
+    },
+    {
+      "id": "promo-testimonial-3",
+      "imageUrl": "https://images.unsplash.com/photo-1758519289361-2615778e0e5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3NpdGl2ZSUyMHJldmlld3xlbnwwfHx8fDE3NjI0MTEyMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "positive review"
     }
   ]
 }
