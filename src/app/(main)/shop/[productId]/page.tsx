@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { notFound, useRouter, useParams } from 'next/navigation';
 import { mockProducts } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import {
   Carousel,
   CarouselContent,
