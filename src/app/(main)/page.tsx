@@ -150,13 +150,13 @@ export default function HomePage() {
       </section>
 
       {/* Envato Section */}
-      <section className="relative overflow-hidden py-12 text-white">
+      <section className="relative overflow-hidden h-[300px] text-white flex items-center">
         <div className="absolute inset-0 -z-10">
             <Carousel setApi={setSubscriptionApi} opts={{ loop: true }}>
                 <CarouselContent>
                 {subscriptionImages.map((image, i) => (
                     <CarouselItem key={i}>
-                    <div className="relative h-full w-full">
+                    <div className="relative h-[300px] w-full">
                         <Image src={image.url} alt={image.hint} fill className="object-cover" />
                     </div>
                     </CarouselItem>
