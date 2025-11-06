@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from '@/components/shared/CountdownTimer';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function ProductDetailsPage() {
   const { toast } = useToast();
@@ -23,6 +24,11 @@ export default function ProductDetailsPage() {
   if (!product) {
     notFound();
   }
+
+    const getImage = (id: string) => {
+        const image = PlaceHolderImages.find(img => img.id === id);
+        return { id: image?.id || '', url: image?.imageUrl || 'https://picsum.photos/seed/default/120/120', hint: image?.imageHint || 'guarantee' };
+    }
 
   const handleAddToCart = () => {
     if (product) {
@@ -120,7 +126,7 @@ export default function ProductDetailsPage() {
                 <Card className="bg-white dark:bg-card shadow-lg">
                     <CardContent className="p-8">
                         <div className="text-gray-700 dark:text-gray-300 whitespace-pre-line space-y-4">
-                           <p>This is the ultimate bundle for anyone looking to create stunning and professional content. It includes a massive collection of high-quality templates, presets, and assets that are fully customizable and easy to use. Whether you're a designer, marketer, or content creator, this bundle has everything you need to take your projects to the next level.</p>
+                           <p>{product.description}</p>
                            <p>Save countless hours of work with ready-made assets that cover a wide range of styles and niches. From social media graphics to video transitions, this pack is designed to streamline your workflow and help you produce amazing results, faster.</p>
                         </div>
                     </CardContent>
@@ -148,7 +154,26 @@ export default function ProductDetailsPage() {
                     </Card>
                 </section>
             )}
-
+             {/* Guarantee Section */}
+            <section className="text-center max-w-3xl mx-auto">
+                <Image 
+                    src={getImage('promo-guarantee').url} 
+                    alt="30-Day Money-Back Guarantee" 
+                    width={120} height={120} 
+                    className="mx-auto" 
+                    data-ai-hint={getImage('promo-guarantee').hint} 
+                />
+                <h3 className="text-2xl font-bold mt-4 text-gray-800 dark:text-gray-100">30-Day Money-Back Guarantee</h3>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">100% Risk-Free: Earn your first sale or get a full refund.</p>
+                <ul className="text-left space-y-2 text-gray-600 dark:text-gray-400 w-fit mx-auto my-6">
+                    <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> 94% recover investment in 1 Week</li>
+                    <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Step-by-step success system</li>
+                    <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Personal mentorship to first sale</li>
+                </ul>
+                <Button size="lg" className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg w-full mt-6">
+                    GET LIFETIME ACCESS at ${product.price.toFixed(2)}
+                </Button>
+            </section>
         </div>
     </div>
   );
