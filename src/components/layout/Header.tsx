@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import * as React from 'react';
-import { Menu, Search, ShoppingCart, User, ChevronDown, MapPin } from 'lucide-react';
+import { Menu, Search, ShoppingCart, ChevronDown } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 import { Button } from '@/components/ui/button';
@@ -21,6 +21,8 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/shop', label: 'Our Store' },
   { href: '/blog', label: 'Blogs' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export function Header() {
@@ -42,27 +44,16 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="bg-primary text-primary-foreground text-sm py-2">
         <div className="container flex justify-between items-center">
-            <div className="flex gap-4 items-center">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild><Button variant="ghost" className="h-auto p-0 text-primary-foreground hover:bg-transparent hover:text-primary-foreground">English <ChevronDown className="w-4 h-4 ml-1" /></Button></DropdownMenuTrigger>
-                    <DropdownMenuContent><DropdownMenuItem>Deutsch</DropdownMenuItem></DropdownMenuContent>
-                </DropdownMenu>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild><Button variant="ghost" className="h-auto p-0 text-primary-foreground hover:bg-transparent hover:text-primary-foreground">USD $ <ChevronDown className="w-4 h-4 ml-1" /></Button></DropdownMenuTrigger>
-                    <DropdownMenuContent><DropdownMenuItem>EUR €</DropdownMenuItem></DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-            <p className="hidden md:block">Free Shipping On All Orders Over $100</p>
-            <div className="flex gap-4 items-center">
-                <Link href="/login" className="hover:underline">My Account</Link>
-                <Link href="#" className="hover:underline">Compare</Link>
+            <p className="hidden md:block">The ultimate destination for premium digital products!</p>
+            <div className="flex gap-4 items-center ml-auto">
+                <Link href="/admin/dashboard" className="hover:underline">Start Selling</Link>
             </div>
         </div>
       </div>
       <div className="container flex h-20 items-center">
         <div className="mr-4 hidden md:flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold text-2xl">DigiAddaWorld</span>
+            <span className="font-bold text-2xl text-primary">DigiAddaWorld</span>
           </Link>
           <nav className="flex items-center space-x-1 text-sm font-medium">
             {renderNavLinks()}
@@ -80,7 +71,7 @@ export function Header() {
             <SheetContent side="left" className="pr-0">
                 <SheetTitle className="sr-only">Main Menu</SheetTitle>
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="mr-6 flex items-center space-x-2 px-4">
-                 <span className="font-bold text-2xl">DigiAddaWorld</span>
+                 <span className="font-bold text-2xl text-primary">DigiAddaWorld</span>
               </Link>
               <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                 <div className="flex flex-col space-y-3">{renderNavLinks()}</div>
@@ -90,21 +81,14 @@ export function Header() {
         )}
 
         <Link href="/" className="flex items-center space-x-2 md:hidden">
-          <span className="font-bold text-xl">DigiAddaWorld</span>
+          <span className="font-bold text-xl text-primary">DigiAddaWorld</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end space-x-2">
-          <div className="hidden md:block w-full max-w-sm">
-            <form>
-              <div className="relative">
-                <Input
-                  className="w-full bg-secondary pr-10"
-                  placeholder="Search Product Here..."
-                />
-                <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              </div>
-            </form>
-          </div>
+            <Button variant="ghost" size="icon">
+                <Search className="h-6 w-6" />
+                <span className="sr-only">Search</span>
+            </Button>
            <Button variant="ghost" size="icon" asChild>
              <Link href="/cart" className="relative">
                 <ShoppingCart className="h-6 w-6" />
@@ -113,6 +97,9 @@ export function Header() {
                 )}
                 <span className="sr-only">Cart</span>
              </Link>
+          </Button>
+          <Button asChild className="hidden md:inline-flex">
+            <Link href="/login">Login</Link>
           </Button>
         </div>
       </div>

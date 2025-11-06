@@ -11,7 +11,7 @@
       "imageHint": "fitness workout"
     },
     {
-      "id-": "prod-ai-reels-motivation",
+      "id": "prod-ai-reels-motivation",
       "imageUrl": "https://images.unsplash.com/photo-1592597844940-a4c69ceb4be6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb3RpdmF0aW9uYWwlMjBxdW90ZXxlbnwwfHx8fDE3NjIzNTM1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "motivational quote"
     },
@@ -139,6 +139,16 @@
       "id": "about-us",
       "imageUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwd29ya2luZyUyMHRvZ2V0aGVyfGVufDB8fHx8MTc2MjQ4MjU4OHww&ixlib=rb-4.0.3",
       "imageHint": "team working together"
+    },
+    {
+      "id": "hero-collage",
+      "imageUrl": "https://images.unsplash.com/photo-1585313736187-2d481f3c3969?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxkaWdpdGFsJTIwcHJvZHVjdHMlMjBjb2xsYWdlfGVufDB8fHx8MTc2MjQwOTE0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "digital products collage"
+    },
+    {
+      "id": "creative-subscription",
+      "imageUrl": "https://images.unsplash.com/photo-1741151749309-8bb17563c701?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjcmVhdGl2ZSUyMGFzc2V0cyUyMGdyaWR8ZW58MHx8fHwxNzYyNDA5MTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "creative assets grid"
     }
   ]
 }

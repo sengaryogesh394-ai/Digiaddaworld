@@ -3,7 +3,8 @@ import Link from 'next/link';
 import type { Product } from '@/lib/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Heart, Search } from 'lucide-react';
+import { ShoppingCart, Star } from 'lucide-react';
+import { Badge } from '../ui/badge';
 
 type ProductCardProps = {
   product: Product;
@@ -11,37 +12,43 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="overflow-hidden h-full group transition-shadow duration-300 hover:shadow-xl">
-      <CardContent className="p-0 relative">
+    <Card className="overflow-hidden h-full group transition-shadow duration-300 hover:shadow-lg">
         <div className="aspect-square relative overflow-hidden">
-          <Image
-            src={product.images[0].url}
-            alt={product.name}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-            data-ai-hint={product.images[0].hint}
-          />
-          <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <Button size="icon" variant="secondary" className="rounded-full">
-                <Heart className="w-4 h-4"/>
-              </Button>
-              <Button size="icon" variant="secondary" className="rounded-full">
-                <Search className="w-4 h-4"/>
-              </Button>
+          <Link href={`/shop/${product.id}`}>
+            <Image
+              src={product.images[0].url}
+              alt={product.name}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              data-ai-hint={product.images[0].hint}
+            />
+          </Link>
+          {product.isFeatured && <Badge className="absolute top-3 left-3">Featured</Badge>}
+        </div>
+        <CardContent className="p-4">
+          <p className="text-muted-foreground text-sm mb-1">{product.category}</p>
+          <h3 className="font-semibold text-base truncate h-6">
+            <Link href={`/shop/${product.id}`} className="hover:text-primary transition-colors">{product.name}</Link>
+          </h3>
+          <div className="flex items-center my-2">
+            <div className="flex items-center text-yellow-500">
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 text-gray-300 fill-current" />
+            </div>
+            <p className="ml-2 text-xs text-muted-foreground">(12)</p>
           </div>
-        </div>
-        <div className="p-4 text-center">
-          <p className="text-muted-foreground text-sm">{product.category}</p>
-          <h3 className="font-semibold text-lg truncate">{product.name}</h3>
-          <p className="font-bold text-xl mt-2">${product.price.toFixed(2)}</p>
-        </div>
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)]">
-            <Button className="w-full opacity-0 group-hover:opacity-100 transition-opacity" asChild>
+          <div className="flex justify-between items-center">
+            <p className="font-bold text-lg text-primary">${product.price.toFixed(2)}</p>
+            <Button size="icon" variant="outline" asChild>
                 <Link href={`/shop/${product.id}`}>
-                    <ShoppingCart className="mr-2 h-4 w-4"/> Add to Cart
+                    <ShoppingCart className="w-4 h-4"/>
+                    <span className="sr-only">Add to Cart</span>
                 </Link>
             </Button>
-        </div>
+          </div>
       </CardContent>
     </Card>
   );
