@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Star } from 'lucide-react';
 import { Badge } from '../ui/badge';
+import { motion } from 'framer-motion';
 
 type ProductCardProps = {
   product: Product;
@@ -12,16 +13,18 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="overflow-hidden h-full group transition-shadow duration-300 hover:shadow-lg">
+    <Card className="overflow-hidden h-full group transition-shadow duration-300 hover:shadow-xl">
         <div className="aspect-square relative overflow-hidden">
           <Link href={`/shop/${product.id}`}>
-            <Image
-              src={product.images[0].url}
-              alt={product.name}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              data-ai-hint={product.images[0].hint}
-            />
+            <motion.div whileHover={{ scale: 1.05 }} className="h-full w-full">
+              <Image
+                src={product.images[0].url}
+                alt={product.name}
+                fill
+                className="object-cover"
+                data-ai-hint={product.images[0].hint}
+              />
+            </motion.div>
           </Link>
           {product.isFeatured && <Badge className="absolute top-3 left-3">Featured</Badge>}
         </div>
