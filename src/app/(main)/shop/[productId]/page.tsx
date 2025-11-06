@@ -9,7 +9,7 @@ import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CountdownTimer from '@/components/shared/CountdownTimer';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -128,7 +128,7 @@ export default function ProductDetailsPage() {
                             <div className="flex-1">
                                 <p className="font-semibold">
                                 <span className="mr-2">{feature.icon}</span>
-                                <span className="font-bold">{feature.title}</span>{' '}
+                                <span dangerouslySetInnerHTML={{ __html: feature.title }} />{' '}
                                 <span className="text-gray-600 dark:text-gray-400 font-normal">{feature.description}</span>
                                 <span className="text-gray-500 dark:text-gray-400 font-medium"> - {feature.value}</span>
                                 </p>
@@ -143,11 +143,13 @@ export default function ProductDetailsPage() {
 
              {/* Description Section */}
              <section className="max-w-3xl mx-auto">
-                <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-                    Description
-                </h2>
                 <Card className="bg-white dark:bg-card shadow-lg">
-                    <CardContent className="p-8">
+                    <CardHeader>
+                        <CardTitle className="text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
+                            Description
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-8 pt-0">
                         <div className="text-gray-700 dark:text-gray-300 whitespace-pre-line space-y-4">
                            <p>{product.description}</p>
                            <p>Save countless hours of work with ready-made assets that cover a wide range of styles and niches. From social media graphics to video transitions, this pack is designed to streamline your workflow and help you produce amazing results, faster.</p>
@@ -159,16 +161,18 @@ export default function ProductDetailsPage() {
             {/* Compatibility Section */}
             {product.compatibility && (
                 <section className="max-w-3xl mx-auto">
-                    <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-                        Compatibility
-                    </h2>
                     <Card className="bg-white dark:bg-card shadow-lg">
-                        <CardContent className="p-8">
+                        <CardHeader>
+                            <CardTitle className="text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
+                                Compatibility
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-8 pt-0">
                             <div className="text-gray-700 dark:text-gray-300 space-y-2">
                             <p>{product.compatibility.title}</p>
                             <ul className="list-disc list-inside space-y-1 pl-2">
                                 {product.compatibility.details.map((detail, i) => (
-                                    <li key={i}><b>{detail.split(':')[0]}:</b>{detail.split(':')[1]}</li>
+                                    <li key={i}><b dangerouslySetInnerHTML={{ __html: detail.split(':')[0] }} />:{detail.split(':')[1]}</li>
                                 ))}
                             </ul>
                             {product.compatibility.notes && <p className="pt-2">{product.compatibility.notes}</p>}
