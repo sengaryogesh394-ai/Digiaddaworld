@@ -2,7 +2,7 @@ export type Product = {
   id: string;
   name: string;
   price: number;
-  images: { id: string; url: string; hint: string }[];
+  media: { id: string; url: string; hint: string; type: 'image' | 'video' }[];
   category: string;
   description: string;
   isFeatured?: boolean;

@@ -84,16 +84,27 @@ export default function ProductDetailsPage() {
             {/* Image Gallery */}
             <section className="bg-indigo-100/50 dark:bg-indigo-900/20 py-8 rounded-lg">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                    {product.images.slice(0, 4).map((img, index) => (
+                    {product.media.slice(0, 4).map((item, index) => (
                         <div key={index} className="bg-black rounded-3xl p-2 shadow-lg">
                             <div className="relative aspect-[9/19] w-full rounded-2xl overflow-hidden">
-                                <Image
-                                    src={img.url}
-                                    alt={`${product.name} screenshot ${index + 1}`}
-                                    fill
-                                    className="object-cover"
-                                    data-ai-hint={img.hint}
-                                />
+                                {item.type === 'video' ? (
+                                    <video
+                                        src={item.url}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="object-cover w-full h-full"
+                                    />
+                                ) : (
+                                    <Image
+                                        src={item.url}
+                                        alt={`${product.name} screenshot ${index + 1}`}
+                                        fill
+                                        className="object-cover"
+                                        data-ai-hint={item.hint}
+                                    />
+                                )}
                             </div>
                         </div>
                     ))}
@@ -170,7 +181,7 @@ export default function ProductDetailsPage() {
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Step-by-step success system</li>
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Personal mentorship to first sale</li>
                 </ul>
-                <Button size="lg" className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg w-full mt-6">
+                <Button size="lg" className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg w-full mt-6" onClick={handleBuyNow}>
                     GET LIFETIME ACCESS at ${product.price.toFixed(2)}
                 </Button>
             </section>

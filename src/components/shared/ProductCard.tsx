@@ -18,11 +18,11 @@ export function ProductCard({ product }: ProductCardProps) {
           <Link href={`/shop/${product.id}`}>
             <motion.div whileHover={{ scale: 1.05 }} className="h-full w-full">
               <Image
-                src={product.images[0].url}
+                src={product.media[0].url}
                 alt={product.name}
                 fill
                 className="object-cover"
-                data-ai-hint={product.images[0].hint}
+                data-ai-hint={product.media[0].hint}
               />
             </motion.div>
           </Link>

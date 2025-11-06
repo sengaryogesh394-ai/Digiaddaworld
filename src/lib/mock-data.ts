@@ -17,7 +17,12 @@ export const mockProducts: Product[] = [
     id: 'prod-instagram-course',
     name: 'Instagram Growth Mastery Course',
     price: 199.99,
-    images: [getImage('prod-instagram-course-1'), getImage('prod-instagram-course-2'), getImage('prod-instagram-course-3'), getImage('prod-instagram-course-4')],
+    media: [
+      { ...getImage('prod-instagram-course-1'), type: 'image' }, 
+      { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', id:'vid1', hint: 'course promo', type: 'video' },
+      { ...getImage('prod-instagram-course-3'), type: 'image' },
+      { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', id:'vid2', hint: 'course content', type: 'video' },
+    ],
     category: 'Courses & E-books',
     description: 'Unlock the secrets to explosive Instagram growth. This comprehensive course provides step-by-step strategies to increase your followers, boost engagement, and build a powerful brand on the platform. Perfect for influencers, entrepreneurs, and marketers.',
     isFeatured: true,
@@ -41,7 +46,12 @@ export const mockProducts: Product[] = [
     id: 'prod-graphic-design-bundle',
     name: 'Graphic Design Bundle',
     price: 79.99,
-    images: [getImage('prod-graphic-design-bundle-1'), getImage('prod-graphic-design-bundle-2'), getImage('prod-graphic-design-bundle-3'), getImage('prod-graphic-design-bundle-4')],
+    media: [
+        { ...getImage('prod-graphic-design-bundle-1'), type: 'image' }, 
+        { ...getImage('prod-graphic-design-bundle-2'), type: 'image' }, 
+        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', id:'vid3', hint: 'design showcase', type: 'video' },
+        { ...getImage('prod-graphic-design-bundle-4'), type: 'image' }
+    ],
     category: 'Graphic Design',
     description: 'A massive collection of premium graphic design assets to supercharge your creative projects. This bundle includes thousands of templates, fonts, icons, and illustrations, suitable for both beginners and professional designers.',
     isFeatured: true,
@@ -67,7 +77,12 @@ export const mockProducts: Product[] = [
     id: 'prod-ai-reels-fitness',
     name: '500+ AI Fitness Reels Bundle',
     price: 49.99,
-    images: [getImage('prod-ai-reels-fitness-1'), getImage('prod-ai-reels-fitness-2'), getImage('prod-ai-reels-fitness-3'), getImage('prod-ai-reels-fitness-4')],
+    media: [
+        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', id:'vid4', hint: 'fitness promo', type: 'video' },
+        { ...getImage('prod-ai-reels-fitness-2'), type: 'image' }, 
+        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', id:'vid5', hint: 'workout reel', type: 'video' },
+        { ...getImage('prod-ai-reels-fitness-4'), type: 'image' }
+    ],
     category: 'AI Reels',
     description: 'A massive bundle of 500+ AI-generated, ready-to-post fitness reels. Perfect for fitness influencers, gyms, and personal trainers looking to create engaging social media content without the hassle. Videos feature workout demos, motivational quotes, and fitness tips.',
     isFeatured: true,
@@ -91,7 +106,12 @@ export const mockProducts: Product[] = [
     id: 'prod-adobe-suite',
     name: 'Adobe Premium Software 2024',
     price: 299.99,
-    images: [getImage('prod-adobe-suite-1'), getImage('prod-adobe-suite-2'), getImage('prod-adobe-suite-3'), getImage('prod-adobe-suite-4')],
+    media: [
+        { ...getImage('prod-adobe-suite-1'), type: 'image' },
+        { ...getImage('prod-adobe-suite-2'), type: 'image' },
+        { ...getImage('prod-adobe-suite-3'), type: 'image' },
+        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4', id:'vid6', hint: 'software demo', type: 'video' },
+    ],
     category: 'Software & Tools',
     description: 'Get the full suite of Adobe Premium software for 2024. Includes Photoshop, Illustrator, Premiere Pro, and more. This is a one-time purchase for a lifetime license of the industry-standard creative software.',
     isFeatured: true,
@@ -117,7 +137,12 @@ export const mockProducts: Product[] = [
     id: 'prod-ai-reels-motivation',
     name: '500+ AI Motivational Reels Bundle',
     price: 49.99,
-    images: [getImage('prod-ai-reels-motivation-1'), getImage('prod-ai-reels-motivation-2'), getImage('prod-ai-reels-motivation-3'), getImage('prod-ai-reels-motivation-4')],
+    media: [
+        { ...getImage('prod-ai-reels-motivation-1'), type: 'image' },
+        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4', id:'vid7', hint: 'inspirational video', type: 'video' },
+        { ...getImage('prod-ai-reels-motivation-3'), type: 'image' },
+        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4', id:'vid8', hint: 'motivational reel', type: 'video' },
+    ],
     category: 'AI Reels',
     description: 'Inspire your audience with over 500 AI-generated motivational reels. This bundle is perfect for life coaches, entrepreneurs, and content creators who want to share powerful messages and grow their online presence.',
     features: [
@@ -140,7 +165,12 @@ export const mockProducts: Product[] = [
     id: 'prod-god-reels',
     name: '500+ God Reels Bundle',
     price: 49.99,
-    images: [getImage('prod-god-reels-1'), getImage('prod-god-reels-2'), getImage('prod-god-reels-3'), getImage('prod-god-reels-4')],
+    media: [
+        { ...getImage('prod-god-reels-1'), type: 'image' },
+        { ...getImage('prod-god-reels-2'), type: 'image' },
+        { ...getImage('prod-god-reels-3'), type: 'image' },
+        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4', id:'vid9', hint: 'spiritual video', type: 'video' },
+    ],
     category: 'Content Bundles',
     description: 'A unique collection of 500+ spiritual and religious-themed reels for your social media channels. Share faith-based content with beautiful visuals and uplifting messages. Ideal for religious organizations, community groups, and spiritual influencers.',
     features: [
@@ -163,7 +193,12 @@ export const mockProducts: Product[] = [
     id: 'prod-kids-worksheet',
     name: '6000+ Kids Activity Worksheets',
     price: 29.99,
-    images: [getImage('prod-kids-worksheet-1'), getImage('prod-kids-worksheet-2'), getImage('prod-kids-worksheet-3'), getImage('prod-kids-worksheet-4')],
+    media: [
+        { ...getImage('prod-kids-worksheet-1'), type: 'image' },
+        { ...getImage('prod-kids-worksheet-2'), type: 'image' },
+        { ...getImage('prod-kids-worksheet-3'), type: 'image' },
+        { ...getImage('prod-kids-worksheet-4'), type: 'image' },
+    ],
     category: 'Templates',
     description: 'Over 6000 printable activity worksheets for kids. This massive bundle covers subjects like math, language arts, puzzles, and coloring. Perfect for parents, teachers, and homeschoolers to keep children engaged and learning.',
     features: [
@@ -186,7 +221,12 @@ export const mockProducts: Product[] = [
     id: 'prod-excel-templates',
     name: 'Excel Sheet Templates',
     price: 19.99,
-    images: [getImage('prod-excel-templates-1'), getImage('prod-excel-templates-2'), getImage('prod-excel-templates-3'), getImage('prod-excel-templates-4')],
+    media: [
+        { ...getImage('prod-excel-templates-1'), type: 'image' },
+        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', id:'vid10', hint: 'excel demo', type: 'video' },
+        { ...getImage('prod-excel-templates-3'), type: 'image' },
+        { ...getImage('prod-excel-templates-4'), type: 'image' },
+    ],
     category: 'Templates',
     description: 'A collection of powerful and easy-to-use Excel templates for various business and personal needs. Includes templates for project management, budgeting, financial analysis, and more. Save time and get organized with these professional spreadsheets.',
     features: [
@@ -209,7 +249,12 @@ export const mockProducts: Product[] = [
     id: 'prod-digital-marketing-course',
     name: 'Complete Digital Marketing Course',
     price: 249.99,
-    images: [getImage('prod-digital-marketing-course-1'), getImage('prod-digital-marketing-course-2'), getImage('prod-digital-marketing-course-3'), getImage('prod-digital-marketing-course-4')],
+    media: [
+        { ...getImage('prod-digital-marketing-course-1'), type: 'image' },
+        { ...getImage('prod-digital-marketing-course-2'), type: 'image' },
+        { ...getImage('prod-digital-marketing-course-3'), type: 'image' },
+        { ...getImage('prod-digital-marketing-course-4'), type: 'image' },
+    ],
     category: 'Courses & E-books',
     description: 'An A-to-Z course on digital marketing, covering SEO, SEM, social media, email marketing, and more. This course is designed for beginners and intermediates who want to build a career in digital marketing or grow their own business online.',
      features: [
@@ -232,7 +277,12 @@ export const mockProducts: Product[] = [
     id: 'prod-spoken-english-course',
     name: 'Spoken English Course',
     price: 99.00,
-    images: [getImage('prod-spoken-english-course-1'), getImage('prod-spoken-english-course-2'), getImage('prod-spoken-english-course-3'), getImage('prod-spoken-english-course-4')],
+    media: [
+        { ...getImage('prod-spoken-english-course-1'), type: 'image' },
+        { ...getImage('prod-spoken-english-course-2'), type: 'image' },
+        { ...getImage('prod-spoken-english-course-3'), type: 'image' },
+        { ...getImage('prod-spoken-english-course-4'), type: 'image' },
+    ],
     category: 'Courses & E-books',
     description: 'Improve your spoken English with this comprehensive course. Learn to speak confidently and fluently in personal and professional situations. The course covers pronunciation, vocabulary, grammar, and conversation skills.',
     features: [
@@ -255,7 +305,12 @@ export const mockProducts: Product[] = [
     id: 'prod-resume-templates',
     name: 'Resume CV Templates',
     price: 25.00,
-    images: [getImage('prod-resume-templates-1'), getImage('prod-resume-templates-2'), getImage('prod-resume-templates-3'), getImage('prod-resume-templates-4')],
+    media: [
+        { ...getImage('prod-resume-templates-1'), type: 'image' },
+        { ...getImage('prod-resume-templates-2'), type: 'image' },
+        { ...getImage('prod-resume-templates-3'), type: 'image' },
+        { ...getImage('prod-resume-templates-4'), type: 'image' },
+    ],
     category: 'Templates',
     description: 'A premium collection of professionally designed resume and CV templates to help you land your dream job. Easy to edit and customize, these templates will make your application stand out from the crowd.',
     features: [
@@ -279,7 +334,12 @@ export const mockProducts: Product[] = [
     id: 'prod-chatgpt-prompts',
     name: '999+ Ultimate ChatGPT Prompts',
     price: 39.00,
-    images: [getImage('prod-chatgpt-prompts-1'), getImage('prod-chatgpt-prompts-2'), getImage('prod-chatgpt-prompts-3'), getImage('prod-chatgpt-prompts-4')],
+    media: [
+        { ...getImage('prod-chatgpt-prompts-1'), type: 'image' },
+        { ...getImage('prod-chatgpt-prompts-2'), type: 'image' },
+        { ...getImage('prod-chatgpt-prompts-3'), type: 'image' },
+        { ...getImage('prod-chatgpt-prompts-4'), type: 'image' },
+    ],
     category: 'Software & Tools',
     description: 'Unlock the full potential of ChatGPT with over 999 copy-and-paste prompts for more than 180 tasks. This prompt library will help you generate high-quality content for marketing, business, education, and much more.',
     features: [

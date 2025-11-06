@@ -62,7 +62,7 @@ export default function OrderConfirmationPage() {
               <div key={item.id} className="flex justify-between items-center">
                 <div className="flex items-center gap-4">
                   <div className="relative w-16 h-16 rounded-md overflow-hidden border">
-                    <Image src={item.images[0].url} alt={item.name} fill className="object-cover" data-ai-hint={item.images[0].hint}/>
+                    <Image src={item.media[0].url} alt={item.name} fill className="object-cover" data-ai-hint={item.media[0].hint}/>
                   </div>
                   <div>
                     <p className="font-semibold">{item.name}</p>

@@ -33,6 +33,12 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.prod.website-files.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
