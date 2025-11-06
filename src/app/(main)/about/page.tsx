@@ -17,7 +17,7 @@ export default function AboutPage() {
            />
         )}
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <h1 className="text-5xl font-headline text-white text-center">About Digiaddaworld</h1>
+            <h1 className="text-5xl font-headline text-white text-center">About DigiAddaWorld</h1>
         </div>
       </section>
 
@@ -25,7 +25,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto text-lg leading-relaxed space-y-8">
             <h2 className="text-4xl font-headline text-center">Our Mission</h2>
             <p className="text-center text-muted-foreground">
-              At Digiaddaworld, our mission is to empower creators and artists from around the globe by providing a platform to share their digital creations with the world. We believe that creativity knows no bounds, and we are dedicated to building a vibrant marketplace where talent can thrive.
+              At DigiAddaWorld, our mission is to empower creators and artists from around the globe by providing a platform to share their digital creations with the world. We believe that creativity knows no bounds, and we are dedicated to building a vibrant marketplace where talent can thrive.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">

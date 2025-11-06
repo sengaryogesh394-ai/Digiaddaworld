@@ -74,7 +74,7 @@ export function Header() {
       <div className="container flex h-20 items-center">
         <div className="mr-4 hidden md:flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold text-2xl">QuickStore</span>
+            <span className="font-bold text-2xl">DigiAddaWorld</span>
           </Link>
           <nav className="flex items-center space-x-1 text-sm font-medium">
             {renderNavLinks()}
@@ -92,7 +92,7 @@ export function Header() {
             <SheetContent side="left" className="pr-0">
                 <SheetTitle className="sr-only">Main Menu</SheetTitle>
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="mr-6 flex items-center space-x-2 px-4">
-                 <span className="font-bold text-2xl">QuickStore</span>
+                 <span className="font-bold text-2xl">DigiAddaWorld</span>
               </Link>
               <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                 <div className="flex flex-col space-y-3">{renderNavLinks()}</div>
@@ -102,7 +102,7 @@ export function Header() {
         )}
 
         <Link href="/" className="flex items-center space-x-2 md:hidden">
-          <span className="font-bold text-xl">QuickStore</span>
+          <span className="font-bold text-xl">DigiAddaWorld</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end space-x-2">

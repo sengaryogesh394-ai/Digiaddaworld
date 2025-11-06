@@ -117,7 +117,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <SidebarHeader>
           <Link href="/admin" className="flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-primary" />
-            <span className="font-bold font-headline text-lg">Digiaddaworld</span>
+            <span className="font-bold font-headline text-lg">DigiAddaWorld</span>
           </Link>
         </SidebarHeader>
         <SidebarContent>

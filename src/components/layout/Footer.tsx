@@ -48,7 +48,7 @@ export function Footer() {
       <div className="container mx-auto py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold mb-4">QuickStore</h2>
+            <h2 className="text-2xl font-bold mb-4">DigiAddaWorld</h2>
             <p className="text-muted-foreground mb-4 max-w-sm">
               The best place to find all your favorite electronic devices.
             </p>
@@ -76,7 +76,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 border-t pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-            <p>&copy; {year} QuickStore. All rights reserved.</p>
+            <p>&copy; {year} DigiAddaWorld. All rights reserved.</p>
             <p>Designed by You.</p>
         </div>
       </div>
