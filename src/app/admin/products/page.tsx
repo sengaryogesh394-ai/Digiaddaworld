@@ -131,7 +131,7 @@ export default function AdminProductsPage() {
                     <TableCell>
                       <Badge variant="outline">Active</Badge>
                     </TableCell>
-                    <TableCell>₹{product.price.toFixed(2)}</TableCell>
+                    <TableCell>Rs {product.price.toFixed(2)}</TableCell>
                     <TableCell className="hidden md:table-cell">
                       {product.category}
                     </TableCell>

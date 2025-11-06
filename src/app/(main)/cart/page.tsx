@@ -46,7 +46,7 @@ export default function CartPage() {
                   </div>
                   <div className="ml-4 flex-1">
                     <h3 className="font-semibold">{item.name}</h3>
-                    <p className="text-sm text-muted-foreground">₹{item.price.toFixed(2)}</p>
+                    <p className="text-sm text-muted-foreground">Rs {item.price.toFixed(2)}</p>
                   </div>
                   <div className="flex items-center gap-4">
                     <Input type="number" defaultValue={1} className="w-16 h-9" readOnly />
@@ -68,16 +68,16 @@ export default function CartPage() {
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>₹{subtotal.toFixed(2)}</span>
+                  <span>Rs {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Taxes</span>
-                  <span>₹{tax.toFixed(2)}</span>
+                  <span>Rs {tax.toFixed(2)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span>₹{total.toFixed(2)}</span>
+                  <span>Rs {total.toFixed(2)}</span>
                 </div>
                 <Button asChild className="w-full" size="lg">
                   <Link href="/checkout">Proceed to Checkout</Link>

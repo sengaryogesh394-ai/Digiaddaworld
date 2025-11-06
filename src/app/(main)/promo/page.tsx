@@ -50,8 +50,8 @@ export default function PromoPage() {
             </p>
             <div className="my-6">
                 <p className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-100">
-                    <span className="text-3xl text-gray-400 line-through">₹6999</span>
-                    <span className="text-rose-500 ml-4">₹497/-</span>
+                    <span className="text-3xl text-gray-400 line-through">Rs 6999</span>
+                    <span className="text-rose-500 ml-4">Rs 497/-</span>
                 </p>
             </div>
             <CountdownTimer />
@@ -82,7 +82,7 @@ export default function PromoPage() {
         {/* What You Get Section */}
         <section>
             <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-                What You Get Inside This <span className="text-rose-500 underline">₹497 Pack</span>
+                What You Get Inside This <span className="text-rose-500 underline">Rs 497 Pack</span>
             </h2>
             <Card className="max-w-3xl mx-auto bg-white dark:bg-card shadow-lg">
                 <CardContent className="p-8 space-y-4">
@@ -111,8 +111,8 @@ export default function PromoPage() {
                 <div className="my-6">
                     <CountdownTimer />
                 </div>
-                <p className="text-xl text-gray-500 dark:text-gray-400">Price returns to ₹2,499 if you don't Book Today!</p>
-                <p className="text-5xl font-bold text-gray-800 dark:text-gray-100 my-4">Only ₹497</p>
+                <p className="text-xl text-gray-500 dark:text-gray-400">Price returns to Rs 2,499 if you don't Book Today!</p>
+                <p className="text-5xl font-bold text-gray-800 dark:text-gray-100 my-4">Only Rs 497</p>
                 <ul className="text-left space-y-2 text-gray-600 dark:text-gray-300 w-fit mx-auto mb-6">
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Premium Editable Templates</li>
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Instant File Download</li>

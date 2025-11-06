@@ -44,7 +44,7 @@ export function ProductCard({ product }: ProductCardProps) {
             <p className="ml-2 text-xs text-muted-foreground">(12)</p>
           </div>
           <div className="flex justify-between items-center">
-            <p className="font-bold text-lg text-primary">₹{product.price.toFixed(2)}</p>
+            <p className="font-bold text-lg text-primary">Rs {product.price.toFixed(2)}</p>
             <Button size="icon" variant="outline" asChild>
                 <Link href={`/shop/${product.id}`}>
                     <ShoppingCart className="w-4 h-4"/>

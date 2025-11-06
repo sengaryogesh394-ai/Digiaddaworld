@@ -69,7 +69,7 @@ export default function OrderConfirmationPage() {
                     <p className="text-sm text-muted-foreground">Qty: 1</p>
                   </div>
                 </div>
-                <p>₹{item.price.toFixed(2)}</p>
+                <p>Rs {item.price.toFixed(2)}</p>
               </div>
             ))}
           </div>
@@ -77,15 +77,15 @@ export default function OrderConfirmationPage() {
           <div className="space-y-2">
             <div className="flex justify-between text-muted-foreground">
               <p>Subtotal</p>
-              <p>₹{subtotal.toFixed(2)}</p>
+              <p>Rs {subtotal.toFixed(2)}</p>
             </div>
             <div className="flex justify-between text-muted-foreground">
               <p>Taxes</p>
-              <p>₹{tax.toFixed(2)}</p>
+              <p>Rs {tax.toFixed(2)}</p>
             </div>
             <div className="flex justify-between font-bold text-xl mt-2">
               <p>Total</p>
-              <p>₹{total.toFixed(2)}</p>
+              <p>Rs {total.toFixed(2)}</p>
             </div>
           </div>
           <div className="mt-8 text-center">

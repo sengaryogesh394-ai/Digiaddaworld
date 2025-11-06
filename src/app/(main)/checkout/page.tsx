@@ -97,7 +97,7 @@ export default function CheckoutPage() {
                             <p className="text-sm text-muted-foreground">Qty: 1</p>
                         </div>
                         </div>
-                        <p>₹{item.price.toFixed(2)}</p>
+                        <p>Rs {item.price.toFixed(2)}</p>
                     </div>
                     ))}
                 </div>
@@ -105,16 +105,16 @@ export default function CheckoutPage() {
                 <div className="space-y-2">
                     <div className="flex justify-between text-muted-foreground">
                     <p>Subtotal</p>
-                    <p>₹{subtotal.toFixed(2)}</p>
+                    <p>Rs {subtotal.toFixed(2)}</p>
                     </div>
                     <div className="flex justify-between text-muted-foreground">
                     <p>Taxes</p>
-                    <p>₹{tax.toFixed(2)}</p>
+                    <p>Rs {tax.toFixed(2)}</p>
                     </div>
                     <Separator />
                     <div className="flex justify-between font-bold text-xl">
                     <p>Total</p>
-                    <p>₹{total.toFixed(2)}</p>
+                    <p>Rs {total.toFixed(2)}</p>
                     </div>
                 </div>
                 <Button size="lg" className="w-full mt-6" onClick={handlePlaceOrder}>Place Order</Button>
