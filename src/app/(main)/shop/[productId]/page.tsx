@@ -48,12 +48,12 @@ export default function ProductDetailsPage() {
         <div className="w-full">
           <Carousel>
             <CarouselContent>
-              {product.images.map((img) => (
-                <CarouselItem key={img.id}>
+              {product.images.map((img, index) => (
+                <CarouselItem key={index}>
                   <div className="aspect-square relative rounded-lg overflow-hidden border">
                     <Image
                       src={img.url}
-                      alt={product.name}
+                      alt={`${product.name} image ${index + 1}`}
                       fill
                       className="object-cover"
                       data-ai-hint={img.hint}
