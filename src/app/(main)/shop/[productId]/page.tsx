@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { notFound, useParams, useRouter } from 'next/navigation';
 import { mockProducts } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
-import { Star, Check, ShoppingCart, Zap, ArrowRight } from 'lucide-react';
+import { Star, Check, ShoppingCart, Zap, ArrowRight, Package, Film, Palette } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
@@ -142,7 +142,7 @@ export default function ProductDetailsPage() {
 
 
              {/* Description Section */}
-             <section className="max-w-3xl mx-auto">
+            <section className="max-w-3xl mx-auto">
                 <Card className="bg-white dark:bg-card shadow-lg">
                     <CardHeader>
                         <CardTitle className="text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
@@ -150,9 +150,26 @@ export default function ProductDetailsPage() {
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="p-8 pt-0">
-                        <div className="text-gray-700 dark:text-gray-300 whitespace-pre-line space-y-4">
-                           <p>{product.description}</p>
-                           <p>Save countless hours of work with ready-made assets that cover a wide range of styles and niches. From social media graphics to video transitions, this pack is designed to streamline your workflow and help you produce amazing results, faster.</p>
+                        <div className="text-gray-700 dark:text-gray-300 space-y-6">
+                           <p className="leading-relaxed">{product.description}</p>
+                           
+                           <div>
+                             <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-gray-200">Key Benefits</h3>
+                             <ul className="list-disc list-inside space-y-1 pl-2">
+                                <li><b className="font-semibold">Save Time & Effort:</b> Stop creating from scratch. Get instant access to professionally designed assets.</li>
+                                <li><b className="font-semibold">Boost Your Brand:</b> Create a consistent and professional look across all your platforms.</li>
+                                <li><b className="font-semibold">Increase Engagement:</b> Use eye-catching visuals and content to capture your audience's attention.</li>
+                                <li><b className="font-semibold">Unlimited Potential:</b> With a commercial license, you can use these assets for countless personal and client projects.</li>
+                             </ul>
+                           </div>
+
+                           <div>
+                            <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-gray-200">Why Choose This Product?</h3>
+                            <p>
+                                In today's fast-paced digital world, standing out is more important than ever. This bundle is more than just a collection of files; it's a complete toolkit designed to empower creators, marketers, and entrepreneurs. Whether you're a seasoned pro or just starting, you'll find everything you need to elevate your work and achieve your goals faster. Save countless hours of work with ready-made assets that cover a wide range of styles and niches. From social media graphics to video transitions, this pack is designed to streamline your workflow and help you produce amazing results.
+                            </p>
+                           </div>
+
                         </div>
                     </CardContent>
                 </Card>
