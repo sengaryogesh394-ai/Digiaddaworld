@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
+import CountdownTimer from '@/components/shared/CountdownTimer';
 
 export default function ProductDetailsPage() {
   const { toast } = useToast();
@@ -43,6 +44,8 @@ export default function ProductDetailsPage() {
     "No-Branding / No-Watermark on any content"
   ];
 
+  const originalPrice = product.price * 14;
+
   return (
     <div className="bg-rose-50/50 dark:bg-rose-900/10 py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -58,10 +61,21 @@ export default function ProductDetailsPage() {
                     Beginner-Friendly & 100% Ready-Made Project
                 </p>
             </section>
+            
+            {/* Purchase Section */}
+            <section className="max-w-3xl mx-auto text-center">
+                <h2 className="text-3xl font-bold text-orange-500">Special Offer <span className="text-gray-400 line-through">${originalPrice.toFixed(2)}</span> ${product.price.toFixed(2)}</h2>
+                <div className="my-6">
+                    <CountdownTimer />
+                </div>
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={handleAddToCart}>
+                    <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR ${product.price.toFixed(2)}
+                </Button>
+            </section>
 
             {/* Image Gallery */}
-            <section>
-                <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden border-4 border-white shadow-2xl bg-white">
+            <section className="bg-indigo-100/50 dark:bg-indigo-900/20 py-8 rounded-lg">
+                <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden bg-transparent">
                     <Image
                         src={mainImage.url}
                         alt={product.name}
@@ -86,26 +100,7 @@ export default function ProductDetailsPage() {
                     </div>
                 )}
             </section>
-            
-            {/* Purchase Section */}
-            <section className="max-w-3xl mx-auto">
-                <Card className="shadow-lg">
-                    <CardContent className="p-8 text-center">
-                        <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            ⚡️ Get instant access to this asset! ⚡️
-                        </p>
-                        <div className="my-4">
-                            <p className="text-5xl font-bold text-gray-800 dark:text-gray-100">
-                                <span className="text-rose-500">${product.price.toFixed(2)}</span>
-                            </p>
-                        </div>
-                        <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform w-full" onClick={handleAddToCart}>
-                            <ShoppingCart className="mr-2"/> GRAB THIS OFFER NOW
-                        </Button>
-                    </CardContent>
-                </Card>
-            </section>
-            
+
             {/* What You Get Section */}
             <section className="max-w-3xl mx-auto">
                 <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
