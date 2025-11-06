@@ -47,6 +47,7 @@ export const mockProducts: Product[] = [
     images: [getImage('prod-adobe-suite')],
     category: 'Software & Tools',
     description: 'Get the full suite of Adobe Premium software for 2024. Includes Photoshop, Illustrator, Premiere Pro, and more.',
+    isFeatured: true,
   },
   {
     id: 'prod-ai-reels-motivation',
