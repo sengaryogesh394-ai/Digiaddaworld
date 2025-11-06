@@ -21,7 +21,6 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/shop', label: 'Our Store' },
   { href: '/blog', label: 'Blogs' },
-  { href: '/shop?category=laptops', label: 'Laptops' },
 ];
 
 export function Header() {
@@ -36,17 +35,6 @@ export function Header() {
           <Link href={link.href} onClick={() => setIsMobileMenuOpen(false)}>{link.label}</Link>
         </Button>
       ))}
-       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost">
-            Speaker <ChevronDown className="w-4 h-4 ml-1" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem asChild><Link href="/shop?category=speaker">Speakers</Link></DropdownMenuItem>
-          <DropdownMenuItem asChild><Link href="/shop?category=headphones">Headphones</Link></DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </>
   );
 

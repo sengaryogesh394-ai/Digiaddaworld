@@ -12,7 +12,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Star } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Star, CheckCircle } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
 
@@ -70,8 +71,7 @@ export default function ProductDetailsPage() {
         {/* Product Info */}
         <div>
           <h1 className="text-4xl lg:text-5xl font-headline font-bold">{product.name}</h1>
-          <p className="text-lg text-muted-foreground mt-2">{product.category}</p>
-
+          
           <div className="flex items-center mt-4">
             <div className="flex items-center text-yellow-500">
               <Star className="w-5 h-5 fill-current" />
@@ -85,16 +85,36 @@ export default function ProductDetailsPage() {
 
           <p className="text-4xl font-bold my-6">${product.price.toFixed(2)}</p>
 
-          <Separator />
-          
-          <div className="mt-6">
-            <p className="text-lg leading-relaxed">{product.description}</p>
-          </div>
-          
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <Button size="lg" className="flex-1" onClick={handleAddToCart}>Add to Cart</Button>
             <Button size="lg" variant="outline" className="flex-1" onClick={handleBuyNow}>Buy Now</Button>
           </div>
+
+          <Accordion type="single" collapsible defaultValue="description" className="w-full mt-8">
+            <AccordionItem value="description">
+              <AccordionTrigger>Description</AccordionTrigger>
+              <AccordionContent>
+                {product.description}
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="features">
+              <AccordionTrigger>Features</AccordionTrigger>
+              <AccordionContent>
+                <ul className="space-y-2">
+                  <li className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-500" /> High-quality digital files</li>
+                  <li className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-500" /> Instant download</li>
+                  <li className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-500" /> Compatible with major software</li>
+                  <li className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-500" /> Royalty-free license</li>
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+             <AccordionItem value="compatibility">
+              <AccordionTrigger>Compatibility</AccordionTrigger>
+              <AccordionContent>
+                This product is compatible with Adobe Premiere Pro, Final Cut Pro, and DaVinci Resolve.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
 
         </div>
       </div>
