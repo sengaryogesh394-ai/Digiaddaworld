@@ -12,6 +12,7 @@ export type Category = {
   id: string;
   name: string;
   image: { id: string; url: string; hint: string };
+  itemCount: number;
 };
 
 export type BlogPost = {

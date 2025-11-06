@@ -14,176 +14,198 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ProductCard } from '@/components/shared/ProductCard';
-import { BlogPostCard } from '@/components/shared/BlogPostCard';
-import { mockProducts, mockCategories, mockBlogPosts } from '@/lib/mock-data';
+import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { LogoCloud } from '@/components/shared/LogoCloud';
-import { AnimateOnView } from '@/components/shared/AnimateOnView';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-const printOnDemandProducts = [
-  { name: 'Low rise socks', image: 'https://picsum.photos/seed/pod1/400/400', hint: 'blue socks' },
-  { name: 'Hoodie', image: 'https://picsum.photos/seed/pod2/400/400', hint: 'dark hoodie' },
-  { name: 'Ceramic mugs', image: 'https://picsum.photos/seed/pod3/400/400', hint: 'mug mockup' },
-  { name: 'Wool scarf', image: 'https://picsum.photos/seed/pod4/400/400', hint: 'winter scarf' },
-  { name: 'Baseball cap', image: 'https://picsum.photos/seed/pod5/400/400', hint: 'white cap' },
-];
 
-const heroColors = ['#14a800', '#6A73C2', '#D2B695'];
+const heroProduct = mockProducts.find(p => p.id === '1');
+const heroImage = PlaceHolderImages.find(img => img.id === 'hero-s13-ultra');
+
 
 export default function HomePage() {
-  const featuredProducts = mockProducts.filter((p) => p.isFeatured);
-  const heroImages = PlaceHolderImages.filter(img => img.id.startsWith('hero-'));
+  const newProducts = mockProducts.slice(0, 4);
 
-  const [currentColorIndex, setCurrentColorIndex] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentColorIndex((prevIndex) => (prevIndex + 1) % heroColors.length);
-    }, 5000);
-
-    return () => clearInterval(intervalId);
-  }, []);
+  const promoBanners = [
+    {
+      id: 's13-lite',
+      tag: 'BIG SAVING',
+      title: 'Galaxy S13 Lite Love The Price.',
+      price: 429.00,
+      buttonText: 'Buy Now',
+      imageUrl: 'https://picsum.photos/seed/s13-lite/600/600',
+      imageHint: 'light blue smartphone',
+      className: 'bg-gray-200',
+    },
+    {
+      id: 'smartwatch-7',
+      tag: '15% OFF',
+      title: 'Smartwatch 7 Light On Price.',
+      price: 399.00,
+      buttonText: 'Learn More',
+      imageUrl: 'https://picsum.photos/seed/smartwatch-7/600/600',
+      imageHint: 'pink smartwatch',
+      className: 'bg-rose-100',
+    },
+    {
+      id: 'smart-speaker',
+      tag: 'SMART HOME',
+      title: 'Five Bold Colors. $99 Each.',
+      price: 229.00,
+      buttonText: 'Buy Now',
+      imageUrl: 'https://picsum.photos/seed/smart-speaker/600/600',
+      imageHint: 'yellow smart speaker',
+      className: 'bg-blue-100',
+    },
+    {
+      id: 'airpods-gen5',
+      tag: 'BEST PRICE',
+      title: '5th Generation AirPods.',
+      price: 499.00,
+      buttonText: 'Learn More',
+      imageUrl: 'https://picsum.photos/seed/airpods-gen5/600/600',
+      imageHint: 'white earbuds',
+      className: 'bg-gray-100 col-span-1 row-start-2',
+    },
+    {
+      id: 'headset-max',
+      tag: 'FLAT 25% OFF',
+      title: 'Headset Max 3rd Generation.',
+      price: 549.00,
+      buttonText: 'Buy Now',
+      imageUrl: 'https://picsum.photos/seed/headset-max/600/600',
+      imageHint: 'blue headphones',
+      className: 'bg-gray-100 col-span-1 row-start-2',
+    },
+    {
+      id: 'macbook-pro',
+      tag: 'NEWLY ADDED',
+      title: 'Mac Book Pro. New Arrival',
+      price: 2499.00,
+      buttonText: 'Learn More',
+      imageUrl: 'https://picsum.photos/seed/macbook-pro/600/600',
+      imageHint: 'silver laptop',
+      className: 'bg-gray-100 col-span-1 row-start-2',
+    },
+  ];
 
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section 
-        className="relative w-full min-h-screen flex items-center justify-center text-primary-foreground -mt-16 text-center transition-colors duration-1000"
-        style={{ backgroundColor: heroColors[currentColorIndex] }}
-      >
+      <section className="bg-gray-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimateOnView>
-            <div className="max-w-4xl mx-auto">
-                <p className="text-lg bg-black/20 text-white inline-block px-4 py-1 rounded-full mb-4">Your One-Stop Online Shop</p>
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter">
-                  DISCOVER & BUY
-                  <br />
-                  AMAZING PRODUCTS.
+            <div className="grid md:grid-cols-2 gap-8 items-center min-h-[70vh]">
+              <div>
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                  {heroProduct?.name}
                 </h1>
-                <p className="mt-6 text-lg md:text-xl max-w-2xl mx-auto">
-                  From the latest electronics to stylish home goods, find everything you need in one place.
-                </p>
-                <div className="mt-8">
-                  <Button size="lg" variant="secondary" asChild>
-                    <Link href="/shop">Explore Products</Link>
+                <p className="mt-4 text-2xl text-muted-foreground">{heroProduct?.description}</p>
+                <p className="text-4xl font-bold mt-2">${heroProduct?.price.toFixed(2)}</p>
+                <p className="text-sm text-muted-foreground mt-2">From ${heroProduct?.price.toFixed(2)} or $41.62/mo.per month</p>
+                <div className="mt-8 flex gap-4">
+                  <Button size="lg" asChild>
+                    <Link href={`/shop/${heroProduct?.id}`}>Buy Now</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild>
+                    <Link href={`/shop/${heroProduct?.id}`}>Learn More</Link>
                   </Button>
                 </div>
+              </div>
+              <div className="relative h-96 md:h-full">
+                {heroImage && (
+                  <Image
+                    src={heroImage.imageUrl}
+                    alt={heroProduct?.name || 'Hero image'}
+                    fill
+                    className="object-contain"
+                    data-ai-hint={heroImage.imageHint}
+                    priority
+                  />
+                )}
+              </div>
             </div>
-          </AnimateOnView>
         </div>
       </section>
       
-      <AnimateOnView>
-        <LogoCloud />
-      </AnimateOnView>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Featured Products Section */}
-        <section>
-          <AnimateOnView>
-            <h2 className="text-3xl font-headline text-center mb-8">Featured Products</h2>
-          </AnimateOnView>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {featuredProducts.slice(0, 4).map((product, i) => (
-              <AnimateOnView key={product.id} delay={i * 0.1}>
-                <ProductCard product={product} />
-              </AnimateOnView>
-            ))}
-          </div>
-          <AnimateOnView className="text-center mt-8">
-            <Button asChild variant="outline">
-              <Link href="/shop">View All Products</Link>
-            </Button>
-          </AnimateOnView>
-        </section>
-      </div>
 
       {/* Categories Section */}
-      <section className="py-16" style={{ backgroundColor: '#E9EAFB' }}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimateOnView>
-            <h2 className="text-3xl font-headline text-center mb-8">Browse by Category</h2>
-          </AnimateOnView>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {mockCategories.slice(0, 4).map((category, i) => (
-              <AnimateOnView key={category.id} delay={i * 0.1}>
-                <Link href={`/shop?category=${category.id}`}>
-                  <Card className="relative overflow-hidden group h-64 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
-                    <Image
-                      src={category.image.url}
-                      alt={category.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      data-ai-hint={category.image.hint}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                    <div className="absolute inset-0 flex items-end justify-center p-6">
-                      <h3 className="text-white text-2xl font-bold font-headline text-center transform transition-transform duration-300 group-hover:-translate-y-2">{category.name}</h3>
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-bold text-center mb-8">Our Top Categories</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-9 gap-4">
+          {mockCategories.map((category) => (
+            <Link href={`/shop?category=${category.id}`} key={category.id}>
+              <Card className="flex flex-col items-center justify-center p-4 aspect-square transition-shadow hover:shadow-lg">
+                <Image src={category.image.url} alt={category.name} width={50} height={50} data-ai-hint={category.image.hint} className="mb-2"/>
+                <h3 className="font-semibold text-sm text-center">{category.name}</h3>
+                <p className="text-xs text-muted-foreground">{category.itemCount} items</p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Banners Section */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {promoBanners.map(banner => (
+                 <Card key={banner.id} className={`${banner.className} p-8 flex flex-col md:flex-row items-center justify-between`}>
+                    <div className="text-left md:w-1/2">
+                        <Badge variant="secondary" className="mb-2">{banner.tag}</Badge>
+                        <h3 className="text-2xl font-bold">{banner.title}</h3>
+                        <p className="text-muted-foreground">From ${banner.price.toFixed(2)}</p>
+                        <Button variant="link" className="p-0 mt-4 h-auto" asChild>
+                            <Link href={`/shop/${banner.id}`}>{banner.buttonText} <ArrowRight className="w-4 h-4 ml-2"/></Link>
+                        </Button>
                     </div>
-                  </Card>
-                </Link>
-              </AnimateOnView>
+                    <div className="relative w-40 h-40 md:w-1/2 mt-4 md:mt-0">
+                        <Image src={banner.imageUrl} alt={banner.title} fill className="object-contain" data-ai-hint={banner.imageHint}/>
+                    </div>
+                 </Card>
             ))}
-          </div>
         </div>
       </section>
 
-      {/* Print-on-Demand Merch Section */}
-      <section className="bg-[#EADFCB] py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <AnimateOnView>
-            <h2 className="text-4xl md:text-5xl font-bold font-headline mb-4" style={{ color: '#0f3d1f' }}>Create print-on-demand merch.</h2>
-            <p className="max-w-2xl mx-auto text-muted-foreground mb-10">
-              Custom print-on-demand without upfront investment, delivered swiftly from the nearest one of our 11 fulfillment centers. They'll SPOD the speed and quality.
-            </p>
-          </AnimateOnView>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-10">
-            {printOnDemandProducts.map((product, i) => (
-              <AnimateOnView key={product.name} delay={i * 0.1}>
-                <div>
-                  <Card className="overflow-hidden bg-white">
-                    <CardContent className="p-0">
-                      <div className="aspect-square relative">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          fill
-                          className="object-contain p-4"
-                          data-ai-hint={product.hint}
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                  <p className="mt-2 text-sm text-muted-foreground">{product.name}</p>
+      {/* Trending Products Section */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <Tabs defaultValue="new-products">
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">Our Trending Products</h2>
+                <div className="flex items-center gap-2">
+                <TabsList>
+                    <TabsTrigger value="new-products">New Products</TabsTrigger>
+                    <TabsTrigger value="best-selling">Best Selling</TabsTrigger>
+                    <TabsTrigger value="featured-products">Featured Products</TabsTrigger>
+                </TabsList>
+                <div className="flex gap-2">
+                    <Button variant="outline" size="icon"><ChevronLeft /></Button>
+                    <Button variant="outline" size="icon"><ChevronRight /></Button>
                 </div>
-              </AnimateOnView>
-            ))}
-          </div>
-          <AnimateOnView>
-            <Button size="lg">Create your store</Button>
-          </AnimateOnView>
-        </div>
-      </section>
-
-      {/* From the Blog Section */}
-      <section className="py-16" style={{ backgroundColor: '#E9EAFB' }}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-            <AnimateOnView>
-              <h2 className="text-3xl font-headline text-center mb-8">From Our Blog</h2>
-            </AnimateOnView>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {mockBlogPosts.slice(0, 3).map((post, i) => (
-                  <AnimateOnView key={post.id} delay={i * 0.1}>
-                    <BlogPostCard post={post} />
-                  </AnimateOnView>
-                ))}
+                </div>
             </div>
-            <AnimateOnView className="text-center mt-8">
-                <Button asChild variant="secondary">
-                <Link href="/blog">Read More Posts</Link>
-                </Button>
-            </AnimateOnView>
-        </div>
+            <TabsContent value="new-products">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {newProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+            </TabsContent>
+            <TabsContent value="best-selling">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {mockProducts.slice(2,6).map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+            </TabsContent>
+            <TabsContent value="featured-products">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {mockProducts.filter(p => p.isFeatured).slice(0, 4).map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+            </TabsContent>
+          </Tabs>
       </section>
     </div>
   );

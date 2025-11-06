@@ -1,89 +1,94 @@
 {
   "placeholderImages": [
     {
-      "id": "hero-1",
-      "imageUrl": "https://images.unsplash.com/photo-1618331833071-ce81bd50d300?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGFydHxlbnwwfHx8fDE3NjIyNTEwODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "abstract art"
+      "id": "hero-s13-ultra",
+      "imageUrl": "https://images.unsplash.com/photo-1739797243842-a50b43f281e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibHVlJTIwc21hcnRwaG9uZXxlbnwwfHx8fDE3NjIzNjMxOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue smartphone"
     },
     {
-      "id": "hero-2",
-      "imageUrl": "https://images.unsplash.com/photo-1750106749375-05f6275168d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaWdpdGFsJTIwbGFuZHNjYXBlfGVufDB8fHx8fDE3NjIzMTg5NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "digital landscape"
+      "id": "prod-s13-ultra",
+      "imageUrl": "https://images.unsplash.com/photo-1623691136531-68d65f1a25a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxibHVlJTIwc21hcnRwaG9uZXxlbnwwfHx8fDE3NjIzNjMxOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue smartphone"
     },
     {
-      "id": "hero-3",
-      "imageUrl": "https://images.unsplash.com/photo-1572756317709-fe9c15ced298?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnZW9tZXRyaWMlMjBwYXR0ZXJufGVufDB8fHx8fDE3NjIxOTM4NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "geometric pattern"
+      "id": "prod-airpods-gen5",
+      "imageUrl": "https://images.unsplash.com/photo-1754233597288-4fb399b854fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3aGl0ZSUyMGVhcmJ1ZHN8ZW58MHx8fHwxNzYyMzEzOTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white earbuds"
     },
     {
-      "id": "prod-smartwatch-1",
-      "imageUrl": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80",
-      "imageHint": "smart watch"
+      "id": "prod-s13-lite",
+      "imageUrl": "https://images.unsplash.com/photo-1584651432430-7e1ac8303a0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsaWdodCUyMGJsdWUlMjBzbWFydHBob25lfGVufDB8fHx8MTc2MjQwMzQ0NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "light blue smartphone"
     },
     {
-      "id": "prod-smartwatch-2",
-      "imageUrl": "https://images.unsplash.com/photo-1579586337278-35d9addb018d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      "imageHint": "watch face"
+      "id": "prod-smartwatch-7",
+      "imageUrl": "https://images.unsplash.com/photo-1699796803856-d9017a3a022c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaW5rJTIwc21hcnR3YXRjaHxlbnwwfHx8fDE3NjI0MDM0NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pink smartwatch"
     },
     {
-      "id": "prod-headphones-1",
-      "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      "imageHint": "wireless headphones"
+      "id": "prod-smart-speaker",
+      "imageUrl": "https://images.unsplash.com/photo-1762328498684-e597f4ceaa43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx5ZWxsb3clMjBzbWFydCUyMHNwZWFrZXJ8ZW58MHx8fHwxNzYyNDAzNDQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "yellow smart speaker"
     },
     {
-      "id": "prod-coffeemaker-1",
-      "imageUrl": "https://images.unsplash.com/photo-1710270106372-6dd5708cf2ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkcmlwJTIwY29mZmVlbWFrZXJ8ZW58MHx8fHwxNzYyMzI1Mjk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "drip coffeemaker"
+      "id": "prod-headset-max",
+      "imageUrl": "https://images.unsplash.com/photo-1689357642408-6ce34b5bd271?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibHVlJTIwaGVhZHBob25lc3xlbnwwfHx8fDE3NjI0MDM0NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue headphones"
     },
     {
-      "id": "prod-blender-1",
-      "imageUrl": "https://images.unsplash.com/photo-1631390179103-56176154bc95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb3VudGVydG9wJTIwYmxlbmRlcnxlbnwwfHx8fDE3NjIzMjUyOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "countertop blender"
-    },
-    {
-      "id": "prod-vacuum-1",
-      "imageUrl": "https://images.unsplash.com/photo-1653990480360-31a12ce9723e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyb2JvdCUyMHZhY3V1bXxlbnwwfHx8fDE3NjIyMzI5MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "robot vacuum"
-    },
-    {
-      "id": "prod-laptop-1",
-      "imageUrl": "https://images.unsplash.com/photo-1588103645565-25bcf9f5ec0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzaWx2ZXIlMjBsYXB0b3B8ZW58MHx8fHwxNzYyMjgzODI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "id": "prod-macbook-pro",
+      "imageUrl": "https://images.unsplash.com/photo-1637329428580-8fddec26fa67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzaWx2ZXIlMjBsYXB0b3B8ZW58MHx8fHwxNzYyNDAzNDQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "silver laptop"
     },
     {
-      "id": "prod-airfryer-1",
-      "imageUrl": "https://images.unsplash.com/photo-1709432767122-d3cb5326911a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb2Rlcm4lMjBhaXJmcnllcnxlbnwwfHx8fDE3NjIzMjUyOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "modern airfryer"
+      "id": "prod-camera",
+      "imageUrl": "https://images.unsplash.com/photo-1542299493-c352b869a9a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3aGl0ZSUyMGNhbWVyYXxlbnwwfHx8fDE3NjI0MDM0NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white camera"
     },
     {
-      "id": "cat-electronics",
-      "imageUrl": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80",
-      "imageHint": "tech gadgets"
+      "id": "cat-smart-tv",
+      "imageUrl": "https://images.unsplash.com/photo-1760275496880-98960e20e44b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0ZWxldmlzaW9uJTIwc2NyZWVufGVufDB8fHx8MTc2MjQwMzQ0NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "television screen"
     },
     {
-      "id": "cat-home-kitchen",
-      "imageUrl": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      "imageHint": "modern kitchen"
+      "id": "cat-speaker",
+      "imageUrl": "https://images.unsplash.com/photo-1698884293353-6772a02d1005?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb3VuZCUyMHNwZWFrZXJ8ZW58MHx8fHwxNzYyNDAzNDQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "round speaker"
     },
     {
-      "id": "cat-apparel",
-      "imageUrl": "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      "imageHint": "fashion clothing"
+      "id": "cat-tablets",
+      "imageUrl": "https://images.unsplash.com/photo-1702479744062-1880502275b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0YWJsZXQlMjBkZXZpY2V8ZW58MHx8fHwxNzYyMzYyMTk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tablet device"
     },
     {
-      "id": "cat-books-new",
-      "imageUrl": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-      "imageHint": "book stack"
+      "id": "cat-airpods",
+      "imageUrl": "https://images.unsplash.com/photo-1755182529034-189a6051faae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMGVhcmJ1ZHN8ZW58MHx8fHwxNzYyMzEzOTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white earbuds"
     },
     {
-      "id": "cat-software",
-      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGNvZGV8ZW58MHx8fHwxNzYyMzI1Mjk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "software code"
+      "id": "cat-smartwatches",
+      "imageUrl": "https://images.unsplash.com/photo-1434494571168-ab162bce2813?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzbWFydHdhdGNofGVufDB8fHx8MTc2MjM1MzA1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smartwatch"
     },
     {
-      "id": "cat-digital-art",
-      "imageUrl": "https://images.unsplash.com/photo-1633098096956-afdc8bcc8552?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGRpZ2l0YWx8ZW58MHx8fHwxNzYyMjYyNTkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "abstract digital"
+      "id": "cat-smart-phones",
+      "imageUrl": "https://images.unsplash.com/photo-1573152143286-0c422b4d2175?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzbWFydHBob25lfGVufDB8fHx8MTc2MjM5OTQyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smartphone"
+    },
+    {
+      "id": "cat-headphones",
+      "imageUrl": "https://images.unsplash.com/photo-1628202926206-c63a34b1618f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxoZWFkcGhvbmVzfGVufDB8fHx8MTc2MjM0MjA2OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "headphones"
+    },
+    {
+      "id": "cat-laptops",
+      "imageUrl": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsYXB0b3B8ZW58MHx8fHwxNzYyMzQ2MzQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "laptop"
+    },
+    {
+      "id": "cat-bluetooth",
+      "imageUrl": "https://images.unsplash.com/photo-1698244244114-b0eb90869056?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxibHVldG9vdGglMjBkZXZpY2V8ZW58MHx8fHwxNzYyNDAzNDQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bluetooth device"
     },
     {
       "id": "blog-1",
@@ -99,51 +104,6 @@
       "id": "blog-3",
       "imageUrl": "https://images.unsplash.com/photo-1758873272414-c0bf30332738?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFya2V0aW5nJTIwY2hhcnR8ZW58MHx8fHwxNzYyMjQ3MzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "marketing chart"
-    },
-    {
-      "id": "about-us",
-      "imageUrl": "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyNzQ3Njd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "team collaboration"
-    },
-    {
-      "id": "contact-us",
-      "imageUrl": "https://images.unsplash.com/photo-1762014270399-f1e1c0a895cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21tdW5pY2F0aW9uJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYyMjcwNzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "communication abstract"
-    },
-    {
-      "id": "prod-tshirt-1",
-      "imageUrl": "https://images.unsplash.com/photo-1655141559952-de52ac91617e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Z3JhcGhpYyUyMHQtc2hpcnR8ZW58MHx8fHwxNzYyMjQ3MTIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "graphic t-shirt"
-    },
-    {
-      "id": "prod-ebook-1",
-      "imageUrl": "https://images.unsplash.com/photo-1535398089889-dd807df1dfaa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzYyMjE0MjIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "book cover"
-    },
-    {
-      "id": "prod-photo-editor-1",
-      "imageUrl": "https://images.unsplash.com/photo-1754548930550-be9fa88874f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGludGVyZmFjZXxlbnwwfHx8fDE3NjIyMTk5NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "software interface"
-    },
-    {
-      "id": "prod-abstract-art-1",
-      "imageUrl": "https://images.unsplash.com/photo-1579546929662-711aa81148cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb2xvcmZ1bCUyMGFic3RyYWN0fGVufDB8fHx8MTc2MjIzODM0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "colorful abstract"
-    },
-    {
-      "id": "prod-font-pack-1",
-      "imageUrl": "https://images.unsplash.com/photo-1721492134985-1dd5b72a3dd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0eXBvZ3JhcGh5JTIwZGVzaWdufGVufDB8fHx8MTc2MjMxNTkwOHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "typography design"
-    },
-    {
-      "id": "prod-3d-model-1",
-      "imageUrl": "https://images.unsplash.com/photo-1627637819794-fba32f82be16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHwzZCUyMHJlbmRlcnxlbnwwfHx8fDE3NjIyNTQ1NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "3d render"
-    },
-    {
-      "id": "prod-music-pack-1",
-      "imageUrl": "https://images.unsplash.com/photo-1650902565793-c2eb262aefbc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMG5vdGVzfGVufDB8fHx8MTc2MjI0NDQxOHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "music notes"
     }
   ]
 }
