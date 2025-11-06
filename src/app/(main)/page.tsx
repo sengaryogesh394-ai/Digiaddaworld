@@ -24,12 +24,19 @@ import { useEffect, useState } from 'react';
 
 export default function HomePage() {
   const [heroApi, setHeroApi] = useState<any>(null);
+  const [subscriptionApi, setSubscriptionApi] = useState<any>(null);
 
   useEffect(() => {
     if (!heroApi) return;
     const id = setInterval(() => heroApi.scrollNext(), 5000);
     return () => clearInterval(id);
   }, [heroApi]);
+
+  useEffect(() => {
+    if (!subscriptionApi) return;
+    const id = setInterval(() => subscriptionApi.scrollNext(), 5000);
+    return () => clearInterval(id);
+  }, [subscriptionApi]);
 
 
   function getImage(id: string) {
@@ -41,6 +48,12 @@ export default function HomePage() {
     getImage('prod-instagram-course-1'),
     getImage('prod-graphic-design-bundle-1'),
     getImage('prod-adobe-suite-1'),
+  ];
+
+  const subscriptionImages = [
+    getImage('creative-collage-1'),
+    getImage('creative-collage-2'),
+    getImage('creative-collage-3'),
   ];
 
   const featuredProducts = mockProducts.filter(p => p.isFeatured).slice(0, 4);
@@ -137,12 +150,26 @@ export default function HomePage() {
       </section>
 
       {/* Envato Section */}
-      <section className="bg-amber-50/50 dark:bg-amber-900/10 py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-12 text-white">
+        <div className="absolute inset-0 -z-10">
+            <Carousel setApi={setSubscriptionApi} opts={{ loop: true }}>
+                <CarouselContent>
+                {subscriptionImages.map((image, i) => (
+                    <CarouselItem key={i}>
+                    <div className="relative h-full w-full">
+                        <Image src={image.url} alt={image.hint} fill className="object-cover" />
+                    </div>
+                    </CarouselItem>
+                ))}
+                </CarouselContent>
+            </Carousel>
+        </div>
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid md:grid-cols-2 gap-8 items-center">
                 <AnimateOnView>
                     <h3 className="text-3xl font-bold">The only creative subscription you need</h3>
-                    <p className="text-muted-foreground mt-2">Get access to millions of creative assets. Unlimited downloads for a single monthly fee.</p>
+                    <p className="text-white/80 mt-2">Get access to millions of creative assets. Unlimited downloads for a single monthly fee.</p>
                     <Button className="mt-4" asChild>
                         <Link href="#">Get Started Now</Link>
                     </Button>

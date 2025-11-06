@@ -369,6 +369,21 @@
       "id": "promo-testimonial-3",
       "imageUrl": "https://images.unsplash.com/photo-1758519289361-2615778e0e5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3NpdGl2ZSUyMHJldmlld3xlbnwwfHx8fDE3NjI0MTEyMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "positive review"
+    },
+    {
+      "id": "creative-collage-1",
+      "imageUrl": "https://images.unsplash.com/photo-1541427468628-a7337424c75c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjcmVhdGl2ZSUyMGNvbGxhZ2V8ZW58MHx8fHwxNzYyNDg1NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "creative collage"
+    },
+    {
+      "id": "creative-collage-2",
+      "imageUrl": "https://images.unsplash.com/photo-1587440871875-191322ee64b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjB0b29sc3xlbnwwfHx8fDE3NjI0ODU1MzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design tools"
+    },
+    {
+      "id": "creative-collage-3",
+      "imageUrl": "https://images.unsplash.com/photo-1507204595229-3d964f434ab8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwaG90byUyMGdyaWR8ZW58MHx8fHwxNzYyNDg1NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "photo grid"
     }
   ]
 }
