@@ -172,7 +172,7 @@ export default function ProductDetailsPage() {
                             <p>{product.compatibility.title}</p>
                             <ul className="list-disc list-inside space-y-1 pl-2">
                                 {product.compatibility.details.map((detail, i) => (
-                                    <li key={i}><b dangerouslySetInnerHTML={{ __html: detail.split(':')[0] }} />:{detail.split(':')[1]}</li>
+                                    <li key={i} dangerouslySetInnerHTML={{ __html: detail }} />
                                 ))}
                             </ul>
                             {product.compatibility.notes && <p className="pt-2">{product.compatibility.notes}</p>}
@@ -205,5 +205,3 @@ export default function ProductDetailsPage() {
     </div>
   );
 }
-
-    
