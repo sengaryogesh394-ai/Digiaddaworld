@@ -30,66 +30,71 @@ export default function HomePage() {
 
   const promoBanners = [
     {
-      id: 's13-lite',
-      tag: 'BIG SAVING',
-      title: 'Galaxy S13 Lite Love The Price.',
-      price: 429.00,
-      buttonText: 'Buy Now',
-      imageUrl: 'https://picsum.photos/seed/s13-lite/600/600',
-      imageHint: 'light blue smartphone',
+      id: 'prod-instagram-course',
+      tag: 'BESTSELLER',
+      title: 'Instagram Growth Mastery',
+      price: 199.99,
+      buttonText: 'Get Course',
+      imageUrl: getImage('prod-instagram-course').url,
+      imageHint: 'social media growth',
       className: 'bg-gray-200',
     },
     {
-      id: 'smartwatch-7',
-      tag: '15% OFF',
-      title: 'Smartwatch 7 Light On Price.',
-      price: 399.00,
+      id: 'prod-graphic-design-bundle',
+      tag: 'NEWLY ADDED',
+      title: 'Graphic Design Bundle',
+      price: 79.99,
       buttonText: 'Learn More',
-      imageUrl: 'https://picsum.photos/seed/smartwatch-7/600/600',
-      imageHint: 'pink smartwatch',
+      imageUrl: getImage('prod-graphic-design-bundle').url,
+      imageHint: 'design elements',
       className: 'bg-rose-100',
     },
     {
-      id: 'smart-speaker',
-      tag: 'SMART HOME',
-      title: 'Five Bold Colors. $99 Each.',
-      price: 229.00,
+      id: 'prod-chatgpt-prompts',
+      tag: 'HOT',
+      title: '999+ ChatGPT Prompts',
+      price: 39.00,
       buttonText: 'Buy Now',
-      imageUrl: 'https://picsum.photos/seed/smart-speaker/600/600',
-      imageHint: 'yellow smart speaker',
+      imageUrl: getImage('prod-chatgpt-prompts').url,
+      imageHint: 'AI chat',
       className: 'bg-blue-100',
     },
     {
-      id: 'airpods-gen5',
-      tag: 'BEST PRICE',
-      title: '5th Generation AirPods.',
-      price: 499.00,
+      id: 'prod-ai-reels-fitness',
+      tag: 'AI POWERED',
+      title: 'AI Fitness Reels',
+      price: 49.99,
       buttonText: 'Learn More',
-      imageUrl: 'https://picsum.photos/seed/airpods-gen5/600/600',
-      imageHint: 'white earbuds',
+      imageUrl: getImage('prod-ai-reels-fitness').url,
+      imageHint: 'fitness workout',
       className: 'bg-gray-100 col-span-1 row-start-2',
     },
     {
-      id: 'headset-max',
-      tag: 'FLAT 25% OFF',
-      title: 'Headset Max 3rd Generation.',
-      price: 549.00,
+      id: 'prod-excel-templates',
+      tag: 'TOP RATED',
+      title: 'Excel Templates',
+      price: 19.99,
       buttonText: 'Buy Now',
-      imageUrl: 'https://picsum.photos/seed/headset-max/600/600',
-      imageHint: 'blue headphones',
+      imageUrl: getImage('prod-excel-templates').url,
+      imageHint: 'spreadsheet chart',
       className: 'bg-gray-100 col-span-1 row-start-2',
     },
     {
-      id: 'macbook-pro',
-      tag: 'NEWLY ADDED',
-      title: 'Mac Book Pro. New Arrival',
-      price: 2499.00,
+      id: 'prod-adobe-suite',
+      tag: 'PRO',
+      title: 'Adobe Suite 2024',
+      price: 299.99,
       buttonText: 'Learn More',
-      imageUrl: 'https://picsum.photos/seed/macbook-pro/600/600',
-      imageHint: 'silver laptop',
+      imageUrl: getImage('prod-adobe-suite').url,
+      imageHint: 'software logos',
       className: 'bg-gray-100 col-span-1 row-start-2',
     },
   ];
+
+  function getImage(id: string) {
+    const image = PlaceHolderImages.find(img => img.id === id);
+    return { id: image?.id || '', url: image?.imageUrl || '', hint: image?.imageHint || '' };
+  }
   
   const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null);
 
@@ -118,7 +123,6 @@ export default function HomePage() {
                       </h1>
                       <p className="mt-4 text-2xl text-muted-foreground">{product.description}</p>
                       <p className="text-4xl font-bold mt-2">${product.price.toFixed(2)}</p>
-                      <p className="text-sm text-muted-foreground mt-2">From ${product.price.toFixed(2)} or $41.62/mo.per month</p>
                       <div className="mt-8 flex gap-4">
                         <Button size="lg" asChild>
                           <Link href={`/shop/${product.id}`}>Buy Now</Link>
@@ -152,7 +156,7 @@ export default function HomePage() {
       {/* Categories Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold text-center mb-8">Our Top Categories</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-9 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {mockCategories.map((category) => (
             <Link href={`/shop?category=${category.id}`} key={category.id}>
               <Card className="flex flex-col items-center justify-center p-4 aspect-square transition-shadow hover:shadow-lg">
@@ -205,14 +209,14 @@ export default function HomePage() {
             </div>
             <TabsContent value="new-products">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {newProducts.map((product) => (
+                    {mockProducts.slice(0, 4).map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
                 </div>
             </TabsContent>
             <TabsContent value="best-selling">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {mockProducts.slice(2,6).map((product) => (
+                    {mockProducts.slice(4,8).map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
                 </div>

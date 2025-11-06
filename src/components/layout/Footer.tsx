@@ -10,7 +10,7 @@ const sections = [
       { name: 'About Us', href: '/about' },
       { name: 'Contact Us', href: '/contact' },
       { name: 'FAQs', href: '#' },
-      { name: 'Shipping & Returns', href: '#' },
+      { name: 'Blog', href: '/blog' },
     ],
   },
   {
@@ -18,17 +18,17 @@ const sections = [
     links: [
       { name: 'My Account', href: '/login' },
       { name: 'Order History', href: '/cart' },
-      { name: 'Wishlist', href: '#' },
+      { name: 'Shopping Cart', href: '/cart' },
       { name: 'Newsletter', href: '#' },
     ],
   },
   {
     title: 'Categories',
     links: [
-      { name: 'SmartTV', href: '/shop?category=smart-tv' },
-      { name: 'Speakers', href: '/shop?category=speaker' },
-      { name: 'Laptops', href: '/shop?category=laptops' },
-      { name: 'Smart Phones', href: '/shop?category=smart-phones' },
+      { name: 'Software & Tools', href: '/shop?category=software-and-tools' },
+      { name: 'Courses & E-books', href: '/shop?category=courses-and-ebooks' },
+      { name: 'Templates', href: '/shop?category=templates' },
+      { name: 'Content Bundles', href: '/shop?category=content-bundles' },
     ],
   },
 ];
@@ -50,7 +50,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold mb-4">DigiAddaWorld</h2>
             <p className="text-muted-foreground mb-4 max-w-sm">
-              The best place to find all your favorite electronic devices.
+              The ultimate destination for premium digital products, courses, and templates.
             </p>
             <div className="flex space-x-2">
               {socialLinks.map((social, idx) => (

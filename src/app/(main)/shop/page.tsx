@@ -16,14 +16,18 @@ export default function ShopPage() {
   const initialCategory = searchParams.get('category');
   
   const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategory ? [initialCategory] : []);
-  const [priceRange, setPriceRange] = useState<number[]>([1000]);
+  const [priceRange, setPriceRange] = useState<number[]>([300]);
 
-  const maxPrice = useMemo(() => Math.max(...mockProducts.map(p => p.price)), []);
+  const maxPrice = useMemo(() => Math.ceil(Math.max(...mockProducts.map(p => p.price)) / 10) * 10, [mockProducts]);
 
+  useEffect(() => {
+    setPriceRange([maxPrice]);
+  }, [maxPrice]);
+  
   useEffect(() => {
     const category = searchParams.get('category');
     if (category) {
-      setSelectedCategories([category]);
+      setSelectedCategories(prev => prev.includes(category) ? prev : [...prev, category]);
     }
   }, [searchParams]);
 
@@ -37,9 +41,10 @@ export default function ShopPage() {
 
   const filteredProducts = useMemo(() => {
     return mockProducts.filter((product) => {
+      const categoryId = product.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
       const categoryMatch =
         selectedCategories.length === 0 ||
-        selectedCategories.includes(product.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-'));
+        selectedCategories.includes(categoryId);
       const priceMatch = product.price <= priceRange[0];
       return categoryMatch && priceMatch;
     });
@@ -79,7 +84,7 @@ export default function ShopPage() {
                         checked={selectedCategories.includes(category.id)}
                         onCheckedChange={() => handleCategoryChange(category.id)}
                       />
-                      <Label htmlFor={category.id}>{category.name}</Label>
+                      <Label htmlFor={category.id} className="cursor-pointer">{category.name}</Label>
                     </div>
                   ))}
                 </div>
@@ -90,7 +95,7 @@ export default function ShopPage() {
                   value={priceRange}
                   onValueChange={setPriceRange}
                   max={maxPrice}
-                  step={10}
+                  step={1}
                 />
                 <div className="flex justify-between text-sm text-muted-foreground mt-2">
                   <span>$0</span>

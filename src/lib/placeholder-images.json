@@ -1,94 +1,124 @@
 {
   "placeholderImages": [
     {
-      "id": "hero-s13-ultra",
-      "imageUrl": "https://images.unsplash.com/photo-1739797243842-a50b43f281e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibHVlJTIwc21hcnRwaG9uZXxlbnwwfHx8fDE3NjIzNjMxOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "blue smartphone"
+      "id": "prod-adobe-suite",
+      "imageUrl": "https://images.unsplash.com/photo-1761624159464-686d31623aa7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzb2Z0d2FyZSUyMGxvZ29zfGVufDB8fHx8MTc2MjQwNTQzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "software logos"
     },
     {
-      "id": "prod-s13-ultra",
-      "imageUrl": "https://images.unsplash.com/photo-1623691136531-68d65f1a25a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxibHVlJTIwc21hcnRwaG9uZXxlbnwwfHx8fDE3NjIzNjMxOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "blue smartphone"
+      "id": "prod-ai-reels-fitness",
+      "imageUrl": "https://images.unsplash.com/photo-1518310383802-640c2de311b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmaXRuZXNzJTIwd29ya291dHxlbnwwfHx8fDE3NjIzOTA1OTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fitness workout"
     },
     {
-      "id": "prod-airpods-gen5",
-      "imageUrl": "https://images.unsplash.com/photo-1754233597288-4fb399b854fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3aGl0ZSUyMGVhcmJ1ZHN8ZW58MHx8fHwxNzYyMzEzOTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "white earbuds"
+      "id-": "prod-ai-reels-motivation",
+      "imageUrl": "https://images.unsplash.com/photo-1592597844940-a4c69ceb4be6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb3RpdmF0aW9uYWwlMjBxdW90ZXxlbnwwfHx8fDE3NjIzNTM1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "motivational quote"
     },
     {
-      "id": "prod-s13-lite",
-      "imageUrl": "https://images.unsplash.com/photo-1584651432430-7e1ac8303a0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsaWdodCUyMGJsdWUlMjBzbWFydHBob25lfGVufDB8fHx8MTc2MjQwMzQ0NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "light blue smartphone"
+      "id": "prod-god-reels",
+      "imageUrl": "https://images.unsplash.com/photo-1759972524940-656dc698640a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcGlyaXR1YWwlMjBpbWFnZXJ5fGVufDB8fHx8MTc2MjQwNTQzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spiritual imagery"
     },
     {
-      "id": "prod-smartwatch-7",
-      "imageUrl": "https://images.unsplash.com/photo-1699796803856-d9017a3a022c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaW5rJTIwc21hcnR3YXRjaHxlbnwwfHx8fDE3NjI0MDM0NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "pink smartwatch"
+      "id": "prod-ai-tech-reels",
+      "imageUrl": "https://images.unsplash.com/photo-1644325349124-d1756b79dd42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVjaG5vbG9neSUyMGFic3RyYWN0fGVufDB8fHx8MTc2MjM4NTgxNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "technology abstract"
     },
     {
-      "id": "prod-smart-speaker",
-      "imageUrl": "https://images.unsplash.com/photo-1762328498684-e597f4ceaa43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx5ZWxsb3clMjBzbWFydCUyMHNwZWFrZXJ8ZW58MHx8fHwxNzYyNDAzNDQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "yellow smart speaker"
+      "id": "prod-kids-worksheet",
+      "imageUrl": "https://images.unsplash.com/photo-1629822908853-b1d2a39ece98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxraWRzJTIwbGVhcm5pbmd8ZW58MHx8fHwxNzYyMzM3NzE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kids learning"
     },
     {
-      "id": "prod-headset-max",
-      "imageUrl": "https://images.unsplash.com/photo-1689357642408-6ce34b5bd271?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibHVlJTIwaGVhZHBob25lc3xlbnwwfHx8fDE3NjI0MDM0NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "blue headphones"
+      "id": "prod-excel-templates",
+      "imageUrl": "https://images.unsplash.com/photo-1606327054581-899eb5e6d1dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzcHJlYWRzaGVldCUyMGNoYXJ0fGVufDB8fHx8MTc2MjQwNTQzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spreadsheet chart"
     },
     {
-      "id": "prod-macbook-pro",
-      "imageUrl": "https://images.unsplash.com/photo-1637329428580-8fddec26fa67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzaWx2ZXIlMjBsYXB0b3B8ZW58MHx8fHwxNzYyNDAzNDQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "silver laptop"
+      "id": "prod-canva-templates",
+      "imageUrl": "https://images.unsplash.com/photo-1673006768521-1f5f2ed92b41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzb2NpYWwlMjBtZWRpYSUyMHBvc3R8ZW58MHx8fHwxNzYyNDA1NDMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social media post"
     },
     {
-      "id": "prod-camera",
-      "imageUrl": "https://images.unsplash.com/photo-1542299493-c352b869a9a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3aGl0ZSUyMGNhbWVyYXxlbnwwfHx8fDE3NjI0MDM0NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "white camera"
+      "id": "prod-instagram-course",
+      "imageUrl": "https://images.unsplash.com/photo-1759215524472-1b0686fdbd87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzb2NpYWwlMjBtZWRpYSUyMGdyb3d0aHxlbnwwfHx8fDE3NjI0MDU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social media growth"
     },
     {
-      "id": "cat-smart-tv",
-      "imageUrl": "https://images.unsplash.com/photo-1760275496880-98960e20e44b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0ZWxldmlzaW9uJTIwc2NyZWVufGVufDB8fHx8MTc2MjQwMzQ0NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "television screen"
+      "id": "prod-graphic-design-bundle",
+      "imageUrl": "https://images.unsplash.com/photo-1762247370166-d5ac0bdf4bd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkZXNpZ24lMjBlbGVtZW50c3xlbnwwfHx8fDE3NjI0MDU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design elements"
     },
     {
-      "id": "cat-speaker",
-      "imageUrl": "https://images.unsplash.com/photo-1698884293353-6772a02d1005?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyb3VuZCUyMHNwZWFrZXJ8ZW58MHx8fHwxNzYyNDAzNDQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "round speaker"
+      "id": "prod-chatgpt-prompts",
+      "imageUrl": "https://images.unsplash.com/photo-1712002641088-9d76f9080889?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxBSSUyMGNoYXR8ZW58MHx8fHwxNzYyMzgxMTMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "AI chat"
     },
     {
-      "id": "cat-tablets",
-      "imageUrl": "https://images.unsplash.com/photo-1702479744062-1880502275b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0YWJsZXQlMjBkZXZpY2V8ZW58MHx8fHwxNzYyMzYyMTk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "tablet device"
+      "id": "prod-spoken-english-course",
+      "imageUrl": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsYW5ndWFnZSUyMGxlYXJuaW5nfGVufDB8fHx8MTc2MjM4OTkwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "language learning"
     },
     {
-      "id": "cat-airpods",
-      "imageUrl": "https://images.unsplash.com/photo-1755182529034-189a6051faae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMGVhcmJ1ZHN8ZW58MHx8fHwxNzYyMzEzOTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "white earbuds"
+      "id": "prod-upsc-notes",
+      "imageUrl": "https://images.unsplash.com/photo-1712812824597-1781d19a2acb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdHVkeSUyMG5vdGVzfGVufDB8fHx8MTc2MjQwNTQzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "study notes"
     },
     {
-      "id": "cat-smartwatches",
-      "imageUrl": "https://images.unsplash.com/photo-1434494571168-ab162bce2813?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzbWFydHdhdGNofGVufDB8fHx8MTc2MjM1MzA1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "smartwatch"
+      "id": "prod-money-ebooks",
+      "imageUrl": "https://images.unsplash.com/photo-1734329111031-16ca9ec04a77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZmluYW5jZSUyMGJvb2t8ZW58MHx8fHwxNzYyNDA1NDMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "finance book"
     },
     {
-      "id": "cat-smart-phones",
-      "imageUrl": "https://images.unsplash.com/photo-1573152143286-0c422b4d2175?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzbWFydHBob25lfGVufDB8fHx8MTc2MjM5OTQyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "smartphone"
+      "id": "prod-pan-india-database",
+      "imageUrl": "https://images.unsplash.com/photo-1738082956254-1dd63ad1db71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGF0YSUyMG5ldHdvcmt8ZW58MHx8fHwxNzYyMzY2ODA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data network"
     },
     {
-      "id": "cat-headphones",
-      "imageUrl": "https://images.unsplash.com/photo-1628202926206-c63a34b1618f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxoZWFkcGhvbmVzfGVufDB8fHx8MTc2MjM0MjA2OHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "headphones"
+      "id": "prod-audio-books",
+      "imageUrl": "https://images.unsplash.com/photo-1543244916-b3da1ba6252c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoZWFkcGhvbmVzJTIwYm9va3xlbnwwfHx8fDE3NjIzNjUwNDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "headphones book"
     },
     {
-      "id": "cat-laptops",
-      "imageUrl": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsYXB0b3B8ZW58MHx8fHwxNzYyMzQ2MzQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "laptop"
+      "id": "prod-youtube-bundle",
+      "imageUrl": "https://images.unsplash.com/photo-1490810194309-344b3661ba39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx2aWRlbyUyMGVkaXRpbmd8ZW58MHx8fHwxNzYyNDA0MTgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "video editing"
     },
     {
-      "id": "cat-bluetooth",
-      "imageUrl": "https://images.unsplash.com/photo-1698244244114-b0eb90869056?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxibHVldG9vdGglMjBkZXZpY2V8ZW58MHx8fHwxNzYyNDAzNDQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "bluetooth device"
+      "id": "prod-resume-templates",
+      "imageUrl": "https://images.unsplash.com/photo-1761671613933-159512988cb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyZXN1bWUlMjBkb2N1bWVudHxlbnwwfHx8fDE3NjI0MDU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "resume document"
+    },
+    {
+      "id": "prod-fitness-bundle",
+      "imageUrl": "https://images.unsplash.com/photo-1591291621164-2c6367723315?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmaXRuZXNzJTIwZXF1aXBtZW50fGVufDB8fHx8MTc2MjM2ODMxOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fitness equipment"
+    },
+    {
+      "id": "prod-digital-marketing-course",
+      "imageUrl": "https://images.unsplash.com/photo-1562577308-9e66f0c65ce5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYXJrZXRpbmclMjBzdHJhdGVneXxlbnwwfHx8fDE3NjIzMjIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "marketing strategy"
+    },
+    {
+      "id": "cat-software",
+      "imageUrl": "https://images.unsplash.com/photo-1610466896927-699424f3c86d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb2RlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYyMzc1NjEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "code abstract"
+    },
+    {
+      "id": "cat-courses",
+      "imageUrl": "https://images.unsplash.com/photo-1588702547954-4800ead296ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvbmxpbmUlMjBsZWFybmluZ3xlbnwwfHx8fDE3NjIzOTA5Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "online learning"
+    },
+    {
+      "id": "cat-templates",
+      "imageUrl": "https://images.unsplash.com/photo-1661523892060-c9ab9eac3291?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxkb2N1bWVudCUyMGxheW91dHxlbnwwfHx8fDE3NjI0MDU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "document layout"
+    },
+    {
+      "id": "cat-bundles",
+      "imageUrl": "https://images.unsplash.com/photo-1760144597396-4f902f5026a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwcm9kdWN0JTIwY29sbGVjdGlvbnxlbnwwfHx8fDE3NjI0MDU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "product collection"
     },
     {
       "id": "blog-1",
