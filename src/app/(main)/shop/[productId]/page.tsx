@@ -121,7 +121,7 @@ export default function ProductDetailsPage() {
                         <CardContent className="p-8 space-y-4">
                             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                                 {product.features.map((feature, i) => (
-                                    <li key={i} className="flex items-center"><Check className="w-5 h-5 mr-3 text-green-500" /> {feature}</li>
+                                    <li key={i} className="flex items-center"><Check className="w-5 h-5 mr-3 text-green-500" /> <span dangerouslySetInnerHTML={{ __html: feature.replace(/(^[\d\w\s+]+:)/, '<b>$1</b>') }} /></li>
                                 ))}
                             </ul>
                         </CardContent>
