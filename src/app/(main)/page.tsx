@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import type { EmblaCarouselType } from 'embla-carousel-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ProductCard } from '@/components/shared/ProductCard';
@@ -21,8 +22,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 
-const heroProduct = mockProducts.find(p => p.id === '1');
-const heroImage = PlaceHolderImages.find(img => img.id === 'hero-s13-ultra');
+const heroProducts = mockProducts.filter(p => p.isFeatured).slice(0, 3);
 
 
 export default function HomePage() {
@@ -90,43 +90,62 @@ export default function HomePage() {
       className: 'bg-gray-100 col-span-1 row-start-2',
     },
   ];
+  
+  const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const timer = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [emblaApi]);
+
 
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
       <section className="bg-gray-100">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-8 items-center min-h-[70vh]">
-              <div>
-                <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                  {heroProduct?.name}
-                </h1>
-                <p className="mt-4 text-2xl text-muted-foreground">{heroProduct?.description}</p>
-                <p className="text-4xl font-bold mt-2">${heroProduct?.price.toFixed(2)}</p>
-                <p className="text-sm text-muted-foreground mt-2">From ${heroProduct?.price.toFixed(2)} or $41.62/mo.per month</p>
-                <div className="mt-8 flex gap-4">
-                  <Button size="lg" asChild>
-                    <Link href={`/shop/${heroProduct?.id}`}>Buy Now</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <Link href={`/shop/${heroProduct?.id}`}>Learn More</Link>
-                  </Button>
+        <Carousel setApi={setEmblaApi}>
+          <CarouselContent>
+            {heroProducts.map((product) => (
+              <CarouselItem key={product.id}>
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="grid md:grid-cols-2 gap-8 items-center min-h-[70vh]">
+                    <div>
+                      <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                        {product.name}
+                      </h1>
+                      <p className="mt-4 text-2xl text-muted-foreground">{product.description}</p>
+                      <p className="text-4xl font-bold mt-2">${product.price.toFixed(2)}</p>
+                      <p className="text-sm text-muted-foreground mt-2">From ${product.price.toFixed(2)} or $41.62/mo.per month</p>
+                      <div className="mt-8 flex gap-4">
+                        <Button size="lg" asChild>
+                          <Link href={`/shop/${product.id}`}>Buy Now</Link>
+                        </Button>
+                        <Button size="lg" variant="outline" asChild>
+                          <Link href={`/shop/${product.id}`}>Learn More</Link>
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="relative h-96 md:h-full">
+                      <Image
+                        src={product.images[0].url}
+                        alt={product.name}
+                        fill
+                        className="object-contain"
+                        data-ai-hint={product.images[0].hint}
+                        priority
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="relative h-96 md:h-full">
-                {heroImage && (
-                  <Image
-                    src={heroImage.imageUrl}
-                    alt={heroProduct?.name || 'Hero image'}
-                    fill
-                    className="object-contain"
-                    data-ai-hint={heroImage.imageHint}
-                    priority
-                  />
-                )}
-              </div>
-            </div>
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-4" />
+          <CarouselNext className="right-4" />
+        </Carousel>
       </section>
       
 
