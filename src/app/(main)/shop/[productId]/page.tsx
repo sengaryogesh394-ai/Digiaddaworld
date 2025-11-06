@@ -24,11 +24,13 @@ export default function ProductDetailsPage() {
   }
 
   const handleAddToCart = () => {
-    addToCart(product);
-    toast({
-        title: "Added to cart",
-        description: `${product.name} has been added to your cart.`,
-    })
+    if (product) {
+        addToCart(product);
+        toast({
+            title: "Added to cart",
+            description: `${product.name} has been added to your cart.`,
+        });
+    }
   };
 
   const mainImage = product.images[selectedImageIndex] || product.images[0];
@@ -46,8 +48,8 @@ export default function ProductDetailsPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             {/* Header Section */}
             <section className="text-center">
-                <div className="inline-block bg-rose-200 text-rose-800 text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    <Zap className="inline-block w-4 h-4 mr-1" /> MEGA SALE IS ON!
+                <div className="inline-block bg-rose-500 text-white text-sm font-bold px-4 py-2 rounded-md mb-4 shadow-lg">
+                    <Zap className="inline-block w-4 h-4 mr-2" /> MEGA SALE IS ON! 95% OFF
                 </div>
                 <h1 className="text-3xl md:text-5xl font-extrabold text-gray-800 dark:text-gray-100">
                     {product.name}
@@ -59,7 +61,7 @@ export default function ProductDetailsPage() {
 
             {/* Image Gallery */}
             <section>
-                <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden border-4 border-white shadow-2xl">
+                <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden border-4 border-white shadow-2xl bg-white">
                     <Image
                         src={mainImage.url}
                         alt={product.name}
