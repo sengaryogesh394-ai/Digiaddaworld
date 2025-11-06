@@ -1,10 +1,10 @@
 
 'use client';
 import Image from 'next/image';
-import { notFound, useParams } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import { mockProducts } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
-import { Star, Check, ShoppingCart, Zap } from 'lucide-react';
+import { Star, Check, ShoppingCart, Zap, ArrowRight } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
@@ -15,6 +15,7 @@ import CountdownTimer from '@/components/shared/CountdownTimer';
 export default function ProductDetailsPage() {
   const { toast } = useToast();
   const params = useParams();
+  const router = useRouter();
   const { productId } = params;
   const product = mockProducts.find((p) => p.id === productId);
   const { addToCart } = useCart();
@@ -33,6 +34,13 @@ export default function ProductDetailsPage() {
         });
     }
   };
+  
+  const handleBuyNow = () => {
+    if (product) {
+        addToCart(product);
+        router.push('/checkout');
+    }
+  }
 
   const mainImage = product.images[selectedImageIndex] || product.images[0];
   
@@ -68,9 +76,14 @@ export default function ProductDetailsPage() {
                 <div className="my-6">
                     <CountdownTimer />
                 </div>
-                <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={handleAddToCart}>
-                    <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR ${product.price.toFixed(2)}
-                </Button>
+                <div className="flex flex-col gap-4">
+                    <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={handleAddToCart}>
+                        <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR ${product.price.toFixed(2)}
+                    </Button>
+                    <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform" onClick={handleBuyNow}>
+                        Buy Now <ArrowRight className="ml-2"/>
+                    </Button>
+                </div>
             </section>
 
             {/* Image Gallery */}
