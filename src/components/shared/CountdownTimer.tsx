@@ -30,12 +30,12 @@ const CountdownTimer = () => {
     // Set initial time left on client-side to avoid hydration mismatch
     setTimeLeft(calculateTimeLeft());
 
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    return () => clearTimeout(timer);
-  }, [timeLeft]);
+    return () => clearInterval(timer);
+  }, []);
 
   const timerComponents = Object.keys(timeLeft).map(interval => {
     const value = timeLeft[interval as keyof typeof timeLeft];
