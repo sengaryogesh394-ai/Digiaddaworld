@@ -19,7 +19,6 @@ export default function ProductDetailsPage() {
   const { productId } = params;
   const product = mockProducts.find((p) => p.id === productId);
   const { addToCart } = useCart();
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   if (!product) {
     notFound();
@@ -41,8 +40,6 @@ export default function ProductDetailsPage() {
         router.push('/checkout');
     }
   }
-
-  const mainImage = product.images[selectedImageIndex] || product.images[0];
   
   const originalPrice = product.price * 14;
 
@@ -80,30 +77,21 @@ export default function ProductDetailsPage() {
 
             {/* Image Gallery */}
             <section className="bg-indigo-100/50 dark:bg-indigo-900/20 py-8 rounded-lg">
-                <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden bg-transparent">
-                    <Image
-                        src={mainImage.url}
-                        alt={product.name}
-                        fill
-                        className="object-contain"
-                        data-ai-hint={mainImage.hint}
-                    />
-                </div>
-                {product.images.length > 1 && (
-                    <div className="flex justify-center gap-4 mt-4">
-                        {product.images.map((img, index) => (
-                            <button key={index} onClick={() => setSelectedImageIndex(index)} className={cn("relative w-24 h-16 rounded-md overflow-hidden border-2 transition-all", selectedImageIndex === index ? 'border-primary scale-110' : 'border-transparent hover:border-primary/50')}>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                    {product.images.slice(0, 4).map((img, index) => (
+                        <div key={index} className="bg-black rounded-3xl p-2 shadow-lg">
+                            <div className="relative aspect-[9/19] w-full rounded-2xl overflow-hidden">
                                 <Image
                                     src={img.url}
-                                    alt={`Thumbnail ${index + 1}`}
+                                    alt={`${product.name} screenshot ${index + 1}`}
                                     fill
                                     className="object-cover"
                                     data-ai-hint={img.hint}
                                 />
-                            </button>
-                        ))}
-                    </div>
-                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </section>
 
             {/* What You Get Section */}
@@ -132,7 +120,8 @@ export default function ProductDetailsPage() {
                 <Card className="bg-white dark:bg-card shadow-lg">
                     <CardContent className="p-8">
                         <div className="text-gray-700 dark:text-gray-300 whitespace-pre-line space-y-4">
-                           <p>{product.description}</p>
+                           <p>This is the ultimate bundle for anyone looking to create stunning and professional content. It includes a massive collection of high-quality templates, presets, and assets that are fully customizable and easy to use. Whether you're a designer, marketer, or content creator, this bundle has everything you need to take your projects to the next level.</p>
+                           <p>Save countless hours of work with ready-made assets that cover a wide range of styles and niches. From social media graphics to video transitions, this pack is designed to streamline your workflow and help you produce amazing results, faster.</p>
                         </div>
                     </CardContent>
                 </Card>

@@ -1,24 +1,84 @@
 {
   "placeholderImages": [
     {
-      "id": "prod-adobe-suite",
+      "id": "prod-adobe-suite-1",
       "imageUrl": "https://images.unsplash.com/photo-1761624159464-686d31623aa7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzb2Z0d2FyZSUyMGxvZ29zfGVufDB8fHx8MTc2MjQwNTQzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "software logos"
     },
     {
-      "id": "prod-ai-reels-fitness",
+      "id": "prod-adobe-suite-2",
+      "imageUrl": "https://images.unsplash.com/photo-1762330915094-0abf582835fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzb2Z0d2FyZSUyMGludGVyZmFjZXxlbnwwfHx8fDE3NjIzNDM3Mjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "software interface"
+    },
+    {
+      "id": "prod-adobe-suite-3",
+      "imageUrl": "https://images.unsplash.com/photo-1761074342590-2e166146b830?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y3JlYXRpdmUlMjB0b29sc3xlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "creative tools"
+    },
+    {
+      "id": "prod-adobe-suite-4",
+      "imageUrl": "https://images.unsplash.com/photo-1605606582336-96bec3c882e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkZXNpZ24lMjBwcm9ncmFtfGVufDB8fHx8MTc2MjQyMTU0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design program"
+    },
+    {
+      "id": "prod-ai-reels-fitness-1",
       "imageUrl": "https://images.unsplash.com/photo-1518310383802-640c2de311b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmaXRuZXNzJTIwd29ya291dHxlbnwwfHx8fDE3NjIzOTA1OTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "fitness workout"
     },
     {
-      "id": "prod-ai-reels-motivation",
+      "id": "prod-ai-reels-fitness-2",
+      "imageUrl": "https://images.unsplash.com/photo-1590074121258-6b53b6adb8f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxneW0lMjByZWVsfGVufDB8fHx8MTc2MjQyMTU0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gym reel"
+    },
+    {
+      "id": "prod-ai-reels-fitness-3",
+      "imageUrl": "https://images.unsplash.com/photo-1599447292180-45fd84092ef0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx5b2dhJTIwcG9zZXxlbnwwfHx8fDE3NjIzNTkzODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "yoga pose"
+    },
+    {
+      "id": "prod-ai-reels-fitness-4",
+      "imageUrl": "https://images.unsplash.com/photo-1567769541495-338ee7203e3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxoZWFsdGh5JTIwZm9vZHxlbnwwfHx8fDE3NjIzNjExMzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy food"
+    },
+    {
+      "id": "prod-ai-reels-motivation-1",
       "imageUrl": "https://images.unsplash.com/photo-1592597844940-a4c69ceb4be6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb3RpdmF0aW9uYWwlMjBxdW90ZXxlbnwwfHx8fDE3NjIzNTM1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "motivational quote"
     },
     {
-      "id": "prod-god-reels",
+      "id": "prod-ai-reels-motivation-2",
+      "imageUrl": "https://images.unsplash.com/photo-1758876202618-7197443c717f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzdWNjZXNzJTIwbWluZHNldHxlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "success mindset"
+    },
+    {
+      "id": "prod-ai-reels-motivation-3",
+      "imageUrl": "https://images.unsplash.com/photo-1762171687461-f6e67bbd5638?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxpbnNwaXJpbmclMjB2aXN1YWx8ZW58MHx8fHwxNzYyNDIxNTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "inspiring visual"
+    },
+    {
+      "id": "prod-ai-reels-motivation-4",
+      "imageUrl": "https://images.unsplash.com/photo-1701120002297-3ae9c4fdc450?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwb3NpdGl2ZSUyMG1lc3NhZ2V8ZW58MHx8fHwxNzYyNDIxNTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "positive message"
+    },
+    {
+      "id": "prod-god-reels-1",
       "imageUrl": "https://images.unsplash.com/photo-1759972524940-656dc698640a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcGlyaXR1YWwlMjBpbWFnZXJ5fGVufDB8fHx8MTc2MjQwNTQzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "spiritual imagery"
+    },
+    {
+      "id": "prod-god-reels-2",
+      "imageUrl": "https://images.unsplash.com/photo-1574554447581-9d057dae5e97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZWxpZ2lvdXMlMjBxdW90ZXxlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "religious quote"
+    },
+    {
+      "id": "prod-god-reels-3",
+      "imageUrl": "https://images.unsplash.com/photo-1762204296168-e1b7675f6ae2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzZXJlbmUlMjB2aXN1YWx8ZW58MHx8fHwxNzYyNDIxNTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "serene visual"
+    },
+    {
+      "id": "prod-god-reels-4",
+      "imageUrl": "https://images.unsplash.com/photo-1689126216445-9b16cbc02820?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmYWl0aCUyMGNvbnRlbnR8ZW58MHx8fHwxNzYyNDIxNTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "faith content"
     },
     {
       "id": "prod-ai-tech-reels",
@@ -26,14 +86,44 @@
       "imageHint": "technology abstract"
     },
     {
-      "id": "prod-kids-worksheet",
+      "id": "prod-kids-worksheet-1",
       "imageUrl": "https://images.unsplash.com/photo-1629822908853-b1d2a39ece98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxraWRzJTIwbGVhcm5pbmd8ZW58MHx8fHwxNzYyMzM3NzE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kids learning"
     },
     {
-      "id": "prod-excel-templates",
+      "id": "prod-kids-worksheet-2",
+      "imageUrl": "https://images.unsplash.com/photo-1631061184412-b18f5fb1dc70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb2xvcmluZyUyMHBhZ2V8ZW58MHx8fHwxNzYyNDIxNTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "coloring page"
+    },
+    {
+      "id": "prod-kids-worksheet-3",
+      "imageUrl": "https://images.unsplash.com/photo-1711445508277-be5ac846f64a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtYXRoJTIwcHV6emxlfGVufDB8fHx8MTc2MjM2Njg1NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "math puzzle"
+    },
+    {
+      "id": "prod-kids-worksheet-4",
+      "imageUrl": "https://images.unsplash.com/photo-1708793669541-cb2663288d53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhY3Rpdml0eSUyMHNoZWV0fGVufDB8fHx8MTc2MjM5NzEzMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "activity sheet"
+    },
+    {
+      "id": "prod-excel-templates-1",
       "imageUrl": "https://images.unsplash.com/photo-1606327054581-899eb5e6d1dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzcHJlYWRzaGVldCUyMGNoYXJ0fGVufDB8fHx8MTc2MjQwNTQzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "spreadsheet chart"
+    },
+    {
+      "id": "prod-excel-templates-2",
+      "imageUrl": "https://images.unsplash.com/photo-1652422485224-102f6784c149?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxidWRnZXQlMjBwbGFubmVyfGVufDB8fHx8MTc2MjQyMTU0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "budget planner"
+    },
+    {
+      "id": "prod-excel-templates-3",
+      "imageUrl": "https://images.unsplash.com/photo-1543604387-6eabf98655c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9qZWN0JTIwdHJhY2tlcnxlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "project tracker"
+    },
+    {
+      "id": "prod-excel-templates-4",
+      "imageUrl": "https://images.unsplash.com/photo-1644143153646-f36282dfb953?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxmaW5hbmNpYWwlMjBkYXNoYm9hcmR8ZW58MHx8fHwxNzYyNDIxNTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "financial dashboard"
     },
     {
       "id": "prod-canva-templates",
@@ -41,24 +131,84 @@
       "imageHint": "social media post"
     },
     {
-      "id": "prod-instagram-course",
+      "id": "prod-instagram-course-1",
       "imageUrl": "https://images.unsplash.com/photo-1759215524472-1b0686fdbd87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzb2NpYWwlMjBtZWRpYSUyMGdyb3d0aHxlbnwwfHx8fDE3NjI0MDU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "social media growth"
     },
     {
-      "id": "prod-graphic-design-bundle",
+      "id": "prod-instagram-course-2",
+      "imageUrl": "https://picsum.photos/seed/instagramcourse2/600/400",
+      "imageHint": "follower chart"
+    },
+    {
+      "id": "prod-instagram-course-3",
+      "imageUrl": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb250ZW50JTIwc3RyYXRlZ3l8ZW58MHx8fHwxNzYyMzczNzA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "content strategy"
+    },
+    {
+      "id": "prod-instagram-course-4",
+      "imageUrl": "https://images.unsplash.com/photo-1726066012749-f81bf4422d4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxpbmZsdWVuY2VyJTIwbWFya2V0aW5nfGVufDB8fHx8MTc2MjQyMTU0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "influencer marketing"
+    },
+    {
+      "id": "prod-graphic-design-bundle-1",
       "imageUrl": "https://images.unsplash.com/photo-1762247370166-d5ac0bdf4bd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkZXNpZ24lMjBlbGVtZW50c3xlbnwwfHx8fDE3NjI0MDU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "design elements"
     },
     {
-      "id": "prod-chatgpt-prompts",
+      "id": "prod-graphic-design-bundle-2",
+      "imageUrl": "https://images.unsplash.com/photo-1750816204148-5d02aff367cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmb250JTIwY29sbGVjdGlvbnxlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "font collection"
+    },
+    {
+      "id": "prod-graphic-design-bundle-3",
+      "imageUrl": "https://images.unsplash.com/photo-1740174459718-fdcc63ee3b4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx2ZWN0b3IlMjBpY29uc3xlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "vector icons"
+    },
+    {
+      "id": "prod-graphic-design-bundle-4",
+      "imageUrl": "https://images.unsplash.com/photo-1617238793696-9035e7fc1825?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZXh0dXJlJTIwcGF0dGVybnN8ZW58MHx8fHwxNzYyNDIxNTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "texture patterns"
+    },
+    {
+      "id": "prod-chatgpt-prompts-1",
       "imageUrl": "https://images.unsplash.com/photo-1712002641088-9d76f9080889?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxBSSUyMGNoYXR8ZW58MHx8fHwxNzYyMzgxMTMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "AI chat"
     },
     {
-      "id": "prod-spoken-english-course",
+      "id": "prod-chatgpt-prompts-2",
+      "imageUrl": "https://images.unsplash.com/photo-1606733803396-1d028f0e6f43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9tcHQlMjBsaWJyYXJ5fGVufDB8fHx8MTc2MjQyMTU0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "prompt library"
+    },
+    {
+      "id": "prod-chatgpt-prompts-3",
+      "imageUrl": "https://images.unsplash.com/photo-1762330467475-a565d04e1808?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb250ZW50JTIwZ2VuZXJhdGlvbnxlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "content generation"
+    },
+    {
+      "id": "prod-chatgpt-prompts-4",
+      "imageUrl": "https://images.unsplash.com/photo-1762330465857-07e4c81c0dfa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxBSSUyMGFzc2lzdGFudHxlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "AI assistant"
+    },
+    {
+      "id": "prod-spoken-english-course-1",
       "imageUrl": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsYW5ndWFnZSUyMGxlYXJuaW5nfGVufDB8fHx8MTc2MjM4OTkwMnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "language learning"
+    },
+    {
+      "id": "prod-spoken-english-course-2",
+      "imageUrl": "https://images.unsplash.com/photo-1758522275298-586dfe4ec5e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb252ZXJzYXRpb24lMjBwcmFjdGljZXxlbnwwfHx8fDE3NjIzNzE2MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "conversation practice"
+    },
+    {
+      "id": "prod-spoken-english-course-3",
+      "imageUrl": "https://images.unsplash.com/photo-1605818363303-7073f9171de9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9udW5jaWF0aW9uJTIwbGVzc29ufGVufDB8fHx8MTc2MjQyMTU0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pronunciation lesson"
+    },
+    {
+      "id": "prod-spoken-english-course-4",
+      "imageUrl": "https://images.unsplash.com/photo-1610890912938-ddcf5f9d4256?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmbHVlbnQlMjBzcGVha2luZ3xlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fluent speaking"
     },
     {
       "id": "prod-upsc-notes",
@@ -86,9 +236,24 @@
       "imageHint": "video editing"
     },
     {
-      "id": "prod-resume-templates",
+      "id": "prod-resume-templates-1",
       "imageUrl": "https://images.unsplash.com/photo-1761671613933-159512988cb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyZXN1bWUlMjBkb2N1bWVudHxlbnwwfHx8fDE3NjI0MDU0MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "resume document"
+    },
+    {
+      "id": "prod-resume-templates-2",
+      "imageUrl": "https://images.unsplash.com/photo-1637154757530-4c224829c92b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdiUyMGRlc2lnbnxlbnwwfHx8fDE3NjIzMzQ1NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cv design"
+    },
+    {
+      "id": "prod-resume-templates-3",
+      "imageUrl": "https://images.unsplash.com/photo-1743385779545-47ec430ec084?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb3ZlciUyMGxldHRlcnxlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cover letter"
+    },
+    {
+      "id": "prod-resume-templates-4",
+      "imageUrl": "https://images.unsplash.com/photo-1753162657289-6569cd1da479?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjB0ZW1wbGF0ZXxlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional template"
     },
     {
       "id": "prod-fitness-bundle",
@@ -96,9 +261,24 @@
       "imageHint": "fitness equipment"
     },
     {
-      "id": "prod-digital-marketing-course",
+      "id": "prod-digital-marketing-course-1",
       "imageUrl": "https://images.unsplash.com/photo-1562577308-9e66f0c65ce5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYXJrZXRpbmclMjBzdHJhdGVneXxlbnwwfHx8fDE3NjIzMjIwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "marketing strategy"
+    },
+    {
+      "id": "prod-digital-marketing-course-2",
+      "imageUrl": "https://images.unsplash.com/photo-1686061592689-312bbfb5c055?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzZW8lMjBhbmFseXRpY3N8ZW58MHx8fHwxNzYyNDIxNTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "seo analytics"
+    },
+    {
+      "id": "prod-digital-marketing-course-3",
+      "imageUrl": "https://images.unsplash.com/photo-1611926653458-09294b3142bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzb2NpYWwlMjBtZWRpYSUyMGFkc3xlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social media ads"
+    },
+    {
+      "id": "prod-digital-marketing-course-4",
+      "imageUrl": "https://images.unsplash.com/photo-1701674369013-e855eec245fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlbWFpbCUyMGNhbXBhaWdufGVufDB8fHx8MTc2MjMyOTI5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "email campaign"
     },
     {
       "id": "cat-software",
