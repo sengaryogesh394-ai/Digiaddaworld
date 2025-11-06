@@ -137,9 +137,15 @@ export default function ProductDetailsPage() {
                 </h2>
                 <Card className="bg-white dark:bg-card shadow-lg">
                     <CardContent className="p-8">
-                        <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
-                           {product.description}
-                        </p>
+                        <div className="text-gray-700 dark:text-gray-300 whitespace-pre-line space-y-4">
+                           <p>{product.description}</p>
+                           <p>
+                            This bundle is your all-in-one solution to kickstart your creative business. Whether you are a freelance editor, a social media manager, or a budding entrepreneur, this pack provides everything you need to deliver high-quality content to your clients. 
+                           </p>
+                           <p>
+                            With over 500 editable video templates and 5000+ Photoshop templates, the creative possibilities are endless. All assets are delivered in high-resolution and are 100% ready for commercial use. Forget spending hours creating content from scratch. Our ready-made projects are designed to be beginner-friendly, requiring no prior editing knowledge to get started.
+                           </p>
+                        </div>
                     </CardContent>
                 </Card>
             </section>
@@ -151,9 +157,16 @@ export default function ProductDetailsPage() {
                 </h2>
                 <Card className="bg-white dark:bg-card shadow-lg">
                     <CardContent className="p-8">
-                         <p className="text-gray-700 dark:text-gray-300">
-                           This product is compatible with Adobe Premiere Pro, Final Cut Pro, and DaVinci Resolve.
-                        </p>
+                         <div className="text-gray-700 dark:text-gray-300 space-y-2">
+                           <p>Our templates are designed to be widely compatible with the industry's leading creative software. Please ensure your software versions are up to date for the best experience.</p>
+                           <ul className="list-disc list-inside space-y-1 pl-2">
+                                <li><b>Adobe Premiere Pro:</b> CC 2021 and above</li>
+                                <li><b>Adobe Photoshop:</b> CS6 and above (CC recommended)</li>
+                                <li><b>Final Cut Pro:</b> Version 10.4 and above</li>
+                                <li><b>DaVinci Resolve:</b> Version 17 and above</li>
+                           </ul>
+                           <p className="pt-2">All video files are provided in standard MP4 format (H.264) for maximum compatibility across devices and platforms.</p>
+                        </div>
                     </CardContent>
                 </Card>
             </section>
