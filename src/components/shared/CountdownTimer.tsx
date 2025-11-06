@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -34,17 +35,15 @@ const CountdownTimer = () => {
     }, 1000);
 
     return () => clearTimeout(timer);
-  });
+  }, [timeLeft]);
 
   const timerComponents = Object.keys(timeLeft).map(interval => {
-    if (!timeLeft[interval as keyof typeof timeLeft]) {
-      return null;
-    }
+    const value = timeLeft[interval as keyof typeof timeLeft];
 
     return (
         <div key={interval} className="text-center">
             <div className="text-2xl md:text-4xl font-bold bg-white dark:bg-gray-800 p-3 rounded-lg shadow-inner">
-                {String(timeLeft[interval as keyof typeof timeLeft]).padStart(2, '0')}
+                {String(value).padStart(2, '0')}
             </div>
             <div className="text-xs md:text-sm uppercase text-gray-500 dark:text-gray-400 mt-1">{interval}</div>
         </div>
