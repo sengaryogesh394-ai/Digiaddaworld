@@ -121,6 +121,16 @@
       "imageHint": "product collection"
     },
     {
+      "id": "cat-ai-reels",
+      "imageUrl": "https://images.unsplash.com/photo-1681498358223-382d2b45b4c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxBSSUyMGVkaXRpbmd8ZW58MHx8fHwxNzYyNDg0MjU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "AI editing"
+    },
+    {
+      "id": "cat-graphic-design",
+      "imageUrl": "https://images.unsplash.com/photo-1626785774573-4b799315345d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxncmFwaGljJTIwZGVzaWdufGVufDB8fHx8MTc2MjQ4NDI1NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "graphic design"
+    },
+    {
       "id": "blog-1",
       "imageUrl": "https://images.unsplash.com/photo-1654372066395-38cb7a79b96b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjcmVhdGl2ZSUyMHdvcmtzcGFjZXxlbnwwfHx8fDE3NjIzMTg5NzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "creative workspace"
