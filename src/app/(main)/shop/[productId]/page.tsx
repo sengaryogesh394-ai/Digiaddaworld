@@ -1,28 +1,23 @@
 
 'use client';
 import Image from 'next/image';
-import { notFound, useRouter, useParams } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { mockProducts } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Star, CheckCircle } from 'lucide-react';
+import { Star, Check, ShoppingCart, Zap } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function ProductDetailsPage() {
-  const router = useRouter();
   const { toast } = useToast();
   const params = useParams();
   const { productId } = params;
   const product = mockProducts.find((p) => p.id === productId);
   const { addToCart } = useCart();
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   if (!product) {
     notFound();
@@ -36,87 +31,124 @@ export default function ProductDetailsPage() {
     })
   };
 
-  const handleBuyNow = () => {
-    addToCart(product);
-    router.push('/cart');
-  };
+  const mainImage = product.images[selectedImageIndex] || product.images[0];
+  
+  const features = [
+    "500+ Editable Wedding Invitation Videos (UHD - 4K)",
+    "5000+ Wedding Invitation PSD Templates (Photoshop)",
+    'All "Save the date" & "Haldi Function" templates',
+    "Lifetime Validity - Instant Download Link",
+    "No-Branding / No-Watermark on any content"
+  ];
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        {/* Product Images */}
-        <div className="w-full">
-          <Carousel>
-            <CarouselContent>
-              {product.images.map((img, index) => (
-                <CarouselItem key={index}>
-                  <div className="aspect-square relative rounded-lg overflow-hidden border">
+    <div className="bg-rose-50/50 dark:bg-rose-900/10 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            {/* Header Section */}
+            <section className="text-center">
+                <div className="inline-block bg-rose-200 text-rose-800 text-xs font-bold px-3 py-1 rounded-full mb-4">
+                    <Zap className="inline-block w-4 h-4 mr-1" /> MEGA SALE IS ON!
+                </div>
+                <h1 className="text-3xl md:text-5xl font-extrabold text-gray-800 dark:text-gray-100">
+                    {product.name}
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mt-2">
+                    Beginner-Friendly & 100% Ready-Made Project
+                </p>
+            </section>
+
+            {/* Image Gallery */}
+            <section>
+                <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden border-4 border-white shadow-2xl">
                     <Image
-                      src={img.url}
-                      alt={`${product.name} image ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      data-ai-hint={img.hint}
+                        src={mainImage.url}
+                        alt={product.name}
+                        fill
+                        className="object-contain"
+                        data-ai-hint={mainImage.hint}
                     />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-4" />
-            <CarouselNext className="right-4" />
-          </Carousel>
+                </div>
+                {product.images.length > 1 && (
+                    <div className="flex justify-center gap-4 mt-4">
+                        {product.images.map((img, index) => (
+                            <button key={index} onClick={() => setSelectedImageIndex(index)} className={cn("relative w-24 h-16 rounded-md overflow-hidden border-2 transition-all", selectedImageIndex === index ? 'border-primary scale-110' : 'border-transparent hover:border-primary/50')}>
+                                <Image
+                                    src={img.url}
+                                    alt={`Thumbnail ${index + 1}`}
+                                    fill
+                                    className="object-cover"
+                                    data-ai-hint={img.hint}
+                                />
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </section>
+            
+            {/* Purchase Section */}
+            <section className="max-w-3xl mx-auto">
+                <Card className="shadow-lg">
+                    <CardContent className="p-8 text-center">
+                        <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            ⚡️ Get instant access to this asset! ⚡️
+                        </p>
+                        <div className="my-4">
+                            <p className="text-5xl font-bold text-gray-800 dark:text-gray-100">
+                                <span className="text-rose-500">${product.price.toFixed(2)}</span>
+                            </p>
+                        </div>
+                        <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform w-full" onClick={handleAddToCart}>
+                            <ShoppingCart className="mr-2"/> GRAB THIS OFFER NOW
+                        </Button>
+                    </CardContent>
+                </Card>
+            </section>
+            
+            {/* What You Get Section */}
+            <section className="max-w-3xl mx-auto">
+                <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+                    What You Get Inside This Pack
+                </h2>
+                <Card className="bg-white dark:bg-card shadow-lg">
+                    <CardContent className="p-8 space-y-4">
+                        <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                            {features.map((feature, i) => (
+                                <li key={i} className="flex items-center"><Check className="w-5 h-5 mr-3 text-green-500" /> {feature}</li>
+                            ))}
+                        </ul>
+                    </CardContent>
+                </Card>
+            </section>
+
+             {/* Description Section */}
+             <section className="max-w-3xl mx-auto">
+                <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+                    Description
+                </h2>
+                <Card className="bg-white dark:bg-card shadow-lg">
+                    <CardContent className="p-8">
+                        <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                           {product.description}
+                        </p>
+                    </CardContent>
+                </Card>
+            </section>
+
+            {/* Compatibility Section */}
+            <section className="max-w-3xl mx-auto">
+                <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+                    Compatibility
+                </h2>
+                <Card className="bg-white dark:bg-card shadow-lg">
+                    <CardContent className="p-8">
+                         <p className="text-gray-700 dark:text-gray-300">
+                           This product is compatible with Adobe Premiere Pro, Final Cut Pro, and DaVinci Resolve.
+                        </p>
+                    </CardContent>
+                </Card>
+            </section>
+
         </div>
-
-        {/* Product Info */}
-        <div>
-          <h1 className="text-4xl lg:text-5xl font-headline font-bold">{product.name}</h1>
-          
-          <div className="flex items-center mt-4">
-            <div className="flex items-center text-yellow-500">
-              <Star className="w-5 h-5 fill-current" />
-              <Star className="w-5 h-5 fill-current" />
-              <Star className="w-5 h-5 fill-current" />
-              <Star className="w-5 h-5 fill-current" />
-              <Star className="w-5 h-5 text-gray-300 fill-current" />
-            </div>
-            <p className="ml-2 text-sm text-muted-foreground">(123 reviews)</p>
-          </div>
-
-          <p className="text-4xl font-bold my-6">${product.price.toFixed(2)}</p>
-
-          <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="flex-1" onClick={handleAddToCart}>Add to Cart</Button>
-            <Button size="lg" variant="outline" className="flex-1" onClick={handleBuyNow}>Buy Now</Button>
-          </div>
-
-          <Accordion type="single" collapsible defaultValue="description" className="w-full mt-8">
-            <AccordionItem value="description">
-              <AccordionTrigger>Description</AccordionTrigger>
-              <AccordionContent>
-                {product.description}
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="features">
-              <AccordionTrigger>Features</AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-2">
-                  <li className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-500" /> High-quality digital files</li>
-                  <li className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-500" /> Instant download</li>
-                  <li className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-500" /> Compatible with major software</li>
-                  <li className="flex items-center"><CheckCircle className="w-4 h-4 mr-2 text-green-500" /> Royalty-free license</li>
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-             <AccordionItem value="compatibility">
-              <AccordionTrigger>Compatibility</AccordionTrigger>
-              <AccordionContent>
-                This product is compatible with Adobe Premiere Pro, Final Cut Pro, and DaVinci Resolve.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-
-        </div>
-      </div>
     </div>
   );
 }
