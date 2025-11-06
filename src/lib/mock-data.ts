@@ -19,8 +19,23 @@ export const mockProducts: Product[] = [
     price: 199.99,
     images: [getImage('prod-instagram-course')],
     category: 'Courses & E-books',
-    description: 'Master Instagram growth with this comprehensive course. Learn strategies to grow your audience and engagement.',
+    description: 'Unlock the secrets to explosive Instagram growth. This comprehensive course provides step-by-step strategies to increase your followers, boost engagement, and build a powerful brand on the platform. Perfect for influencers, entrepreneurs, and marketers.',
     isFeatured: true,
+    features: [
+      "20+ hours of high-quality video content",
+      "Actionable strategies for follower growth",
+      "Content creation and scheduling guides",
+      "Advanced hashtag research techniques",
+      "Access to a private community for support"
+    ],
+    compatibility: {
+      title: "Course Access",
+      details: [
+        "Accessible on any device with an internet connection (desktop, tablet, mobile).",
+        "Lifetime access to all course materials and future updates."
+      ],
+      notes: "No special software is required. A personal Instagram account is recommended to follow along with the lessons."
+    }
   },
   {
     id: 'prod-graphic-design-bundle',
@@ -28,8 +43,25 @@ export const mockProducts: Product[] = [
     price: 79.99,
     images: [getImage('prod-graphic-design-bundle')],
     category: 'Graphic Design',
-    description: 'A huge collection of graphic design assets, including templates, fonts, and icons.',
+    description: 'A massive collection of premium graphic design assets to supercharge your creative projects. This bundle includes thousands of templates, fonts, icons, and illustrations, suitable for both beginners and professional designers.',
     isFeatured: true,
+    features: [
+      "1000+ Social Media Templates (Instagram, Facebook, etc.)",
+      "500+ Unique Fonts",
+      "2000+ Vector Icons",
+      "100+ High-Resolution Textures and Patterns",
+      "Commercial license included for all assets"
+    ],
+    compatibility: {
+      title: "Software Requirements",
+      details: [
+        "Adobe Photoshop: CS6 and above",
+        "Adobe Illustrator: CS6 and above",
+        "Canva: Free and Pro versions",
+        "Figma: All versions"
+      ],
+      notes: "Some files are provided in .PSD and .AI formats, requiring Adobe software. PNG and SVG files are provided for broader compatibility."
+    }
   },
   {
     id: 'prod-ai-reels-fitness',
@@ -37,8 +69,23 @@ export const mockProducts: Product[] = [
     price: 49.99,
     images: [getImage('prod-ai-reels-fitness')],
     category: 'AI Reels',
-    description: 'A massive bundle of 500+ AI-generated fitness reels, perfect for social media content creators.',
+    description: 'A massive bundle of 500+ AI-generated, ready-to-post fitness reels. Perfect for fitness influencers, gyms, and personal trainers looking to create engaging social media content without the hassle. Videos feature workout demos, motivational quotes, and fitness tips.',
     isFeatured: true,
+    features: [
+      "500+ high-definition vertical videos",
+      "Content covering various niches: home workouts, gym, yoga, nutrition",
+      "Trending audio suggestions for each reel",
+      "No watermarks or branding",
+      "Instant download and lifetime access"
+    ],
+    compatibility: {
+      title: "Platform & Editing",
+      details: [
+        "Instagram Reels, TikTok, and YouTube Shorts.",
+        "Provided in standard MP4 format."
+      ],
+      notes: "Videos are ready to post as-is, or can be further customized in any video editing software like CapCut, InShot, or Adobe Premiere Rush."
+    }
   },
   {
     id: 'prod-adobe-suite',
@@ -46,8 +93,25 @@ export const mockProducts: Product[] = [
     price: 299.99,
     images: [getImage('prod-adobe-suite')],
     category: 'Software & Tools',
-    description: 'Get the full suite of Adobe Premium software for 2024. Includes Photoshop, Illustrator, Premiere Pro, and more.',
+    description: 'Get the full suite of Adobe Premium software for 2024. Includes Photoshop, Illustrator, Premiere Pro, and more. This is a one-time purchase for a lifetime license of the industry-standard creative software.',
     isFeatured: true,
+    features: [
+      "Full versions of over 20+ desktop and mobile apps",
+      "Includes Photoshop, Illustrator, Premiere Pro, After Effects, Lightroom, and more",
+      "One-time payment with lifetime access",
+      "No monthly subscription fees",
+      "Comprehensive installation guide included"
+    ],
+    compatibility: {
+      title: "System Requirements",
+      details: [
+        "Windows: Windows 10 (64-bit) version 20H2 or later",
+        "macOS: macOS Big Sur (version 11.0) or later",
+        "At least 16GB of RAM recommended",
+        "SSD with 50GB of available space"
+      ],
+      notes: "This package is for desktop software. Some apps may have mobile companions available separately through app stores."
+    }
   },
   {
     id: 'prod-ai-reels-motivation',
@@ -55,7 +119,22 @@ export const mockProducts: Product[] = [
     price: 49.99,
     images: [getImage('prod-ai-reels-motivation')],
     category: 'AI Reels',
-    description: 'Inspire your audience with over 500 motivational reels, generated by AI.',
+    description: 'Inspire your audience with over 500 AI-generated motivational reels. This bundle is perfect for life coaches, entrepreneurs, and content creators who want to share powerful messages and grow their online presence.',
+    features: [
+      "500+ HD vertical videos with inspiring quotes and visuals",
+      "Content themes include success, mindset, and perseverance",
+      "Background music included",
+      "No branding for easy integration",
+      "Instant download link"
+    ],
+    compatibility: {
+      title: "Platform & Editing",
+      details: [
+        "Optimized for Instagram Reels, TikTok, and YouTube Shorts.",
+        "Standard MP4 format compatible with all devices."
+      ],
+      notes: "Ready to upload directly or customize with your own logo using any standard video editor."
+    }
   },
   {
     id: 'prod-god-reels',
@@ -63,7 +142,22 @@ export const mockProducts: Product[] = [
     price: 49.99,
     images: [getImage('prod-god-reels')],
     category: 'Content Bundles',
-    description: 'A unique collection of 500+ spiritual and religious-themed reels for your social media channels.',
+    description: 'A unique collection of 500+ spiritual and religious-themed reels for your social media channels. Share faith-based content with beautiful visuals and uplifting messages. Ideal for religious organizations, community groups, and spiritual influencers.',
+    features: [
+      "500+ reels with religious quotes, prayers, and serene visuals",
+      "Content suitable for various faiths and spiritual practices",
+      "Calm and respectful background music",
+      "Brand-free and ready to share",
+      "Lifetime access to all files"
+    ],
+     compatibility: {
+      title: "Platform & Editing",
+      details: [
+        "Perfect for Instagram, Facebook, and YouTube.",
+        "Videos are in MP4 format."
+      ],
+      notes: "Designed for easy sharing. Add your own text overlays or logos as needed."
+    }
   },
   {
     id: 'prod-kids-worksheet',
@@ -71,7 +165,22 @@ export const mockProducts: Product[] = [
     price: 29.99,
     images: [getImage('prod-kids-worksheet')],
     category: 'Templates',
-    description: 'Over 6000 printable activity worksheets for kids. Perfect for parents and teachers.',
+    description: 'Over 6000 printable activity worksheets for kids. This massive bundle covers subjects like math, language arts, puzzles, and coloring. Perfect for parents, teachers, and homeschoolers to keep children engaged and learning.',
+    features: [
+      "6000+ pages of activities",
+      "Categorized by age group (Preschool to Grade 5)",
+      "Subjects include Math, English, Science, and more",
+      "Print-ready PDF format",
+      "Fun and educational designs"
+    ],
+     compatibility: {
+      title: "File Format",
+      details: [
+        "Provided as high-quality PDF files.",
+        "Can be printed on any standard home or office printer."
+      ],
+      notes: "You will need a PDF reader like Adobe Acrobat Reader (free) to view and print the files."
+    }
   },
   {
     id: 'prod-excel-templates',
@@ -79,7 +188,22 @@ export const mockProducts: Product[] = [
     price: 19.99,
     images: [getImage('prod-excel-templates')],
     category: 'Templates',
-    description: 'A collection of powerful and easy-to-use Excel templates for various business and personal needs.',
+    description: 'A collection of powerful and easy-to-use Excel templates for various business and personal needs. Includes templates for project management, budgeting, financial analysis, and more. Save time and get organized with these professional spreadsheets.',
+    features: [
+      "50+ professional Excel templates",
+      "Includes dashboards, charts, and automated calculations",
+      "Templates for budgeting, invoicing, project tracking, etc.",
+      "Fully customizable to fit your needs",
+      "Detailed instructions for each template"
+    ],
+     compatibility: {
+      title: "Software Requirements",
+      details: [
+        "Microsoft Excel 2010 or newer (PC & Mac).",
+        "Also compatible with Google Sheets with minor adjustments."
+      ],
+      notes: "Advanced features like macros may only be fully supported in desktop versions of Microsoft Excel."
+    }
   },
   {
     id: 'prod-digital-marketing-course',
@@ -87,7 +211,22 @@ export const mockProducts: Product[] = [
     price: 249.99,
     images: [getImage('prod-digital-marketing-course')],
     category: 'Courses & E-books',
-    description: 'A-to-Z course on digital marketing, covering SEO, SEM, social media, email marketing, and more.',
+    description: 'An A-to-Z course on digital marketing, covering SEO, SEM, social media, email marketing, and more. This course is designed for beginners and intermediates who want to build a career in digital marketing or grow their own business online.',
+     features: [
+      "50+ hours of in-depth video lessons",
+      "Covering SEO, Social Media, Google Ads, Email Marketing, and Analytics",
+      "Real-world case studies and projects",
+      "Certificate of completion",
+      "Lifetime access to course content and all future updates"
+    ],
+    compatibility: {
+      title: "Course Access",
+      details: [
+        "Accessible on any device with an internet connection.",
+        "Stream videos online or download for offline viewing."
+      ],
+       notes: "No special software is required to take this course."
+    }
   },
    {
     id: 'prod-spoken-english-course',
@@ -95,7 +234,22 @@ export const mockProducts: Product[] = [
     price: 99.00,
     images: [getImage('prod-spoken-english-course')],
     category: 'Courses & E-books',
-    description: 'Improve your spoken English with this comprehensive course.',
+    description: 'Improve your spoken English with this comprehensive course. Learn to speak confidently and fluently in personal and professional situations. The course covers pronunciation, vocabulary, grammar, and conversation skills.',
+    features: [
+      "Interactive video lessons with native speakers",
+      "Pronunciation practice with voice recognition",
+      "Vocabulary builders for common scenarios",
+      "Conversation practice exercises",
+      "Quizzes and assignments to track progress"
+    ],
+    compatibility: {
+      title: "Course Access",
+      details: [
+        "Available on web and mobile (iOS & Android).",
+        "Download lessons for offline practice."
+      ],
+      notes: "A microphone is recommended for the pronunciation practice sections."
+    }
   },
   {
     id: 'prod-resume-templates',
@@ -103,7 +257,23 @@ export const mockProducts: Product[] = [
     price: 25.00,
     images: [getImage('prod-resume-templates')],
     category: 'Templates',
-    description: 'Professionally designed resume and CV templates to help you land your dream job.',
+    description: 'A premium collection of professionally designed resume and CV templates to help you land your dream job. Easy to edit and customize, these templates will make your application stand out from the crowd.',
+    features: [
+      "30+ modern and professional resume templates",
+      "Matching cover letter templates included",
+      "One and two-page resume designs",
+      "Available in multiple color schemes",
+      "A4 and US Letter sizes"
+    ],
+    compatibility: {
+      title: "Software Requirements",
+      details: [
+        "Microsoft Word (.docx)",
+        "Adobe Photoshop (.psd)",
+        "Canva"
+      ],
+      notes: "You will need the appropriate software to edit these templates. A list of free fonts used is included."
+    }
   },
   {
     id: 'prod-chatgpt-prompts',
@@ -111,7 +281,22 @@ export const mockProducts: Product[] = [
     price: 39.00,
     images: [getImage('prod-chatgpt-prompts')],
     category: 'Software & Tools',
-    description: 'Unlock the full potential of ChatGPT with over 999 copy-and-paste prompts for more than 180 tasks.',
+    description: 'Unlock the full potential of ChatGPT with over 999 copy-and-paste prompts for more than 180 tasks. This prompt library will help you generate high-quality content for marketing, business, education, and much more.',
+    features: [
+      "999+ expertly crafted prompts",
+      "Organized into 180+ categories and tasks",
+      "Covers marketing, content creation, coding, and more",
+      "Easy-to-use copy and paste format",
+      "Delivered as a Notion database for easy searching"
+    ],
+    compatibility: {
+      title: "Requirements",
+      details: [
+        "An account with OpenAI for ChatGPT (works with free or Plus accounts).",
+        "A free Notion account to access and duplicate the prompt database."
+      ],
+      notes: "These are prompts (text inputs) and can be used with any AI language model, though they are optimized for ChatGPT."
+    }
   },
 ];
 

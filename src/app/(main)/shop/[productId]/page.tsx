@@ -44,14 +44,6 @@ export default function ProductDetailsPage() {
 
   const mainImage = product.images[selectedImageIndex] || product.images[0];
   
-  const features = [
-    "500+ Editable Wedding Invitation Videos (UHD - 4K)",
-    "5000+ Wedding Invitation PSD Templates (Photoshop)",
-    'All "Save the date" & "Haldi Function" templates',
-    "Lifetime Validity - Instant Download Link",
-    "No-Branding / No-Watermark on any content"
-  ];
-
   const originalPrice = product.price * 14;
 
   return (
@@ -115,20 +107,22 @@ export default function ProductDetailsPage() {
             </section>
 
             {/* What You Get Section */}
-            <section className="max-w-3xl mx-auto">
-                <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-                    What You Get Inside This Pack
-                </h2>
-                <Card className="bg-white dark:bg-card shadow-lg">
-                    <CardContent className="p-8 space-y-4">
-                        <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                            {features.map((feature, i) => (
-                                <li key={i} className="flex items-center"><Check className="w-5 h-5 mr-3 text-green-500" /> {feature}</li>
-                            ))}
-                        </ul>
-                    </CardContent>
-                </Card>
-            </section>
+            {product.features && product.features.length > 0 && (
+                <section className="max-w-3xl mx-auto">
+                    <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+                        What You Get Inside This Pack
+                    </h2>
+                    <Card className="bg-white dark:bg-card shadow-lg">
+                        <CardContent className="p-8 space-y-4">
+                            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                                {product.features.map((feature, i) => (
+                                    <li key={i} className="flex items-center"><Check className="w-5 h-5 mr-3 text-green-500" /> {feature}</li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                </section>
+            )}
 
              {/* Description Section */}
              <section className="max-w-3xl mx-auto">
@@ -139,37 +133,32 @@ export default function ProductDetailsPage() {
                     <CardContent className="p-8">
                         <div className="text-gray-700 dark:text-gray-300 whitespace-pre-line space-y-4">
                            <p>{product.description}</p>
-                           <p>
-                            This bundle is your all-in-one solution to kickstart your creative business. Whether you are a freelance editor, a social media manager, or a budding entrepreneur, this pack provides everything you need to deliver high-quality content to your clients. 
-                           </p>
-                           <p>
-                            With over 500 editable video templates and 5000+ Photoshop templates, the creative possibilities are endless. All assets are delivered in high-resolution and are 100% ready for commercial use. Forget spending hours creating content from scratch. Our ready-made projects are designed to be beginner-friendly, requiring no prior editing knowledge to get started.
-                           </p>
                         </div>
                     </CardContent>
                 </Card>
             </section>
 
             {/* Compatibility Section */}
-            <section className="max-w-3xl mx-auto">
-                <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-                    Compatibility
-                </h2>
-                <Card className="bg-white dark:bg-card shadow-lg">
-                    <CardContent className="p-8">
-                         <div className="text-gray-700 dark:text-gray-300 space-y-2">
-                           <p>Our templates are designed to be widely compatible with the industry's leading creative software. Please ensure your software versions are up to date for the best experience.</p>
-                           <ul className="list-disc list-inside space-y-1 pl-2">
-                                <li><b>Adobe Premiere Pro:</b> CC 2021 and above</li>
-                                <li><b>Adobe Photoshop:</b> CS6 and above (CC recommended)</li>
-                                <li><b>Final Cut Pro:</b> Version 10.4 and above</li>
-                                <li><b>DaVinci Resolve:</b> Version 17 and above</li>
-                           </ul>
-                           <p className="pt-2">All video files are provided in standard MP4 format (H.264) for maximum compatibility across devices and platforms.</p>
-                        </div>
-                    </CardContent>
-                </Card>
-            </section>
+            {product.compatibility && (
+                <section className="max-w-3xl mx-auto">
+                    <h2 className="text-center text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+                        Compatibility
+                    </h2>
+                    <Card className="bg-white dark:bg-card shadow-lg">
+                        <CardContent className="p-8">
+                            <div className="text-gray-700 dark:text-gray-300 space-y-2">
+                            <p>{product.compatibility.title}</p>
+                            <ul className="list-disc list-inside space-y-1 pl-2">
+                                {product.compatibility.details.map((detail, i) => (
+                                    <li key={i}><b>{detail.split(':')[0]}:</b>{detail.split(':')[1]}</li>
+                                ))}
+                            </ul>
+                            {product.compatibility.notes && <p className="pt-2">{product.compatibility.notes}</p>}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </section>
+            )}
 
         </div>
     </div>

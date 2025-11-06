@@ -6,6 +6,12 @@ export type Product = {
   category: string;
   description: string;
   isFeatured?: boolean;
+  features?: string[];
+  compatibility?: {
+    title: string;
+    details: string[];
+    notes?: string;
+  };
 };
 
 export type Category = {
