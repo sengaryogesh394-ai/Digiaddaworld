@@ -27,11 +27,11 @@ export const mockProducts: Product[] = [
     description: 'Unlock the secrets to explosive Instagram growth. This comprehensive course provides step-by-step strategies to increase your followers, boost engagement, and build a powerful brand on the platform. Perfect for influencers, entrepreneurs, and marketers.',
     isFeatured: true,
     features: [
-      "<b>20+ hours</b> of high-quality video content",
-      "Actionable strategies for <b>follower growth</b>",
-      "<b>Content creation</b> and <b>scheduling guides</b>",
-      "Advanced <b>hashtag research</b> techniques",
-      "Access to a <b>private community</b> for support"
+      { icon: '🎥', title: '20+ Hours of Video Content', description: '(High-quality, in-depth lessons)', value: '₹4,999 Value' },
+      { icon: '📈', title: 'Follower Growth Strategies', description: '(Actionable techniques for organic growth)', value: '₹3,999 Value' },
+      { icon: '📝', title: 'Content Creation Guides', description: '(Learn to create engaging posts and stories)', value: '₹1,999 Value' },
+      { icon: '🔍', title: 'Advanced Hashtag Research', description: '(Find the best hashtags for your niche)', value: '₹999 Value' },
+      { icon: '💬', title: 'Private Community Access', description: '(Network with other students and get support)', value: '₹1,499 Value' }
     ],
     compatibility: {
       title: "Course Access",
@@ -56,11 +56,11 @@ export const mockProducts: Product[] = [
     description: 'A massive collection of premium graphic design assets to supercharge your creative projects. This bundle includes thousands of templates, fonts, icons, and illustrations, suitable for both beginners and professional designers.',
     isFeatured: true,
     features: [
-      "<b>1000+ Social Media</b> Templates (Instagram, Facebook, etc.)",
-      "<b>500+ Unique</b> Fonts",
-      "<b>2000+ Vector</b> Icons",
-      "<b>100+ High-Resolution</b> Textures and Patterns",
-      "<b>Commercial license</b> included for all assets"
+        { icon: '📱', title: '1000+ Social Media Templates', description: '(For Instagram, Facebook, Pinterest)', value: '₹2,999 Value' },
+        { icon: '✒️', title: '500+ Unique Fonts', description: '(Serif, Sans-Serif, Script, and Display)', value: '₹1,999 Value' },
+        { icon: '🎨', title: '2000+ Vector Icons', description: '(Fully editable and scalable)', value: '₹1,499 Value' },
+        { icon: '🖼️', title: '100+ High-Res Textures', description: '(Paper, grunge, and abstract textures)', value: '₹999 Value' },
+        { icon: '📄', title: 'Commercial License', description: '(Use in unlimited personal & commercial projects)', value: '₹5,000 Value' }
     ],
     compatibility: {
       title: "Software Requirements",
@@ -87,11 +87,11 @@ export const mockProducts: Product[] = [
     description: 'A massive bundle of 500+ AI-generated, ready-to-post fitness reels. Perfect for fitness influencers, gyms, and personal trainers looking to create engaging social media content without the hassle. Videos feature workout demos, motivational quotes, and fitness tips.',
     isFeatured: true,
     features: [
-      "<b>500+ high-definition</b> vertical videos",
-      "Content covering various niches: <b>home workouts, gym, yoga, nutrition</b>",
-      "<b>Trending audio</b> suggestions for each reel",
-      "<b>No watermarks</b> or branding",
-      "<b>Instant download</b> and <b>lifetime access</b>"
+        { icon: '💪', title: '500+ Fitness Reels', description: '(HD vertical videos for social media)', value: '₹3,999 Value' },
+        { icon: '🏋️‍♀️', title: 'Multiple Niches Covered', description: '(Home workouts, gym, yoga, nutrition)', value: '₹1,999 Value' },
+        { icon: '🎵', title: 'Trending Audio Suggestions', description: '(Stay relevant with popular sounds)', value: '₹499 Value' },
+        { icon: '💧', title: 'No Watermarks', description: '(Add your own branding with ease)', value: '₹999 Value' },
+        { icon: '🚀', title: 'Instant Download & Lifetime Access', description: '(Get started immediately)', value: 'Priceless' }
     ],
     compatibility: {
       title: "Platform & Editing",
@@ -116,11 +116,11 @@ export const mockProducts: Product[] = [
     description: 'Get the full suite of Adobe Premium software for 2024. Includes Photoshop, Illustrator, Premiere Pro, and more. This is a one-time purchase for a lifetime license of the industry-standard creative software.',
     isFeatured: true,
     features: [
-      "Full versions of over <b>20+ desktop and mobile apps</b>",
-      "Includes <b>Photoshop, Illustrator, Premiere Pro, After Effects, Lightroom</b>, and more",
-      "<b>One-time payment</b> with <b>lifetime access</b>",
-      "<b>No monthly</b> subscription fees",
-      "Comprehensive <b>installation guide</b> included"
+        { icon: '✨', title: '20+ Adobe Creative Cloud Apps', description: '(Photoshop, Illustrator, Premiere Pro, etc.)', value: '₹20,000 Value' },
+        { icon: '💻', title: 'Desktop and Mobile Versions', description: '(Create on your computer or on the go)', value: '₹5,000 Value' },
+        { icon: '💸', title: 'One-Time Payment', description: '(No recurring monthly or annual fees)', value: 'Priceless' },
+        { icon: '🔑', title: 'Lifetime License', description: '(Use the software forever)', value: 'Priceless' },
+        { icon: '📚', title: 'Comprehensive Installation Guide', description: '(Easy-to-follow setup instructions)', value: '₹999 Value' }
     ],
     compatibility: {
       title: "System Requirements",
@@ -146,11 +146,11 @@ export const mockProducts: Product[] = [
     category: 'AI Reels',
     description: 'Inspire your audience with over 500 AI-generated motivational reels. This bundle is perfect for life coaches, entrepreneurs, and content creators who want to share powerful messages and grow their online presence.',
     features: [
-      "<b>500+ HD vertical videos</b> with inspiring quotes and visuals",
-      "Content themes include <b>success, mindset, and perseverance</b>",
-      "<b>Background music</b> included",
-      "<b>No branding</b> for easy integration",
-      "<b>Instant download</b> link"
+        { icon: '🌟', title: '500+ Motivational Reels', description: '(HD vertical videos with inspiring content)', value: '₹3,999 Value' },
+        { icon: '🧠', title: 'Multiple Themes', description: '(Success, mindset, perseverance, and more)', value: '₹999 Value' },
+        { icon: '🎶', title: 'Background Music Included', description: '(Inspiring and royalty-free tracks)', value: '₹1,499 Value' },
+        { icon: '🚫', title: 'No Branding', description: '(Easily add your own logo and colors)', value: '₹999 Value' },
+        { icon: '⚡', title: 'Instant Download Link', description: '(Start posting within minutes)', value: 'Priceless' }
     ],
     compatibility: {
       title: "Platform & Editing",
@@ -174,11 +174,11 @@ export const mockProducts: Product[] = [
     category: 'Content Bundles',
     description: 'A unique collection of 500+ spiritual and religious-themed reels for your social media channels. Share faith-based content with beautiful visuals and uplifting messages. Ideal for religious organizations, community groups, and spiritual influencers.',
     features: [
-      "<b>500+ reels</b> with religious quotes, prayers, and serene visuals",
-      "Content suitable for <b>various faiths</b> and spiritual practices",
-      "Calm and respectful <b>background music</b>",
-      "<b>Brand-free</b> and ready to share",
-      "<b>Lifetime access</b> to all files"
+        { icon: '🙏', title: '500+ Spiritual Reels', description: '(With quotes, prayers, and serene visuals)', value: '₹3,999 Value' },
+        { icon: '🕊️', title: 'Multi-Faith Content', description: '(Suitable for various religions and beliefs)', value: '₹1,999 Value' },
+        { icon: '🎼', title: 'Calm Background Music', description: '(Respectful and uplifting audio)', value: '₹1,499 Value' },
+        { icon: '🌍', title: 'Brand-Free & Ready to Share', description: '(For community and personal pages)', value: '₹999 Value' },
+        { icon: '⏳', title: 'Lifetime Access to All Files', description: '(Download anytime, forever)', value: 'Priceless' }
     ],
      compatibility: {
       title: "Platform & Editing",
@@ -202,11 +202,11 @@ export const mockProducts: Product[] = [
     category: 'Templates',
     description: 'Over 6000 printable activity worksheets for kids. This massive bundle covers subjects like math, language arts, puzzles, and coloring. Perfect for parents, teachers, and homeschoolers to keep children engaged and learning.',
     features: [
-      "<b>6000+ pages</b> of activities",
-      "Categorized by <b>age group</b> (Preschool to Grade 5)",
-      "Subjects include <b>Math, English, Science</b>, and more",
-      "<b>Print-ready</b> PDF format",
-      "<b>Fun and educational</b> designs"
+        { icon: '🎨', title: '6000+ Activity Pages', description: '(Math, Language, Puzzles, Coloring, etc.)', value: '₹5,999 Value' },
+        { icon: '👶', title: 'Multiple Age Groups', description: '(Categorized for Preschool to Grade 5)', value: '₹1,999 Value' },
+        { icon: '🖨️', title: 'Print-Ready PDF Format', description: '(High-quality files for easy printing)', value: '₹499 Value' },
+        { icon: '🧠', title: 'Fun and Educational', description: '(Designed to make learning enjoyable)', value: 'Priceless' },
+        { icon: '🏡', title: 'Perfect for Home & School', description: '(For parents, teachers, and homeschoolers)', value: 'Priceless' }
     ],
      compatibility: {
       title: "File Format",
@@ -230,11 +230,11 @@ export const mockProducts: Product[] = [
     category: 'Templates',
     description: 'A collection of powerful and easy-to-use Excel templates for various business and personal needs. Includes templates for project management, budgeting, financial analysis, and more. Save time and get organized with these professional spreadsheets.',
     features: [
-      "<b>50+ professional</b> Excel templates",
-      "Includes <b>dashboards, charts, and automated calculations</b>",
-      "Templates for <b>budgeting, invoicing, project tracking</b>, etc.",
-      "<b>Fully customizable</b> to fit your needs",
-      "Detailed <b>instructions</b> for each template"
+        { icon: '📊', title: '50+ Professional Templates', description: '(For business and personal finance)', value: '₹2,499 Value' },
+        { icon: '📈', title: 'Dashboards and Charts', description: '(Visualize your data effectively)', value: '₹1,499 Value' },
+        { icon: '🤖', title: 'Automated Calculations', description: '(Save time and reduce errors)', value: '₹999 Value' },
+        { icon: '🎨', title: 'Fully Customizable', description: '(Easily adapt to your specific needs)', value: '₹499 Value' },
+        { icon: '📖', title: 'Detailed Instructions', description: '(Get started quickly with our guides)', value: '₹299 Value' }
     ],
      compatibility: {
       title: "Software Requirements",
@@ -258,11 +258,11 @@ export const mockProducts: Product[] = [
     category: 'Courses & E-books',
     description: 'An A-to-Z course on digital marketing, covering SEO, SEM, social media, email marketing, and more. This course is designed for beginners and intermediates who want to build a career in digital marketing or grow their own business online.',
      features: [
-      "<b>50+ hours</b> of in-depth video lessons",
-      "Covering <b>SEO, Social Media, Google Ads, Email Marketing, and Analytics</b>",
-      "<b>Real-world case studies</b> and projects",
-      "<b>Certificate</b> of completion",
-      "<b>Lifetime access</b> to course content and all future updates"
+        { icon: '🎓', title: '50+ Hours of Lessons', description: '(Covering SEO, SEM, Social Media, Email, etc.)', value: '₹9,999 Value' },
+        { icon: '🏢', title: 'Real-World Case Studies', description: '(Learn from actual marketing campaigns)', value: '₹2,999 Value' },
+        { icon: '📜', title: 'Certificate of Completion', description: '(Add a new credential to your resume)', value: '₹1,999 Value' },
+        { icon: '🔄', title: 'Lifetime Access & Updates', description: '(Stay current with the latest trends)', value: 'Priceless' },
+        { icon: '🤝', title: 'Instructor Support', description: '(Get your questions answered by experts)', value: '₹2,499 Value' }
     ],
     compatibility: {
       title: "Course Access",
@@ -286,11 +286,11 @@ export const mockProducts: Product[] = [
     category: 'Courses & E-books',
     description: 'Improve your spoken English with this comprehensive course. Learn to speak confidently and fluently in personal and professional situations. The course covers pronunciation, vocabulary, grammar, and conversation skills.',
     features: [
-      "<b>Interactive video lessons</b> with native speakers",
-      "Pronunciation practice with <b>voice recognition</b>",
-      "<b>Vocabulary builders</b> for common scenarios",
-      "<b>Conversation practice</b> exercises",
-      "<b>Quizzes and assignments</b> to track progress"
+        { icon: '🗣️', title: 'Interactive Video Lessons', description: '(With native English speakers)', value: '₹3,999 Value' },
+        { icon: '🎤', title: 'Pronunciation Practice', description: '(Using voice recognition technology)', value: '₹1,999 Value' },
+        { icon: '📚', title: 'Vocabulary Builders', description: '(For everyday and professional scenarios)', value: '₹999 Value' },
+        { icon: '👥', title: 'Conversation Exercises', description: '(Practice speaking with AI partners)', value: '₹1,499 Value' },
+        { icon: '📝', title: 'Quizzes & Assignments', description: '(Track your progress and get feedback)', value: '₹499 Value' }
     ],
     compatibility: {
       title: "Course Access",
@@ -314,11 +314,11 @@ export const mockProducts: Product[] = [
     category: 'Templates',
     description: 'A premium collection of professionally designed resume and CV templates to help you land your dream job. Easy to edit and customize, these templates will make your application stand out from the crowd.',
     features: [
-      "<b>30+ modern and professional</b> resume templates",
-      "Matching <b>cover letter</b> templates included",
-      "<b>One and two-page</b> resume designs",
-      "Available in <b>multiple color schemes</b>",
-      "<b>A4 and US Letter</b> sizes"
+        { icon: '📄', title: '30+ Resume Templates', description: '(Modern, creative, and professional designs)', value: '₹1,499 Value' },
+        { icon: '✍️', title: 'Matching Cover Letters', description: '(Create a consistent application)', value: '₹999 Value' },
+        { icon: '🎨', title: 'Multiple Color Schemes', description: '(Customize the look to match your style)', value: '₹499 Value' },
+        { icon: '📏', title: 'A4 & US Letter Sizes', description: '(Formatted for global standards)', value: '₹299 Value' },
+        { icon: '🖋️', title: 'Free Font List Included', description: '(Links to download all required fonts)', value: 'Priceless' }
     ],
     compatibility: {
       title: "Software Requirements",
@@ -343,11 +343,11 @@ export const mockProducts: Product[] = [
     category: 'Software & Tools',
     description: 'Unlock the full potential of ChatGPT with over 999 copy-and-paste prompts for more than 180 tasks. This prompt library will help you generate high-quality content for marketing, business, education, and much more.',
     features: [
-      "<b>999+ expertly crafted</b> prompts",
-      "Organized into <b>180+ categories</b> and tasks",
-      "Covers <b>marketing, content creation, coding</b>, and more",
-      "Easy-to-use <b>copy and paste</b> format",
-      "Delivered as a <b>Notion database</b> for easy searching"
+        { icon: '🤖', title: '999+ Expertly Crafted Prompts', description: '(For over 180 different tasks)', value: '₹2,999 Value' },
+        { icon: '📈', title: 'Multiple Categories', description: '(Marketing, content creation, coding, etc.)', value: '₹999 Value' },
+        { icon: '📋', title: 'Easy Copy & Paste Format', description: '(Get results in seconds)', value: 'Priceless' },
+        { icon: '💡', title: 'Notion Database Delivery', description: '(Searchable and easy to navigate)', value: '₹499 Value' },
+        { icon: '🔄', title: 'Free Lifetime Updates', description: '(Get new prompts as they are added)', value: '₹1,999 Value' }
     ],
     compatibility: {
       title: "Requirements",

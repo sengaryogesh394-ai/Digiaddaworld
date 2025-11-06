@@ -1,3 +1,11 @@
+
+export type ProductFeature = {
+  icon: string;
+  title: string;
+  description: string;
+  value: string;
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -6,7 +14,7 @@ export type Product = {
   category: string;
   description: string;
   isFeatured?: boolean;
-  features?: string[];
+  features?: ProductFeature[];
   compatibility?: {
     title: string;
     details: string[];

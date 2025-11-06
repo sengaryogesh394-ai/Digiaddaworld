@@ -13,57 +13,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from '@/components/shared/CountdownTimer';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const featuresList = [
-    {
-      icon: '💖',
-      title: '500+ Customizable Invitations',
-      description: '(All Types Wedding, Baby Shower + Birthday + Engagement Themes Invitation, Caricature, Cinematic, Highlights, Teasers, Reels & More)',
-      value: '₹4,999 Value',
-    },
-    {
-      icon: '🏛️',
-      title: '3D Wedding Invitation Projects',
-      description: '(Modern & Engaging Animated Designs)',
-      value: '₹3,999 Value',
-    },
-    {
-      icon: '📚',
-      title: '1000+ Wedding Album PSD Templates',
-      description: 'Floral, Traditional, Modern | All Sizes (12x36, 12x18 etc.)',
-      value: '₹1,999 Value',
-    },
-    {
-      icon: '📅',
-      title: '"Save The Date" & Engagement Templates',
-      description: '(Perfect for Social Media & WhatsApp Sharing)',
-      value: '₹999 Value',
-    },
-    {
-      icon: '🧑‍🎨',
-      title: 'Editable Caricature Templates (Canva Premium)',
-      description: '(Drag & Drop Interface - No Design Skills Needed)',
-      value: '₹999 Value',
-    },
-    {
-      icon: '✍️',
-      title: 'Wedding Text Templates',
-      description: '',
-      value: '₹499 Value',
-    },
-    {
-      icon: '🎁',
-      title: 'BONUS: Fonts, LUTs, Cover Images',
-      description: 'For Professional Editing & Branding',
-      value: '₹999 Value',
-    },
-    {
-      icon: '🎁',
-      title: 'BONUS CONTENT - Complete Learning Support',
-      description: '',
-      value: 'Worth ₹2,999',
-    },
-  ];
-
 export default function ProductDetailsPage() {
   const { toast } = useToast();
   const params = useParams();
@@ -165,28 +114,30 @@ export default function ProductDetailsPage() {
              {/* What You Get Section */}
              <section className="max-w-4xl mx-auto">
                 <h2 className="text-center text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">
-                    What You Get Inside <span className="text-blue-600 underline">This ₹497 Pack</span>
+                    What You Get Inside <span className="text-blue-600 underline">This ₹{product.price.toFixed(0)} Pack</span>
                 </h2>
-                <div className="space-y-4">
-                    <div className="bg-rose-100/80 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200 p-4 rounded-lg text-center font-semibold">
-                    🎉 500+ Premium Wedding & Event Projects : All-in-One Pack - ₹15000+ Value
-                    </div>
-                    {featuresList.map((feature, index) => (
-                    <Card key={index} className="bg-white dark:bg-card shadow-sm border-0">
-                        <CardContent className="p-4 flex items-start gap-4">
-                        <span className="font-bold text-gray-400">{index + 1}.</span>
-                        <div className="flex-1">
-                            <p className="font-semibold">
-                            <span className="mr-2">{feature.icon}</span>
-                            <span className="font-bold">{feature.title}</span>{' '}
-                            <span className="text-gray-600 dark:text-gray-400 font-normal">{feature.description}</span>
-                             <span className="text-gray-500 dark:text-gray-400 font-medium"> - {feature.value}</span>
-                            </p>
+                {product.features && product.features.length > 0 && (
+                    <div className="space-y-4">
+                        <div className="bg-rose-100/80 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200 p-4 rounded-lg text-center font-semibold">
+                        🎉 {product.features.length}+ Premium Features: All-in-One Pack - ₹15000+ Value
                         </div>
-                        </CardContent>
-                    </Card>
-                    ))}
-                </div>
+                        {product.features.map((feature, index) => (
+                        <Card key={index} className="bg-white dark:bg-card shadow-sm border-0">
+                            <CardContent className="p-4 flex items-start gap-4">
+                            <span className="font-bold text-gray-400">{index + 1}.</span>
+                            <div className="flex-1">
+                                <p className="font-semibold">
+                                <span className="mr-2">{feature.icon}</span>
+                                <span className="font-bold">{feature.title}</span>{' '}
+                                <span className="text-gray-600 dark:text-gray-400 font-normal">{feature.description}</span>
+                                <span className="text-gray-500 dark:text-gray-400 font-medium"> - {feature.value}</span>
+                                </p>
+                            </div>
+                            </CardContent>
+                        </Card>
+                        ))}
+                    </div>
+                )}
             </section>
 
 
