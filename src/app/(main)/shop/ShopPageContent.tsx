@@ -98,8 +98,8 @@ export default function ShopPageContent() {
                   step={1}
                 />
                 <div className="flex justify-between text-sm text-muted-foreground mt-2">
-                  <span>$0</span>
-                  <span>${priceRange[0].toFixed(0)}</span>
+                  <span>₹0</span>
+                  <span>₹{priceRange[0].toFixed(0)}</span>
                 </div>
               </div>
             </CardContent>

@@ -67,13 +67,13 @@ export default function ProductDetailsPage() {
             
             {/* Purchase Section */}
             <section className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl font-bold text-orange-500">Special Offer <span className="text-gray-400 line-through">${originalPrice.toFixed(2)}</span> ${product.price.toFixed(2)}</h2>
+                <h2 className="text-3xl font-bold text-orange-500">Special Offer <span className="text-gray-400 line-through">₹{originalPrice.toFixed(2)}</span> ₹{product.price.toFixed(2)}</h2>
                 <div className="my-6">
                     <CountdownTimer />
                 </div>
                 <div className="flex flex-col gap-4">
                     <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={handleAddToCart}>
-                        <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR ${product.price.toFixed(2)}
+                        <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR ₹{product.price.toFixed(2)}
                     </Button>
                     <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform" onClick={handleBuyNow}>
                         Buy Now <ArrowRight className="ml-2"/>
@@ -215,7 +215,7 @@ export default function ProductDetailsPage() {
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Personal mentorship to first sale</li>
                 </ul>
                 <Button size="lg" className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg w-full mt-6" onClick={handleBuyNow}>
-                    GET LIFETIME ACCESS at ${product.price.toFixed(2)}
+                    GET LIFETIME ACCESS at ₹{product.price.toFixed(2)}
                 </Button>
             </section>
         </div>
