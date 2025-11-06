@@ -14,24 +14,6 @@ const getImage = (id: string) => {
 
 export const mockProducts: Product[] = [
   {
-    id: 'prod-adobe-suite',
-    name: 'Adobe Premium Software 2024',
-    price: 299.99,
-    images: [getImage('prod-adobe-suite')],
-    category: 'Software & Tools',
-    description: 'Get the full suite of Adobe Premium software for 2024. Includes Photoshop, Illustrator, Premiere Pro, and more.',
-    isFeatured: true,
-  },
-  {
-    id: 'prod-ai-reels-fitness',
-    name: '500+ AI Fitness Reels Bundle',
-    price: 49.99,
-    images: [getImage('prod-ai-reels-fitness')],
-    category: 'Content Bundles',
-    description: 'A massive bundle of 500+ AI-generated fitness reels, perfect for social media content creators.',
-    isFeatured: true,
-  },
-  {
     id: 'prod-instagram-course',
     name: 'Instagram Growth Mastery Course',
     price: 199.99,
@@ -48,6 +30,23 @@ export const mockProducts: Product[] = [
     category: 'Templates',
     description: 'A huge collection of graphic design assets, including templates, fonts, and icons.',
     isFeatured: true,
+  },
+  {
+    id: 'prod-ai-reels-fitness',
+    name: '500+ AI Fitness Reels Bundle',
+    price: 49.99,
+    images: [getImage('prod-ai-reels-fitness')],
+    category: 'Content Bundles',
+    description: 'A massive bundle of 500+ AI-generated fitness reels, perfect for social media content creators.',
+    isFeatured: true,
+  },
+  {
+    id: 'prod-adobe-suite',
+    name: 'Adobe Premium Software 2024',
+    price: 299.99,
+    images: [getImage('prod-adobe-suite')],
+    category: 'Software & Tools',
+    description: 'Get the full suite of Adobe Premium software for 2024. Includes Photoshop, Illustrator, Premiere Pro, and more.',
   },
   {
     id: 'prod-ai-reels-motivation',

@@ -20,6 +20,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { motion } from 'framer-motion';
 
 
 const heroProducts = mockProducts.filter(p => p.isFeatured).slice(0, 3);
@@ -97,27 +98,40 @@ export default function HomePage() {
   }
   
   const [emblaApi, setEmblaApi] = useState<EmblaCarouselType | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     if (!emblaApi) return;
+    const onSelect = () => {
+      setCurrentSlide(emblaApi.selectedScrollSnap());
+    };
+    emblaApi.on('select', onSelect);
     const timer = setInterval(() => {
       emblaApi.scrollNext();
     }, 5000);
-    return () => clearInterval(timer);
+    return () => {
+        clearInterval(timer)
+        emblaApi.off('select', onSelect);
+    };
   }, [emblaApi]);
 
 
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section className="bg-gray-100">
+      <section className="bg-gray-100 dark:bg-gray-900">
         <Carousel setApi={setEmblaApi}>
           <CarouselContent>
-            {heroProducts.map((product) => (
+            {heroProducts.map((product, index) => (
               <CarouselItem key={product.id}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="grid md:grid-cols-2 gap-8 items-center min-h-[70vh]">
-                    <div>
+                    <motion.div
+                        key={index} // Re-trigger animation on slide change
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: currentSlide === index ? 1 : 0.5, x: currentSlide === index ? 0 : -50 }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                    >
                       <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
                         {product.name}
                       </h1>
@@ -131,17 +145,23 @@ export default function HomePage() {
                           <Link href={`/shop/${product.id}`}>Learn More</Link>
                         </Button>
                       </div>
-                    </div>
-                    <div className="relative h-96 md:h-full">
+                    </motion.div>
+                    <motion.div 
+                        className="relative h-96 md:h-[500px]"
+                        key={index + '-image'}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: currentSlide === index ? 1 : 0.5, scale: currentSlide === index ? 1 : 0.8 }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                    >
                       <Image
                         src={product.images[0].url}
                         alt={product.name}
                         fill
                         className="object-contain"
                         data-ai-hint={product.images[0].hint}
-                        priority
+                        priority={index === 0}
                       />
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </CarouselItem>
