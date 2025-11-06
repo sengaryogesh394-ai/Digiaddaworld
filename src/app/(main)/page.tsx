@@ -156,13 +156,22 @@ export default function HomePage() {
       {/* Categories Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold text-center mb-8">Our Top Categories</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {mockCategories.map((category) => (
-            <Link href={`/shop?category=${category.id}`} key={category.id}>
-              <Card className="flex flex-col items-center justify-center p-4 aspect-square transition-shadow hover:shadow-lg">
-                <Image src={category.image.url} alt={category.name} width={50} height={50} data-ai-hint={category.image.hint} className="mb-2"/>
-                <h3 className="font-semibold text-sm text-center">{category.name}</h3>
-                <p className="text-xs text-muted-foreground">{category.itemCount} items</p>
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {mockCategories.slice(0, 4).map((category) => (
+            <Link href={`/shop?category=${category.id}`} key={category.id} className="block group">
+              <Card className="overflow-hidden relative rounded-lg">
+                <div className="aspect-square relative">
+                    <Image 
+                        src={category.image.url} 
+                        alt={category.name} 
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        data-ai-hint={category.image.hint}
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <h3 className="font-semibold text-xl text-white text-center p-2">{category.name}</h3>
+                    </div>
+                </div>
               </Card>
             </Link>
           ))}
