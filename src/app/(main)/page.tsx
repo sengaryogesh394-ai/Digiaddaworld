@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowRight, Star, TrendingUp, Zap, Heart } from 'lucide-react';
+import { ArrowRight, Star, TrendingUp, Zap, Heart, BookOpen, Codepen, LayoutTemplate, Package, Bot, Palette } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -178,6 +178,16 @@ export default function HomePage() {
     }
   };
 
+  const categoryIcons: { [key: string]: React.ElementType } = {
+    'software-and-tools': Codepen,
+    'courses-and-ebooks': BookOpen,
+    'templates': LayoutTemplate,
+    'content-bundles': Package,
+    'ai-reels': Bot,
+    'graphic-design': Palette,
+  };
+
+
   return (
     <div className="space-y-20 pb-16 bg-gradient-to-b from-background via-background to-secondary/20">
       {/* Hero Section with Carousel and Vertical Cards */}
@@ -343,29 +353,25 @@ export default function HomePage() {
         
         <Carousel setApi={setCategoryApi} opts={{ align: "start", loop: true, slidesToScroll: 3 }}>
           <CarouselContent className="-ml-4">
-            {mockCategories.map((category, i) => (
-              <CarouselItem key={category.id} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
-                <AnimateOnView delay={i * 0.05}>
-                  <Link href={`/shop?category=${category.id}`} className="flex flex-col items-center gap-3 group">
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-transparent group-hover:border-primary transition-all duration-300 flex items-center justify-center overflow-hidden shadow-lg"
-                    >
-                      <Image 
-                        src={category.image.url} 
-                        alt={category.name} 
-                        width={96}
-                        height={96}
-                        className="object-cover transition-transform duration-300"
-                        data-ai-hint={category.image.hint}
-                      />
-                    </motion.div>
-                    <p className="font-semibold text-sm text-center group-hover:text-primary transition-colors">{category.name}</p>
-                  </Link>
-                </AnimateOnView>
-              </CarouselItem>
-            ))}
+            {mockCategories.map((category, i) => {
+                const Icon = categoryIcons[category.id] || LayoutTemplate;
+                return (
+                  <CarouselItem key={category.id} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
+                    <AnimateOnView delay={i * 0.05}>
+                      <Link href={`/shop?category=${category.id}`} className="flex flex-col items-center gap-3 group">
+                        <motion.div 
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-transparent group-hover:border-primary transition-all duration-300 flex items-center justify-center overflow-hidden shadow-lg"
+                        >
+                          <Icon className="w-12 h-12 text-primary" />
+                        </motion.div>
+                        <p className="font-semibold text-sm text-center group-hover:text-primary transition-colors">{category.name}</p>
+                      </Link>
+                    </AnimateOnView>
+                  </CarouselItem>
+                )
+            })}
           </CarouselContent>
           <CarouselPrevious className="hidden md:flex" />
           <CarouselNext className="hidden md:flex" />
