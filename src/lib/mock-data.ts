@@ -78,7 +78,7 @@ export const mockProducts: Product[] = [
     name: '500+ AI Fitness Reels Bundle',
     price: 49.99,
     media: [
-        { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', id:'vid4', hint: 'fitness promo', type: 'video' },
+        { ...getImage('prod-ai-reels-fitness-1'), type: 'image' },
         { ...getImage('prod-ai-reels-fitness-2'), type: 'image' }, 
         { url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4', id:'vid5', hint: 'workout reel', type: 'video' },
         { ...getImage('prod-ai-reels-fitness-4'), type: 'image' }
@@ -431,3 +431,5 @@ export const mockBlogPosts: BlogPost[] = [
         date: '2024-05-01',
     },
 ];
+
+    
