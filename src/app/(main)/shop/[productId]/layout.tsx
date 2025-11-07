@@ -1,7 +1,14 @@
+'use client';
+import { CartProvider } from '@/context/CartContext';
+
 export default function ProductDetailLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <CartProvider>
+      {children}
+    </CartProvider>
+  );
 }
