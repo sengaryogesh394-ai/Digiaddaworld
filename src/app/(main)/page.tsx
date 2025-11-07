@@ -211,8 +211,8 @@ export default function HomePage() {
               </CarouselContent>
               
               {heroSlides.map((slide, i) => (
-                <CarouselSlideContent key={i} slideIndex={i} className="flex items-end">
-                  <div className="p-8 md:p-12 w-full">
+                <CarouselSlideContent key={i} slideIndex={i} className="flex items-end justify-start">
+                  <div className="p-8 md:p-12 w-full md:w-2/3">
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
