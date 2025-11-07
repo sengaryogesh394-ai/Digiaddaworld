@@ -186,6 +186,15 @@ export default function HomePage() {
     'ai-reels': Bot,
     'graphic-design': Palette,
   };
+  
+  const categoryGradients: { [key: string]: string } = {
+    'software-and-tools': 'from-slate-900 to-slate-700',
+    'courses-and-ebooks': 'from-blue-900 to-blue-700',
+    'templates': 'from-emerald-900 to-emerald-700',
+    'content-bundles': 'from-purple-900 to-purple-700',
+    'ai-reels': 'from-rose-900 to-rose-700',
+    'graphic-design': 'from-amber-900 to-amber-700',
+  };
 
 
   return (
@@ -355,6 +364,7 @@ export default function HomePage() {
           <CarouselContent className="-ml-4">
             {mockCategories.map((category, i) => {
                 const Icon = categoryIcons[category.id] || LayoutTemplate;
+                const gradient = categoryGradients[category.id] || 'from-gray-900 to-gray-700';
                 return (
                   <CarouselItem key={category.id} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
                     <AnimateOnView delay={i * 0.05}>
@@ -362,9 +372,9 @@ export default function HomePage() {
                         <motion.div 
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           whileTap={{ scale: 0.95 }}
-                          className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-transparent group-hover:border-primary transition-all duration-300 flex items-center justify-center overflow-hidden shadow-lg"
+                          className={`relative w-24 h-24 rounded-full bg-gradient-to-br ${gradient} border-2 border-transparent group-hover:border-primary transition-all duration-300 flex items-center justify-center overflow-hidden shadow-lg`}
                         >
-                          <Icon className="w-12 h-12 text-primary" />
+                          <Icon className="w-12 h-12 text-white" />
                         </motion.div>
                         <p className="font-semibold text-sm text-center group-hover:text-primary transition-colors">{category.name}</p>
                       </Link>
