@@ -34,30 +34,17 @@ export default function ProductDetailsPage() {
         return { id: image?.id || '', url: image?.imageUrl || 'https://picsum.photos/seed/default/120/120', hint: image?.imageHint || 'guarantee' };
     }
 
-  const handleAddToCart = () => {
-    if (product) {
-        addToCart(product);
+  const handleBuyNow = (productToBuy: typeof product) => {
+    if (productToBuy) {
+        addToCart(productToBuy);
         toast({
             title: "Added to cart",
-            description: `${product.name} has been added to your cart.`,
+            description: `${productToBuy.name} has been added to your cart.`,
         });
+        router.push('/payment');
     }
   };
-  
-  const handleBuyNow = () => {
-    if (product) {
-        addToCart(product);
-        router.push('/checkout');
-    }
-  }
 
-  const handlePromoBuyNow = () => {
-    if (promoProduct) {
-        addToCart(promoProduct);
-        router.push('/checkout');
-    }
-  }
-  
   const originalPrice = product.price * 20;
 
   return (
@@ -113,10 +100,10 @@ export default function ProductDetailsPage() {
                     <CountdownTimer />
                 </div>
                 <div className="flex flex-col gap-4">
-                    <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={handleAddToCart}>
+                    <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={() => handleBuyNow(product)}>
                         <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR Rs {product.price.toFixed(2)}
                     </Button>
-                    <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform" onClick={handleBuyNow}>
+                    <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform" onClick={() => handleBuyNow(product)}>
                         Buy Now <ArrowRight className="ml-2"/>
                     </Button>
                 </div>
@@ -141,7 +128,7 @@ export default function ProductDetailsPage() {
                   <p className="mt-6 text-lg font-medium text-gray-700 dark:text-gray-300">
                       Get the Ultimate <span className="font-bold">{promoProduct.name}</span> for Just <span className="font-bold">₹{promoProduct.price.toFixed(2)}</span> + Free Bonuses!
                   </p>
-                  <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg mt-4 shadow-lg transform hover:scale-105 transition-transform" onClick={handlePromoBuyNow}>
+                  <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg mt-4 shadow-lg transform hover:scale-105 transition-transform" onClick={() => handleBuyNow(promoProduct)}>
                       Get {promoProduct.category} Pack @ ₹{promoProduct.price.toFixed(2)} <ArrowRight className="ml-2"/>
                   </Button>
               </section>
@@ -250,7 +237,7 @@ export default function ProductDetailsPage() {
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Step-by-step success system</li>
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Personal mentorship to first sale</li>
                 </ul>
-                <Button size="lg" className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg w-full mt-6" onClick={handleBuyNow}>
+                <Button size="lg" className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg w-full mt-6" onClick={() => handleBuyNow(product)}>
                     GET LIFETIME ACCESS at Rs {product.price.toFixed(2)}
                 </Button>
             </section>
@@ -258,3 +245,5 @@ export default function ProductDetailsPage() {
     </div>
   );
 }
+
+    

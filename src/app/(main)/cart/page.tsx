@@ -80,7 +80,7 @@ export default function CartPage() {
                   <span>Rs {total.toFixed(2)}</span>
                 </div>
                 <Button asChild className="w-full" size="lg">
-                  <Link href="/checkout">Proceed to Checkout</Link>
+                  <Link href="/payment">Proceed to Checkout</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -90,3 +90,5 @@ export default function CartPage() {
     </div>
   );
 }
+
+    
