@@ -75,7 +75,7 @@ export default function HomePage() {
 
   const heroSlides = [
     {
-      image: 'https://images.unsplash.com/photo-1554224155-16954435a2d4?w=1200&h=800&fit=crop',
+      image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
       badge: 'TRENDING NOW',
       title: 'Instagram Growth Mastery Course',
       price: 199.99,
