@@ -27,8 +27,8 @@
     },
     {
       "id": "prod-ai-reels-fitness-2",
-      "imageUrl": "https://images.unsplash.com/photo-1590074121258-6b53b6adb8f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxneW0lMjByZWVsfGVufDB8fHx8MTc2MjQyMTU0NHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "gym reel"
+      "imageUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwYXBwfGVufDB8fHx8MTcyMjI3OTM5OHww&ixlib=rb-4.0.3",
+      "imageHint": "fitness app"
     },
     {
       "id": "prod-ai-reels-fitness-3",
@@ -312,8 +312,8 @@
     },
     {
       "id": "blog-1",
-      "imageUrl": "https://images.unsplash.com/photo-1654372066395-38cb7a79b96b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjcmVhdGl2ZSUyMHdvcmtzcGFjZXxlbnwwfHx8fDE3NjIzMTg5NzZ8MA&ixlibrb-4.1.0&q=80&w=1080",
-      "imageHint": "creative workspace"
+      "imageUrl": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwcHJvZHVjdHMlMjBzYWxlfGVufDB8fHx8MTcyMjI3OTM5OHww&ixlib=rb-4.0.3",
+      "imageHint": "digital products sale"
     },
     {
       "id": "blog-2",
