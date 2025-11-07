@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star, TrendingUp, Zap, Heart } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion } from 'framer-motion';
 import {
@@ -25,7 +25,6 @@ export default function HomePage() {
   const [heroApi, setHeroApi] = useState<any>(null);
   const [categoryApi, setCategoryApi] = useState<any>(null);
 
-
   useEffect(() => {
     if (!subscriptionApi) return;
     const id = setInterval(() => subscriptionApi.scrollNext(), 5000);
@@ -34,7 +33,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!heroApi) return;
-    const id = setInterval(() => heroApi.scrollNext(), 5000);
+    const id = setInterval(() => heroApi.scrollNext(), 6000);
     return () => clearInterval(id);
   }, [heroApi]);
 
@@ -43,7 +42,6 @@ export default function HomePage() {
     const id = setInterval(() => categoryApi.scrollNext(), 4000);
     return () => clearInterval(id);
   }, [categoryApi]);
-
 
   function getImage(id: string) {
     const image = PlaceHolderImages.find(img => img.id === id);
@@ -69,227 +67,458 @@ export default function HomePage() {
   const topRightPromoProduct = mockProducts.find(p => p.id === 'prod-graphic-design-bundle');
   const bottomRightPromoProduct = mockProducts.find(p => p.id === 'prod-ai-reels-fitness');
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <div className="space-y-16 pb-16 bg-background">
-      {/* Hero Section */}
+    <div className="space-y-20 pb-16 bg-gradient-to-b from-background via-background to-secondary/20">
+      {/* Hero Section with Carousel and Vertical Cards */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-auto lg:h-[420px]">
-          {/* Main Promo */}
-           <div className="relative lg:col-span-2 rounded-xl flex items-end overflow-hidden text-white min-h-[420px]">
-            <Carousel setApi={setHeroApi} opts={{ loop: true }} className="absolute inset-0 w-full h-full -z-10">
-                <CarouselContent>
-                    {heroImages.map((image, i) => (
-                        <CarouselItem key={i}>
-                           <Image src={image.url} alt={image.hint} fill className="object-cover rounded-xl" data-ai-hint={image.hint} />
-                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-auto lg:h-[500px]"
+        >
+          {/* Main Carousel Promo */}
+          <motion.div 
+            variants={itemVariants}
+            className="relative lg:col-span-2 rounded-2xl overflow-hidden shadow-2xl group min-h-[500px]"
+          >
+            <Carousel setApi={setHeroApi} opts={{ loop: true }} className="h-full">
+              <CarouselContent className="h-full">
+                {heroImages.map((image, i) => (
+                  <CarouselItem key={i} className="h-full">
+                    <div className="relative h-full w-full">
+                      <Image 
+                        src={image.url} 
+                        alt={image.hint} 
+                        fill 
+                        className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                        data-ai-hint={image.hint} 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
             </Carousel>
-            <div className="z-10 relative p-8 md:p-12">
-                <p className="font-semibold text-lg">LIMITED TIME OFFER</p>
-                <h1 className="text-4xl md:text-5xl font-bold text-white mt-2">
-                    {mainPromoProduct?.name}
-                </h1>
-                <div className="flex items-baseline gap-4 mt-4">
-                  <p className="text-3xl font-bold text-white">Rs {mainPromoProduct?.price.toFixed(2)}</p>
-                  <p className="text-xl text-white/80 line-through">Rs {(mainPromoProduct?.price || 0 * 1.5).toFixed(2)}</p>
-                </div>
-                <Button asChild className="mt-6">
-                    <Link href={`/shop/${mainPromoProduct?.id}`}>Shop Now</Link>
-                </Button>
+            
+            <div className="absolute inset-0 flex items-end z-10">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="p-8 md:p-12 w-full"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="inline-flex items-center gap-2 bg-amber-500/90 backdrop-blur-sm px-4 py-2 rounded-full mb-4"
+                >
+                  <Zap className="w-4 h-4 text-white" />
+                  <span className="font-semibold text-sm text-white uppercase tracking-wider">Limited Time Offer</span>
+                </motion.div>
+                
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="text-4xl md:text-6xl font-bold text-white mt-2 leading-tight"
+                >
+                  {mainPromoProduct?.name}
+                </motion.h1>
+                
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="flex items-baseline gap-4 mt-6"
+                >
+                  <p className="text-4xl font-bold text-white">Rs {mainPromoProduct?.price.toFixed(2)}</p>
+                  <p className="text-2xl text-white/70 line-through">Rs {((mainPromoProduct?.price || 0) * 1.5).toFixed(2)}</p>
+                  <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Save 33%</span>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <Button asChild size="lg" className="mt-6 bg-white text-black hover:bg-white/90 shadow-xl group">
+                    <Link href={`/shop/${mainPromoProduct?.id}`}>
+                      Shop Now 
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                </motion.div>
+              </motion.div>
             </div>
-          </div>
-          {/* Side Promos */}
-          <div className="hidden lg:flex flex-col gap-6">
-             <div className="relative rounded-xl p-8 flex-1 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-purple-500 to-indigo-600 text-white">
-                <div className="z-10">
-                    <p className="text-sm uppercase tracking-wider">Best Seller</p>
-                    <h3 className="text-2xl font-bold mt-1">{topRightPromoProduct?.name}</h3>
-                    <Button variant="link" asChild className="p-0 mt-2 text-white/90">
-                        <Link href={`/shop/${topRightPromoProduct?.id}`}>Shop Now <ArrowRight className="w-4 h-4 ml-2" /></Link>
-                    </Button>
+          </motion.div>
+
+          {/* Vertical Side Cards */}
+          <div className="flex flex-col gap-6">
+            {/* Top Card */}
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              className="relative rounded-2xl flex-1 overflow-hidden shadow-xl group min-h-[240px]"
+            >
+              <div className="absolute inset-0">
+                <Image
+                  src={getImage('hero-side-1').url}
+                  alt="Best products"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  data-ai-hint={getImage('hero-side-1').hint}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900 via-purple-600/70 to-purple-400/30"></div>
+              </div>
+              
+              <div className="relative z-10 p-8 h-full flex flex-col justify-between text-white">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <TrendingUp className="w-5 h-5" />
+                    <p className="text-sm uppercase tracking-wider font-semibold">Best Seller</p>
+                  </div>
+                  <h3 className="text-2xl font-bold mt-1 leading-tight">{topRightPromoProduct?.name}</h3>
                 </div>
-                 {topRightPromoProduct && (
-                    <Image
-                        src={getImage('hero-side-1').url}
-                        alt="Best products"
-                        width={150}
-                        height={150}
-                        className="absolute -right-8 -bottom-8 object-contain opacity-50"
-                        data-ai-hint={getImage('hero-side-1').hint}
-                    />
-                )}
-             </div>
-             <div className="relative rounded-xl p-8 flex-1 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-pink-500 to-rose-600 text-white">
-                <div className="z-10">
-                    <p className="text-sm uppercase tracking-wider">25% Off</p>
-                     <h3 className="text-2xl font-bold mt-1">{bottomRightPromoProduct?.name}</h3>
-                     <Button variant="link" asChild className="p-0 mt-2 text-white/90">
-                        <Link href={`/shop/${bottomRightPromoProduct?.id}`}>Shop Now <ArrowRight className="w-4 h-4 ml-2" /></Link>
-                    </Button>
+                <Button variant="secondary" asChild size="sm" className="w-fit group mt-4">
+                  <Link href={`/shop/${topRightPromoProduct?.id}`}>
+                    Explore <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Bottom Card */}
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              className="relative rounded-2xl flex-1 overflow-hidden shadow-xl group min-h-[240px]"
+            >
+              <div className="absolute inset-0">
+                <Image
+                  src={getImage('hero-side-2').url}
+                  alt="Discounted products"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  data-ai-hint={getImage('hero-side-2').hint}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-rose-900 via-rose-600/70 to-rose-400/30"></div>
+              </div>
+              
+              <div className="relative z-10 p-8 h-full flex flex-col justify-between text-white">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Star className="w-5 h-5 fill-current" />
+                    <p className="text-sm uppercase tracking-wider font-semibold">25% Off</p>
+                  </div>
+                  <h3 className="text-2xl font-bold mt-1 leading-tight">{bottomRightPromoProduct?.name}</h3>
                 </div>
-                 {bottomRightPromoProduct && (
-                     <Image
-                        src={getImage('hero-side-2').url}
-                        alt="Discounted products"
-                        width={150}
-                        height={150}
-                        className="absolute -right-8 -bottom-8 object-contain opacity-50"
-                        data-ai-hint={getImage('hero-side-2').hint}
-                    />
-                )}
-             </div>
+                <Button variant="secondary" asChild size="sm" className="w-fit group mt-4">
+                  <Link href={`/shop/${bottomRightPromoProduct?.id}`}>
+                    Shop Deal <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Categories Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-        <div className="p-6">
-            <Carousel setApi={setCategoryApi} opts={{ align: "start", loop: true, slidesToScroll: 3 }}>
-                <CarouselContent className="-ml-4">
-                    {mockCategories.map((category, i) => (
-                        <CarouselItem key={category.id} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
-                             <Link href={`/shop?category=${category.id}`} className="flex flex-col items-center gap-3 group">
-                                <div className="w-24 h-24 rounded-full bg-secondary border-2 border-transparent group-hover:border-primary transition-all duration-300 flex items-center justify-center overflow-hidden">
-                                     <Image 
-                                        src={category.image.url} 
-                                        alt={category.name} 
-                                        width={96}
-                                        height={96}
-                                        className="object-cover transition-transform duration-300 group-hover:scale-110"
-                                        data-ai-hint={category.image.hint}
-                                    />
-                                </div>
-                                <p className="font-semibold text-sm text-center">{category.name}</p>
-                            </Link>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                 <CarouselPrevious className="hidden md:flex" />
-                 <CarouselNext className="hidden md:flex" />
-            </Carousel>
-        </div>
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimateOnView>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-2">Browse by Category</h2>
+            <p className="text-muted-foreground">Find exactly what you're looking for</p>
+          </div>
+        </AnimateOnView>
+        
+        <Carousel setApi={setCategoryApi} opts={{ align: "start", loop: true, slidesToScroll: 3 }}>
+          <CarouselContent className="-ml-4">
+            {mockCategories.map((category, i) => (
+              <CarouselItem key={category.id} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
+                <AnimateOnView delay={i * 0.05}>
+                  <Link href={`/shop?category=${category.id}`} className="flex flex-col items-center gap-3 group">
+                    <motion.div 
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-transparent group-hover:border-primary transition-all duration-300 flex items-center justify-center overflow-hidden shadow-lg"
+                    >
+                      <Image 
+                        src={category.image.url} 
+                        alt={category.name} 
+                        width={96}
+                        height={96}
+                        className="object-cover transition-transform duration-300"
+                        data-ai-hint={category.image.hint}
+                      />
+                    </motion.div>
+                    <p className="font-semibold text-sm text-center group-hover:text-primary transition-colors">{category.name}</p>
+                  </Link>
+                </AnimateOnView>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
       </section>
 
       {/* Featured Products Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <AnimateOnView>
-          <div className="p-0 rounded-lg">
-              <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
-                  <div>
-                      <h2 className="text-3xl font-bold">Featured Products</h2>
-                      <p className="text-muted-foreground">Check out our best-selling and most popular products.</p>
-                  </div>
-                  <Button variant="outline" asChild>
-                      <Link href="/shop">View All <ArrowRight className="w-4 h-4 ml-2"/></Link>
-                  </Button>
+          <div className="bg-gradient-to-br from-secondary/30 to-background p-8 md:p-12 rounded-3xl shadow-xl">
+            <div className="flex flex-col md:flex-row justify-between md:items-center mb-8 gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Star className="w-6 h-6 text-amber-500 fill-current" />
+                  <span className="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Handpicked</span>
+                </div>
+                <h2 className="text-4xl font-bold">Featured Products</h2>
+                <p className="text-muted-foreground mt-2">Our best-selling and most popular items</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {featuredProducts.map((product, i) => (
-                      <AnimateOnView key={product.id} delay={i * 0.1}>
-                           <motion.div whileHover={{ y: -5 }} className="h-full">
-                             <ProductCard product={product} />
-                           </motion.div>
-                      </AnimateOnView>
-                  ))}
-              </div>
+              <Button variant="outline" size="lg" asChild className="group shadow-md">
+                <Link href="/shop">
+                  View All 
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"/>
+                </Link>
+              </Button>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredProducts.map((product, i) => (
+                <AnimateOnView key={product.id} delay={i * 0.1}>
+                  <motion.div 
+                    whileHover={{ y: -8, scale: 1.02 }} 
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="h-full bg-background rounded-2xl shadow-lg overflow-hidden border border-border/50"
+                  >
+                    <ProductCard product={product} />
+                  </motion.div>
+                </AnimateOnView>
+              ))}
+            </div>
           </div>
         </AnimateOnView>
       </section>
 
-      {/* Envato Section */}
-      <section className="relative overflow-hidden h-[300px] text-white flex items-center">
+      {/* Subscription Banner */}
+      <section className="relative overflow-hidden h-[400px] text-white">
         <div className="absolute inset-0 -z-10">
-            <Carousel setApi={setSubscriptionApi} opts={{ loop: true }}>
-                <CarouselContent>
-                {subscriptionImages.map((image, i) => (
-                    <CarouselItem key={i}>
-                    <div className="relative h-[300px] w-full">
-                        <Image src={image.url} alt={image.hint} fill className="object-cover" data-ai-hint={image.hint}/>
-                    </div>
-                    </CarouselItem>
-                ))}
-                </CarouselContent>
-            </Carousel>
+          <Carousel setApi={setSubscriptionApi} opts={{ loop: true }}>
+            <CarouselContent>
+              {subscriptionImages.map((image, i) => (
+                <CarouselItem key={i}>
+                  <div className="relative h-[400px] w-full">
+                    <Image src={image.url} alt={image.hint} fill className="object-cover" data-ai-hint={image.hint}/>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
-        <div className="absolute inset-0 bg-black/70" />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-                <AnimateOnView>
-                    <h3 className="text-3xl font-bold">The only creative subscription you need</h3>
-                    <p className="text-white/80 mt-2">Get access to millions of creative assets. Unlimited downloads for a single monthly fee.</p>
-                    <Button className="mt-4" asChild>
-                        <Link href="#">Get Started Now</Link>
-                    </Button>
-                </AnimateOnView>
-                <AnimateOnView delay={0.2} className="relative h-64 hidden md:block">
-                    <Image src={getImage('creative-subscription').url} alt="Creative subscription assets" fill className="object-contain" data-ai-hint={getImage('creative-subscription').hint} />
-                </AnimateOnView>
-            </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/60" />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-full flex items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+            <AnimateOnView>
+              <div className="space-y-6">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <div className="inline-flex items-center gap-2 bg-amber-500/90 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
+                    <Zap className="w-4 h-4" />
+                    <span className="font-semibold text-sm uppercase tracking-wider">Unlimited Access</span>
+                  </div>
+                  <h3 className="text-4xl md:text-5xl font-bold leading-tight">The only creative subscription you need</h3>
+                </motion.div>
+                
+                <motion.p 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-xl text-white/90"
+                >
+                  Get access to millions of creative assets. Unlimited downloads for a single monthly fee.
+                </motion.p>
+                
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  <Button size="lg" className="bg-white text-black hover:bg-white/90 shadow-xl group">
+                    <Link href="#" className="flex items-center">
+                      Get Started Now
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                </motion.div>
+              </div>
+            </AnimateOnView>
+            
+            <AnimateOnView delay={0.3} className="relative h-80 hidden md:block">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="relative h-full"
+              >
+                <Image 
+                  src={getImage('creative-subscription').url} 
+                  alt="Creative subscription assets" 
+                  fill 
+                  className="object-contain drop-shadow-2xl" 
+                  data-ai-hint={getImage('creative-subscription').hint} 
+                />
+              </motion.div>
+            </AnimateOnView>
+          </div>
         </div>
       </section>
 
-      {/* Newest Themes & Templates */}
+      {/* Newest Products Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Tabs defaultValue="new-products">
-            <AnimateOnView className="text-center mb-8">
-                <h2 className="text-3xl font-bold">Our Newest Themes and Templates</h2>
-                <p className="text-muted-foreground">The best of our collection, all in one place.</p>
-                <TabsList className="mt-4">
-                    <TabsTrigger value="new-products">New Products</TabsTrigger>
-                    <TabsTrigger value="best-selling">Best Selling</TabsTrigger>
-                    <TabsTrigger value="featured-products">Featured</TabsTrigger>
-                </TabsList>
-            </AnimateOnView>
-            <TabsContent value="new-products">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {newProducts.map((product, i) => (
-                       <AnimateOnView key={product.id} delay={i * 0.05}>
-                          <motion.div whileHover={{ y: -5 }} className="h-full">
-                            <ProductCard product={product} />
-                          </motion.div>
-                       </AnimateOnView>
-                    ))}
-                </div>
-            </TabsContent>
-            <TabsContent value="best-selling">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {bestSelling.map((product, i) => (
-                         <AnimateOnView key={product.id} delay={i * 0.05}>
-                            <motion.div whileHover={{ y: -5 }} className="h-full">
-                              <ProductCard product={product} />
-                            </motion.div>
-                         </AnimateOnView>
-                    ))}
-                </div>
-            </TabsContent>
-            <TabsContent value="featured-products">
-                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {featuredProducts.map((product, i) => (
-                        <AnimateOnView key={product.id} delay={i * 0.05}>
-                           <motion.div whileHover={{ y: -5 }} className="h-full">
-                             <ProductCard product={product} />
-                           </motion.div>
-                        </AnimateOnView>
-                    ))}
-                </div>
-            </TabsContent>
-          </Tabs>
+        <Tabs defaultValue="new-products" className="space-y-8">
+          <AnimateOnView className="text-center">
+            <h2 className="text-4xl font-bold mb-2">Our Newest Themes and Templates</h2>
+            <p className="text-muted-foreground text-lg mb-6">The best of our collection, all in one place</p>
+            <TabsList className="inline-flex h-12 bg-secondary/50 backdrop-blur-sm p-1 rounded-full shadow-lg">
+              <TabsTrigger value="new-products" className="rounded-full px-6 data-[state=active]:bg-white data-[state=active]:shadow-md">
+                New Products
+              </TabsTrigger>
+              <TabsTrigger value="best-selling" className="rounded-full px-6 data-[state=active]:bg-white data-[state=active]:shadow-md">
+                Best Selling
+              </TabsTrigger>
+              <TabsTrigger value="featured-products" className="rounded-full px-6 data-[state=active]:bg-white data-[state=active]:shadow-md">
+                Featured
+              </TabsTrigger>
+            </TabsList>
+          </AnimateOnView>
+          
+          <TabsContent value="new-products">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            >
+              {newProducts.map((product, i) => (
+                <motion.div 
+                  key={product.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="h-full bg-card rounded-2xl shadow-lg overflow-hidden border border-border/50 hover:shadow-2xl transition-shadow"
+                >
+                  <ProductCard product={product} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </TabsContent>
+          
+          <TabsContent value="best-selling">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            >
+              {bestSelling.map((product, i) => (
+                <motion.div 
+                  key={product.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="h-full bg-card rounded-2xl shadow-lg overflow-hidden border border-border/50 hover:shadow-2xl transition-shadow"
+                >
+                  <ProductCard product={product} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </TabsContent>
+          
+          <TabsContent value="featured-products">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {featuredProducts.map((product, i) => (
+                <motion.div 
+                  key={product.id}
+                  variants={itemVariants}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="h-full bg-card rounded-2xl shadow-lg overflow-hidden border border-border/50 hover:shadow-2xl transition-shadow"
+                >
+                  <ProductCard product={product} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </TabsContent>
+        </Tabs>
       </section>
 
       {/* Final CTA */}
-      <section className="bg-amber-50/50 dark:bg-amber-900/10 py-12">
+      <section className="bg-gradient-to-br from-amber-50 via-amber-100/50 to-orange-50 dark:from-amber-950/20 dark:via-amber-900/10 dark:to-orange-950/20 py-16">
         <AnimateOnView className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold">Looking for unlimited downloads?</h2>
-            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Get access to our entire library of themes, templates, and more with a single subscription.</p>
-             <Button className="mt-6" size="lg" asChild>
-                <Link href="#">Learn More About Envato Elements</Link>
-            </Button>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto space-y-6"
+          >
+            <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
+              <Heart className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <span className="font-semibold text-sm text-amber-700 dark:text-amber-300 uppercase tracking-wider">Join Thousands of Creators</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold">Looking for unlimited downloads?</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Get access to our entire library of themes, templates, and more with a single subscription. Start creating today!
+            </p>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button size="lg" className="mt-4 shadow-xl group text-lg px-8 py-6" asChild>
+                <Link href="#">
+                  Learn More About Envato Elements
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
         </AnimateOnView>
       </section>
-
     </div>
   );
 }
