@@ -35,7 +35,7 @@ export default function PaymentPage() {
   const { cart, clearCart } = useCart();
   const router = useRouter();
   const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-  const tax = subtotal * 0.08;
+  const tax = subtotal * 0.05;
   const total = subtotal + tax;
 
   const handlePlaceOrder = () => {
@@ -117,9 +117,7 @@ export default function PaymentPage() {
                 <p className="flex items-center gap-1 text-muted-foreground">
                   Tax <Info className="w-3.5 h-3.5" />
                 </p>
-                <Link href="#" className="text-sm text-primary hover:underline">
-                  Enter address to calculate
-                </Link>
+                <p>Rs {tax.toFixed(2)}</p>
               </div>
             </div>
 
@@ -169,7 +167,7 @@ export default function PaymentPage() {
               
               <div className="space-y-1.5">
                 <Label htmlFor="billing-address">Billing address</Label>
-                <Select defaultValue="US">
+                <Select defaultValue="IN">
                     <SelectTrigger id="billing-address">
                         <SelectValue placeholder="Country" />
                     </SelectTrigger>

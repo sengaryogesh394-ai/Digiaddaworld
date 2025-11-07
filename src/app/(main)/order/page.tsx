@@ -23,7 +23,7 @@ export default function OrderConfirmationPage() {
   }, []);
 
   const subtotal = orderedItems.reduce((acc, item) => acc + item.price, 0);
-  const tax = subtotal * 0.08;
+  const tax = subtotal * 0.05;
   const total = subtotal + tax;
 
   if (orderedItems.length === 0) {
