@@ -23,12 +23,19 @@ import { useEffect, useState } from 'react';
 
 export default function HomePage() {
   const [subscriptionApi, setSubscriptionApi] = useState<any>(null);
+  const [heroApi, setHeroApi] = useState<any>(null);
 
   useEffect(() => {
     if (!subscriptionApi) return;
     const id = setInterval(() => subscriptionApi.scrollNext(), 5000);
     return () => clearInterval(id);
   }, [subscriptionApi]);
+
+  useEffect(() => {
+    if (!heroApi) return;
+    const id = setInterval(() => heroApi.scrollNext(), 5000);
+    return () => clearInterval(id);
+  }, [heroApi]);
 
 
   function getImage(id: string) {
@@ -40,6 +47,12 @@ export default function HomePage() {
     getImage('creative-collage-1'),
     getImage('creative-collage-2'),
     getImage('creative-collage-3'),
+  ];
+  
+  const heroImages = [
+    getImage('hero-bg-1'),
+    getImage('hero-bg-2'),
+    getImage('hero-bg-3'),
   ];
 
   const featuredProducts = mockProducts.filter(p => p.isFeatured).slice(0, 4);
@@ -55,32 +68,34 @@ export default function HomePage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 h-[420px] md:h-[380px]">
           {/* Main Promo */}
-          <div className="relative xl:col-span-2 bg-amber-100 dark:bg-amber-900/20 rounded-xl p-8 flex items-center overflow-hidden">
-            <div className="z-10 relative">
+          <div className="relative xl:col-span-2 rounded-xl flex items-center overflow-hidden text-white">
+             <Carousel setApi={setHeroApi} opts={{ loop: true }} className="absolute inset-0 w-full h-full">
+                <CarouselContent>
+                    {heroImages.map((image, i) => (
+                        <CarouselItem key={i}>
+                            <div className="relative h-full w-full">
+                                <Image src={image.url} alt={image.hint} fill className="object-cover" />
+                            </div>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+            </Carousel>
+            <div className="absolute inset-0 bg-black/60"></div>
+            <div className="z-10 relative p-8">
                 <Link href="#" className="inline-flex items-center bg-green-200 dark:bg-green-700/50 text-green-800 dark:text-green-200 text-xs font-bold px-3 py-1 rounded-full mb-4">
                     NEWS
                     <span className="ml-2 font-normal text-green-700 dark:text-green-300">Limited Time Offer 20% OFF</span>
                     <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
-                <h1 className="text-3xl md:text-4xl font-bold max-w-sm">
+                <h1 className="text-3xl md:text-4xl font-bold max-w-sm text-white">
                     {mainPromoProduct?.name}
                 </h1>
-                <p className="mt-2 text-muted-foreground">Starts from</p>
-                <p className="text-2xl font-bold text-primary">Rs {mainPromoProduct?.price.toFixed(2)}</p>
-                <Button asChild className="mt-6">
+                <p className="mt-2 text-white/80">Starts from</p>
+                <p className="text-2xl font-bold text-white">Rs {mainPromoProduct?.price.toFixed(2)}</p>
+                <Button asChild className="mt-6 bg-white text-black hover:bg-white/90">
                     <Link href={`/shop/${mainPromoProduct?.id}`}>Shop Now</Link>
                 </Button>
             </div>
-            {mainPromoProduct && (
-                <Image
-                    src={mainPromoProduct.media[0].url}
-                    alt={mainPromoProduct.name}
-                    width={300}
-                    height={300}
-                    className="absolute right-0 bottom-0 -mr-12 mb-4 hidden md:block object-contain"
-                    data-ai-hint={mainPromoProduct.media[0].hint}
-                />
-            )}
           </div>
           {/* Side Promos */}
           <div className="hidden lg:flex flex-col gap-6">
