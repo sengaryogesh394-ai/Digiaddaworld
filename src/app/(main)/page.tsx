@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -7,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -23,14 +22,7 @@ import {
 import { useEffect, useState } from 'react';
 
 export default function HomePage() {
-  const [heroApi, setHeroApi] = useState<any>(null);
   const [subscriptionApi, setSubscriptionApi] = useState<any>(null);
-
-  useEffect(() => {
-    if (!heroApi) return;
-    const id = setInterval(() => heroApi.scrollNext(), 5000);
-    return () => clearInterval(id);
-  }, [heroApi]);
 
   useEffect(() => {
     if (!subscriptionApi) return;
@@ -44,12 +36,6 @@ export default function HomePage() {
     return { id: image?.id || '', url: image?.imageUrl || '', hint: image?.imageHint || '' };
   }
 
-  const heroImages = [
-    getImage('prod-instagram-course-1'),
-    getImage('prod-graphic-design-bundle-1'),
-    getImage('prod-adobe-suite-1'),
-  ];
-
   const subscriptionImages = [
     getImage('creative-collage-1'),
     getImage('creative-collage-2'),
@@ -59,41 +45,87 @@ export default function HomePage() {
   const featuredProducts = mockProducts.filter(p => p.isFeatured).slice(0, 4);
   const newProducts = mockProducts.slice(0, 8);
   const bestSelling = mockProducts.slice(4, 12);
+  const mainPromoProduct = mockProducts.find(p => p.id === 'prod-instagram-course');
+  const topRightPromoProduct = mockProducts.find(p => p.id === 'prod-graphic-design-bundle');
+  const bottomRightPromoProduct = mockProducts.find(p => p.id === 'prod-ai-reels-fitness');
 
   return (
     <div className="space-y-16 pb-16 bg-background">
       {/* Hero Section */}
-      <section className="relative h-[420px] md:h-[520px] w-full overflow-hidden text-white flex items-center">
-        <div className="absolute inset-0 -z-10">
-          <Carousel setApi={setHeroApi} opts={{ loop: true }}>
-            <CarouselContent>
-              {heroImages.map((image, i) => (
-                <CarouselItem key={i}>
-                  <div className="relative h-[420px] md:h-[520px] w-full">
-                    <Image src={image.url} alt={image.hint} fill className="object-cover" />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="container relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-headline">Everything you need for your next project</h1>
-          <p className="mt-4 max-w-2xl mx-auto text-white/80">
-            Templates, presets, bundles and more. Explore thousands of high-quality digital assets.
-          </p>
-          <form className="mt-8 max-w-xl mx-auto">
-            <div className="flex gap-2">
-              <Input placeholder="Search templates, presets, bundles…" className="h-12 bg-white text-black placeholder:text-neutral-500 flex-grow" />
-              <Button size="lg" className="h-12 bg-primary hover:bg-primary/90">Search</Button>
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 h-[420px] md:h-[380px]">
+          {/* Main Promo */}
+          <div className="relative xl:col-span-2 bg-amber-100 dark:bg-amber-900/20 rounded-xl p-8 flex items-center overflow-hidden">
+            <div className="z-10 relative">
+                <Link href="#" className="inline-flex items-center bg-green-200 dark:bg-green-700/50 text-green-800 dark:text-green-200 text-xs font-bold px-3 py-1 rounded-full mb-4">
+                    NEWS
+                    <span className="ml-2 font-normal text-green-700 dark:text-green-300">Limited Time Offer 20% OFF</span>
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                </Link>
+                <h1 className="text-3xl md:text-4xl font-bold max-w-sm">
+                    {mainPromoProduct?.name}
+                </h1>
+                <p className="mt-2 text-muted-foreground">Starts from</p>
+                <p className="text-2xl font-bold text-primary">Rs {mainPromoProduct?.price.toFixed(2)}</p>
+                <Button asChild className="mt-6">
+                    <Link href={`/shop/${mainPromoProduct?.id}`}>Shop Now</Link>
+                </Button>
             </div>
-          </form>
+            {mainPromoProduct && (
+                <Image
+                    src={mainPromoProduct.media[0].url}
+                    alt={mainPromoProduct.name}
+                    width={300}
+                    height={300}
+                    className="absolute right-0 bottom-0 -mr-12 mb-4 hidden md:block object-contain"
+                    data-ai-hint={mainPromoProduct.media[0].hint}
+                />
+            )}
+          </div>
+          {/* Side Promos */}
+          <div className="hidden lg:flex flex-col gap-6">
+             <div className="relative bg-amber-100/50 dark:bg-amber-900/10 rounded-xl p-6 flex-1 flex items-center overflow-hidden">
+                <div className="z-10">
+                    <h3 className="text-xl font-bold text-amber-600">Best Products</h3>
+                    <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary flex items-center">
+                        View more <ArrowRight className="w-3 h-3 ml-1" />
+                    </Link>
+                </div>
+                 {topRightPromoProduct && (
+                    <Image
+                        src={getImage('hero-side-1').url}
+                        alt="Best products"
+                        width={100}
+                        height={100}
+                        className="absolute right-4 bottom-4 object-contain"
+                        data-ai-hint={getImage('hero-side-1').hint}
+                    />
+                )}
+             </div>
+             <div className="relative bg-blue-100 dark:bg-blue-900/10 rounded-xl p-6 flex-1 flex items-center overflow-hidden">
+                <div className="z-10">
+                    <h3 className="text-xl font-bold text-blue-600">20% Discounts</h3>
+                     <Link href="/shop" className="text-sm text-muted-foreground hover:text-primary flex items-center">
+                        View more <ArrowRight className="w-3 h-3 ml-1" />
+                    </Link>
+                </div>
+                 {bottomRightPromoProduct && (
+                     <Image
+                        src={getImage('hero-side-2').url}
+                        alt="Discounted products"
+                        width={100}
+                        height={100}
+                        className="absolute right-4 bottom-4 object-contain"
+                        data-ai-hint={getImage('hero-side-2').hint}
+                    />
+                )}
+             </div>
+          </div>
         </div>
       </section>
 
       {/* Categories Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-10">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {mockCategories.slice(0, 3).map((category, i) => (
             <AnimateOnView key={category.id} delay={i * 0.1}>
@@ -243,3 +275,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+    
