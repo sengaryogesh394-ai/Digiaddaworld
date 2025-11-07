@@ -16,6 +16,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  useCarousel,
 } from '@/components/ui/carousel';
 import { useEffect, useState } from 'react';
 import { AnimateOnView } from '@/components/shared/AnimateOnView';
@@ -66,9 +67,6 @@ const CarouselSlideContent = ({
     );
 };
 
-// We need to import useCarousel for the new component
-import { useCarousel } from '@/components/ui/carousel';
-
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -78,7 +76,7 @@ export default function HomePage() {
 
   const heroSlides = [
     {
-      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=800&fit=crop',
+      image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
       badge: 'TRENDING NOW',
       title: 'Instagram Growth Mastery Course',
       price: 199.99,
@@ -197,35 +195,7 @@ export default function HomePage() {
           >
             <Carousel setApi={setHeroApi} opts={{ loop: true }} className="h-full">
               <CarouselContent className="h-full">
-                {[
-                  {
-                    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=800&fit=crop',
-                    badge: 'TRENDING NOW',
-                    title: 'Instagram Growth Mastery Course',
-                    price: 199.99,
-                    originalPrice: 299.99,
-                    tag: 'Featured',
-                    link: '/shop/prod-instagram-course'
-                  },
-                  {
-                    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop',
-                    badge: 'BEST SELLER',
-                    title: 'Graphic Design Bundle',
-                    price: 79.99,
-                    originalPrice: 119.99,
-                    tag: 'Featured',
-                    link: '/shop/prod-graphic-design-bundle'
-                  },
-                  {
-                    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop',
-                    badge: 'LIMITED TIME OFFER',
-                    title: '500+ AI Fitness Reels Bundle',
-                    price: 49.99,
-                    originalPrice: 99.99,
-                    tag: 'Hot Deal',
-                    link: '/shop/prod-ai-reels-fitness'
-                  }
-                ].map((slide, i) => (
+                {heroSlides.map((slide, i) => (
                   <CarouselItem key={i} className="h-full">
                     <div className="relative h-full w-full">
                       <Image 
@@ -234,39 +204,13 @@ export default function HomePage() {
                         fill 
                         className="object-cover transition-transform duration-700 group-hover:scale-105" 
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
               
-              {[
-                {
-                  badge: 'TRENDING NOW',
-                  title: 'Instagram Growth Mastery Course',
-                  price: 199.99,
-                  originalPrice: 299.99,
-                  tag: 'Featured',
-                  link: '/shop/prod-instagram-course'
-                },
-                {
-                  badge: 'BEST SELLER',
-                  title: 'Graphic Design Bundle',
-                  price: 79.99,
-                  originalPrice: 119.99,
-                  tag: 'Featured',
-                  link: '/shop/prod-graphic-design-bundle'
-                },
-                {
-                  badge: 'LIMITED TIME OFFER',
-                  title: '500+ AI Fitness Reels Bundle',
-                  price: 49.99,
-                  originalPrice: 99.99,
-                  tag: 'Hot Deal',
-                  link: '/shop/prod-ai-reels-fitness'
-                }
-              ].map((slide, i) => (
+              {heroSlides.map((slide, i) => (
                 <CarouselSlideContent key={i} slideIndex={i} className="flex items-end">
                   <div className="p-8 md:p-12 w-full">
                     <motion.div
