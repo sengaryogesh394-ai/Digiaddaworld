@@ -347,8 +347,18 @@
     },
     {
       "id": "promo-wedding-2",
-      "imageUrl": "https://images.unsplash.com/photo-1597665407761-16ef09c4386c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxpbnZpdGF0aW9uJTIwZGVzaWduJTIwbW9iaWxlfGVufDB8fHx8MTc2MjQxMTIzNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1597665407761-16ef09c4386c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfGludml0YXRpb24lMjBkZXNpZ24lMjBtb2JpbGUlZW58MHx8fHwxNzYyNDExMjM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "invitation design mobile"
+    },
+    {
+      "id": "promo-wedding-3",
+      "imageUrl": "https://images.unsplash.com/photo-1616086790291-7443345511b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwY2FyZCUyMG1vYmlsZXxlbnwwfHx8fDE3NjI0MTEyMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding card mobile"
+    },
+    {
+      "id": "promo-wedding-4",
+      "imageUrl": "https://images.unsplash.com/photo-1598436571529-9e1279a3b680?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYXZlJTIwdGhlJTIwZGF0ZSUyMG1vYmlsZXxlbnwwfHx8fDE3NjI0MTEyMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "save the date mobile"
     },
     {
       "id": "promo-guarantee",
@@ -407,7 +417,7 @@
     },
     {
       "id": "hero-bg-3",
-      "imageUrl": "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb250ZW50JTIwY3JlYXRpb258ZW58MHx8fHwxNzIyMjc5Mzk4fDA&ixlibrb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb250ZW50JTIwY3JlYXRpb258ZW58MHx8fHwxNzIyMjc5Mzk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "content creation"
     },
     {

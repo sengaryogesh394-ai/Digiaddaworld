@@ -111,6 +111,30 @@ export default function ProductDetailsPage() {
                 </div>
             </section>
 
+            {/* Wedding Invitation Bundle Section */}
+            <section className="max-w-5xl mx-auto text-center py-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="bg-black rounded-3xl p-2 shadow-lg">
+                        <Image src={getImage('promo-wedding-1').url} alt="Wedding Invitation 1" width={250} height={500} className="rounded-2xl" data-ai-hint={getImage('promo-wedding-1').hint} />
+                    </div>
+                    <div className="bg-black rounded-3xl p-2 shadow-lg">
+                        <Image src={getImage('promo-wedding-2').url} alt="Wedding Invitation 2" width={250} height={500} className="rounded-2xl" data-ai-hint={getImage('promo-wedding-2').hint} />
+                    </div>
+                    <div className="bg-black rounded-3xl p-2 shadow-lg">
+                        <Image src={getImage('promo-wedding-3').url} alt="Wedding Invitation 3" width={250} height={500} className="rounded-2xl" data-ai-hint={getImage('promo-wedding-3').hint} />
+                    </div>
+                    <div className="bg-black rounded-3xl p-2 shadow-lg">
+                        <Image src={getImage('promo-wedding-4').url} alt="Wedding Invitation 4" width={250} height={500} className="rounded-2xl" data-ai-hint={getImage('promo-wedding-4').hint} />
+                    </div>
+                </div>
+                <p className="mt-6 text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Get the Ultimate Wedding Invitation Bundle for Just <span className="font-bold">₹497</span> + Free Bonuses Worth <span className="font-bold">₹45,000</span>! FREE + Canva Pro Account + All 3D Templates
+                </p>
+                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg mt-4 shadow-lg transform hover:scale-105 transition-transform" onClick={handleBuyNow}>
+                    Get Wedding Pack @ ₹497 <ArrowRight className="ml-2"/>
+                </Button>
+            </section>
+
              {/* What You Get Section */}
              <section className="max-w-4xl mx-auto">
                 <h2 className="text-center text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">
