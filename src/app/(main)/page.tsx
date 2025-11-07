@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -74,7 +75,7 @@ export default function HomePage() {
                     {heroImages.map((image, i) => (
                         <CarouselItem key={i}>
                             <div className="relative h-full w-full">
-                                <Image src={image.url} alt={image.hint} fill className="object-cover" />
+                                <Image src={image.url} alt={image.hint} fill className="object-cover" data-ai-hint={image.hint} />
                             </div>
                         </CarouselItem>
                     ))}
@@ -290,5 +291,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    
