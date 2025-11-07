@@ -45,7 +45,9 @@ export default function PaymentPage() {
       title: 'Order placed successfully!',
       description: 'You will now be redirected to the confirmation page.',
     });
-    router.push('/order');
+    setTimeout(() => {
+      router.push('/order');
+    }, 500);
   };
 
   if (cart.length === 0) {
@@ -205,7 +207,7 @@ export default function PaymentPage() {
                 </div>
               </div>
 
-              <Button size="lg" className="w-full text-base" onClick={handlePlaceOrder}>
+              <Button size="lg" className="w-full text-base" onClick={handlePlaceOrder} type="button">
                 Pay
               </Button>
             </form>
