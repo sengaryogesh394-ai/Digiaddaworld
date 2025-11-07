@@ -81,11 +81,11 @@ export default function HomePage() {
                     {heroImages.map((image, i) => (
                         <CarouselItem key={i}>
                            <Image src={image.url} alt={image.hint} fill className="object-cover rounded-xl" data-ai-hint={image.hint} />
+                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
             </Carousel>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
             <div className="z-10 relative p-8 md:p-12">
                 <p className="font-semibold text-lg">LIMITED TIME OFFER</p>
                 <h1 className="text-4xl md:text-5xl font-bold text-white mt-2">
