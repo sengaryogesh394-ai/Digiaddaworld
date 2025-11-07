@@ -47,7 +47,7 @@ export default function ProductDetailsPage() {
     }
   }
   
-  const originalPrice = product.price * 14;
+  const originalPrice = product.price * 20;
 
   return (
     <div className="bg-rose-50/50 dark:bg-rose-900/10 py-12">
@@ -61,26 +61,10 @@ export default function ProductDetailsPage() {
                     {product.name}
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mt-2">
-                    Beginner-Friendly & 100% Ready-Made Project
+                    Beginner-Friendly & 100% Ready-Made Projects
                 </p>
             </section>
             
-            {/* Purchase Section */}
-            <section className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl font-bold text-orange-500">Special Offer <span className="text-gray-400 line-through">Rs {originalPrice.toFixed(2)}</span> Rs {product.price.toFixed(2)}</h2>
-                <div className="my-6">
-                    <CountdownTimer />
-                </div>
-                <div className="flex flex-col gap-4">
-                    <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={handleAddToCart}>
-                        <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR Rs {product.price.toFixed(2)}
-                    </Button>
-                    <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform" onClick={handleBuyNow}>
-                        Buy Now <ArrowRight className="ml-2"/>
-                    </Button>
-                </div>
-            </section>
-
             {/* Image Gallery */}
             <section className="bg-indigo-100/50 dark:bg-indigo-900/20 py-8 rounded-lg">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
@@ -108,6 +92,22 @@ export default function ProductDetailsPage() {
                             </div>
                         </div>
                     ))}
+                </div>
+            </section>
+
+            {/* Purchase Section */}
+            <section className="max-w-3xl mx-auto text-center">
+                <h2 className="text-3xl font-bold text-orange-500">Special Offer <span className="text-gray-400 line-through">Rs {originalPrice.toFixed(2)}</span> Rs {product.price.toFixed(2)}</h2>
+                <div className="my-6">
+                    <CountdownTimer />
+                </div>
+                <div className="flex flex-col gap-4">
+                    <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={handleAddToCart}>
+                        <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR Rs {product.price.toFixed(2)}
+                    </Button>
+                    <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform" onClick={handleBuyNow}>
+                        Buy Now <ArrowRight className="ml-2"/>
+                    </Button>
                 </div>
             </section>
 
@@ -222,3 +222,5 @@ export default function ProductDetailsPage() {
     </div>
   );
 }
+
+    
