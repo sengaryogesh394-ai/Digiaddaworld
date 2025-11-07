@@ -82,9 +82,7 @@ export default function HomePage() {
                 <CarouselContent>
                     {heroImages.map((image, i) => (
                         <CarouselItem key={i}>
-                            <div className="relative h-full w-full">
-                                <Image src={image.url} alt={image.hint} fill className="object-cover rounded-xl" data-ai-hint={image.hint} />
-                            </div>
+                           <Image src={image.url} alt={image.hint} fill className="object-cover rounded-xl" data-ai-hint={image.hint} />
                         </CarouselItem>
                     ))}
                 </CarouselContent>
@@ -293,5 +291,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    
