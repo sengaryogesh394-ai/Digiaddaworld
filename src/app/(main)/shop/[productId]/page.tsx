@@ -25,6 +25,10 @@ export default function ProductDetailsPage() {
     notFound();
   }
 
+  // Find a different featured product to promote
+  const promoProduct = mockProducts.find(p => p.isFeatured && p.id !== product.id) || mockProducts.find(p => p.id !== product.id);
+
+
     const getImage = (id: string) => {
         const image = PlaceHolderImages.find(img => img.id === id);
         return { id: image?.id || '', url: image?.imageUrl || 'https://picsum.photos/seed/default/120/120', hint: image?.imageHint || 'guarantee' };
@@ -43,6 +47,13 @@ export default function ProductDetailsPage() {
   const handleBuyNow = () => {
     if (product) {
         addToCart(product);
+        router.push('/checkout');
+    }
+  }
+
+  const handlePromoBuyNow = () => {
+    if (promoProduct) {
+        addToCart(promoProduct);
         router.push('/checkout');
     }
   }
@@ -111,29 +122,30 @@ export default function ProductDetailsPage() {
                 </div>
             </section>
 
-            {/* Wedding Invitation Bundle Section */}
-            <section className="max-w-5xl mx-auto text-center py-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="bg-black rounded-3xl p-2 shadow-lg">
-                        <Image src={getImage('promo-wedding-1').url} alt="Wedding Invitation 1" width={250} height={500} className="rounded-2xl" data-ai-hint={getImage('promo-wedding-1').hint} />
-                    </div>
-                    <div className="bg-black rounded-3xl p-2 shadow-lg">
-                        <Image src={getImage('promo-wedding-2').url} alt="Wedding Invitation 2" width={250} height={500} className="rounded-2xl" data-ai-hint={getImage('promo-wedding-2').hint} />
-                    </div>
-                    <div className="bg-black rounded-3xl p-2 shadow-lg">
-                        <Image src={getImage('promo-wedding-3').url} alt="Wedding Invitation 3" width={250} height={500} className="rounded-2xl" data-ai-hint={getImage('promo-wedding-3').hint} />
-                    </div>
-                    <div className="bg-black rounded-3xl p-2 shadow-lg">
-                        <Image src={getImage('promo-wedding-4').url} alt="Wedding Invitation 4" width={250} height={500} className="rounded-2xl" data-ai-hint={getImage('promo-wedding-4').hint} />
-                    </div>
-                </div>
-                <p className="mt-6 text-lg font-medium text-gray-700 dark:text-gray-300">
-                    Get the Ultimate Wedding Invitation Bundle for Just <span className="font-bold">₹497</span> + Free Bonuses Worth <span className="font-bold">₹45,000</span>! FREE + Canva Pro Account + All 3D Templates
-                </p>
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg mt-4 shadow-lg transform hover:scale-105 transition-transform" onClick={handleBuyNow}>
-                    Get Wedding Pack @ ₹497 <ArrowRight className="ml-2"/>
-                </Button>
-            </section>
+            {/* Dynamic Promo Bundle Section */}
+            {promoProduct && (
+              <section className="max-w-5xl mx-auto text-center py-8">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {promoProduct.media.slice(0, 4).map((item, index) => (
+                        <div key={index} className="bg-black rounded-3xl p-2 shadow-lg">
+                            <div className="relative aspect-[9/19] w-full rounded-2xl overflow-hidden">
+                            {item.type === 'video' ? (
+                                <video src={item.url} autoPlay loop muted playsInline className="object-cover w-full h-full" />
+                            ) : (
+                                <Image src={item.url} alt={promoProduct.name} fill className="object-cover" data-ai-hint={item.hint} />
+                            )}
+                            </div>
+                        </div>
+                      ))}
+                  </div>
+                  <p className="mt-6 text-lg font-medium text-gray-700 dark:text-gray-300">
+                      Get the Ultimate <span className="font-bold">{promoProduct.name}</span> for Just <span className="font-bold">₹{promoProduct.price.toFixed(2)}</span> + Free Bonuses!
+                  </p>
+                  <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg mt-4 shadow-lg transform hover:scale-105 transition-transform" onClick={handlePromoBuyNow}>
+                      Get {promoProduct.category} Pack @ ₹{promoProduct.price.toFixed(2)} <ArrowRight className="ml-2"/>
+                  </Button>
+              </section>
+            )}
 
              {/* What You Get Section */}
              <section className="max-w-4xl mx-auto">
@@ -246,5 +258,3 @@ export default function ProductDetailsPage() {
     </div>
   );
 }
-
-    
