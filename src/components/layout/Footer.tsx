@@ -12,7 +12,6 @@ const sections = [
       { name: 'Contact Us', href: '/contact' },
       { name: 'FAQs', href: '/faq' },
       { name: 'Blog', href: '/blog' },
-      { name: 'Promo', href: '/promo' },
     ],
   },
   {
