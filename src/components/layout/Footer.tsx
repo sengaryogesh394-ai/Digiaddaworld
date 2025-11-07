@@ -10,7 +10,7 @@ const sections = [
     links: [
       { name: 'About Us', href: '/about' },
       { name: 'Contact Us', href: '/contact' },
-      { name: 'FAQs', href: '#' },
+      { name: 'FAQs', href: '/faq' },
       { name: 'Blog', href: '/blog' },
       { name: 'Promo', href: '/promo' },
     ],
@@ -21,7 +21,6 @@ const sections = [
       { name: 'My Account', href: '/login' },
       { name: 'Order History', href: '/cart' },
       { name: 'Shopping Cart', href: '/cart' },
-      { name: 'Newsletter', href: '#' },
     ],
   },
   {
