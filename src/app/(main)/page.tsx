@@ -14,8 +14,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   useCarousel,
 } from '@/components/ui/carousel';
 import { useEffect, useState } from 'react';
@@ -621,4 +619,6 @@ export default function HomePage() {
     </div>
   );
 }
+    
+
     
