@@ -7,11 +7,8 @@ import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
-import { AnimateOnView } from '@/components/shared/AnimateOnView';
 import { motion } from 'framer-motion';
 import {
   Carousel,
@@ -21,6 +18,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { useEffect, useState } from 'react';
+import { AnimateOnView } from '@/components/shared/AnimateOnView';
 
 export default function HomePage() {
   const [subscriptionApi, setSubscriptionApi] = useState<any>(null);
@@ -77,8 +75,8 @@ export default function HomePage() {
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-auto lg:h-[420px]">
           {/* Main Promo */}
-          <div className="relative lg:col-span-2 rounded-xl flex items-center overflow-hidden text-white min-h-[380px]">
-             <Carousel setApi={setHeroApi} opts={{ loop: true }} className="absolute inset-0 w-full h-full">
+           <div className="relative lg:col-span-2 rounded-xl flex items-end overflow-hidden text-white min-h-[420px]">
+            <Carousel setApi={setHeroApi} opts={{ loop: true }} className="absolute inset-0 w-full h-full -z-10">
                 <CarouselContent>
                     {heroImages.map((image, i) => (
                         <CarouselItem key={i}>
@@ -87,13 +85,17 @@ export default function HomePage() {
                     ))}
                 </CarouselContent>
             </Carousel>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
             <div className="z-10 relative p-8 md:p-12">
-                <p className="font-semibold text-lg text-primary" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>GAMING GEAR</p>
-                <h1 className="text-4xl md:text-5xl font-bold text-white mt-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                <p className="font-semibold text-lg">LIMITED TIME OFFER</p>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mt-2">
                     {mainPromoProduct?.name}
                 </h1>
-                <p className="mt-4 text-white/90 max-w-md" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>{mainPromoProduct?.description}</p>
-                <Button asChild className="mt-8 bg-white text-black hover:bg-white/90">
+                <div className="flex items-baseline gap-4 mt-4">
+                  <p className="text-3xl font-bold text-white">Rs {mainPromoProduct?.price.toFixed(2)}</p>
+                  <p className="text-xl text-white/80 line-through">Rs {(mainPromoProduct?.price || 0 * 1.5).toFixed(2)}</p>
+                </div>
+                <Button asChild className="mt-6">
                     <Link href={`/shop/${mainPromoProduct?.id}`}>Shop Now</Link>
                 </Button>
             </div>
@@ -102,7 +104,7 @@ export default function HomePage() {
           <div className="hidden lg:flex flex-col gap-6">
              <div className="relative rounded-xl p-8 flex-1 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-purple-500 to-indigo-600 text-white">
                 <div className="z-10">
-                    <p className="text-sm uppercase tracking-wider">New Arrivals</p>
+                    <p className="text-sm uppercase tracking-wider">Best Seller</p>
                     <h3 className="text-2xl font-bold mt-1">{topRightPromoProduct?.name}</h3>
                     <Button variant="link" asChild className="p-0 mt-2 text-white/90">
                         <Link href={`/shop/${topRightPromoProduct?.id}`}>Shop Now <ArrowRight className="w-4 h-4 ml-2" /></Link>
@@ -121,7 +123,7 @@ export default function HomePage() {
              </div>
              <div className="relative rounded-xl p-8 flex-1 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-pink-500 to-rose-600 text-white">
                 <div className="z-10">
-                    <p className="text-sm uppercase tracking-wider">Smart Speaker</p>
+                    <p className="text-sm uppercase tracking-wider">25% Off</p>
                      <h3 className="text-2xl font-bold mt-1">{bottomRightPromoProduct?.name}</h3>
                      <Button variant="link" asChild className="p-0 mt-2 text-white/90">
                         <Link href={`/shop/${bottomRightPromoProduct?.id}`}>Shop Now <ArrowRight className="w-4 h-4 ml-2" /></Link>
@@ -144,13 +146,13 @@ export default function HomePage() {
 
       {/* Categories Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-        <Card className="p-6 bg-secondary/50">
-            <Carousel setApi={setCategoryApi} opts={{ align: "start", loop: true }}>
+        <div className="p-6">
+            <Carousel setApi={setCategoryApi} opts={{ align: "start", loop: true, slidesToScroll: 3 }}>
                 <CarouselContent className="-ml-4">
                     {mockCategories.map((category, i) => (
                         <CarouselItem key={category.id} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
                              <Link href={`/shop?category=${category.id}`} className="flex flex-col items-center gap-3 group">
-                                <div className="w-24 h-24 rounded-full bg-background border-2 border-transparent group-hover:border-primary transition-all duration-300 flex items-center justify-center overflow-hidden">
+                                <div className="w-24 h-24 rounded-full bg-secondary border-2 border-transparent group-hover:border-primary transition-all duration-300 flex items-center justify-center overflow-hidden">
                                      <Image 
                                         src={category.image.url} 
                                         alt={category.name} 
@@ -168,13 +170,13 @@ export default function HomePage() {
                  <CarouselPrevious className="hidden md:flex" />
                  <CarouselNext className="hidden md:flex" />
             </Carousel>
-        </Card>
+        </div>
       </section>
 
       {/* Featured Products Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
         <AnimateOnView>
-          <div className="bg-card p-0 rounded-lg">
+          <div className="p-0 rounded-lg">
               <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
                   <div>
                       <h2 className="text-3xl font-bold">Featured Products</h2>
