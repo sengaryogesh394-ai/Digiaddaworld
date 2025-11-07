@@ -57,7 +57,7 @@ export default function HomePage() {
   ];
   
   const heroImages = [
-    getImage('hero-bg-1'),
+    getImage('user-hero-bg-1'),
     getImage('hero-bg-2'),
     getImage('hero-bg-3'),
   ];

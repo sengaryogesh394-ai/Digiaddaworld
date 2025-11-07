@@ -217,12 +217,12 @@
     },
     {
       "id": "prod-money-ebooks",
-      "imageUrl": "https://images.unsplash.com/photo-1734329111031-16ca9ec04a77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZmluYW5jZSUyMGJvb2t8ZW58MHx8fHwxNzYyNDA1NDMzfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1734329111031-16ca9ec04a77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZmluYW5jZSUyMGJvb2t8ZW58MHx8fHwxNzYyNDA1NDMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "finance book"
     },
     {
       "id": "prod-pan-india-database",
-      "imageUrl": "https://images.unsplash.com/photo-1738082956254-1dd63ad1db71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGF0YSUyMG5ldHdvcmt8ZW58MHx8fHwxNzYyMzY2ODA3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1738082956254-1dd63ad1db71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGF0YSUyMG5ldHdvcmt8ZW58MHx8fHwxNzYyMzY2ODA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "data network"
     },
     {
@@ -272,12 +272,12 @@
     },
     {
       "id": "prod-digital-marketing-course-3",
-      "imageUrl": "https://images.unsplash.com/photo-1611926653458-09294b3142bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzb2NpYWwlMjBtZWRpYSUyMGFkc3xlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1611926653458-09294b3142bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzb2NpYWwlMjBtZWRpYSUyMGFkc3xlbnwwfHx8fDE3NjI0MjE1NDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "social media ads"
     },
     {
       "id": "prod-digital-marketing-course-4",
-      "imageUrl": "https://images.unsplash.com/photo-1701674369013-e855eec245fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlbWFpbCUyMGNhbXBhaWdufGVufDB8fHx8MTc2MjMyOTI5NHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1701674369013-e855eec245fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlbWFpbCUyMGNhbXBhaWdufGVufDB8fHx8MTc2MjMyOTI5NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "email campaign"
     },
     {
@@ -322,7 +322,7 @@
     },
     {
       "id": "blog-3",
-      "imageUrl": "https://images.unsplash.com/photo-1758873272414-c0bf30332738?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFya2V0aW5nJTIwY2hhcnR8ZW58MHx8fHwxNzYyMjQ3MzU5fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1758873272414-c0bf30332738?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFya2V0aW5nJTIwY2hhcnR8ZW58MHx8fHwxNzYyMjQ3MzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "marketing chart"
     },
     {
@@ -409,6 +409,11 @@
       "id": "hero-bg-3",
       "imageUrl": "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb250ZW50JTIwY3JlYXRpb258ZW58MHx8fHwxNzIyMjc5Mzk4fDA&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "content creation"
+    },
+    {
+      "id": "user-hero-bg-1",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqY7GnIJQCKUPf1skuS7njtyGBYweo1xRv-Q&s",
+      "imageHint": "digital products"
     }
   ]
 }
