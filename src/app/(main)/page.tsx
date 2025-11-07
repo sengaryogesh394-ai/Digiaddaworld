@@ -9,7 +9,7 @@ import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight, Star, TrendingUp, Zap, Heart } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Carousel,
   CarouselContent,
@@ -20,10 +20,91 @@ import {
 import { useEffect, useState } from 'react';
 import { AnimateOnView } from '@/components/shared/AnimateOnView';
 
+const CarouselSlideContent = ({
+    slideIndex,
+    children,
+    className,
+  }: {
+    slideIndex: number;
+    children: React.ReactNode;
+    className?: string;
+  }) => {
+    const { api } = useCarousel();
+    const [current, setCurrent] = useState(0);
+  
+    useEffect(() => {
+      if (!api) return;
+  
+      const onSelect = () => {
+        setCurrent(api.selectedScrollSnap());
+      };
+  
+      api.on('select', onSelect);
+      onSelect();
+  
+      return () => {
+        api.off('select', onSelect);
+      };
+    }, [api]);
+  
+    return (
+      <div className={`absolute inset-0 z-10 ${className}`}>
+        <AnimatePresence>
+          {current === slideIndex && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="h-full w-full"
+            >
+              {children}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+};
+
+// We need to import useCarousel for the new component
+import { useCarousel } from '@/components/ui/carousel';
+
+
 export default function HomePage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [subscriptionApi, setSubscriptionApi] = useState<any>(null);
   const [heroApi, setHeroApi] = useState<any>(null);
   const [categoryApi, setCategoryApi] = useState<any>(null);
+
+  const heroSlides = [
+    {
+      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=800&fit=crop',
+      badge: 'TRENDING NOW',
+      title: 'Instagram Growth Mastery Course',
+      price: 199.99,
+      originalPrice: 299.99,
+      tag: 'Featured',
+      link: '/shop/prod-instagram-course'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop',
+      badge: 'BEST SELLER',
+      title: 'Graphic Design Bundle',
+      price: 79.99,
+      originalPrice: 119.99,
+      tag: 'Featured',
+      link: '/shop/prod-graphic-design-bundle'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop',
+      badge: 'LIMITED TIME OFFER',
+      title: '500+ AI Fitness Reels Bundle',
+      price: 49.99,
+      originalPrice: 99.99,
+      tag: 'Hot Deal',
+      link: '/shop/prod-ai-reels-fitness'
+    }
+  ];
 
   useEffect(() => {
     if (!subscriptionApi) return;
@@ -33,8 +114,18 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!heroApi) return;
+    
+    const onSelect = () => {
+      setCurrentSlide(heroApi.selectedScrollSnap());
+    };
+    
+    heroApi.on('select', onSelect);
     const id = setInterval(() => heroApi.scrollNext(), 6000);
-    return () => clearInterval(id);
+    
+    return () => {
+      heroApi.off('select', onSelect);
+      clearInterval(id);
+    };
   }, [heroApi]);
 
   useEffect(() => {
@@ -106,74 +197,124 @@ export default function HomePage() {
           >
             <Carousel setApi={setHeroApi} opts={{ loop: true }} className="h-full">
               <CarouselContent className="h-full">
-                {heroImages.map((image, i) => (
+                {[
+                  {
+                    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=800&fit=crop',
+                    badge: 'TRENDING NOW',
+                    title: 'Instagram Growth Mastery Course',
+                    price: 199.99,
+                    originalPrice: 299.99,
+                    tag: 'Featured',
+                    link: '/shop/prod-instagram-course'
+                  },
+                  {
+                    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop',
+                    badge: 'BEST SELLER',
+                    title: 'Graphic Design Bundle',
+                    price: 79.99,
+                    originalPrice: 119.99,
+                    tag: 'Featured',
+                    link: '/shop/prod-graphic-design-bundle'
+                  },
+                  {
+                    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop',
+                    badge: 'LIMITED TIME OFFER',
+                    title: '500+ AI Fitness Reels Bundle',
+                    price: 49.99,
+                    originalPrice: 99.99,
+                    tag: 'Hot Deal',
+                    link: '/shop/prod-ai-reels-fitness'
+                  }
+                ].map((slide, i) => (
                   <CarouselItem key={i} className="h-full">
                     <div className="relative h-full w-full">
                       <Image 
-                        src={image.url} 
-                        alt={image.hint} 
+                        src={slide.image} 
+                        alt={slide.title} 
                         fill 
                         className="object-cover transition-transform duration-700 group-hover:scale-105" 
-                        data-ai-hint={image.hint} 
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
+              
+              {[
+                {
+                  badge: 'TRENDING NOW',
+                  title: 'Instagram Growth Mastery Course',
+                  price: 199.99,
+                  originalPrice: 299.99,
+                  tag: 'Featured',
+                  link: '/shop/prod-instagram-course'
+                },
+                {
+                  badge: 'BEST SELLER',
+                  title: 'Graphic Design Bundle',
+                  price: 79.99,
+                  originalPrice: 119.99,
+                  tag: 'Featured',
+                  link: '/shop/prod-graphic-design-bundle'
+                },
+                {
+                  badge: 'LIMITED TIME OFFER',
+                  title: '500+ AI Fitness Reels Bundle',
+                  price: 49.99,
+                  originalPrice: 99.99,
+                  tag: 'Hot Deal',
+                  link: '/shop/prod-ai-reels-fitness'
+                }
+              ].map((slide, i) => (
+                <CarouselSlideContent key={i} slideIndex={i} className="flex items-end">
+                  <div className="p-8 md:p-12 w-full">
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.4 }}
+                      className="inline-flex items-center gap-2 bg-amber-500/90 backdrop-blur-sm px-4 py-2 rounded-full mb-4"
+                    >
+                      <Zap className="w-4 h-4 text-white" />
+                      <span className="font-semibold text-sm text-white uppercase tracking-wider">{slide.badge}</span>
+                    </motion.div>
+                    
+                    <motion.h1 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3, duration: 0.4 }}
+                      className="text-4xl md:text-6xl font-bold text-white mt-2 leading-tight"
+                    >
+                      {slide.title}
+                    </motion.h1>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4, duration: 0.4 }}
+                      className="flex items-baseline gap-4 mt-6"
+                    >
+                      <p className="text-4xl font-bold text-white">Rs {slide.price.toFixed(2)}</p>
+                      <p className="text-2xl text-white/70 line-through">Rs {slide.originalPrice.toFixed(2)}</p>
+                      <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">{slide.tag}</span>
+                    </motion.div>
+                    
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.4 }}
+                    >
+                      <Button asChild size="lg" className="mt-6 bg-white text-black hover:bg-white/90 shadow-xl group">
+                        <Link href={slide.link}>
+                          Shop Now 
+                          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </Button>
+                    </motion.div>
+                  </div>
+                </CarouselSlideContent>
+              ))}
             </Carousel>
-            
-            <div className="absolute inset-0 flex items-end z-10">
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="p-8 md:p-12 w-full"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="inline-flex items-center gap-2 bg-amber-500/90 backdrop-blur-sm px-4 py-2 rounded-full mb-4"
-                >
-                  <Zap className="w-4 h-4 text-white" />
-                  <span className="font-semibold text-sm text-white uppercase tracking-wider">Limited Time Offer</span>
-                </motion.div>
-                
-                <motion.h1 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="text-4xl md:text-6xl font-bold text-white mt-2 leading-tight"
-                >
-                  {mainPromoProduct?.name}
-                </motion.h1>
-                
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="flex items-baseline gap-4 mt-6"
-                >
-                  <p className="text-4xl font-bold text-white">Rs {mainPromoProduct?.price.toFixed(2)}</p>
-                  <p className="text-2xl text-white/70 line-through">Rs {((mainPromoProduct?.price || 0) * 1.5).toFixed(2)}</p>
-                  <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Save 33%</span>
-                </motion.div>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  <Button asChild size="lg" className="mt-6 bg-white text-black hover:bg-white/90 shadow-xl group">
-                    <Link href={`/shop/${mainPromoProduct?.id}`}>
-                      Shop Now 
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-                </motion.div>
-              </motion.div>
-            </div>
           </motion.div>
 
           {/* Vertical Side Cards */}
@@ -522,3 +663,4 @@ export default function HomePage() {
     </div>
   );
 }
+    
