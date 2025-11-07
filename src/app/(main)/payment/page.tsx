@@ -30,15 +30,21 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { CreditCard } from '@/components/shared/CreditCard';
+import { useToast } from '@/hooks/use-toast';
 
 export default function PaymentPage() {
   const { cart, clearCart } = useCart();
   const router = useRouter();
+  const { toast } = useToast();
   const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
   const tax = subtotal * 0.05;
   const total = subtotal + tax;
 
   const handlePlaceOrder = () => {
+    toast({
+      title: 'Order placed successfully!',
+      description: 'You will now be redirected to the confirmation page.',
+    });
     router.push('/order');
   };
 
@@ -99,7 +105,7 @@ export default function PaymentPage() {
                     <div>
                       <p className="font-medium">{item.name}</p>
                       <p className="text-sm text-muted-foreground">
-                        How to deploy Phoenix app...
+                        Digital Product
                       </p>
                     </div>
                   </div>
