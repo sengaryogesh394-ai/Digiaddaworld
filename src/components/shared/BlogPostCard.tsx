@@ -1,4 +1,6 @@
 
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import type { BlogPost } from '@/lib/types';
@@ -43,5 +45,3 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
     </motion.div>
   );
 }
-
-    
