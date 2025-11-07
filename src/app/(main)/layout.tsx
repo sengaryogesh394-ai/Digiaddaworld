@@ -12,13 +12,14 @@ export default function MainLayout({
 }) {
   const pathname = usePathname();
   const isProductPage = pathname.startsWith('/shop/') && pathname.split('/').length > 2;
+  const isPaymentPage = pathname === '/payment';
 
   return (
     <CartProvider>
       <div className="flex min-h-screen flex-col">
-        {!isProductPage && <Header />}
+        {!isProductPage && !isPaymentPage && <Header />}
         <main className="flex-1">{children}</main>
-        {!isProductPage && <Footer />}
+        {!isProductPage && !isPaymentPage && <Footer />}
       </div>
     </CartProvider>
   );
