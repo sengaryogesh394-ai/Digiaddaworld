@@ -89,7 +89,7 @@ export default function HomePage() {
                     ))}
                 </CarouselContent>
             </Carousel>
-            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="absolute inset-0 bg-black/40"></div>
             <div className="z-10 relative p-8 md:p-12">
                 <p className="font-semibold text-lg text-primary">GAMING GEAR</p>
                 <h1 className="text-4xl md:text-5xl font-bold text-white mt-2">
