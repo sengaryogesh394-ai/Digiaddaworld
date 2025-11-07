@@ -83,18 +83,18 @@ export default function HomePage() {
                     {heroImages.map((image, i) => (
                         <CarouselItem key={i}>
                             <div className="relative h-full w-full">
-                                <Image src={image.url} alt={image.hint} fill className="object-cover" data-ai-hint={image.hint} />
+                                <Image src={image.url} alt={image.hint} fill className="object-cover rounded-xl" data-ai-hint={image.hint} />
                             </div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
             </Carousel>
-            <div className="z-10 relative p-8 md:p-12 bg-black/40 rounded-xl">
-                <p className="font-semibold text-lg text-primary">GAMING GEAR</p>
-                <h1 className="text-4xl md:text-5xl font-bold text-white mt-2">
+            <div className="z-10 relative p-8 md:p-12">
+                <p className="font-semibold text-lg text-primary" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>GAMING GEAR</p>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mt-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
                     {mainPromoProduct?.name}
                 </h1>
-                <p className="mt-4 text-white/80 max-w-md">{mainPromoProduct?.description}</p>
+                <p className="mt-4 text-white/90 max-w-md" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>{mainPromoProduct?.description}</p>
                 <Button asChild className="mt-8 bg-white text-black hover:bg-white/90">
                     <Link href={`/shop/${mainPromoProduct?.id}`}>Shop Now</Link>
                 </Button>
