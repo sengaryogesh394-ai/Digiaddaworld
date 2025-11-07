@@ -13,44 +13,36 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="overflow-hidden h-full group transition-shadow duration-300 hover:shadow-xl">
-        <div className="aspect-square relative overflow-hidden">
+    <Card className="overflow-hidden h-full group transition-shadow duration-300 hover:shadow-xl border-0 bg-transparent shadow-none">
+        <div className="aspect-square relative overflow-hidden rounded-lg">
           <Link href={`/shop/${product.id}`}>
             <motion.div whileHover={{ scale: 1.05 }} className="h-full w-full">
               <Image
                 src={product.media[0].url}
                 alt={product.name}
                 fill
-                className="object-cover"
+                className="object-cover bg-secondary"
                 data-ai-hint={product.media[0].hint}
               />
             </motion.div>
           </Link>
           {product.isFeatured && <Badge className="absolute top-3 left-3">Featured</Badge>}
+           <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+               <Button size="sm" className="w-full" asChild>
+                    <Link href={`/shop/${product.id}`}>
+                        <ShoppingCart className="w-4 h-4 mr-2"/>
+                        View Details
+                    </Link>
+                </Button>
+           </div>
         </div>
-        <CardContent className="p-4">
+        <CardContent className="p-4 px-1">
           <p className="text-muted-foreground text-sm mb-1">{product.category}</p>
-          <h3 className="font-semibold text-base truncate h-6">
+          <h3 className="font-semibold text-lg truncate h-7">
             <Link href={`/shop/${product.id}`} className="hover:text-primary transition-colors">{product.name}</Link>
           </h3>
-          <div className="flex items-center my-2">
-            <div className="flex items-center text-yellow-500">
-                <Star className="w-4 h-4 fill-current" />
-                <Star className="w-4 h-4 fill-current" />
-                <Star className="w-4 h-4 fill-current" />
-                <Star className="w-4 h-4 fill-current" />
-                <Star className="w-4 h-4 text-gray-300 fill-current" />
-            </div>
-            <p className="ml-2 text-xs text-muted-foreground">(12)</p>
-          </div>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center mt-2">
             <p className="font-bold text-lg text-primary">Rs {product.price.toFixed(2)}</p>
-            <Button size="icon" variant="outline" asChild>
-                <Link href={`/shop/${product.id}`}>
-                    <ShoppingCart className="w-4 h-4"/>
-                    <span className="sr-only">Add to Cart</span>
-                </Link>
-            </Button>
           </div>
       </CardContent>
     </Card>
