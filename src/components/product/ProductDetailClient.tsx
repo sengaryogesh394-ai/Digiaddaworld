@@ -11,10 +11,9 @@ import { IProduct } from '@/models/Product';
 
 interface ProductDetailClientProps {
   product: IProduct;
-  promoProduct?: IProduct;
 }
 
-export default function ProductDetailClient({ product, promoProduct }: ProductDetailClientProps) {
+export default function ProductDetailClient({ product }: ProductDetailClientProps) {
   const { toast } = useToast();
   const router = useRouter();
   const { addToCart } = useCart();
@@ -54,8 +53,8 @@ export default function ProductDetailClient({ product, promoProduct }: ProductDe
   return (
     <>
       {/* Purchase Section */}
-      <section className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-orange-500">
+      <section className="max-w-3xl mx-auto text-center" style={{ fontFamily: 'Poppins, sans-serif' }}>
+        <h2 className="text-3xl font-bold text-orange-500" style={{ fontFamily: 'Poppins, sans-serif' }}>
           {hasPromotion ? (
             <>
               Special Offer{' '}
@@ -78,6 +77,7 @@ export default function ProductDetailClient({ product, promoProduct }: ProductDe
             size="lg"
             className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform"
             onClick={() => handleBuyNow(product)}
+            style={{ fontFamily: 'Poppins, sans-serif' }}
           >
             <ShoppingCart className="mr-2" /> YES, I WANT THIS PACK FOR Rs {finalPrice.toFixed(2)}
           </Button>
@@ -85,48 +85,20 @@ export default function ProductDetailClient({ product, promoProduct }: ProductDe
             size="lg"
             className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform"
             onClick={() => handleBuyNow(product)}
+            style={{ fontFamily: 'Poppins, sans-serif' }}
           >
             Buy Now <ArrowRight className="ml-2" />
           </Button>
         </div>
       </section>
 
-      {/* Dynamic Promo Bundle Section */}
-      {promoProduct && (
-        <section className="max-w-5xl mx-auto text-center py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {promoProduct.media.slice(0, 4).map((item, index) => (
-              <div key={index} className="bg-black rounded-3xl p-2 shadow-lg">
-                <div className="relative aspect-[9/19] w-full rounded-2xl overflow-hidden">
-                  {item.type === 'video' ? (
-                    <video src={item.url} autoPlay loop muted playsInline className="object-cover w-full h-full" />
-                  ) : (
-                    <Image src={item.url} alt={promoProduct.name} fill className="object-cover" data-ai-hint={item.hint} />
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-lg font-medium text-gray-700 dark:text-gray-300">
-            Get the Ultimate <span className="font-bold">{promoProduct.name}</span> for Just{' '}
-            <span className="font-bold">₹{promoProduct.price.toFixed(2)}</span> + Free Bonuses!
-          </p>
-          <Button
-            size="lg"
-            className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg mt-4 shadow-lg transform hover:scale-105 transition-transform"
-            onClick={() => handleBuyNow(promoProduct)}
-          >
-            Get {promoProduct.category} Pack @ ₹{promoProduct.price.toFixed(2)} <ArrowRight className="ml-2" />
-          </Button>
-        </section>
-      )}
-
       {/* Bottom CTA */}
-      <section className="text-center max-w-3xl mx-auto">
+      <section className="text-center max-w-3xl mx-auto" style={{ fontFamily: 'Poppins, sans-serif' }}>
         <Button
           size="lg"
           className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg w-full"
           onClick={() => handleBuyNow(product)}
+          style={{ fontFamily: 'Poppins, sans-serif' }}
         >
           GET LIFETIME ACCESS at Rs {product.price.toFixed(2)}
         </Button>

@@ -8,6 +8,77 @@ if (!apiKey) {
 
 const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
 
+// Image generation helper
+export interface ProductImageResponse {
+  images: Array<{
+    url: string;
+    hint: string;
+    type: 'image';
+  }>;
+  searchTerms: string[];
+}
+
+// Helper function to get relevant Unsplash photo IDs based on category
+function getCategoryImages(category: string, searchTerm: string): string[] {
+  const lowerCategory = category.toLowerCase();
+  const lowerTerm = searchTerm.toLowerCase();
+  
+  // Curated high-quality Unsplash photo IDs for different categories
+  const imageMap: Record<string, string[]> = {
+    'graphic design': [
+      '1626785774573-4b799315345d', // Design workspace
+      '1611162617474-5b21e879e113', // Creative tools
+      '1634986666676-f46f4c0b7b5e', // Design mockup
+      '1542744173-8e7e53415bb0', // Workspace setup
+      '1611224923853-80b023f02d71', // Design process
+    ],
+    'video editing': [
+      '1574717024653-61fd2cf4d44d', // Video editing
+      '1492619375914-88005aa9e8fb', // Film production
+      '1536240967884-e5c8f2d7b6f9', // Video workspace
+      '1574717024653-61fd2cf4d44d', // Editing timeline
+      '1574717024653-61fd2cf4d44d', // Video production
+    ],
+    'social media': [
+      '1611162616305-c69b3fa7fbe0', // Social media
+      '1611162618071-b39a2ec055fb', // Phone mockup
+      '1611162616475-46b635cb6868', // Social content
+      '1563986768609-322da13575f3', // Instagram
+      '1611162618071-b39a2ec055fb', // Mobile content
+    ],
+    'courses': [
+      '1516321318423-f06f85e504b3', // Learning
+      '1503676260728-1c00da094a0b', // Education
+      '1434030216411-0b793f4b4173', // Online course
+      '1516321318423-f06f85e504b3', // Study
+      '1503676260728-1c00da094a0b', // Teaching
+    ],
+    'templates': [
+      '1618005182384-a83a8bd57fbe', // Templates
+      '1558655146-9f40138edfeb', // Design templates
+      '1633356122544-f134324a6cee', // Mockup templates
+      '1626785774625-ddcddc3445e9', // UI templates
+      '1618005182384-a83a8bd57fbe', // Template design
+    ],
+    'default': [
+      '1618005182384-a83a8bd57fbe', // Abstract design
+      '1558655146-9f40138edfeb', // Creative workspace
+      '1633356122544-f134324a6cee', // Professional design
+      '1611162617474-5b21e879e113', // Digital tools
+      '1626785774573-4b799315345d', // Modern workspace
+    ]
+  };
+  
+  // Find matching category
+  for (const [key, images] of Object.entries(imageMap)) {
+    if (lowerCategory.includes(key) || lowerTerm.includes(key)) {
+      return images;
+    }
+  }
+  
+  return imageMap['default'];
+}
+
 export interface BlogContentResponse {
   content: string;
   excerpt: string;
@@ -405,4 +476,108 @@ Return ONLY a JSON array like: ["tag1", "tag2", "tag3"]`;
     console.error('Error generating product tags:', error);
     throw new Error(`Failed to generate tags: ${error.message}`);
   }
+}
+
+export async function generateProductImages(
+  productName: string,
+  category: string,
+  description: string,
+  count: number = 4
+): Promise<ProductImageResponse> {
+  
+  // Create 4 detailed prompts directly without using Gemini (to avoid rate limits)
+  const imagePrompts = [
+    `Professional ${category} workspace showcasing ${productName}, modern design tools on clean white desk, natural window lighting, vibrant colors, high-quality photography, 4K resolution, creative atmosphere, minimalist aesthetic`,
+    `${productName} product display for ${category}, professional studio setup with soft lighting, attractive composition, premium quality, engaging visual, clean white background, product photography style`,
+    `Creative ${category} environment featuring ${productName}, professional photography, modern aesthetic, inspiring workspace, beautiful natural lighting, colorful accents, professional setting`,
+    `${productName} showcase in ${category} setting, high-end presentation, professional quality, attractive design, engaging composition, premium feel, studio lighting, professional product shot`
+  ];
+
+  // Generate images using Hugging Face with Pollinations fallback
+  const apiKey = process.env.HUGGING_FACE_API_KEY || process.env.HUGGINGFACE_API_KEY;
+  
+  const imagePromises = imagePrompts.slice(0, 4).map(async (prompt, index) => {
+    try {
+      // Try Hugging Face first if API key exists
+      if (apiKey) {
+        console.log(`Attempting Hugging Face for image ${index + 1}...`);
+        
+        // Add timeout to Hugging Face request (10 seconds)
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 10000);
+        
+        try {
+          const response = await fetch(
+            'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2',
+            {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ inputs: prompt }),
+              signal: controller.signal,
+            }
+          );
+          
+          clearTimeout(timeout);
+
+          if (response.ok) {
+            const imageBuffer = await response.arrayBuffer();
+            const base64Image = Buffer.from(imageBuffer).toString('base64');
+            const dataUrl = `data:image/jpeg;base64,${base64Image}`;
+
+            console.log(`✅ Hugging Face success for image ${index + 1}`);
+            return {
+              url: dataUrl,
+              hint: `${productName} - ${prompt.substring(0, 100)}`,
+              type: 'image' as const
+            };
+          } else {
+            const errorText = await response.text();
+            console.warn(`Hugging Face failed for image ${index + 1}: ${response.status} - ${errorText}`);
+          }
+        } catch (fetchError: any) {
+          clearTimeout(timeout);
+          if (fetchError.name === 'AbortError') {
+            console.warn(`Hugging Face timeout for image ${index + 1}, using Pollinations fallback`);
+          } else {
+            console.warn(`Hugging Face error for image ${index + 1}:`, fetchError.message);
+          }
+        }
+      } else {
+        console.log(`No API key, using Pollinations for image ${index + 1}`);
+      }
+      
+      // Fallback to Pollinations.ai (free, no API key required)
+      const encodedPrompt = encodeURIComponent(prompt);
+      const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
+      
+      console.log(`Using Pollinations for image ${index + 1}`);
+      return {
+        url: pollinationsUrl,
+        hint: `${productName} - ${prompt.substring(0, 100)}`,
+        type: 'image' as const
+      };
+      
+    } catch (error) {
+      console.error(`Error generating image ${index + 1}:`, error);
+      // Final fallback to Pollinations
+      const encodedPrompt = encodeURIComponent(prompt);
+      const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
+      
+      return {
+        url: pollinationsUrl,
+        hint: `${productName} - ${prompt.substring(0, 100)}`,
+        type: 'image' as const
+      };
+    }
+  });
+
+  const images = await Promise.all(imagePromises);
+
+  return {
+    images,
+    searchTerms: imagePrompts
+  };
 }

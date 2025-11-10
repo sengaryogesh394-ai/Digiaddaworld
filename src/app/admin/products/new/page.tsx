@@ -226,6 +226,60 @@ export default function NewProductPage() {
     }
   };
 
+  const generateImages = async () => {
+    if (!formData.name || !formData.category || !formData.description) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in name, category, and description first",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setAiGenerating(true);
+    try {
+      const response = await fetch('/api/products/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'images',
+          productName: formData.name,
+          category: formData.category,
+          description: formData.description,
+          count: 4
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        const newImages = result.data.images.map((img: any, index: number) => ({
+          id: `ai-${Date.now()}-${index}`,
+          url: img.url,
+          hint: img.hint,
+          type: 'image' as const
+        }));
+        
+        setMedia(prev => [...prev, ...newImages]);
+        
+        toast({
+          title: "🎨 Images Generated!",
+          description: `${newImages.length} AI-powered images added`,
+        });
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error: any) {
+      toast({
+        title: "Image Generation Failed",
+        description: error.message || "Failed to generate images",
+        variant: "destructive"
+      });
+    } finally {
+      setAiGenerating(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -368,6 +422,7 @@ export default function NewProductPage() {
                     <li>• <strong>Full Generation:</strong> Enter name & category, click "Generate with AI"</li>
                     <li>• <strong>Enhance Description:</strong> Improve existing descriptions</li>
                     <li>• <strong>Generate Tags:</strong> Create SEO-optimized tags automatically</li>
+                    <li>• <strong>Generate Images:</strong> AI-powered product images with smart search 🎨</li>
                   </ul>
                 </div>
               </div>
@@ -467,32 +522,47 @@ export default function NewProductPage() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Product Media *</CardTitle>
-              <CardDescription>Add images or video URLs for your product</CardDescription>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle>Product Media</CardTitle>
+                  <CardDescription>Add images or videos for your product</CardDescription>
+                </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={generateImages}
+                  disabled={aiGenerating || !formData.name || !formData.category || !formData.description}
+                  className="gap-2"
+                >
+                  🎨 Generate Images with AI
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="grid gap-4">
                 {/* Add Media Form */}
-                <div className="grid gap-3 p-4 border rounded-lg">
-                  <div className="grid gap-2">
-                    <Label htmlFor="mediaUrl">Media URL</Label>
-                    <Input
-                      id="mediaUrl"
-                      type="url"
-                      placeholder="https://images.unsplash.com/..."
-                      value={mediaInput.url}
-                      onChange={(e) => setMediaInput({...mediaInput, url: e.target.value})}
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label htmlFor="mediaHint">AI Hint (optional)</Label>
-                    <Input
-                      id="mediaHint"
-                      placeholder="e.g., product screenshot, demo video (optional)"
-                      value={mediaInput.hint}
-                      onChange={(e) => setMediaInput({...mediaInput, hint: e.target.value})}
-                    />
-                  </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="mediaUrl">Media URL *</Label>
+                  <Input
+                    id="mediaUrl"
+                    type="url"
+                    placeholder="https://example.com/image.jpg"
+                    value={mediaInput.url}
+                    onChange={(e) => setMediaInput({...mediaInput, url: e.target.value})}
+                  />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="mediaHint">Description/Hint</Label>
+                  <Input
+                    id="mediaHint"
+                    type="text"
+                    placeholder="Product showcase image"
+                    value={mediaInput.hint}
+                    onChange={(e) => setMediaInput({...mediaInput, hint: e.target.value})}
+                  />
+                </div>
+                <div className="flex gap-2 items-end">
                   <div className="grid gap-2">
                     <Label htmlFor="mediaType">Type</Label>
                     <Select value={mediaInput.type} onValueChange={(value: 'image' | 'video') => setMediaInput({...mediaInput, type: value})}>
@@ -519,13 +589,25 @@ export default function NewProductPage() {
                       {media.map((item) => (
                         <div key={item.id} className="relative group border rounded-lg p-2">
                           {item.type === 'image' ? (
-                            <Image
-                              src={item.url}
-                              alt={item.hint}
-                              width={150}
-                              height={150}
-                              className="w-full aspect-square object-cover rounded"
-                            />
+                            // Handle both base64 (Hugging Face) and URL (Pollinations) images
+                            item.url.startsWith('data:') ? (
+                              // Base64 from Hugging Face - use regular img tag
+                              <img
+                                src={item.url}
+                                alt={item.hint}
+                                className="w-full aspect-square object-cover rounded"
+                              />
+                            ) : (
+                              // URL from Pollinations - use Next Image with unoptimized
+                              <Image
+                                src={item.url}
+                                alt={item.hint}
+                                width={150}
+                                height={150}
+                                className="w-full aspect-square object-cover rounded"
+                                unoptimized
+                              />
+                            )
                           ) : (
                             <div className="w-full aspect-square bg-gray-100 dark:bg-gray-800 rounded flex items-center justify-center">
                               <span className="text-sm">Video: {item.hint}</span>

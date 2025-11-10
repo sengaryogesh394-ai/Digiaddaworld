@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateProductContent, enhanceProductDescription, generateProductTags } from '@/lib/gemini';
+import { generateProductContent, enhanceProductDescription, generateProductTags, generateProductImages } from '@/lib/gemini';
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,9 +51,22 @@ export async function POST(request: NextRequest) {
         result = { tags };
         break;
 
+      case 'images':
+        // Generate product images
+        if (!category || !description) {
+          return NextResponse.json(
+            { success: false, error: 'Category and description are required for image generation' },
+            { status: 400 }
+          );
+        }
+        const imageCount = body.count || 3;
+        const imageResult = await generateProductImages(productName, category, description, imageCount);
+        result = imageResult;
+        break;
+
       default:
         return NextResponse.json(
-          { success: false, error: 'Invalid action. Use: generate, enhance, or tags' },
+          { success: false, error: 'Invalid action. Use: generate, enhance, tags, or images' },
           { status: 400 }
         );
     }

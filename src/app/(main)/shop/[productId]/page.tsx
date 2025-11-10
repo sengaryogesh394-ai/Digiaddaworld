@@ -58,20 +58,6 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
   console.log('Promotion enabled:', product.promotion?.enabled);
   console.log('Discount percentage:', product.promotion?.discountPercentage);
 
-  // Find a different featured product to promote
-  const promoResult = await ProductController.getAllProducts({ 
-    isFeatured: true, 
-    limit: 2,
-    status: 'active'
-  });
-  
-  const promoProductRaw = promoResult.success 
-    ? promoResult.data.find((p: any) => p._id.toString() !== product._id.toString()) || promoResult.data[0]
-    : null;
-  
-  // Serialize promoProduct to plain object
-  const promoProduct = promoProductRaw ? JSON.parse(JSON.stringify(promoProductRaw)) : null;
-
   const getImage = (id: string) => {
     const image = PlaceHolderImages.find(img => img.id === id);
     return { 
@@ -82,7 +68,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 py-12">
+    <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 py-12" style={{ fontFamily: 'Poppins, sans-serif' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             {/* Header Section */}
             <section className="text-center max-w-5xl mx-auto">
@@ -170,7 +156,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
             )}
 
             {/* Client-side interactive components */}
-            <ProductDetailClient product={product} promoProduct={promoProduct} />
+            <ProductDetailClient product={product} />
 
              {/* What You Get Section */}
              <section className="max-w-4xl mx-auto">
