@@ -15,20 +15,21 @@ const sections = [
     ],
   },
   {
-    title: 'My Account',
-    links: [
-      { name: 'My Account', href: '/login' },
-      { name: 'Order History', href: '/cart' },
-      { name: 'Shopping Cart', href: '/cart' },
-    ],
-  },
-  {
     title: 'Categories',
     links: [
       { name: 'Software & Tools', href: '/shop?category=software-and-tools' },
       { name: 'Courses & E-books', href: '/shop?category=courses-and-ebooks' },
       { name: 'Templates', href: '/shop?category=templates' },
       { name: 'Content Bundles', href: '/shop?category=content-bundles' },
+    ],
+  },
+  {
+    title: 'Legal & Support',
+    links: [
+      { name: 'Privacy Policy', href: '/privacy-policy' },
+      { name: 'Terms & Conditions', href: '/terms-and-conditions' },
+      { name: 'Return & Refund', href: '/return-and-refund' },
+      { name: 'My Orders', href: '/my-orders' },
     ],
   },
 ];
