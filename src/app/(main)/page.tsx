@@ -196,9 +196,16 @@ export default function HomePage() {
   const topRightPromoProduct = products[1];
   const bottomRightPromoProduct = products[2];
 
+  // High-quality fallback images for hero carousel
+  const fallbackHeroImages = [
+    '/images/hero-graphic-design.jpg', // Graphic design workspace
+    'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&h=1080&fit=crop&q=90', // Abstract design
+    'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1920&h=1080&fit=crop&q=90', // Creative tools
+  ];
+
   // Create hero slides from real products
   const heroSlides = featuredProducts.length > 0 ? featuredProducts.map((product, index) => ({
-    image: product.media[0]?.url || 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
+    image: product.media[0]?.url || fallbackHeroImages[index % fallbackHeroImages.length],
     badge: index === 0 ? 'TRENDING NOW' : index === 1 ? 'BEST SELLER' : 'LIMITED TIME OFFER',
     title: product.name,
     price: product.price,
@@ -207,12 +214,30 @@ export default function HomePage() {
     link: `/shop/${product.slug || product._id}`
   })) : [
     {
-      image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
+      image: fallbackHeroImages[0],
       badge: 'TRENDING NOW',
-      title: 'Explore Our Products',
+      title: 'Premium Digital Products',
       price: 199.99,
       originalPrice: 299.99,
       tag: 'Featured',
+      link: '/shop'
+    },
+    {
+      image: fallbackHeroImages[1],
+      badge: 'BEST SELLER',
+      title: 'Creative Design Assets',
+      price: 149.99,
+      originalPrice: 249.99,
+      tag: 'Popular',
+      link: '/shop'
+    },
+    {
+      image: fallbackHeroImages[2],
+      badge: 'LIMITED TIME OFFER',
+      title: 'Professional Templates',
+      price: 99.99,
+      originalPrice: 199.99,
+      tag: 'Sale',
       link: '/shop'
     }
   ];
@@ -338,6 +363,9 @@ export default function HomePage() {
                         src={slide.image} 
                         alt={slide.title} 
                         fill 
+                        priority={i === 0}
+                        quality={95}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105" 
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>

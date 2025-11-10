@@ -56,8 +56,21 @@ function LoginContent() {
           title: 'Success',
           description: 'Logged in successfully!',
         });
-        // Redirect to homepage for regular users
-        router.push('/');
+        
+        // Check if there's a callback URL or if user is admin
+        const callbackUrl = searchParams.get('callbackUrl');
+        
+        // Fetch session to check user role
+        const response = await fetch('/api/auth/session');
+        const session = await response.json();
+        
+        if (session?.user?.role === 'admin') {
+          // Redirect admin users to admin dashboard
+          router.push(callbackUrl || '/admin/dashboard');
+        } else {
+          // Redirect regular users to homepage or callback URL
+          router.push(callbackUrl || '/');
+        }
         router.refresh();
       }
     } catch (error: any) {
