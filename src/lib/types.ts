@@ -8,11 +8,15 @@ export type ProductFeature = {
 
 export type Product = {
   id: string;
+  _id?: string; // Database ID
+  slug?: string; // Database slug for URL
   name: string;
   price: number;
+  originalPrice?: number; // Database field
   media: { id: string; url: string; hint: string; type: 'image' | 'video' }[];
   category: string;
   description: string;
+  status?: string; // Database field
   isFeatured?: boolean;
   features?: ProductFeature[];
   compatibility?: {

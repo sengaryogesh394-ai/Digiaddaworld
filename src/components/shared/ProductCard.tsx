@@ -15,8 +15,11 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  // Handle both database products (slug) and mock products (id)
+  const productLink = product.slug ? `/shop/${product.slug}` : `/shop/${product.id}`;
+  
   return (
-    <Link href={`/shop/${product.id}`} className="block h-full w-full group">
+    <Link href={productLink} className="block h-full w-full group">
         <Card className="overflow-hidden h-full transition-shadow duration-300 hover:shadow-xl border-0 bg-transparent shadow-none">
             <div className="aspect-square relative overflow-hidden rounded-lg">
             <motion.div whileHover={{ scale: 1.05 }} className="h-full w-full">
