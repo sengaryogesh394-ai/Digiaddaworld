@@ -1,159 +1,199 @@
-
-'use client';
 import Image from 'next/image';
-import { notFound, useParams, useRouter } from 'next/navigation';
-import { mockProducts } from '@/lib/mock-data';
-import { Button } from '@/components/ui/button';
-import { Star, Check, ShoppingCart, Zap, ArrowRight, Package, Film, Palette } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
-import { useToast } from '@/hooks/use-toast';
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
+import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CountdownTimer from '@/components/shared/CountdownTimer';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { ProductController } from '@/controllers/productController';
+import ProductDetailClient from '@/components/product/ProductDetailClient';
+import ProductReviews from '@/components/product/ProductReviews';
+import { Zap, Check } from 'lucide-react';
+import { Metadata } from 'next';
 
-export default function ProductDetailsPage() {
-  const { toast } = useToast();
-  const params = useParams();
-  const router = useRouter();
-  const { productId } = params;
-  const product = mockProducts.find((p) => p.id === productId);
-  const { addToCart } = useCart();
+// Generate metadata for SEO
+export async function generateMetadata({ params }: { params: Promise<{ productId: string }> }): Promise<Metadata> {
+  const { productId } = await params;
+  const result = await ProductController.getProductBySlug(productId);
+  
+  if (!result.success || !result.data) {
+    return {
+      title: 'Product Not Found',
+    };
+  }
 
-  if (!product) {
+  const product = result.data;
+  const firstImage = product.media.find(m => m.type === 'image')?.url || product.media[0]?.url;
+
+  return {
+    title: `${product.name} - DigiAdda`,
+    description: product.description,
+    keywords: product.tags.join(', '),
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      images: [firstImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: product.name,
+      description: product.description,
+      images: [firstImage],
+    },
+  };
+}
+
+export default async function ProductDetailsPage({ params }: { params: Promise<{ productId: string }> }) {
+  const { productId } = await params;
+  
+  // Fetch product by slug from database
+  const result = await ProductController.getProductBySlug(productId);
+  
+  if (!result.success || !result.data) {
     notFound();
   }
 
+  const product = JSON.parse(JSON.stringify(result.data));
+  
+  // Debug: Log promotion data
+  console.log('Product promotion data:', product.promotion);
+  console.log('Promotion enabled:', product.promotion?.enabled);
+  console.log('Discount percentage:', product.promotion?.discountPercentage);
+
   // Find a different featured product to promote
-  const promoProduct = mockProducts.find(p => p.isFeatured && p.id !== product.id) || mockProducts.find(p => p.id !== product.id);
+  const promoResult = await ProductController.getAllProducts({ 
+    isFeatured: true, 
+    limit: 2,
+    status: 'active'
+  });
+  
+  const promoProduct = promoResult.success 
+    ? promoResult.data.find((p: any) => p._id.toString() !== product._id.toString()) || promoResult.data[0]
+    : null;
 
-
-    const getImage = (id: string) => {
-        const image = PlaceHolderImages.find(img => img.id === id);
-        return { id: image?.id || '', url: image?.imageUrl || 'https://picsum.photos/seed/default/120/120', hint: image?.imageHint || 'guarantee' };
-    }
-
-  const handleBuyNow = (productToBuy: typeof product) => {
-    if (productToBuy) {
-        addToCart(productToBuy);
-        toast({
-            title: "Added to cart",
-            description: `${productToBuy.name} has been added to your cart.`,
-        });
-        router.push('/payment');
-    }
+  const getImage = (id: string) => {
+    const image = PlaceHolderImages.find(img => img.id === id);
+    return { 
+      id: image?.id || '', 
+      url: image?.imageUrl || 'https://picsum.photos/seed/default/120/120', 
+      hint: image?.imageHint || 'guarantee' 
+    };
   };
 
-  const originalPrice = product.price * 20;
-
   return (
-    <div className="bg-rose-50/50 dark:bg-rose-900/10 py-12">
+    <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             {/* Header Section */}
-            <section className="text-center">
-                <div className="inline-block bg-rose-500 text-white text-sm font-bold px-4 py-2 rounded-md mb-4 shadow-lg">
-                    <Zap className="inline-block w-4 h-4 mr-2" /> MEGA SALE IS ON! 95% OFF
-                </div>
-                <h1 className="text-3xl md:text-5xl font-extrabold text-gray-800 dark:text-gray-100">
-                    {product.name}
+            <section className="text-center max-w-5xl mx-auto">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-gray-100 leading-tight mb-4" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+                    Start Your <span className="text-rose-500">{product.name}</span> Business Today! Beginner-Friendly & 100% Ready-Made Projects
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mt-2">
-                    Beginner-Friendly & 100% Ready-Made Projects
-                </p>
+                {product.promotion?.enabled === true && (
+                    <div className="inline-block bg-rose-500 text-white text-sm font-bold px-6 py-3 rounded-full mb-6 shadow-lg animate-pulse" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        <Zap className="inline-block w-4 h-4 mr-2" /> MEGA SALE IS ON! {product.promotion.discountPercentage || 85}% OFF
+                    </div>
+                )}
             </section>
             
             {/* Image Gallery */}
-            <section className="bg-indigo-100/50 dark:bg-indigo-900/20 py-8 rounded-lg">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                    {product.media.slice(0, 4).map((item, index) => (
-                        <div key={index} className="bg-black rounded-3xl p-2 shadow-lg">
-                            <div className="relative aspect-[9/19] w-full rounded-2xl overflow-hidden">
-                                {item.type === 'video' ? (
-                                    <video
-                                        src={item.url}
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        className="object-cover w-full h-full"
-                                    />
-                                ) : (
-                                    <Image
-                                        src={item.url}
-                                        alt={`${product.name} screenshot ${index + 1}`}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={item.hint}
-                                    />
-                                )}
+            <section className="bg-gradient-to-br from-pink-50 via-white to-gray-50 dark:from-gray-800 dark:to-gray-900 py-16 rounded-3xl">
+                <div className="flex flex-wrap justify-center items-end gap-3 md:gap-5 lg:gap-6 max-w-7xl mx-auto px-4">
+                    {product.media.slice(0, 4).map((item: any, index: number) => (
+                        <div 
+                            key={index} 
+                            className="relative transform hover:scale-105 transition-all duration-300 hover:-translate-y-2"
+                            style={{ 
+                                width: 'clamp(160px, 22vw, 240px)',
+                                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.25))'
+                            }}
+                        >
+                            {/* iPhone Frame */}
+                            <div className="relative bg-black rounded-[2.75rem] p-[0.4rem] shadow-2xl">
+                                {/* Notch */}
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-black rounded-b-3xl z-10"></div>
+                                
+                                {/* Screen */}
+                                <div className="relative aspect-[9/19.5] w-full rounded-[2.4rem] overflow-hidden bg-white">
+                                    {item.type === 'video' ? (
+                                        <video
+                                            src={item.url}
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            className="object-cover w-full h-full"
+                                        />
+                                    ) : (
+                                        <Image
+                                            src={item.url}
+                                            alt={`${product.name} preview ${index + 1}`}
+                                            fill
+                                            className="object-cover"
+                                            data-ai-hint={item.hint}
+                                            priority={index < 2}
+                                        />
+                                    )}
+                                </div>
+                                
+                                {/* Home Indicator */}
+                                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-white/30 rounded-full"></div>
                             </div>
                         </div>
                     ))}
                 </div>
             </section>
-
-            {/* Purchase Section */}
-            <section className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl font-bold text-orange-500">Special Offer <span className="text-gray-400 line-through">Rs {originalPrice.toFixed(2)}</span> Rs {product.price.toFixed(2)}</h2>
-                <div className="my-6">
-                    <CountdownTimer />
-                </div>
-                <div className="flex flex-col gap-4">
-                    <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg mt-2 shadow-lg transform hover:scale-105 transition-transform" onClick={() => handleBuyNow(product)}>
-                        <ShoppingCart className="mr-2"/> YES, I WANT THIS PACK FOR Rs {product.price.toFixed(2)}
-                    </Button>
-                    <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold text-lg shadow-lg transform hover:scale-105 transition-transform" onClick={() => handleBuyNow(product)}>
-                        Buy Now <ArrowRight className="ml-2"/>
-                    </Button>
-                </div>
+            
+            {/* Hello Section */}
+            <section className="text-center max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+                    👋 Hello, Creative Businesses!
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-2" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 500 }}>
+                    Earn ₹35,000 - ₹45,000/week from home! 💰🏠
+                </p>
+                <p className="text-base text-gray-600 dark:text-gray-400" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    🎉 Start your creative business with Premiere Templates Ultimate Template + Videos Bundle 📦 - no costly software, no long training.
+                </p>
             </section>
 
-            {/* Dynamic Promo Bundle Section */}
-            {promoProduct && (
-              <section className="max-w-5xl mx-auto text-center py-8">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {promoProduct.media.slice(0, 4).map((item, index) => (
-                        <div key={index} className="bg-black rounded-3xl p-2 shadow-lg">
-                            <div className="relative aspect-[9/19] w-full rounded-2xl overflow-hidden">
-                            {item.type === 'video' ? (
-                                <video src={item.url} autoPlay loop muted playsInline className="object-cover w-full h-full" />
-                            ) : (
-                                <Image src={item.url} alt={promoProduct.name} fill className="object-cover" data-ai-hint={item.hint} />
-                            )}
-                            </div>
-                        </div>
-                      ))}
+            {/* Purchase Section with Countdown */}
+            {product.promotion?.enabled === true && (
+              <section className="max-w-3xl mx-auto text-center">
+                  <div className="my-6">
+                      <CountdownTimer 
+                        endDate={product.promotion.timerEndDate} 
+                        discountPercentage={product.promotion.discountPercentage || 85}
+                      />
                   </div>
-                  <p className="mt-6 text-lg font-medium text-gray-700 dark:text-gray-300">
-                      Get the Ultimate <span className="font-bold">{promoProduct.name}</span> for Just <span className="font-bold">₹{promoProduct.price.toFixed(2)}</span> + Free Bonuses!
-                  </p>
-                  <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg mt-4 shadow-lg transform hover:scale-105 transition-transform" onClick={() => handleBuyNow(promoProduct)}>
-                      Get {promoProduct.category} Pack @ ₹{promoProduct.price.toFixed(2)} <ArrowRight className="ml-2"/>
-                  </Button>
               </section>
             )}
 
+            {/* Client-side interactive components */}
+            <ProductDetailClient product={product} promoProduct={promoProduct} />
+
              {/* What You Get Section */}
              <section className="max-w-4xl mx-auto">
-                <h2 className="text-center text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">
-                    What You Get Inside <span className="text-blue-600 underline">This Rs {product.price.toFixed(0)} Pack</span>
+                <h2 className="text-center text-4xl mb-8 text-gray-800 dark:text-gray-100" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+                    What You Get Inside <span className="text-blue-600 underline decoration-2 underline-offset-4">This ₹{product.price.toFixed(0)} Pack</span>
                 </h2>
                 {product.features && product.features.length > 0 && (
-                    <div className="space-y-4">
-                        <div className="bg-rose-100/80 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200 p-4 rounded-lg text-center font-semibold">
-                        🎉 {product.features.length}+ Premium Features: All-in-One Pack - Rs 15000+ Value
+                    <div className="space-y-3">
+                        <div className="bg-rose-50 dark:bg-rose-900/20 text-rose-800 dark:text-rose-200 p-5 rounded-lg text-center" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 600 }}>
+                            <span className="mr-2">🎉</span>
+                            {product.features.length}+ Premium Features: All-in-One Pack – <span className="italic">₹15000+ Value</span>
                         </div>
-                        {product.features.map((feature, index) => (
-                        <Card key={index} className="bg-white dark:bg-card shadow-sm border-0">
-                            <CardContent className="p-4 flex items-start gap-4">
-                            <span className="font-bold text-gray-400">{index + 1}.</span>
+                        {product.features.map((feature: any, index: number) => (
+                        <Card key={index} className="bg-white dark:bg-card shadow-sm border-0 hover:shadow-md transition-shadow">
+                            <CardContent className="p-5 flex items-start gap-3">
+                            <span className="font-bold text-gray-800 dark:text-gray-300 text-lg" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>{index + 1}.</span>
                             <div className="flex-1">
-                                <p className="font-semibold">
+                                <p style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 600 }} className="text-gray-900 dark:text-gray-100 leading-relaxed">
                                 <span className="mr-2">{feature.icon}</span>
-                                <span dangerouslySetInnerHTML={{ __html: feature.title }} />{' '}
-                                <span className="text-gray-600 dark:text-gray-400 font-normal">{feature.description}</span>
-                                <span className="text-gray-500 dark:text-gray-400 font-medium"> - {feature.value}</span>
+                                <span dangerouslySetInnerHTML={{ __html: feature.title }} />
+                                {feature.description && (
+                                  <span className="text-gray-700 dark:text-gray-400 font-normal"> {feature.description}</span>
+                                )}
+                                {feature.value && (
+                                  <span className="text-gray-500 dark:text-gray-400 italic font-normal"> – {feature.value}</span>
+                                )}
                                 </p>
                             </div>
                             </CardContent>
@@ -161,41 +201,6 @@ export default function ProductDetailsPage() {
                         ))}
                     </div>
                 )}
-            </section>
-
-
-             {/* Description Section */}
-            <section className="max-w-3xl mx-auto">
-                <Card className="bg-white dark:bg-card shadow-lg">
-                    <CardHeader>
-                        <CardTitle className="text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
-                            Description
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-8 pt-0">
-                        <div className="text-gray-700 dark:text-gray-300 space-y-6">
-                           <p className="leading-relaxed">{product.description}</p>
-                           
-                           <div>
-                             <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-gray-200">Key Benefits</h3>
-                             <ul className="list-disc list-inside space-y-1 pl-2">
-                                <li><b className="font-semibold">Save Time & Effort:</b> Stop creating from scratch. Get instant access to professionally designed assets.</li>
-                                <li><b className="font-semibold">Boost Your Brand:</b> Create a consistent and professional look across all your platforms.</li>
-                                <li><b className="font-semibold">Increase Engagement:</b> Use eye-catching visuals and content to capture your audience's attention.</li>
-                                <li><b className="font-semibold">Unlimited Potential:</b> With a commercial license, you can use these assets for countless personal and client projects.</li>
-                             </ul>
-                           </div>
-
-                           <div>
-                            <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-gray-200">Why Choose This Product?</h3>
-                            <p>
-                                In today's fast-paced digital world, standing out is more important than ever. This bundle is more than just a collection of files; it's a complete toolkit designed to empower creators, marketers, and entrepreneurs. Whether you're a seasoned pro or just starting, you'll find everything you need to elevate your work and achieve your goals faster. Save countless hours of work with ready-made assets that cover a wide range of styles and niches. From social media graphics to video transitions, this pack is designed to streamline your workflow and help you produce amazing results.
-                            </p>
-                           </div>
-
-                        </div>
-                    </CardContent>
-                </Card>
             </section>
 
             {/* Compatibility Section */}
@@ -237,13 +242,12 @@ export default function ProductDetailsPage() {
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Step-by-step success system</li>
                     <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Personal mentorship to first sale</li>
                 </ul>
-                <Button size="lg" className="bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg w-full mt-6" onClick={() => handleBuyNow(product)}>
-                    GET LIFETIME ACCESS at Rs {product.price.toFixed(2)}
-                </Button>
             </section>
+
+            {/* Customer Reviews Section */}
+            <ProductReviews productId={product._id.toString()} />
         </div>
     </div>
   );
 }
-
     

@@ -2,31 +2,79 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { useCart } from '@/context/CartContext';
-import type { Product } from '@/lib/types';
 import { CheckCircle } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+
+interface OrderItem {
+  product: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+}
+
+interface Order {
+  _id: string;
+  items: OrderItem[];
+  total: number;
+  status: string;
+  createdAt: string;
+}
 
 export default function OrderConfirmationPage() {
-  const { cart, clearCart } = useCart();
-  const [orderedItems, setOrderedItems] = useState<Product[]>([]);
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get('orderId');
+  const [order, setOrder] = useState<Order | null>(null);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
-    if (cart.length > 0) {
-      setOrderedItems([...cart]);
-      clearCart();
+    if (orderId) {
+      fetchOrder(orderId);
+    } else {
+      setLoading(false);
     }
-  }, []);
+  }, [orderId]);
 
-  const subtotal = orderedItems.reduce((acc, item) => acc + item.price, 0);
+  const fetchOrder = async (id: string) => {
+    try {
+      const response = await fetch(`/api/orders/${id}`);
+      if (response.ok) {
+        const data = await response.json();
+        setOrder(data.order);
+      } else {
+        throw new Error('Order not found');
+      }
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to load order details',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+      </div>
+    );
+  }
+
+  const subtotal = order ? order.items.reduce((acc, item) => acc + (item.price * item.quantity), 0) : 0;
   const tax = subtotal * 0.05;
-  const total = subtotal + tax;
+  const total = order ? order.total : 0;
 
-  if (orderedItems.length === 0) {
+  if (!order) {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <Card className="max-w-2xl mx-auto p-8">
@@ -56,20 +104,26 @@ export default function OrderConfirmationPage() {
         </CardHeader>
         <CardContent>
           <Separator className="my-6" />
+          <div className="mb-4">
+            <p className="text-sm text-muted-foreground">Order ID: <span className="font-mono font-semibold text-foreground">{order._id.slice(-8).toUpperCase()}</span></p>
+            <p className="text-sm text-muted-foreground">Status: <span className="font-semibold text-foreground capitalize">{order.status}</span></p>
+          </div>
           <h3 className="text-xl font-semibold mb-4">Order Summary</h3>
           <div className="space-y-4">
-            {orderedItems.map(item => (
-              <div key={item.id} className="flex justify-between items-center">
+            {order.items.map((item, index) => (
+              <div key={index} className="flex justify-between items-center">
                 <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-md overflow-hidden border">
-                    <Image src={item.media[0].url} alt={item.name} fill className="object-cover" data-ai-hint={item.media[0].hint}/>
-                  </div>
+                  {item.image && (
+                    <div className="relative w-16 h-16 rounded-md overflow-hidden border">
+                      <Image src={item.image} alt={item.name} fill className="object-cover" />
+                    </div>
+                  )}
                   <div>
                     <p className="font-semibold">{item.name}</p>
-                    <p className="text-sm text-muted-foreground">Qty: 1</p>
+                    <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
                   </div>
                 </div>
-                <p>Rs {item.price.toFixed(2)}</p>
+                <p>Rs {(item.price * item.quantity).toFixed(2)}</p>
               </div>
             ))}
           </div>

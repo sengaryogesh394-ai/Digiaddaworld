@@ -1,8 +1,10 @@
 
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -35,19 +37,90 @@ import { useToast } from '@/hooks/use-toast';
 export default function PaymentPage() {
   const { cart, clearCart } = useCart();
   const router = useRouter();
+  const { data: session } = useSession();
   const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    cardNumber: '',
+    expiry: '',
+    cvc: '',
+    nameOnCard: '',
+    country: 'IN',
+    address: '',
+  });
+
   const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
   const tax = subtotal * 0.05;
   const total = subtotal + tax;
 
-  const handlePlaceOrder = () => {
-    toast({
-      title: 'Order placed successfully!',
-      description: 'You will now be redirected to the confirmation page.',
-    });
-    setTimeout(() => {
-      router.push('/order');
-    }, 500);
+  const handlePlaceOrder = async () => {
+    // Check if user is logged in
+    if (!session) {
+      toast({
+        title: 'Please login',
+        description: 'You need to be logged in to place an order',
+        variant: 'destructive',
+      });
+      router.push('/auth/login');
+      return;
+    }
+
+    // Validate form
+    if (!formData.email || !formData.nameOnCard || !formData.address) {
+      toast({
+        title: 'Missing information',
+        description: 'Please fill in all required fields',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Create order in database
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart,
+          total,
+          shippingAddress: {
+            fullName: formData.nameOnCard,
+            phone: '0000000000', // You can add phone field to form
+            address: formData.address,
+            city: 'City', // You can add city field to form
+            state: 'State', // You can add state field to form
+            pincode: '000000', // You can add pincode field to form
+          },
+          paymentMethod: 'card',
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        clearCart();
+        toast({
+          title: 'Order placed successfully!',
+          description: 'You will now be redirected to the confirmation page.',
+        });
+        setTimeout(() => {
+          router.push(`/order?orderId=${data.orderId}`);
+        }, 500);
+      } else {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to place order');
+      }
+    } catch (error: any) {
+      toast({
+        title: 'Error',
+        description: error.message || 'Failed to place order',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (cart.length === 0) {
@@ -117,11 +190,11 @@ export default function PaymentPage() {
             </div>
 
             <div className="space-y-2 py-4 border-b">
-              <div className="flex justify-between">
+              <div key="subtotal" className="flex justify-between">
                 <p className="text-muted-foreground">Subtotal</p>
                 <p>Rs {subtotal.toFixed(2)}</p>
               </div>
-              <div className="flex justify-between">
+              <div key="tax" className="flex justify-between">
                 <p className="flex items-center gap-1 text-muted-foreground">
                   Tax <Info className="w-3.5 h-3.5" />
                 </p>
@@ -137,8 +210,8 @@ export default function PaymentPage() {
             <div className="flex justify-between items-center text-xs text-muted-foreground mt-8">
                 <p>Powered by <span className="font-bold">Stripe</span></p>
                 <div className="flex gap-4">
-                    <Link href="#" className="hover:text-primary">Terms</Link>
-                    <Link href="#" className="hover:text-primary">Privacy</Link>
+                    <Link key="terms" href="#" className="hover:text-primary">Terms</Link>
+                    <Link key="privacy" href="#" className="hover:text-primary">Privacy</Link>
                 </div>
             </div>
           </div>
@@ -151,7 +224,13 @@ export default function PaymentPage() {
             <form className="space-y-5">
               <div className="space-y-1.5">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" />
+                <Input 
+                  id="email" 
+                  type="email" 
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                />
               </div>
 
               <div className="space-y-1.5">
@@ -163,14 +242,19 @@ export default function PaymentPage() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <Input placeholder="MM / YY" />
-                  <Input placeholder="CVC" />
+                  <Input key="expiry" placeholder="MM / YY" />
+                  <Input key="cvc" placeholder="CVC" />
                 </div>
               </div>
 
               <div className="space-y-1.5">
                 <Label htmlFor="name-on-card">Name on card</Label>
-                <Input id="name-on-card" />
+                <Input 
+                  id="name-on-card" 
+                  value={formData.nameOnCard}
+                  onChange={(e) => setFormData({ ...formData, nameOnCard: e.target.value })}
+                  required
+                />
               </div>
               
               <div className="space-y-1.5">
@@ -186,7 +270,12 @@ export default function PaymentPage() {
                         <SelectItem value="GB">United Kingdom</SelectItem>
                     </SelectContent>
                 </Select>
-                <Input placeholder="Address" />
+                <Input 
+                  placeholder="Address" 
+                  value={formData.address}
+                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  required
+                />
                 <Link href="#" className="text-sm text-primary hover:underline">
                     Enter address manually
                 </Link>
@@ -207,8 +296,14 @@ export default function PaymentPage() {
                 </div>
               </div>
 
-              <Button size="lg" className="w-full text-base" onClick={handlePlaceOrder} type="button">
-                Pay
+              <Button 
+                size="lg" 
+                className="w-full text-base" 
+                onClick={handlePlaceOrder} 
+                type="button"
+                disabled={loading}
+              >
+                {loading ? 'Processing...' : 'Pay'}
               </Button>
             </form>
           </div>

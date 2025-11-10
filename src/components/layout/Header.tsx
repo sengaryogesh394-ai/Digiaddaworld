@@ -2,13 +2,23 @@
 
 import Link from 'next/link';
 import * as React from 'react';
-import { Menu, Search, ShoppingCart, Sparkles, TrendingUp } from 'lucide-react';
+import { useSession, signOut } from 'next-auth/react';
+import { Menu, Search, ShoppingCart, Sparkles, TrendingUp, User, LogOut } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -21,8 +31,13 @@ const navLinks = [
 export function Header() {
   const isMobile = useIsMobile();
   const { cart } = useCart();
+  const { data: session, status } = useSession();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: '/' });
+  };
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -116,7 +131,16 @@ export function Header() {
                  <Sparkles className="h-5 w-5 text-primary group-hover:animate-spin" />
               </Link>
               <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
-                <div className="flex flex-col space-y-3">{renderNavLinks()}</div>
+                <div className="flex flex-col space-y-3">
+                  {renderNavLinks()}
+                  {!session && (
+                    <Button asChild className="mt-4">
+                      <Link href="/auth/login" onClick={() => setIsMobileMenuOpen(false)}>
+                        Login
+                      </Link>
+                    </Button>
+                  )}
+                </div>
               </div>
             </SheetContent>
           </Sheet>
@@ -156,12 +180,62 @@ export function Header() {
                 <span className="sr-only">Cart</span>
              </Link>
           </Button>
-          <Button 
-            asChild 
-            className="hidden md:inline-flex transition-all duration-300 hover:scale-105 hover:shadow-lg"
-          >
-            <Link href="/login">Login</Link>
-          </Button>
+          {status === 'loading' ? (
+            <div className="h-10 w-10 rounded-full bg-gray-200 animate-pulse" />
+          ) : session ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage src={session.user?.image || ''} alt={session.user?.name || ''} />
+                    <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                      {session.user?.name?.charAt(0).toUpperCase() || 'U'}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{session.user?.name}</p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {session.user?.email}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {(session.user as any)?.role === 'admin' && (
+                  <>
+                    <DropdownMenuItem asChild>
+                      <Link href="/admin/dashboard" className="cursor-pointer">
+                        <TrendingUp className="mr-2 h-4 w-4" />
+                        Admin Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                  </>
+                )}
+                <DropdownMenuItem asChild>
+                  <Link href="/profile" className="cursor-pointer">
+                    <User className="mr-2 h-4 w-4" />
+                    Profile
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-600">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button 
+              asChild 
+              className="hidden md:inline-flex transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <Link href="/auth/login">Login</Link>
+            </Button>
+          )}
         </div>
       </div>
 

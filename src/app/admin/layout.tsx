@@ -3,41 +3,15 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-  LayoutDashboard,
-  Package,
-  ShoppingCart,
-  Users,
-  BookText,
-  Sparkles,
-  ChevronDown,
   Moon,
   Sun,
-  LogOut,
-  User as UserIcon,
+  Menu,
+  Sidebar,
 } from 'lucide-react';
 
-import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarFooter,
-  SidebarInset,
-  SidebarTrigger,
-} from '@/components/ui/sidebar';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { AdminSidebar } from '@/components/admin/AdminSidebar';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -67,15 +41,6 @@ const useTheme = () => {
   
     return { theme, toggleTheme };
 };
-
-const navItems = [
-    { href: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-    { href: '/admin/products', icon: Package, label: 'Products' },
-    { href: '/admin/orders', icon: ShoppingCart, label: 'Orders' },
-    { href: '/admin/users', icon: Users, label: 'Users' },
-    { href: '/admin/blog', icon: BookText, label: 'Blog' },
-    { href: '/admin/ai-description-generator', icon: Sparkles, label: 'AI Generator' },
-];
 
 function AdminBreadcrumb() {
     const pathname = usePathname();
@@ -110,78 +75,80 @@ function AdminBreadcrumb() {
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   return (
-    <SidebarProvider>
-      <Sidebar>
-        <SidebarHeader>
-          <Link href="/admin" className="flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-primary" />
-            <span className="font-bold font-headline text-lg">DigiAddaWorld</span>
-          </Link>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            {navItems.map((item) => (
-              <SidebarMenuItem key={item.href}>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname.startsWith(item.href)}
-                  tooltip={item.label}
-                >
-                  <Link href={item.href}>
-                    <item.icon />
-                    <span>{item.label}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarContent>
-        <SidebarFooter>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="justify-start w-full h-12 px-2 gap-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src="https://picsum.photos/seed/admin/100/100" />
-                  <AvatarFallback>AD</AvatarFallback>
-                </Avatar>
-                <div className="text-left hidden group-data-[collapsible=icon]:hidden">
-                    <p className="font-medium text-sm">Admin User</p>
-                    <p className="text-xs text-muted-foreground">admin@example.com</p>
-                </div>
-                <ChevronDown className="ml-auto hidden h-4 w-4 shrink-0 group-data-[collapsible=icon]:hidden" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 mb-2 ml-2" align="end" forceMount>
-                <DropdownMenuItem><UserIcon className="mr-2 h-4 w-4" />Profile</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={toggleTheme}>
-                    {theme === 'light' ? <Moon className="mr-2 h-4 w-4" /> : <Sun className="mr-2 h-4 w-4" />}
-                    <span>Toggle theme</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </SidebarFooter>
-      </Sidebar>
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950">
+      {/* Mobile Sidebar Overlay */}
+      <AnimatePresence>
+        {sidebarOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSidebarOpen(false)}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[150] lg:hidden"
+          />
+        )}
+      </AnimatePresence>
 
-      <SidebarInset className="bg-secondary">
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-          <SidebarTrigger className="sm:hidden" />
-          <AdminBreadcrumb />
-          <div className="relative ml-auto flex-1 md:grow-0">
-            {/* Search can go here */}
+      {/* Sidebar Component */}
+      <AdminSidebar 
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
+
+      {/* Main Content */}
+      <div className="lg:pl-72 min-h-screen flex flex-col">
+        {/* Top Header */}
+        <header className="sticky top-0 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm">
+          <div className="flex items-center gap-4 px-4 sm:px-6 h-16">
+            {/* Mobile Menu Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            >
+              <Menu className="w-6 h-6" />
+            </motion.button>
+
+            {/* Breadcrumb */}
+            <AdminBreadcrumb />
+
+            
+
+            {/* Right Side Actions */}
+            <div className="ml-auto flex items-center gap-2">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={toggleTheme}
+                className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                {theme === 'light' ? (
+                  <Moon className="w-5 h-5 text-slate-600" />
+                ) : (
+                  <Sun className="w-5 h-5 text-slate-400" />
+                )}
+              </motion.button>
+            </div>
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+
+        {/* Main Content Area */}
+        <main className="flex-1 px-4 sm:px-6 lg:px-8 py-6 pt-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             {children}
+          </motion.div>
         </main>
-      </SidebarInset>
-    </SidebarProvider>
+      </div>
+    </div>
   );
 }

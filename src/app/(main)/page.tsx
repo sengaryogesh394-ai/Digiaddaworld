@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/shared/ProductCard';
-import { mockProducts, mockCategories, mockBlogPosts } from '@/lib/mock-data';
+import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight, Star, TrendingUp, Zap, Heart, BookOpen, Codepen, LayoutTemplate, Package, Bot, Palette } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -19,6 +19,17 @@ import {
 import { useEffect, useState } from 'react';
 import { AnimateOnView } from '@/components/shared/AnimateOnView';
 import { BlogPostCard } from '@/components/shared/BlogPostCard';
+
+interface Blog {
+  _id: string;
+  title: string;
+  author: string;
+  status: 'draft' | 'published';
+  createdAt: string;
+  excerpt?: string;
+  slug: string;
+  featuredImage?: string;
+}
 
 const CarouselSlideContent = ({
     slideIndex,
@@ -72,6 +83,26 @@ export default function HomePage() {
   const [subscriptionApi, setSubscriptionApi] = useState<any>(null);
   const [heroApi, setHeroApi] = useState<any>(null);
   const [categoryApi, setCategoryApi] = useState<any>(null);
+  const [latestPosts, setLatestPosts] = useState<Blog[]>([]);
+  const [loadingBlogs, setLoadingBlogs] = useState(true);
+
+  // Fetch published blog posts
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch('/api/blog/published?limit=3');
+        const data = await response.json();
+        if (data.success) {
+          setLatestPosts(data.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch blog posts:', error);
+      } finally {
+        setLoadingBlogs(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
   const heroSlides = [
     {
@@ -154,7 +185,6 @@ export default function HomePage() {
   const mainPromoProduct = mockProducts.find(p => p.id === 'prod-instagram-course');
   const topRightPromoProduct = mockProducts.find(p => p.id === 'prod-graphic-design-bundle');
   const bottomRightPromoProduct = mockProducts.find(p => p.id === 'prod-ai-reels-fitness');
-  const latestPosts = mockBlogPosts.slice(0, 3);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -593,24 +623,57 @@ export default function HomePage() {
             <p className="text-muted-foreground">The latest news, tips, and insights</p>
           </div>
         </AnimateOnView>
-        <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {latestPosts.map((post, i) => (
-            <motion.div key={post.id} variants={itemVariants}>
-              <BlogPostCard post={post} />
+        {loadingBlogs ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">Loading blog posts...</p>
+          </div>
+        ) : latestPosts.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">No blog posts yet. Check back soon!</p>
+          </div>
+        ) : (
+          <>
+            <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={containerVariants}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {latestPosts.map((post, i) => {
+                // Convert Blog to BlogPost format
+                const blogPost = {
+                  id: post._id,
+                  title: post.title,
+                  excerpt: post.excerpt || '',
+                  author: post.author,
+                  slug: post.slug,
+                  date: new Date(post.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  }),
+                  image: {
+                    id: post._id,
+                    url: post.featuredImage || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=600&fit=crop',
+                    hint: post.title
+                  },
+                  content: '',
+                };
+                return (
+                  <motion.div key={post._id} variants={itemVariants}>
+                    <BlogPostCard post={blogPost} />
+                  </motion.div>
+                );
+              })}
             </motion.div>
-          ))}
-        </motion.div>
-        <AnimateOnView className="text-center mt-12">
-            <Button asChild size="lg" variant="outline">
-                <Link href="/blog">View All Posts <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
-        </AnimateOnView>
+            <AnimateOnView className="text-center mt-12">
+                <Button asChild size="lg" variant="outline">
+                    <Link href="/blog">View All Posts <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+            </AnimateOnView>
+          </>
+        )}
       </section>
 
       {/* Final CTA */}

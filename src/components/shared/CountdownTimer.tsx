@@ -3,10 +3,17 @@
 
 import { useState, useEffect } from 'react';
 
-const CountdownTimer = () => {
+interface CountdownTimerProps {
+  endDate?: Date | string;
+  discountPercentage?: number;
+}
+
+const CountdownTimer = ({ endDate, discountPercentage = 85 }: CountdownTimerProps) => {
   const calculateTimeLeft = () => {
-    // Set a future date for the countdown. For demonstration, let's set it 24 hours from now.
-    const difference = +new Date().setHours(24, 0, 0, 0) - +new Date();
+    // Use provided endDate or default to 24 hours from now
+    const targetDate = endDate ? new Date(endDate) : new Date(Date.now() + 24 * 60 * 60 * 1000);
+    const difference = +targetDate - +new Date();
+    
     let timeLeft = {
       hours: 0,
       minutes: 0,
@@ -15,7 +22,7 @@ const CountdownTimer = () => {
 
     if (difference > 0) {
       timeLeft = {
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        hours: Math.floor((difference / (1000 * 60 * 60))),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60),
       };
@@ -35,7 +42,7 @@ const CountdownTimer = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [endDate]);
 
   const timerComponents = Object.keys(timeLeft).map(interval => {
     const value = timeLeft[interval as keyof typeof timeLeft];
@@ -51,8 +58,17 @@ const CountdownTimer = () => {
   });
 
   return (
-    <div className="flex justify-center gap-4">
-      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+    <div className="space-y-4">
+      {discountPercentage > 0 && (
+        <div className="text-center">
+          <span className="inline-block bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-2 rounded-full text-xl font-bold animate-pulse">
+            {discountPercentage}% OFF - Limited Time!
+          </span>
+        </div>
+      )}
+      <div className="flex justify-center gap-4">
+        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+      </div>
     </div>
   );
 };

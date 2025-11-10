@@ -4,21 +4,60 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ProductCard } from '@/components/shared/ProductCard';
-import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 
+interface Product {
+  _id: string;
+  name: string;
+  slug: string;
+  price: number;
+  originalPrice: number;
+  media: { id: string; url: string; hint: string; type: string }[];
+  category: string;
+  status: string;
+  isFeatured: boolean;
+}
+
 export default function ShopPageContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category');
   
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategory ? [initialCategory] : []);
   const [priceRange, setPriceRange] = useState<number[]>([300]);
 
-  const maxPrice = useMemo(() => Math.ceil(Math.max(...mockProducts.map(p => p.price)) / 10) * 10, []);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch('/api/products?status=active');
+      const result = await response.json();
+      
+      if (result.success) {
+        setProducts(result.data);
+        // Extract unique categories
+        const uniqueCategories = [...new Set(result.data.map((p: Product) => p.category))] as string[];
+        setCategories(uniqueCategories);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const maxPrice = useMemo(() => {
+    if (products.length === 0) return 300;
+    return Math.ceil(Math.max(...products.map(p => p.price)) / 10) * 10;
+  }, [products]);
 
   useEffect(() => {
     setPriceRange([maxPrice]);
@@ -40,15 +79,14 @@ export default function ShopPageContent() {
   };
 
   const filteredProducts = useMemo(() => {
-    return mockProducts.filter((product) => {
-      const categoryId = product.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+    return products.filter((product: Product) => {
       const categoryMatch =
         selectedCategories.length === 0 ||
-        selectedCategories.includes(categoryId);
+        selectedCategories.includes(product.category);
       const priceMatch = product.price <= priceRange[0];
       return categoryMatch && priceMatch;
     });
-  }, [selectedCategories, priceRange]);
+  }, [products, selectedCategories, priceRange]);
 
   const clearFilters = () => {
     setSelectedCategories([]);
@@ -77,14 +115,14 @@ export default function ShopPageContent() {
               <div>
                 <h3 className="font-semibold mb-4">Categories</h3>
                 <div className="space-y-2">
-                  {mockCategories.map((category) => (
-                    <div key={category.id} className="flex items-center space-x-2">
+                  {categories.map((category: string) => (
+                    <div key={category} className="flex items-center space-x-2">
                       <Checkbox
-                        id={category.id}
-                        checked={selectedCategories.includes(category.id)}
-                        onCheckedChange={() => handleCategoryChange(category.id)}
+                        id={category}
+                        checked={selectedCategories.includes(category)}
+                        onCheckedChange={() => handleCategoryChange(category)}
                       />
-                      <Label htmlFor={category.id} className="cursor-pointer">{category.name}</Label>
+                      <Label htmlFor={category} className="cursor-pointer">{category}</Label>
                     </div>
                   ))}
                 </div>
@@ -108,10 +146,25 @@ export default function ShopPageContent() {
 
         {/* Products Grid */}
         <main className="lg:col-span-3">
-          {filteredProducts.length > 0 ? (
+          {loading ? (
+            <div className="text-center py-16">
+              <p className="text-muted-foreground">Loading products...</p>
+            </div>
+          ) : filteredProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              {filteredProducts.map((product: Product) => (
+                <ProductCard 
+                  key={product._id} 
+                  product={{
+                    id: product.slug,
+                    name: product.name,
+                    price: product.price,
+                    media: product.media,
+                    category: product.category,
+                    isFeatured: product.isFeatured,
+                    description: ''
+                  }} 
+                />
               ))}
             </div>
           ) : (
