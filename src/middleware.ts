@@ -6,16 +6,28 @@ export default withAuth(
     const token = req.nextauth.token;
     const isAdminRoute = req.nextUrl.pathname.startsWith('/admin');
 
+    console.log('Middleware - Path:', req.nextUrl.pathname);
+    console.log('Middleware - Token:', token);
+    console.log('Middleware - Is Admin Route:', isAdminRoute);
+    console.log('Middleware - User Role:', token?.role);
+
     // If accessing admin routes, check if user has admin role
     if (isAdminRoute && token?.role !== 'admin') {
-      return NextResponse.redirect(new URL('/auth/login?error=unauthorized', req.url));
+      console.log('Middleware - Redirecting to login (unauthorized)');
+      const loginUrl = new URL('/auth/login', req.url);
+      loginUrl.searchParams.set('error', 'unauthorized');
+      loginUrl.searchParams.set('callbackUrl', req.nextUrl.pathname);
+      return NextResponse.redirect(loginUrl);
     }
 
     return NextResponse.next();
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token,
+      authorized: ({ token }) => {
+        console.log('Middleware - Authorized callback, token:', !!token);
+        return !!token;
+      },
     },
   }
 );

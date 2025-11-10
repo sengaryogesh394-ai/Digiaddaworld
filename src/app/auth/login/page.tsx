@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -57,23 +57,36 @@ function LoginContent() {
           description: 'Logged in successfully!',
         });
         
-        // Check if there's a callback URL or if user is admin
+        // Check if there's a callback URL
         const callbackUrl = searchParams.get('callbackUrl');
         
-        // Fetch session to check user role
-        const response = await fetch('/api/auth/session');
+        // Wait a bit for session to update on Vercel
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Fetch session to check user role with cache busting
+        const response = await fetch('/api/auth/session', {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+          },
+        });
         const session = await response.json();
+        
+        console.log('Session after login:', session); // Debug log
         
         if (session?.user?.role === 'admin') {
           // Redirect admin users to admin dashboard
+          console.log('Redirecting admin to dashboard');
           router.push(callbackUrl || '/admin/dashboard');
         } else {
           // Redirect regular users to homepage or callback URL
+          console.log('Redirecting user to homepage');
           router.push(callbackUrl || '/');
         }
         router.refresh();
       }
     } catch (error: any) {
+      console.error('Login error:', error);
       toast({
         title: 'Error',
         description: error.message || 'Something went wrong',
