@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/shared/ProductCard';
-import { mockProducts, mockCategories } from '@/lib/mock-data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight, Star, TrendingUp, Zap, Heart, BookOpen, Codepen, LayoutTemplate, Package, Bot, Palette } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -19,6 +18,18 @@ import {
 import { useEffect, useState } from 'react';
 import { AnimateOnView } from '@/components/shared/AnimateOnView';
 import { BlogPostCard } from '@/components/shared/BlogPostCard';
+
+interface Product {
+  _id: string;
+  name: string;
+  slug: string;
+  price: number;
+  originalPrice: number;
+  media: { id: string; url: string; hint: string; type: string }[];
+  category: string;
+  status: string;
+  isFeatured: boolean;
+}
 
 interface Blog {
   _id: string;
@@ -179,12 +190,41 @@ export default function HomePage() {
     getImage('hero-bg-3'),
   ];
 
-  const featuredProducts = mockProducts.filter(p => p.isFeatured).slice(0, 3);
-  const newProducts = mockProducts.slice(0, 8);
-  const bestSelling = mockProducts.slice(4, 12);
-  const mainPromoProduct = mockProducts.find(p => p.id === 'prod-instagram-course');
-  const topRightPromoProduct = mockProducts.find(p => p.id === 'prod-graphic-design-bundle');
-  const bottomRightPromoProduct = mockProducts.find(p => p.id === 'prod-ai-reels-fitness');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch('/api/products?status=active');
+      console.log('Response status:', response.status);
+      if (response.ok) {
+        const result = await response.json();
+        console.log('API result:', result);
+        const productData = result.data || [];
+        console.log('Products fetched:', productData.length);
+        setProducts(productData);
+        // Extract unique categories
+        const uniqueCategories = Array.from(new Set(productData.map((p: Product) => p.category)));
+        setCategories(uniqueCategories as string[]);
+      }
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const featuredProducts = products.filter(p => p.isFeatured).slice(0, 3);
+  const newProducts = products.slice(0, 8);
+  const bestSelling = products.slice(0, 12);
+  const mainPromoProduct = products[0];
+  const topRightPromoProduct = products[1];
+  const bottomRightPromoProduct = products[2];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -392,13 +432,13 @@ export default function HomePage() {
         
         <Carousel setApi={setCategoryApi} opts={{ align: "start", loop: true, slidesToScroll: 3 }}>
           <CarouselContent className="-ml-4">
-            {mockCategories.map((category, i) => {
-                const Icon = categoryIcons[category.id] || LayoutTemplate;
-                const gradient = categoryGradients[category.id] || 'from-gray-900 to-gray-700';
+            {categories.map((category: string, i: number) => {
+                const Icon = categoryIcons[category] || LayoutTemplate;
+                const gradient = categoryGradients[category] || 'from-gray-900 to-gray-700';
                 return (
-                  <CarouselItem key={category.id} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
+                  <CarouselItem key={category} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
                     <AnimateOnView delay={i * 0.05}>
-                      <Link href={`/shop?category=${category.id}`} className="flex flex-col items-center gap-3 group">
+                      <Link href={`/shop?category=${category}`} className="flex flex-col items-center gap-3 group">
                         <motion.div 
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           whileTap={{ scale: 0.95 }}
@@ -406,7 +446,7 @@ export default function HomePage() {
                         >
                           <Icon className="w-12 h-12 text-white" />
                         </motion.div>
-                        <p className="font-semibold text-sm text-center group-hover:text-primary transition-colors">{category.name}</p>
+                        <p className="font-semibold text-sm text-center group-hover:text-primary transition-colors">{category}</p>
                       </Link>
                     </AnimateOnView>
                   </CarouselItem>
@@ -438,8 +478,8 @@ export default function HomePage() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProducts.map((product, i) => (
-                <AnimateOnView key={product.id} delay={i * 0.1}>
+              {featuredProducts.map((product: Product, i: number) => (
+                <AnimateOnView key={product._id} delay={i * 0.1}>
                   <motion.div 
                     whileHover={{ y: -8, scale: 1.02 }} 
                     transition={{ type: "spring", stiffness: 300 }}
@@ -557,9 +597,9 @@ export default function HomePage() {
               variants={containerVariants}
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
             >
-              {newProducts.map((product, i) => (
+              {newProducts.map((product: Product, i: number) => (
                 <motion.div 
-                  key={product.id}
+                  key={product._id}
                   variants={itemVariants}
                   whileHover={{ y: -8, scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -578,9 +618,9 @@ export default function HomePage() {
               variants={containerVariants}
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
             >
-              {bestSelling.map((product, i) => (
+              {bestSelling.map((product: Product, i: number) => (
                 <motion.div 
-                  key={product.id}
+                  key={product._id}
                   variants={itemVariants}
                   whileHover={{ y: -8, scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -599,9 +639,9 @@ export default function HomePage() {
               variants={containerVariants}
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {featuredProducts.map((product, i) => (
+              {featuredProducts.map((product: Product, i: number) => (
                 <motion.div 
-                  key={product.id}
+                  key={product._id}
                   variants={itemVariants}
                   whileHover={{ y: -8, scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 300 }}

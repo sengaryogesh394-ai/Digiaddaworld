@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -27,7 +27,7 @@ interface Order {
   createdAt: string;
 }
 
-export default function OrderConfirmationPage() {
+function OrderContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('orderId');
   const [order, setOrder] = useState<Order | null>(null);
@@ -150,5 +150,17 @@ export default function OrderConfirmationPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function OrderConfirmationPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+      </div>
+    }>
+      <OrderContent />
+    </Suspense>
   );
 }
