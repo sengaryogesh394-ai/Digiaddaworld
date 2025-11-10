@@ -227,7 +227,7 @@ export async function generateProductContent(
       temperature: 0.8,
       topP: 0.9,
       topK: 40,
-      maxOutputTokens: 2048,
+      maxOutputTokens: 4096,
     }
   });
 
@@ -266,7 +266,8 @@ CRITICAL: Return ONLY the JSON object. No markdown code blocks. No explanations.
     const response = await result.response;
     const text = response.text();
 
-    console.log('Raw Gemini product response:', text.substring(0, 500));
+    console.log('Raw Gemini product response length:', text.length);
+    console.log('Raw Gemini product response:', text);
 
     let parsedResponse: ProductContentResponse;
     try {
@@ -301,7 +302,13 @@ CRITICAL: Return ONLY the JSON object. No markdown code blocks. No explanations.
 
     // Validate response
     if (!parsedResponse.description || !parsedResponse.features || !parsedResponse.tags) {
-      throw new Error('Invalid response structure from Gemini');
+      console.error('Parsed response:', JSON.stringify(parsedResponse, null, 2));
+      throw new Error('Invalid response structure from Gemini - missing required fields');
+    }
+    
+    // Ensure features is an array
+    if (!Array.isArray(parsedResponse.features)) {
+      throw new Error('Features must be an array');
     }
 
     return parsedResponse;
@@ -323,7 +330,7 @@ export async function enhanceProductDescription(
     model: 'gemini-2.5-flash',
     generationConfig: {
       temperature: 0.7,
-      maxOutputTokens: 1024,
+      maxOutputTokens: 4096,
     }
   });
 

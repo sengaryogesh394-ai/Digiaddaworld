@@ -65,9 +65,12 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
     status: 'active'
   });
   
-  const promoProduct = promoResult.success 
+  const promoProductRaw = promoResult.success 
     ? promoResult.data.find((p: any) => p._id.toString() !== product._id.toString()) || promoResult.data[0]
     : null;
+  
+  // Serialize promoProduct to plain object
+  const promoProduct = promoProductRaw ? JSON.parse(JSON.stringify(promoProductRaw)) : null;
 
   const getImage = (id: string) => {
     const image = PlaceHolderImages.find(img => img.id === id);
@@ -226,21 +229,107 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                     </Card>
                 </section>
             )}
-             {/* Guarantee Section */}
+             {/* Limited Time Offer Section */}
+            <section className="max-w-4xl mx-auto">
+                <div className="bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border-4 border-orange-400 dark:border-orange-600 rounded-3xl p-8 md:p-12 shadow-2xl">
+                    {/* Alert Icon & Title */}
+                    <div className="text-center mb-6">
+                        <div className="inline-flex items-center gap-2 text-orange-600 dark:text-orange-400 mb-4">
+                            <Zap className="w-8 h-8 animate-pulse" />
+                            <h2 className="text-3xl md:text-4xl font-black" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                Limited Time Offer!
+                            </h2>
+                        </div>
+                        <p className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            The next 3 months are the GOLDEN PERIOD for {product.category} products
+                        </p>
+                    </div>
+
+                    {/* Countdown Timer */}
+                    {product.promotion?.enabled === true && (
+                        <div className="my-8">
+                            <CountdownTimer 
+                                endDate={product.promotion.timerEndDate} 
+                                discountPercentage={product.promotion.discountPercentage || 85}
+                            />
+                        </div>
+                    )}
+
+                    {/* Price Info */}
+                    <div className="text-center mb-8">
+                        <p className="text-lg md:text-xl text-red-600 dark:text-red-400 font-bold mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            Price Returns to ₹{product.originalPrice || (product.price * 2).toFixed(0)} Tomorrow – Enroll Now at ₹{product.price.toFixed(0)}!
+                        </p>
+                        <div className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            Only ₹{product.price.toFixed(0)}
+                        </div>
+                    </div>
+
+                    {/* What's Inside */}
+                    <div className="mb-8">
+                        <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            Here's What You'll Get Inside
+                        </h3>
+                        <div className="space-y-3">
+                            {product.features && product.features.slice(0, 7).map((feature: any, index: number) => (
+                                <div key={index} className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                                    <Check className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-1" />
+                                    <span className="text-base md:text-lg" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                        <span dangerouslySetInnerHTML={{ __html: feature.title }} />
+                                        {feature.description && ` - ${feature.description}`}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="text-center mb-8">
+                        <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-12 rounded-full text-lg md:text-xl shadow-2xl transform hover:scale-105 transition-all duration-300 inline-flex items-center gap-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            GET LIFETIME ACCESS at Rs ₹{product.price.toFixed(0)}/- 🔒
+                        </button>
+                    </div>
+
+                    {/* Guarantee Badges */}
+                    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-sm md:text-base text-gray-700 dark:text-gray-300" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                        <div className="flex items-center gap-2">
+                            <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
+                            <span className="font-semibold">Instant Course Access</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
+                            <span className="font-semibold">24/7 Support</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
+                            <span className="font-semibold">Lifetime Updates</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
+                            <span className="font-semibold">30-Day Guarantee</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Guarantee Section with Round Badge */}
             <section className="text-center max-w-3xl mx-auto">
-                <Image 
-                    src={getImage('promo-guarantee').url} 
-                    alt="30-Day Money-Back Guarantee" 
-                    width={120} height={120} 
-                    className="mx-auto" 
-                    data-ai-hint={getImage('promo-guarantee').hint} 
-                />
-                <h3 className="text-2xl font-bold mt-4 text-gray-800 dark:text-gray-100">30-Day Money-Back Guarantee</h3>
-                <p className="text-gray-600 dark:text-gray-400 mt-2">100% Risk-Free: Earn your first sale or get a full refund.</p>
-                <ul className="text-left space-y-2 text-gray-600 dark:text-gray-400 w-fit mx-auto my-6">
-                    <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> 94% recover investment in 1 Week</li>
-                    <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Step-by-step success system</li>
-                    <li className="flex items-center"><Check className="w-4 h-4 mr-2 text-green-500"/> Personal mentorship to first sale</li>
+                <div className="inline-block">
+                    <Image 
+                        src={getImage('promo-guarantee').url} 
+                        alt="30-Day Money-Back Guarantee" 
+                        width={150} 
+                        height={150} 
+                        className="mx-auto rounded-full shadow-2xl border-4 border-green-500 dark:border-green-400" 
+                        data-ai-hint={getImage('promo-guarantee').hint} 
+                    />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mt-6 text-gray-800 dark:text-gray-100" style={{ fontFamily: 'Poppins, sans-serif' }}>30-Day Money-Back Guarantee</h3>
+                <p className="text-lg text-gray-600 dark:text-gray-400 mt-3" style={{ fontFamily: 'Poppins, sans-serif' }}>100% Risk-Free: Earn your first sale or get a full refund.</p>
+                <ul className="text-left space-y-3 text-gray-600 dark:text-gray-400 w-fit mx-auto my-8">
+                    <li className="flex items-center gap-3"><Check className="w-5 h-5 text-green-500 flex-shrink-0"/> <span className="text-base">94% recover investment in 1 Week</span></li>
+                    <li className="flex items-center gap-3"><Check className="w-5 h-5 text-green-500 flex-shrink-0"/> <span className="text-base">Step-by-step success system</span></li>
+                    <li className="flex items-center gap-3"><Check className="w-5 h-5 text-green-500 flex-shrink-0"/> <span className="text-base">Personal mentorship to first sale</span></li>
                 </ul>
             </section>
 
