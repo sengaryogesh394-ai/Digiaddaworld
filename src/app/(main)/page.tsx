@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/shared/ProductCard';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowRight, Star, TrendingUp, Zap, Heart, BookOpen, Codepen, LayoutTemplate, Package, Bot, Palette } from 'lucide-react';
+import { ArrowRight, Star, TrendingUp, Zap, Heart, BookOpen, Codepen, LayoutTemplate, Package, Bot, Palette, Sparkles, Video, Image as ImageIcon, Music, Code, Briefcase, GraduationCap, Layers } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -115,36 +115,6 @@ export default function HomePage() {
     fetchBlogs();
   }, []);
 
-  const heroSlides = [
-    {
-      image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
-      badge: 'TRENDING NOW',
-      title: 'Instagram Growth Mastery Course',
-      price: 199.99,
-      originalPrice: 299.99,
-      tag: 'Featured',
-      link: '/shop/prod-instagram-course'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&h=800&fit=crop',
-      badge: 'BEST SELLER',
-      title: 'Graphic Design Bundle',
-      price: 79.99,
-      originalPrice: 119.99,
-      tag: 'Featured',
-      link: '/shop/prod-graphic-design-bundle'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop',
-      badge: 'LIMITED TIME OFFER',
-      title: '500+ AI Fitness Reels Bundle',
-      price: 49.99,
-      originalPrice: 99.99,
-      tag: 'Hot Deal',
-      link: '/shop/prod-ai-reels-fitness'
-    }
-  ];
-
   useEffect(() => {
     if (!subscriptionApi) return;
     const id = setInterval(() => subscriptionApi.scrollNext(), 5000);
@@ -226,6 +196,27 @@ export default function HomePage() {
   const topRightPromoProduct = products[1];
   const bottomRightPromoProduct = products[2];
 
+  // Create hero slides from real products
+  const heroSlides = featuredProducts.length > 0 ? featuredProducts.map((product, index) => ({
+    image: product.media[0]?.url || 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
+    badge: index === 0 ? 'TRENDING NOW' : index === 1 ? 'BEST SELLER' : 'LIMITED TIME OFFER',
+    title: product.name,
+    price: product.price,
+    originalPrice: product.originalPrice || product.price * 1.5,
+    tag: 'Featured',
+    link: `/shop/${product.slug || product._id}`
+  })) : [
+    {
+      image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
+      badge: 'TRENDING NOW',
+      title: 'Explore Our Products',
+      price: 199.99,
+      originalPrice: 299.99,
+      tag: 'Featured',
+      link: '/shop'
+    }
+  ];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -248,22 +239,78 @@ export default function HomePage() {
     }
   };
 
-  const categoryIcons: { [key: string]: React.ElementType } = {
-    'software-and-tools': Codepen,
-    'courses-and-ebooks': BookOpen,
-    'templates': LayoutTemplate,
-    'content-bundles': Package,
-    'ai-reels': Bot,
-    'graphic-design': Palette,
-  };
-  
-  const categoryGradients: { [key: string]: string } = {
-    'software-and-tools': 'from-slate-900 to-slate-700',
-    'courses-and-ebooks': 'from-blue-900 to-blue-700',
-    'templates': 'from-emerald-900 to-emerald-700',
-    'content-bundles': 'from-purple-900 to-purple-700',
-    'ai-reels': 'from-rose-900 to-rose-700',
-    'graphic-design': 'from-amber-900 to-amber-700',
+  // Function to get icon and color for any category
+  const getCategoryStyle = (category: string, index: number) => {
+    const categoryLower = category.toLowerCase();
+    
+    // Icon mapping based on keywords
+    let Icon = LayoutTemplate; // default
+    let gradient = 'from-gray-900 to-gray-700'; // default
+    
+    if (categoryLower.includes('software') || categoryLower.includes('tool')) {
+      Icon = Codepen;
+      gradient = 'from-slate-900 to-slate-700';
+    } else if (categoryLower.includes('course') || categoryLower.includes('ebook') || categoryLower.includes('education')) {
+      Icon = BookOpen;
+      gradient = 'from-blue-900 to-blue-700';
+    } else if (categoryLower.includes('template')) {
+      Icon = LayoutTemplate;
+      gradient = 'from-emerald-900 to-emerald-700';
+    } else if (categoryLower.includes('bundle') || categoryLower.includes('content')) {
+      Icon = Package;
+      gradient = 'from-purple-900 to-purple-700';
+    } else if (categoryLower.includes('ai') || categoryLower.includes('reel')) {
+      Icon = Bot;
+      gradient = 'from-rose-900 to-rose-700';
+    } else if (categoryLower.includes('graphic') || categoryLower.includes('design')) {
+      Icon = Palette;
+      gradient = 'from-amber-900 to-amber-700';
+    } else if (categoryLower.includes('video')) {
+      Icon = Video;
+      gradient = 'from-red-900 to-red-700';
+    } else if (categoryLower.includes('music') || categoryLower.includes('audio')) {
+      Icon = Music;
+      gradient = 'from-pink-900 to-pink-700';
+    } else if (categoryLower.includes('code') || categoryLower.includes('programming')) {
+      Icon = Code;
+      gradient = 'from-indigo-900 to-indigo-700';
+    } else if (categoryLower.includes('business')) {
+      Icon = Briefcase;
+      gradient = 'from-cyan-900 to-cyan-700';
+    } else if (categoryLower.includes('learning') || categoryLower.includes('training')) {
+      Icon = GraduationCap;
+      gradient = 'from-teal-900 to-teal-700';
+    } else if (categoryLower.includes('image') || categoryLower.includes('photo')) {
+      Icon = ImageIcon;
+      gradient = 'from-orange-900 to-orange-700';
+    } else if (categoryLower.includes('layer') || categoryLower.includes('asset')) {
+      Icon = Layers;
+      gradient = 'from-violet-900 to-violet-700';
+    } else {
+      // Assign different colors based on index for unknown categories
+      const gradients = [
+        'from-blue-900 to-blue-700',
+        'from-purple-900 to-purple-700',
+        'from-pink-900 to-pink-700',
+        'from-red-900 to-red-700',
+        'from-orange-900 to-orange-700',
+        'from-amber-900 to-amber-700',
+        'from-yellow-900 to-yellow-700',
+        'from-lime-900 to-lime-700',
+        'from-green-900 to-green-700',
+        'from-emerald-900 to-emerald-700',
+        'from-teal-900 to-teal-700',
+        'from-cyan-900 to-cyan-700',
+        'from-sky-900 to-sky-700',
+        'from-indigo-900 to-indigo-700',
+        'from-violet-900 to-violet-700',
+      ];
+      const icons = [Sparkles, Star, Heart, Zap, Package, LayoutTemplate, Bot, Palette];
+      Icon = icons[index % icons.length];
+      gradient = gradients[index % gradients.length];
+    }
+    
+    return { Icon, gradient };
   };
 
 
@@ -378,7 +425,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold mt-1 leading-tight">{topRightPromoProduct?.name}</h3>
                 </div>
                 <Button variant="secondary" asChild size="sm" className="w-fit group mt-4">
-                  <Link href={`/shop/${topRightPromoProduct?.id}`}>
+                  <Link href={topRightPromoProduct?.slug ? `/shop/${topRightPromoProduct.slug}` : '/shop'}>
                     Explore <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
@@ -411,7 +458,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold mt-1 leading-tight">{bottomRightPromoProduct?.name}</h3>
                 </div>
                 <Button variant="secondary" asChild size="sm" className="w-fit group mt-4">
-                  <Link href={`/shop/${bottomRightPromoProduct?.id}`}>
+                  <Link href={bottomRightPromoProduct?.slug ? `/shop/${bottomRightPromoProduct.slug}` : '/shop'}>
                     Shop Deal <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
@@ -433,8 +480,7 @@ export default function HomePage() {
         <Carousel setApi={setCategoryApi} opts={{ align: "start", loop: true, slidesToScroll: 3 }}>
           <CarouselContent className="-ml-4">
             {categories.map((category: string, i: number) => {
-                const Icon = categoryIcons[category] || LayoutTemplate;
-                const gradient = categoryGradients[category] || 'from-gray-900 to-gray-700';
+                const { Icon, gradient } = getCategoryStyle(category, i);
                 return (
                   <CarouselItem key={category} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/8">
                     <AnimateOnView delay={i * 0.05}>
@@ -726,13 +772,13 @@ export default function HomePage() {
             className="max-w-3xl mx-auto space-y-6"
           >
             <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
-              <Heart className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-              <span className="font-semibold text-sm text-amber-700 dark:text-amber-300 uppercase tracking-wider">Join Thousands of Creators</span>
+              <Palette className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <span className="font-semibold text-sm text-amber-700 dark:text-amber-300 uppercase tracking-wider">For Graphic Designers</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold">Looking for unlimited downloads?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold">Ready to Level Up Your Design Game?</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Get access to our entire library of themes, templates, and more with a single subscription. Start creating today!
+              Access premium templates, design bundles, and AI-powered tools to create stunning graphics in minutes. Join 10,000+ designers who are already creating amazing work!
             </p>
             
             <motion.div
@@ -740,8 +786,8 @@ export default function HomePage() {
               whileTap={{ scale: 0.95 }}
             >
               <Button size="lg" className="mt-4 shadow-xl group text-lg px-8 py-6" asChild>
-                <Link href="#">
-                  Learn More About Envato Elements
+                <Link href="/shop">
+                  Explore Design Resources
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
