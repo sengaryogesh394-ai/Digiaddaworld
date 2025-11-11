@@ -8,6 +8,7 @@ export interface IBlog extends Document {
   slug: string;
   excerpt?: string;
   featuredImage?: string;
+  images?: Array<{ url: string; hint: string }>;
   tags?: string[];
   createdAt: Date;
   updatedAt: Date;
@@ -50,6 +51,10 @@ const BlogSchema: Schema<IBlog> = new Schema(
     featuredImage: {
       type: String,
     },
+    images: [{
+      url: { type: String, required: true },
+      hint: { type: String }
+    }],
     tags: [{
       type: String,
       trim: true,

@@ -228,7 +228,7 @@ export default function ProfilePage() {
                   </a>
                 </Button>
                 <Button variant="outline" className="h-auto py-4" asChild>
-                  <a href="/orders">
+                  <a href="/my-orders">
                     <div className="text-left">
                       <div className="font-semibold">My Orders</div>
                       <div className="text-sm text-muted-foreground">View order history</div>

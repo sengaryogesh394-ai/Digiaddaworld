@@ -27,6 +27,15 @@ export interface IPromotion {
   timerDuration?: number; // in hours
 }
 
+export interface IPromotionalHeader {
+  enabled: boolean;
+  bannerText?: string;
+  mainHeading: string;
+  subHeading?: string;
+  backgroundColor?: string;
+  textColor?: string;
+}
+
 export interface IProduct extends Document {
   name: string;
   slug: string;
@@ -45,6 +54,7 @@ export interface IProduct extends Document {
   reviewCount: number;
   tags: string[];
   promotion?: IPromotion;
+  promotionalHeader?: IPromotionalHeader;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -172,6 +182,33 @@ const ProductSchema = new Schema<IProduct>(
         type: Number, 
         default: 24,
         min: [1, 'Timer duration must be at least 1 hour']
+      }
+    },
+    promotionalHeader: {
+      enabled: {
+        type: Boolean,
+        default: false
+      },
+      bannerText: {
+        type: String,
+        trim: true
+      },
+      mainHeading: {
+        type: String,
+        trim: true,
+        default: ''
+      },
+      subHeading: {
+        type: String,
+        trim: true
+      },
+      backgroundColor: {
+        type: String,
+        default: '#FF6B6B'
+      },
+      textColor: {
+        type: String,
+        default: '#000000'
       }
     }
   },

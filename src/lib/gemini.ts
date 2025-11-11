@@ -234,6 +234,70 @@ Return only the excerpt text, nothing else.`;
   }
 }
 
+export interface PromotionalHeaderResponse {
+  bannerText: string;
+  mainHeading: string;
+  subHeading: string;
+}
+
+export async function generatePromotionalHeader(
+  productName: string,
+  category: string,
+  description?: string
+): Promise<PromotionalHeaderResponse> {
+  if (!genAI) {
+    throw new Error('Gemini API is not configured');
+  }
+
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+    generationConfig: {
+      temperature: 0.8,
+      maxOutputTokens: 1024,
+      responseMimeType: 'application/json',
+    }
+  });
+
+  const prompt = `Generate promotional header content for a digital product.
+
+Product Name: ${productName}
+Category: ${category}
+${description ? `Description: ${description}` : ''}
+
+Create compelling promotional header content in JSON format:
+
+{
+  "bannerText": "Urgency-driven offer text (e.g., 'You asked, we listened. Get instant access for Lifetime now at just ₹2999 ₹199. Offer extended for 48 hours only. HURRY UP!')",
+  "mainHeading": "Catchy main heading that grabs attention (e.g., 'World's Biggest Video Editing Bundle!')",
+  "subHeading": "Engaging question or statement before main heading (e.g., 'Are You A Passionate Video Editor? Or Aspiring To Become One? Then You're At The Right Place. Introducing:')"
+}
+
+Make it:
+- Exciting and attention-grabbing
+- Create urgency and FOMO
+- Highlight value and benefits
+- Use emotional triggers
+- Keep it concise and impactful
+
+Return ONLY valid JSON.`;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+
+    const parsed = JSON.parse(text);
+    return {
+      bannerText: parsed.bannerText || '',
+      mainHeading: parsed.mainHeading || productName,
+      subHeading: parsed.subHeading || ''
+    };
+  } catch (error: any) {
+    console.error('Error generating promotional header:', error);
+    throw new Error(`Failed to generate promotional header: ${error.message}`);
+  }
+}
+
 export async function generateBlogTags(title: string, content: string): Promise<string[]> {
   if (!genAI) {
     throw new Error('Gemini API is not configured');

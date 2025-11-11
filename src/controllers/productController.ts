@@ -110,6 +110,9 @@ export class ProductController {
       };
     }
 
+    console.log('📦 getProductBySlug - Fetching product:', slug);
+    console.log('🎯 getProductBySlug - Promotional header in DB:', product.promotionalHeader);
+
     return {
       success: true,
       data: product
@@ -150,6 +153,7 @@ export class ProductController {
 
     console.log('ProductController - Received update data:', JSON.stringify(updateData, null, 2));
     console.log('ProductController - Promotion data:', updateData.promotion);
+    console.log('ProductController - Promotional Header data:', updateData.promotionalHeader);
 
     // If name is updated, regenerate slug
     if (updateData.name) {
@@ -171,11 +175,8 @@ export class ProductController {
       }
     }
 
-    const product = await Product.findByIdAndUpdate(
-      id,
-      updateData,
-      { new: true, runValidators: true }
-    );
+    // Fetch the product first
+    const product = await Product.findById(id);
 
     if (!product) {
       return {
@@ -184,8 +185,70 @@ export class ProductController {
       };
     }
 
+    // Update regular fields
+    if (updateData.name) product.name = updateData.name;
+    if (updateData.description) product.description = updateData.description;
+    if (updateData.price !== undefined) product.price = updateData.price;
+    if (updateData.originalPrice !== undefined) product.originalPrice = updateData.originalPrice;
+    if (updateData.category) product.category = updateData.category;
+    if (updateData.status) product.status = updateData.status;
+    if (updateData.stock !== undefined) product.stock = updateData.stock;
+    if (updateData.isFeatured !== undefined) product.isFeatured = updateData.isFeatured;
+    if (updateData.tags) product.tags = updateData.tags;
+    if (updateData.media) product.media = updateData.media;
+    if (updateData.features) product.features = updateData.features;
+    if (updateData.slug) product.slug = updateData.slug;
+    
+    // Update promotion
+    if (updateData.promotion) {
+      product.promotion = {
+        enabled: updateData.promotion.enabled || false,
+        discountPercentage: updateData.promotion.discountPercentage || 0,
+        timerDuration: updateData.promotion.timerDuration || 24,
+        timerEndDate: updateData.promotion.timerEndDate
+      };
+    }
+    
+    // Update promotionalHeader - CRITICAL FIX
+    if (updateData.promotionalHeader !== undefined) {
+      console.log('🔥 UPDATING PROMOTIONAL HEADER');
+      console.log('🔥 Data received:', updateData.promotionalHeader);
+      
+      product.promotionalHeader = {
+        enabled: updateData.promotionalHeader.enabled || false,
+        bannerText: updateData.promotionalHeader.bannerText || '',
+        mainHeading: updateData.promotionalHeader.mainHeading || '',
+        subHeading: updateData.promotionalHeader.subHeading || '',
+        backgroundColor: updateData.promotionalHeader.backgroundColor || '#FF6B6B',
+        textColor: updateData.promotionalHeader.textColor || '#000000'
+      };
+      
+      console.log('🔥 Promotional header SET on product:', product.promotionalHeader);
+      
+      // Mark as modified to ensure Mongoose saves it
+      product.markModified('promotionalHeader');
+    }
+
+    // Save the product
+    await product.save();
+    
+    console.log('🔥 Product SAVED. Re-fetching from DB...');
+    
+    // Fetch fresh from database to verify
+    const savedProduct = await Product.findById(id).lean();
+    
+    console.log('🔥 Fresh from DB - Promotional header:', savedProduct?.promotionalHeader);
+
     console.log('ProductController - Product after save:', JSON.stringify(product, null, 2));
     console.log('ProductController - Saved promotion:', product.promotion);
+    console.log('🎯 ProductController - Saved promotional header:', product.promotionalHeader);
+    console.log('🎯 Promotional header fields after save:');
+    console.log('   - enabled:', product.promotionalHeader?.enabled);
+    console.log('   - bannerText:', product.promotionalHeader?.bannerText);
+    console.log('   - mainHeading:', product.promotionalHeader?.mainHeading);
+    console.log('   - subHeading:', product.promotionalHeader?.subHeading);
+    console.log('   - backgroundColor:', product.promotionalHeader?.backgroundColor);
+    console.log('   - textColor:', product.promotionalHeader?.textColor);
 
     return {
       success: true,

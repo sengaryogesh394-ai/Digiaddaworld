@@ -57,6 +57,8 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
   console.log('Product promotion data:', product.promotion);
   console.log('Promotion enabled:', product.promotion?.enabled);
   console.log('Discount percentage:', product.promotion?.discountPercentage);
+  console.log('Promotional header data:', product.promotionalHeader);
+  console.log('Promotional header enabled:', product.promotionalHeader?.enabled);
 
   const getImage = (id: string) => {
     const image = PlaceHolderImages.find(img => img.id === id);
@@ -68,19 +70,72 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 py-12" style={{ fontFamily: 'Poppins, sans-serif' }}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            {/* Header Section */}
-            <section className="text-center max-w-5xl mx-auto">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-gray-100 leading-tight mb-4" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
-                    Start Your <span className="text-rose-500">{product.name}</span> Business Today! Beginner-Friendly & 100% Ready-Made Projects
-                </h1>
-                {product.promotion?.enabled === true && (
-                    <div className="inline-block bg-rose-500 text-white text-sm font-bold px-6 py-3 rounded-full mb-6 shadow-lg animate-pulse" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                        <Zap className="inline-block w-4 h-4 mr-2" /> MEGA SALE IS ON! {product.promotion.discountPercentage || 85}% OFF
-                    </div>
-                )}
-            </section>
+    <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800" style={{ fontFamily: 'Poppins, sans-serif' }}>
+        {/* Promotional Header Section */}
+        {product.promotionalHeader?.enabled && (
+          <section 
+            className="py-12 md:py-16 px-4"
+            style={{ 
+              background: `linear-gradient(135deg, ${product.promotionalHeader.backgroundColor || '#FF6B6B'}, ${product.promotionalHeader.backgroundColor ? product.promotionalHeader.backgroundColor + 'CC' : '#FF8E8E'})`,
+              color: product.promotionalHeader.textColor || '#000000'
+            }}
+          >
+            <div className="container mx-auto max-w-5xl text-center space-y-6">
+              {/* Top Banner Text */}
+              {product.promotionalHeader.bannerText && (
+                <div className="inline-block bg-purple-700 text-white px-6 py-3 rounded-xl shadow-lg mb-4">
+                  <p className="text-sm md:text-base font-bold">
+                    {product.promotionalHeader.bannerText}
+                  </p>
+                </div>
+              )}
+
+              {/* Sub Heading */}
+              {product.promotionalHeader.subHeading && (
+                <p className="text-base md:text-lg font-medium max-w-3xl mx-auto leading-relaxed">
+                  {product.promotionalHeader.subHeading}
+                </p>
+              )}
+
+              {/* Main Heading */}
+              <h1 
+                className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight"
+                style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900 }}
+              >
+                {product.promotionalHeader.mainHeading || product.name}
+              </h1>
+
+              {/* Description */}
+              <p className="text-sm md:text-base max-w-4xl mx-auto leading-relaxed opacity-90">
+                {product.description.substring(0, 200)}...
+              </p>
+
+              {/* CTA Section */}
+              <div className="mt-8">
+                <div className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full shadow-lg">
+                  <span className="text-gray-800 font-semibold text-sm md:text-base">
+                    Lifetime Access - One-Time Payment - Instant Download
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12 py-12">
+            {/* Header Section - Only show if no promotional header */}
+            {!product.promotionalHeader?.enabled && (
+              <section className="text-center max-w-5xl mx-auto">
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 dark:text-gray-100 leading-tight mb-4" style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 700 }}>
+                      Start Your <span className="text-rose-500">{product.name}</span> Business Today! Beginner-Friendly & 100% Ready-Made Projects
+                  </h1>
+                  {product.promotion?.enabled === true && (
+                      <div className="inline-block bg-rose-500 text-white text-sm font-bold px-6 py-3 rounded-full mb-6 shadow-lg animate-pulse" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          <Zap className="inline-block w-4 h-4 mr-2" /> MEGA SALE IS ON! {product.promotion.discountPercentage || 85}% OFF
+                      </div>
+                  )}
+              </section>
+            )}
             
             {/* Image Gallery */}
             <section className="bg-gradient-to-br from-pink-50 via-white to-gray-50 dark:from-gray-800 dark:to-gray-900 py-16 rounded-3xl">

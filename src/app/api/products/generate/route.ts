@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateProductContent, enhanceProductDescription, generateProductTags, generateProductImages } from '@/lib/gemini';
+import { generateProductContent, enhanceProductDescription, generateProductTags, generateProductImages, generatePromotionalHeader } from '@/lib/gemini';
 
 export async function POST(request: NextRequest) {
   try {
@@ -64,9 +64,21 @@ export async function POST(request: NextRequest) {
         result = imageResult;
         break;
 
+      case 'promotional-header':
+        // Generate promotional header content
+        if (!category) {
+          return NextResponse.json(
+            { success: false, error: 'Category is required for promotional header generation' },
+            { status: 400 }
+          );
+        }
+        const headerResult = await generatePromotionalHeader(productName, category, description);
+        result = headerResult;
+        break;
+
       default:
         return NextResponse.json(
-          { success: false, error: 'Invalid action. Use: generate, enhance, tags, or images' },
+          { success: false, error: 'Invalid action. Use: generate, enhance, tags, images, or promotional-header' },
           { status: 400 }
         );
     }

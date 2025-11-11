@@ -22,10 +22,21 @@ function LoginContent() {
     password: '',
   });
 
-  // Check for unauthorized error
+  // Check for restoration or unauthorized
   useEffect(() => {
     const error = searchParams.get('error');
-    if (error === 'unauthorized') {
+    const restore = searchParams.get('restore');
+    const email = searchParams.get('email');
+    const name = searchParams.get('name');
+    
+    if (restore === 'true' && email && name) {
+      // Pre-fill email and show welcome message
+      setFormData(prev => ({ ...prev, email: decodeURIComponent(email) }));
+      toast({
+        title: `Welcome back, ${decodeURIComponent(name)}!`,
+        description: 'Admin has logged out. Please enter your password to continue.',
+      });
+    } else if (error === 'unauthorized') {
       toast({
         title: 'Access Denied',
         description: 'You do not have permission to access the admin panel. Only admin users can access.',

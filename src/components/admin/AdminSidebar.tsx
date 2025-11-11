@@ -75,9 +75,10 @@ export function AdminSidebar({ sidebarOpen, setSidebarOpen, theme, toggleTheme }
     }
   };
   
-  // Logout handler
-  const handleLogout = async () => {
-    await signOut({ callbackUrl: '/' });
+  // Logout handler with session restoration
+  const handleLogout = () => {
+    // Redirect to custom logout page that handles session restoration
+    window.location.href = '/admin/logout';
   };
 
   return (

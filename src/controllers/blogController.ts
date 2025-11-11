@@ -102,12 +102,13 @@ export class BlogController {
     status?: 'draft' | 'published';
     excerpt?: string;
     featuredImage?: string;
+    images?: Array<{ url: string; hint: string }>;
     tags?: string[];
   }) {
     try {
       await connectDB();
 
-      const { title, content, author, status, excerpt, featuredImage, tags } = data;
+      const { title, content, author, status, excerpt, featuredImage, images, tags } = data;
 
       if (!title || !content) {
         throw new Error('Title and content are required');
@@ -133,6 +134,7 @@ export class BlogController {
         status: status || 'draft',
         excerpt,
         featuredImage,
+        images: images || [],
         tags,
       });
 

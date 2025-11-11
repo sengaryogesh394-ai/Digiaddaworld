@@ -3,6 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Moon,
@@ -74,9 +75,26 @@ function AdminBreadcrumb() {
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { data: session, status } = useSession();
   const { theme, toggleTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
+  // If on login page, render children only (no sidebar)
+  if (pathname === '/admin/login') {
+    return <>{children}</>;
+  }
+
+  // If not authenticated or still loading, render children only (middleware will handle redirect)
+  if (status === 'loading' || !session) {
+    return <>{children}</>;
+  }
+
+  // If not admin role, render children only (middleware will handle redirect)
+  if ((session.user as any)?.role !== 'admin') {
+    return <>{children}</>;
+  }
+
+  // User is authenticated admin, show full admin layout
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950">
       {/* Mobile Sidebar Overlay */}

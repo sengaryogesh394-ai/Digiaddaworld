@@ -70,6 +70,15 @@ export default function EditProductPage() {
     timerDuration: 24
   });
 
+  const [promotionalHeader, setPromotionalHeader] = useState({
+    enabled: false,
+    bannerText: '',
+    mainHeading: '',
+    subHeading: '',
+    backgroundColor: '#FF6B6B',
+    textColor: '#000000'
+  });
+
   const [media, setMedia] = useState<MediaItem[]>([]);
   const [features, setFeatures] = useState<Feature[]>([]);
   const [mediaInput, setMediaInput] = useState({ url: '', hint: '', type: 'image' as 'image' | 'video' });
@@ -85,6 +94,11 @@ export default function EditProductPage() {
       
       if (result.success) {
         const product = result.data;
+        
+        console.log('📦 FETCHED PRODUCT DATA:', product);
+        console.log('🎯 Promotional Header in fetched data:', product.promotionalHeader);
+        console.log('🎯 Promotional Header enabled?:', product.promotionalHeader?.enabled);
+        
         setProductId(product._id);
         setFormData({
           name: product.name,
@@ -99,12 +113,27 @@ export default function EditProductPage() {
         });
         setMedia(product.media || []);
         setFeatures(product.features || []);
+        
         if (product.promotion) {
           setPromotion({
             enabled: product.promotion.enabled || false,
             discountPercentage: product.promotion.discountPercentage || 0,
             timerDuration: product.promotion.timerDuration || 24
           });
+        }
+        
+        if (product.promotionalHeader) {
+          console.log('✅ Setting promotional header state:', product.promotionalHeader);
+          setPromotionalHeader({
+            enabled: product.promotionalHeader.enabled || false,
+            bannerText: product.promotionalHeader.bannerText || '',
+            mainHeading: product.promotionalHeader.mainHeading || '',
+            subHeading: product.promotionalHeader.subHeading || '',
+            backgroundColor: product.promotionalHeader.backgroundColor || '#FF6B6B',
+            textColor: product.promotionalHeader.textColor || '#000000'
+          });
+        } else {
+          console.log('❌ No promotional header in product data!');
         }
       }
     } catch (error) {
@@ -152,11 +181,20 @@ export default function EditProductPage() {
           timerEndDate: promotion.enabled && promotion.timerDuration > 0 
             ? new Date(Date.now() + promotion.timerDuration * 60 * 60 * 1000)
             : undefined
+        },
+        promotionalHeader: {
+          enabled: promotionalHeader.enabled,
+          bannerText: promotionalHeader.bannerText,
+          mainHeading: promotionalHeader.mainHeading,
+          subHeading: promotionalHeader.subHeading,
+          backgroundColor: promotionalHeader.backgroundColor,
+          textColor: promotionalHeader.textColor
         }
       };
 
       console.log('Sending product data:', productData);
       console.log('Promotion data being sent:', productData.promotion);
+      console.log('Promotional Header being sent:', productData.promotionalHeader);
 
       const response = await fetch(`/api/products/${productId}`, {
         method: 'PUT',
@@ -573,6 +611,139 @@ export default function EditProductPage() {
                     </div>
                   </>
                 )}
+            </CardContent>
+          </Card>
+
+          {/* Promotional Header Settings */}
+          <Card className="border-orange-200 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950 dark:to-red-950">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                🎯 Promotional Header
+              </CardTitle>
+              <CardDescription>Custom promotional banner at the top of product page</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4">
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="promoHeaderEnabled"
+                  checked={promotionalHeader.enabled}
+                  onChange={(e) => setPromotionalHeader({...promotionalHeader, enabled: e.target.checked})}
+                  className="h-4 w-4"
+                />
+                <Label htmlFor="promoHeaderEnabled" className="cursor-pointer">Enable Promotional Header</Label>
+              </div>
+              
+              {promotionalHeader.enabled && (
+                <>
+                  <div className="grid gap-3">
+                    <Label htmlFor="bannerText">Top Banner Text (Optional)</Label>
+                    <Input 
+                      id="bannerText" 
+                      value={promotionalHeader.bannerText}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, bannerText: e.target.value})}
+                      placeholder="e.g., You asked, we listened. Get instant access for Lifetime..."
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Purple banner text at the very top
+                    </p>
+                  </div>
+
+                  <div className="grid gap-3">
+                    <Label htmlFor="mainHeading">Main Heading *</Label>
+                    <Textarea 
+                      id="mainHeading" 
+                      value={promotionalHeader.mainHeading}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, mainHeading: e.target.value})}
+                      placeholder="e.g., World's Biggest Video Editing Bundle!"
+                      rows={2}
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Large heading in the center (required)
+                    </p>
+                  </div>
+
+                  <div className="grid gap-3">
+                    <Label htmlFor="subHeading">Sub Heading (Optional)</Label>
+                    <Textarea 
+                      id="subHeading" 
+                      value={promotionalHeader.subHeading}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, subHeading: e.target.value})}
+                      placeholder="e.g., Are You A Passionate Video Editor? Or Aspiring To Become One?"
+                      rows={2}
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Text above the main heading
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="grid gap-3">
+                      <Label htmlFor="backgroundColor">Background Color</Label>
+                      <div className="flex gap-2">
+                        <Input 
+                          id="backgroundColor" 
+                          type="color"
+                          value={promotionalHeader.backgroundColor}
+                          onChange={(e) => setPromotionalHeader({...promotionalHeader, backgroundColor: e.target.value})}
+                          className="w-20 h-10 cursor-pointer"
+                        />
+                        <Input 
+                          type="text"
+                          value={promotionalHeader.backgroundColor}
+                          onChange={(e) => setPromotionalHeader({...promotionalHeader, backgroundColor: e.target.value})}
+                          placeholder="#FF6B6B"
+                          className="flex-1"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-3">
+                      <Label htmlFor="textColor">Text Color</Label>
+                      <div className="flex gap-2">
+                        <Input 
+                          id="textColor" 
+                          type="color"
+                          value={promotionalHeader.textColor}
+                          onChange={(e) => setPromotionalHeader({...promotionalHeader, textColor: e.target.value})}
+                          className="w-20 h-10 cursor-pointer"
+                        />
+                        <Input 
+                          type="text"
+                          value={promotionalHeader.textColor}
+                          onChange={(e) => setPromotionalHeader({...promotionalHeader, textColor: e.target.value})}
+                          placeholder="#000000"
+                          className="flex-1"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Preview */}
+                  <div className="mt-4 p-4 rounded-lg border-2 border-dashed">
+                    <p className="text-xs font-semibold mb-2">Preview:</p>
+                    <div 
+                      className="p-6 rounded-lg text-center"
+                      style={{ 
+                        background: promotionalHeader.backgroundColor,
+                        color: promotionalHeader.textColor
+                      }}
+                    >
+                      {promotionalHeader.bannerText && (
+                        <div className="inline-block bg-purple-700 text-white px-4 py-2 rounded-lg text-xs mb-3">
+                          {promotionalHeader.bannerText}
+                        </div>
+                      )}
+                      {promotionalHeader.subHeading && (
+                        <p className="text-sm mb-2">{promotionalHeader.subHeading}</p>
+                      )}
+                      <h2 className="text-2xl font-bold">
+                        {promotionalHeader.mainHeading || 'Your Main Heading'}
+                      </h2>
+                    </div>
+                  </div>
+                </>
+              )}
             </CardContent>
           </Card>
         </div>

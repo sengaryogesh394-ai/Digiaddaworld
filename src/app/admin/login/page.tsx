@@ -16,10 +16,62 @@ export default function AdminLoginPage() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [hasExistingSession, setHasExistingSession] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+
+  // Check for existing session on mount
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const response = await fetch('/api/auth/session');
+        const session = await response.json();
+        
+        if (session?.user) {
+          // User is logged in but trying to access admin login
+          setHasExistingSession(true);
+          
+          // If already admin, redirect to dashboard
+          if (session.user.role === 'admin') {
+            router.push('/admin/dashboard');
+          } else {
+            // Regular user trying to access admin area
+            // Save the regular user session for later restoration
+            localStorage.setItem('savedUserSession', JSON.stringify({
+              email: session.user.email,
+              name: session.user.name,
+              savedAt: Date.now()
+            }));
+            
+            toast({
+              title: 'User Session Saved',
+              description: 'Your user session will be restored when admin logs out.',
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Session check error:', error);
+      }
+    };
+    
+    checkSession();
+  }, [router, toast]);
+
+  // Check for error in URL params
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    
+    if (error === 'unauthorized') {
+      toast({
+        title: 'Access Denied',
+        description: 'You need admin privileges to access this area.',
+        variant: 'destructive',
+      });
+    }
+  }, [toast]);
 
   // Only render animations on client side
   useEffect(() => {
@@ -31,40 +83,58 @@ export default function AdminLoginPage() {
     setLoading(true);
 
     try {
-      // Use email from form (should match ENV email) and password
+      // If there's an existing session, sign out first
+      if (hasExistingSession) {
+        await signOut({ redirect: false });
+        // Wait for sign out to complete
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+
+      // Sign in with admin credentials
       const result = await signIn('credentials', {
-        email: formData.username, // This should be the admin email
+        email: formData.username,
         password: formData.password,
         redirect: false,
+        callbackUrl: '/admin/dashboard',
       });
 
       if (result?.error) {
         toast({
-          title: 'Access Denied',
-          description: 'Invalid admin credentials. Please use admin email and password.',
+          title: 'Login Failed',
+          description: 'Invalid email or password. Please check your credentials.',
           variant: 'destructive',
         });
-      } else {
-        // Check if user has admin role
-        const response = await fetch('/api/auth/session');
-        const session = await response.json();
+        setLoading(false);
+        return;
+      }
+
+      // Wait a moment for session to establish
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Check if user has admin role
+      const response = await fetch('/api/auth/session');
+      const session = await response.json();
+      
+      if (session?.user?.role === 'admin') {
+        // Mark that we're in admin mode
+        localStorage.setItem('isAdminSession', 'true');
         
-        if (session?.user?.role === 'admin') {
-          toast({
-            title: 'Success',
-            description: 'Admin login successful!',
-          });
-          router.push('/admin/dashboard');
-          router.refresh();
-        } else {
-          // Not an admin, sign them out
-          await signOut({ redirect: false });
-          toast({
-            title: 'Access Denied',
-            description: 'Only admin users can access this panel. Please use admin credentials.',
-            variant: 'destructive',
-          });
-        }
+        toast({
+          title: 'Success',
+          description: 'Welcome back, Admin!',
+        });
+        
+        // Use window.location for full page reload to ensure clean session
+        window.location.href = '/admin/dashboard';
+      } else {
+        // Not an admin, sign them out
+        await signOut({ redirect: false });
+        toast({
+          title: 'Access Denied',
+          description: 'Only admin users can access this panel.',
+          variant: 'destructive',
+        });
+        setLoading(false);
       }
     } catch (error: any) {
       toast({
@@ -72,7 +142,6 @@ export default function AdminLoginPage() {
         description: error.message || 'Something went wrong',
         variant: 'destructive',
       });
-    } finally {
       setLoading(false);
     }
   };
