@@ -72,11 +72,24 @@ export default function EditProductPage() {
 
   const [promotionalHeader, setPromotionalHeader] = useState({
     enabled: false,
-    bannerText: '',
-    mainHeading: '',
+    topBannerText: '',
+    topBannerSubtext: '',
+    buttonText: '',
+    buttonPrice: '',
+    buttonSubtext: '',
+    headlinePart1: '',
+    headlinePart2: '',
     subHeading: '',
-    backgroundColor: '#FF6B6B',
-    textColor: '#000000'
+    platformText: '',
+    highlightText: '',
+    timerDuration: 24
+  });
+
+  const [productBenefits, setProductBenefits] = useState({
+    enabled: false,
+    mainTitle: '',
+    subtitle: '',
+    benefits: [] as Array<{ icon: string; title: string; description: string }>
   });
 
   const [media, setMedia] = useState<MediaItem[]>([]);
@@ -126,14 +139,32 @@ export default function EditProductPage() {
           console.log('✅ Setting promotional header state:', product.promotionalHeader);
           setPromotionalHeader({
             enabled: product.promotionalHeader.enabled || false,
-            bannerText: product.promotionalHeader.bannerText || '',
-            mainHeading: product.promotionalHeader.mainHeading || '',
+            topBannerText: product.promotionalHeader.topBannerText || '',
+            topBannerSubtext: product.promotionalHeader.topBannerSubtext || '',
+            buttonText: product.promotionalHeader.buttonText || '',
+            buttonPrice: product.promotionalHeader.buttonPrice || '',
+            buttonSubtext: product.promotionalHeader.buttonSubtext || '',
+            headlinePart1: product.promotionalHeader.headlinePart1 || '',
+            headlinePart2: product.promotionalHeader.headlinePart2 || '',
             subHeading: product.promotionalHeader.subHeading || '',
-            backgroundColor: product.promotionalHeader.backgroundColor || '#FF6B6B',
-            textColor: product.promotionalHeader.textColor || '#000000'
+            platformText: product.promotionalHeader.platformText || '',
+            highlightText: product.promotionalHeader.highlightText || '',
+            timerDuration: 24
           });
         } else {
           console.log('❌ No promotional header in product data!');
+        }
+
+        if (product.productBenefits) {
+          console.log('✅ Setting product benefits state:', product.productBenefits);
+          setProductBenefits({
+            enabled: product.productBenefits.enabled || false,
+            mainTitle: product.productBenefits.mainTitle || '',
+            subtitle: product.productBenefits.subtitle || '',
+            benefits: product.productBenefits.benefits || []
+          });
+        } else {
+          console.log('❌ No product benefits in product data!');
         }
       }
     } catch (error) {
@@ -184,17 +215,32 @@ export default function EditProductPage() {
         },
         promotionalHeader: {
           enabled: promotionalHeader.enabled,
-          bannerText: promotionalHeader.bannerText,
-          mainHeading: promotionalHeader.mainHeading,
+          topBannerText: promotionalHeader.topBannerText,
+          topBannerSubtext: promotionalHeader.topBannerSubtext,
+          buttonText: promotionalHeader.buttonText,
+          buttonPrice: promotionalHeader.buttonPrice,
+          buttonSubtext: promotionalHeader.buttonSubtext,
+          headlinePart1: promotionalHeader.headlinePart1,
+          headlinePart2: promotionalHeader.headlinePart2,
           subHeading: promotionalHeader.subHeading,
-          backgroundColor: promotionalHeader.backgroundColor,
-          textColor: promotionalHeader.textColor
+          platformText: promotionalHeader.platformText,
+          highlightText: promotionalHeader.highlightText,
+          timerEndDate: promotionalHeader.enabled && promotionalHeader.timerDuration > 0 
+            ? new Date(Date.now() + promotionalHeader.timerDuration * 60 * 60 * 1000)
+            : undefined
+        },
+        productBenefits: {
+          enabled: productBenefits.enabled,
+          mainTitle: productBenefits.mainTitle,
+          subtitle: productBenefits.subtitle,
+          benefits: productBenefits.benefits
         }
       };
 
       console.log('Sending product data:', productData);
       console.log('Promotion data being sent:', productData.promotion);
       console.log('Promotional Header being sent:', productData.promotionalHeader);
+      console.log('✨ Product Benefits being sent:', productData.productBenefits);
 
       const response = await fetch(`/api/products/${productId}`, {
         method: 'PUT',
@@ -637,110 +683,225 @@ export default function EditProductPage() {
               {promotionalHeader.enabled && (
                 <>
                   <div className="grid gap-3">
-                    <Label htmlFor="bannerText">Top Banner Text (Optional)</Label>
+                    <Label>Top Red Banner Text *</Label>
                     <Input 
-                      id="bannerText" 
-                      value={promotionalHeader.bannerText}
-                      onChange={(e) => setPromotionalHeader({...promotionalHeader, bannerText: e.target.value})}
-                      placeholder="e.g., You asked, we listened. Get instant access for Lifetime..."
+                      value={promotionalHeader.topBannerText}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, topBannerText: e.target.value})}
+                      placeholder="e.g., ATTENTION! PRICES GOES UP AGAIN WHEN TIMER HITS 0!"
                     />
-                    <p className="text-xs text-muted-foreground">
-                      Purple banner text at the very top
-                    </p>
                   </div>
 
                   <div className="grid gap-3">
-                    <Label htmlFor="mainHeading">Main Heading *</Label>
+                    <Label>Banner Subtext</Label>
+                    <Input 
+                      value={promotionalHeader.topBannerSubtext}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, topBannerSubtext: e.target.value})}
+                      placeholder="e.g., + BONUSES WORTH $3M EXPIRES IN..."
+                    />
+                  </div>
+
+                  <div className="grid gap-3">
+                    <Label>Timer Duration (hours)</Label>
+                    <Input 
+                      type="number"
+                      value={promotionalHeader.timerDuration}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, timerDuration: parseInt(e.target.value) || 24})}
+                      placeholder="24"
+                    />
+                  </div>
+
+                  <div className="grid gap-3">
+                    <Label>Green Button Text *</Label>
+                    <Input 
+                      value={promotionalHeader.buttonText}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, buttonText: e.target.value})}
+                      placeholder="e.g., Get ViralDashboard AI"
+                    />
+                  </div>
+
+                  <div className="grid gap-3">
+                    <Label>Button Price *</Label>
+                    <Input 
+                      value={promotionalHeader.buttonPrice}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, buttonPrice: e.target.value})}
+                      placeholder="e.g., at $9, for ₹199, Only $27"
+                    />
+                  </div>
+
+                  <div className="grid gap-3">
+                    <Label>Headline Part 1 (Orange)</Label>
                     <Textarea 
-                      id="mainHeading" 
-                      value={promotionalHeader.mainHeading}
-                      onChange={(e) => setPromotionalHeader({...promotionalHeader, mainHeading: e.target.value})}
-                      placeholder="e.g., World's Biggest Video Editing Bundle!"
+                      value={promotionalHeader.headlinePart1}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, headlinePart1: e.target.value})}
+                      placeholder="e.g., Create, Schedule & Publish Your Content To Your"
                       rows={2}
                     />
-                    <p className="text-xs text-muted-foreground">
-                      Large heading in the center (required)
-                    </p>
                   </div>
 
                   <div className="grid gap-3">
-                    <Label htmlFor="subHeading">Sub Heading (Optional)</Label>
+                    <Label>Headline Part 2 (Teal/Green)</Label>
                     <Textarea 
-                      id="subHeading" 
+                      value={promotionalHeader.headlinePart2}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, headlinePart2: e.target.value})}
+                      placeholder="e.g., Facebook Pages, Instagram, Google My Business, Pinterest, LinkedIn & Twitter Accounts"
+                      rows={2}
+                    />
+                  </div>
+
+                  <div className="grid gap-3">
+                    <Label>Subheading (Bold, Dark)</Label>
+                    <Input 
                       value={promotionalHeader.subHeading}
                       onChange={(e) => setPromotionalHeader({...promotionalHeader, subHeading: e.target.value})}
-                      placeholder="e.g., Are You A Passionate Video Editor? Or Aspiring To Become One?"
-                      rows={2}
+                      placeholder="e.g., 21-in-1 Social Media Marketing & Automation"
                     />
-                    <p className="text-xs text-muted-foreground">
-                      Text above the main heading
-                    </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="grid gap-3">
-                      <Label htmlFor="backgroundColor">Background Color</Label>
-                      <div className="flex gap-2">
-                        <Input 
-                          id="backgroundColor" 
-                          type="color"
-                          value={promotionalHeader.backgroundColor}
-                          onChange={(e) => setPromotionalHeader({...promotionalHeader, backgroundColor: e.target.value})}
-                          className="w-20 h-10 cursor-pointer"
-                        />
-                        <Input 
-                          type="text"
-                          value={promotionalHeader.backgroundColor}
-                          onChange={(e) => setPromotionalHeader({...promotionalHeader, backgroundColor: e.target.value})}
-                          placeholder="#FF6B6B"
-                          className="flex-1"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid gap-3">
-                      <Label htmlFor="textColor">Text Color</Label>
-                      <div className="flex gap-2">
-                        <Input 
-                          id="textColor" 
-                          type="color"
-                          value={promotionalHeader.textColor}
-                          onChange={(e) => setPromotionalHeader({...promotionalHeader, textColor: e.target.value})}
-                          className="w-20 h-10 cursor-pointer"
-                        />
-                        <Input 
-                          type="text"
-                          value={promotionalHeader.textColor}
-                          onChange={(e) => setPromotionalHeader({...promotionalHeader, textColor: e.target.value})}
-                          placeholder="#000000"
-                          className="flex-1"
-                        />
-                      </div>
-                    </div>
+                  <div className="grid gap-3">
+                    <Label>Platform Description</Label>
+                    <Input 
+                      value={promotionalHeader.platformText}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, platformText: e.target.value})}
+                      placeholder="e.g., Platform to DISCOVER, CREATE, STRATEGIZE & PUBLISH your content."
+                    />
                   </div>
 
-                  {/* Preview */}
-                  <div className="mt-4 p-4 rounded-lg border-2 border-dashed">
-                    <p className="text-xs font-semibold mb-2">Preview:</p>
-                    <div 
-                      className="p-6 rounded-lg text-center"
-                      style={{ 
-                        background: promotionalHeader.backgroundColor,
-                        color: promotionalHeader.textColor
-                      }}
-                    >
-                      {promotionalHeader.bannerText && (
-                        <div className="inline-block bg-purple-700 text-white px-4 py-2 rounded-lg text-xs mb-3">
-                          {promotionalHeader.bannerText}
+                  <div className="grid gap-3">
+                    <Label>Yellow Highlight Text *</Label>
+                    <Input 
+                      value={promotionalHeader.highlightText}
+                      onChange={(e) => setPromotionalHeader({...promotionalHeader, highlightText: e.target.value})}
+                      placeholder="e.g., ViralDashboard AI Making Us $932.38 Daily"
+                    />
+                  </div>
+                </>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Product Benefits Section */}
+          <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                ✨ Product Benefits Section
+              </CardTitle>
+              <CardDescription>Showcase key benefits with icons (like "Can Create Anything In Seconds")</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="benefitsEnabled"
+                  checked={productBenefits.enabled}
+                  onChange={(e) => setProductBenefits({...productBenefits, enabled: e.target.checked})}
+                  className="h-4 w-4"
+                />
+                <Label htmlFor="benefitsEnabled" className="cursor-pointer">Enable Product Benefits Section</Label>
+              </div>
+              
+              {productBenefits.enabled && (
+                <>
+                  <div className="grid gap-3">
+                    <Label htmlFor="benefitsMainTitle">Main Title *</Label>
+                    <Input 
+                      id="benefitsMainTitle" 
+                      value={productBenefits.mainTitle}
+                      onChange={(e) => setProductBenefits({...productBenefits, mainTitle: e.target.value})}
+                      placeholder="e.g., ViralDashboard Can Create Anything In Seconds"
+                    />
+                  </div>
+
+                  <div className="grid gap-3">
+                    <Label htmlFor="benefitsSubtitle">Subtitle (Optional)</Label>
+                    <Input 
+                      id="benefitsSubtitle" 
+                      value={productBenefits.subtitle}
+                      onChange={(e) => setProductBenefits({...productBenefits, subtitle: e.target.value})}
+                      placeholder="e.g., Transform your workflow with powerful features"
+                    />
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <Label>Benefits (8 items recommended)</Label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="outline"
+                        onClick={() => setProductBenefits({
+                          ...productBenefits,
+                          benefits: [...productBenefits.benefits, { icon: '🎯', title: '', description: '' }]
+                        })}
+                      >
+                        Add Benefit
+                      </Button>
+                    </div>
+
+                    {productBenefits.benefits.map((benefit, index) => (
+                      <div key={index} className="p-4 border rounded-lg space-y-3 bg-white dark:bg-gray-900">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-semibold">Benefit {index + 1}</span>
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => {
+                              const newBenefits = productBenefits.benefits.filter((_, i) => i !== index);
+                              setProductBenefits({...productBenefits, benefits: newBenefits});
+                            }}
+                          >
+                            Remove
+                          </Button>
                         </div>
-                      )}
-                      {promotionalHeader.subHeading && (
-                        <p className="text-sm mb-2">{promotionalHeader.subHeading}</p>
-                      )}
-                      <h2 className="text-2xl font-bold">
-                        {promotionalHeader.mainHeading || 'Your Main Heading'}
-                      </h2>
-                    </div>
+                        
+                        <div className="grid gap-2">
+                          <Label>Icon (Emoji)</Label>
+                          <Input 
+                            value={benefit.icon}
+                            onChange={(e) => {
+                              const newBenefits = [...productBenefits.benefits];
+                              newBenefits[index].icon = e.target.value;
+                              setProductBenefits({...productBenefits, benefits: newBenefits});
+                            }}
+                            placeholder="🎯"
+                            maxLength={2}
+                          />
+                        </div>
+
+                        <div className="grid gap-2">
+                          <Label>Title</Label>
+                          <Input 
+                            value={benefit.title}
+                            onChange={(e) => {
+                              const newBenefits = [...productBenefits.benefits];
+                              newBenefits[index].title = e.target.value;
+                              setProductBenefits({...productBenefits, benefits: newBenefits});
+                            }}
+                            placeholder="e.g., Find and discover content from 100,000 articles database"
+                          />
+                        </div>
+
+                        <div className="grid gap-2">
+                          <Label>Description</Label>
+                          <Textarea 
+                            value={benefit.description}
+                            onChange={(e) => {
+                              const newBenefits = [...productBenefits.benefits];
+                              newBenefits[index].description = e.target.value;
+                              setProductBenefits({...productBenefits, benefits: newBenefits});
+                            }}
+                            placeholder="e.g., across 70 Industries for MASSIVE Traffic, Engagement & Sales."
+                            rows={2}
+                          />
+                        </div>
+                      </div>
+                    ))}
+
+                    {productBenefits.benefits.length === 0 && (
+                      <p className="text-sm text-muted-foreground text-center py-4">
+                        No benefits added yet. Click "Add Benefit" to start.
+                      </p>
+                    )}
                   </div>
                 </>
               )}

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateProductContent, enhanceProductDescription, generateProductTags, generateProductImages, generatePromotionalHeader } from '@/lib/gemini';
+import { generateProductContent, enhanceProductDescription, generateProductTags, generateProductImages, generatePromotionalHeader, generateProductBenefits } from '@/lib/gemini';
 
 export async function POST(request: NextRequest) {
   try {
@@ -76,9 +76,21 @@ export async function POST(request: NextRequest) {
         result = headerResult;
         break;
 
+      case 'product-benefits':
+        // Generate product benefits section
+        if (!category) {
+          return NextResponse.json(
+            { success: false, error: 'Category is required for product benefits generation' },
+            { status: 400 }
+          );
+        }
+        const benefitsResult = await generateProductBenefits(productName, category, description);
+        result = benefitsResult;
+        break;
+
       default:
         return NextResponse.json(
-          { success: false, error: 'Invalid action. Use: generate, enhance, tags, images, or promotional-header' },
+          { success: false, error: 'Invalid action. Use: generate, enhance, tags, images, promotional-header, or product-benefits' },
           { status: 400 }
         );
     }

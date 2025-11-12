@@ -29,11 +29,30 @@ export interface IPromotion {
 
 export interface IPromotionalHeader {
   enabled: boolean;
-  bannerText?: string;
-  mainHeading: string;
+  topBannerText?: string;
+  topBannerSubtext?: string;
+  buttonText?: string;
+  buttonPrice?: string;
+  buttonSubtext?: string;
+  headlinePart1?: string;
+  headlinePart2?: string;
   subHeading?: string;
-  backgroundColor?: string;
-  textColor?: string;
+  platformText?: string;
+  highlightText?: string;
+  timerEndDate?: Date;
+}
+
+export interface IBenefitItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface IProductBenefits {
+  enabled: boolean;
+  mainTitle?: string;
+  subtitle?: string;
+  benefits: IBenefitItem[];
 }
 
 export interface IProduct extends Document {
@@ -55,6 +74,7 @@ export interface IProduct extends Document {
   tags: string[];
   promotion?: IPromotion;
   promotionalHeader?: IPromotionalHeader;
+  productBenefits?: IProductBenefits;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -189,27 +209,91 @@ const ProductSchema = new Schema<IProduct>(
         type: Boolean,
         default: false
       },
-      bannerText: {
+      topBannerText: {
         type: String,
-        trim: true
+        trim: true,
+        default: ''
       },
-      mainHeading: {
+      topBannerSubtext: {
+        type: String,
+        trim: true,
+        default: ''
+      },
+      buttonText: {
+        type: String,
+        trim: true,
+        default: ''
+      },
+      buttonPrice: {
+        type: String,
+        trim: true,
+        default: ''
+      },
+      buttonSubtext: {
+        type: String,
+        trim: true,
+        default: ''
+      },
+      headlinePart1: {
+        type: String,
+        trim: true,
+        default: ''
+      },
+      headlinePart2: {
         type: String,
         trim: true,
         default: ''
       },
       subHeading: {
         type: String,
-        trim: true
+        trim: true,
+        default: ''
       },
-      backgroundColor: {
+      platformText: {
         type: String,
-        default: '#FF6B6B'
+        trim: true,
+        default: ''
       },
-      textColor: {
+      highlightText: {
         type: String,
-        default: '#000000'
+        trim: true,
+        default: ''
+      },
+      timerEndDate: {
+        type: Date
       }
+    },
+    productBenefits: {
+      enabled: {
+        type: Boolean,
+        default: false
+      },
+      mainTitle: {
+        type: String,
+        trim: true,
+        default: ''
+      },
+      subtitle: {
+        type: String,
+        trim: true,
+        default: ''
+      },
+      benefits: [{
+        icon: {
+          type: String,
+          required: true
+        },
+        title: {
+          type: String,
+          required: true,
+          trim: true
+        },
+        description: {
+          type: String,
+          required: true,
+          trim: true
+        }
+      }]
     }
   },
   {

@@ -235,9 +235,168 @@ Return only the excerpt text, nothing else.`;
 }
 
 export interface PromotionalHeaderResponse {
-  bannerText: string;
-  mainHeading: string;
+  topBannerText: string;
+  topBannerSubtext: string;
+  buttonText: string;
+  buttonPrice: string;
+  buttonSubtext: string;
+  headlinePart1: string;
+  headlinePart2: string;
   subHeading: string;
+  platformText: string;
+  highlightText: string;
+}
+
+export interface ProductBenefitsResponse {
+  mainTitle: string;
+  subtitle: string;
+  benefits: Array<{
+    icon: string;
+    title: string;
+    description: string;
+  }>;
+}
+
+export async function generateProductBenefits(
+  productName: string,
+  category: string,
+  description?: string
+): Promise<ProductBenefitsResponse> {
+  if (!genAI) {
+    throw new Error('Gemini API is not configured');
+  }
+
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+    generationConfig: {
+      temperature: 0.9,
+      topP: 0.95,
+      topK: 40,
+      maxOutputTokens: 2048,
+      responseMimeType: 'application/json'
+    }
+  });
+
+  const prompt = `Generate compelling product benefits content for a ${category} product called "${productName}".
+${description ? `Product description: ${description}` : ''}
+
+Create a benefits section with:
+1. A catchy main title (highlighting what the product can do - like "ViralDashboard Can Create Anything In Seconds")
+2. A short subtitle (one sentence explaining the value)
+3. 8 benefit items, each with:
+   - icon: An emoji that represents the benefit
+   - title: A bold, benefit-focused title (3-8 words, highlight key words)
+   - description: A compelling description (10-15 words)
+
+Make the benefits specific to ${category} products and focus on outcomes, speed, ease of use, and value.
+
+Return ONLY valid JSON in this exact format:
+{
+  "mainTitle": "Product Name Can Do Amazing Things",
+  "subtitle": "Brief value proposition in one sentence",
+  "benefits": [
+    {
+      "icon": "🎯",
+      "title": "Benefit title with key words highlighted",
+      "description": "Compelling description of the benefit"
+    }
+  ]
+}`;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    
+    console.log('Raw AI response for product benefits:', text);
+
+    let parsedResponse;
+    
+    try {
+      // Try direct JSON parse first
+      parsedResponse = JSON.parse(text);
+    } catch (parseError) {
+      console.log('Direct JSON parse failed, trying to extract JSON...');
+      
+      // Try to extract JSON from response
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          parsedResponse = JSON.parse(jsonMatch[0]);
+        } catch (extractError) {
+          console.error('Failed to parse extracted JSON:', extractError);
+          throw new Error('Failed to parse JSON from Gemini response');
+        }
+      } else {
+        console.error('No JSON found in response:', text);
+        throw new Error('No valid JSON found in Gemini response');
+      }
+    }
+
+    // Validate response structure
+    if (!parsedResponse || !parsedResponse.mainTitle || !parsedResponse.benefits || !Array.isArray(parsedResponse.benefits)) {
+      throw new Error('Invalid response structure from Gemini - missing required fields');
+    }
+
+    return parsedResponse;
+  } catch (error: any) {
+    console.error('Error generating product benefits:', error);
+    
+    gghdsfcdhsk nf
+
+
+    kfhjrhfgjlkkoiwqlmm
+
+    jjfdjl
+    // Return fallback data instead of throwing error
+    console.log('Returning fallback product benefits data...');
+    return {
+      mainTitle: `${productName} Can Transform Your Business`,
+      subtitle: "Everything you need to succeed in one powerful solution.",
+      benefits: [
+        {
+          icon: "🚀",
+          title: "Launch Faster",
+          description: "Get started in minutes, not hours with our ready-made templates"
+        },
+        {
+          icon: "💰",
+          title: "Save Money",
+          description: "Cut costs by up to 80% compared to hiring professionals"
+        },
+        {
+          icon: "⚡",
+          title: "Instant Results",
+          description: "See immediate improvements in your business performance"
+        },
+        {
+          icon: "🎯",
+          title: "Proven System",
+          description: "Follow our tested strategies used by thousands of successful businesses"
+        },
+        {
+          icon: "📈",
+          title: "Scale Quickly",
+          description: "Grow your business 10x faster with our automation tools"
+        },
+        {
+          icon: "🛡️",
+          title: "Risk-Free",
+          description: "30-day money-back guarantee ensures your complete satisfaction"
+        },
+        {
+          icon: "👥",
+          title: "Expert Support",
+          description: "Get help from our team of experienced professionals anytime"
+        },
+        {
+          icon: "🔧",
+          title: "Easy Setup",
+          description: "No technical skills required - anyone can use it successfully"
+        }
+      ]
+    };
+  }
 }
 
 export async function generatePromotionalHeader(
@@ -258,26 +417,30 @@ export async function generatePromotionalHeader(
     }
   });
 
-  const prompt = `Generate promotional header content for a digital product.
-
-Product Name: ${productName}
-Category: ${category}
+  const prompt = `Generate promotional header content for a ${category} product called "${productName}".
 ${description ? `Description: ${description}` : ''}
 
-Create compelling promotional header content in JSON format:
+Create compelling promotional header content matching this structure:
 
 {
-  "bannerText": "Urgency-driven offer text (e.g., 'You asked, we listened. Get instant access for Lifetime now at just ₹2999 ₹199. Offer extended for 48 hours only. HURRY UP!')",
-  "mainHeading": "Catchy main heading that grabs attention (e.g., 'World's Biggest Video Editing Bundle!')",
-  "subHeading": "Engaging question or statement before main heading (e.g., 'Are You A Passionate Video Editor? Or Aspiring To Become One? Then You're At The Right Place. Introducing:')"
+  "topBannerText": "URGENT attention-grabbing text (e.g., 'ATTENTION! PRICES GOES UP AGAIN WHEN TIMER HITS 0!')",
+  "topBannerSubtext": "Bonus/value text (e.g., '+ BONUSES WORTH $3M EXPIRES IN...')",
+  "buttonText": "Call-to-action button text (e.g., 'Get ViralDashboard AI')",
+  "buttonPrice": "Attractive price with currency (e.g., 'at $9', 'for ₹199', 'Only $27')",
+  "buttonSubtext": "Optional button subtext",
+  "headlinePart1": "First part of headline in orange color (e.g., 'Create, Schedule & Publish Your Content To Your')",
+  "headlinePart2": "Second part in teal/green (e.g., 'Facebook Pages, Instagram, Google My Business, Pinterest, LinkedIn & Twitter Accounts')",
+  "subHeading": "Bold subheading (e.g., '21-in-1 Social Media Marketing & Automation')",
+  "platformText": "Platform description (e.g., 'Platform to DISCOVER, CREATE, STRATEGIZE & PUBLISH your content.')",
+  "highlightText": "Yellow highlight text with value prop (e.g., 'ViralDashboard AI Making Us $932.38 Daily')"
 }
 
 Make it:
-- Exciting and attention-grabbing
-- Create urgency and FOMO
-- Highlight value and benefits
-- Use emotional triggers
-- Keep it concise and impactful
+- Create extreme urgency and FOMO
+- Highlight massive value and benefits
+- Use power words and emotional triggers
+- Be specific about what the product does
+- Include compelling numbers/results
 
 Return ONLY valid JSON.`;
 
@@ -286,15 +449,65 @@ Return ONLY valid JSON.`;
     const response = await result.response;
     const text = response.text();
 
-    const parsed = JSON.parse(text);
+    console.log('Raw AI response for promotional header:', text);
+
+    let parsedResponse;
+    
+    try {
+      // Try direct JSON parse first
+      parsedResponse = JSON.parse(text);
+    } catch (parseError) {
+      console.log('Direct JSON parse failed, trying to extract JSON...');
+      
+      // Try to extract JSON from response
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          parsedResponse = JSON.parse(jsonMatch[0]);
+        } catch (extractError) {
+          console.error('Failed to parse extracted JSON:', extractError);
+          throw new Error('Failed to parse JSON from Gemini response');
+        }
+      } else {
+        console.error('No JSON found in response:', text);
+        throw new Error('No valid JSON found in Gemini response');
+      }
+    }
+
+    // Validate that we have the required structure
+    if (!parsedResponse || typeof parsedResponse !== 'object') {
+      throw new Error('Invalid response structure from Gemini');
+    }
+
     return {
-      bannerText: parsed.bannerText || '',
-      mainHeading: parsed.mainHeading || productName,
-      subHeading: parsed.subHeading || ''
+      topBannerText: parsedResponse.topBannerText || '',
+      topBannerSubtext: parsedResponse.topBannerSubtext || '',
+      buttonText: parsedResponse.buttonText || '',
+      buttonPrice: parsedResponse.buttonPrice || '',
+      buttonSubtext: parsedResponse.buttonSubtext || '',
+      headlinePart1: parsedResponse.headlinePart1 || '',
+      headlinePart2: parsedResponse.headlinePart2 || '',
+      subHeading: parsedResponse.subHeading || '',
+      platformText: parsedResponse.platformText || '',
+      highlightText: parsedResponse.highlightText || ''
     };
   } catch (error: any) {
     console.error('Error generating promotional header:', error);
-    throw new Error(`Failed to generate promotional header: ${error.message}`);
+    
+    // Return fallback data instead of throwing error
+    console.log('Returning fallback promotional header data...');
+    return {
+      topBannerText: 'ATTENTION! LIMITED TIME OFFER!',
+      topBannerSubtext: '+ EXCLUSIVE BONUSES WORTH $1000 EXPIRES SOON...',
+      buttonText: 'Get Started Today',
+      buttonPrice: 'at $27',
+      buttonSubtext: '',
+      headlinePart1: 'Transform Your Business With',
+      headlinePart2: 'Professional Tools & Resources',
+      subHeading: 'Complete Business Solution',
+      platformText: 'Everything you need to succeed in one powerful platform.',
+      highlightText: 'Join 10,000+ Successful Entrepreneurs'
+    };
   }
 }
 

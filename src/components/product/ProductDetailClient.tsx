@@ -11,25 +11,18 @@ import { IProduct } from '@/models/Product';
 
 interface ProductDetailClientProps {
   product: IProduct;
+  pricing: {
+    currentPrice: number;
+    originalPrice: number;
+    discountPercentage: number;
+    hasPromotion: boolean;
+  };
 }
 
-export default function ProductDetailClient({ product }: ProductDetailClientProps) {
+export default function ProductDetailClient({ product, pricing }: ProductDetailClientProps) {
   const { toast } = useToast();
   const router = useRouter();
   const { addToCart } = useCart();
-
-  // Calculate discounted price if promotion is active
-  const calculatePrice = () => {
-    if (product.promotion?.enabled && product.promotion.discountPercentage > 0) {
-      const discount = product.promotion.discountPercentage / 100;
-      const discountedPrice = product.originalPrice * (1 - discount);
-      return discountedPrice;
-    }
-    return product.price; // Use regular price if no promotion
-  };
-
-  const finalPrice = calculatePrice();
-  const hasPromotion = product.promotion?.enabled && product.promotion.discountPercentage > 0;
 
   const handleBuyNow = (productToBuy: IProduct) => {
     if (productToBuy) {
@@ -55,20 +48,20 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       {/* Purchase Section */}
       <section className="max-w-3xl mx-auto text-center" style={{ fontFamily: 'Poppins, sans-serif' }}>
         <h2 className="text-3xl font-bold text-orange-500" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          {hasPromotion ? (
+          {pricing.hasPromotion ? (
             <>
               Special Offer{' '}
-              <span className="text-gray-400 line-through">Rs {product.originalPrice.toFixed(2)}</span>{' '}
-              <span className="text-green-600">Rs {finalPrice.toFixed(2)}</span>
+              <span className="text-gray-400 line-through">₹{pricing.originalPrice.toFixed(0)}</span>{' '}
+              <span className="text-green-600">₹{pricing.currentPrice.toFixed(0)}</span>
               <span className="ml-2 text-sm bg-red-500 text-white px-2 py-1 rounded">
-                Save {product.promotion?.discountPercentage || 0}%
+                Save {pricing.discountPercentage}%
               </span>
             </>
           ) : (
             <>
               Special Offer{' '}
-              <span className="text-gray-400 line-through">Rs {product.originalPrice.toFixed(2)}</span>{' '}
-              Rs {product.price.toFixed(2)}
+              <span className="text-gray-400 line-through">₹{pricing.originalPrice.toFixed(0)}</span>{' '}
+              ₹{pricing.currentPrice.toFixed(0)}
             </>
           )}
         </h2>
@@ -79,7 +72,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             onClick={() => handleBuyNow(product)}
             style={{ fontFamily: 'Poppins, sans-serif' }}
           >
-            <ShoppingCart className="mr-2" /> YES, I WANT THIS PACK FOR Rs {finalPrice.toFixed(2)}
+            <ShoppingCart className="mr-2" /> YES, I WANT THIS PACK FOR ₹{pricing.currentPrice.toFixed(0)}
           </Button>
           <Button
             size="lg"
@@ -100,7 +93,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
           onClick={() => handleBuyNow(product)}
           style={{ fontFamily: 'Poppins, sans-serif' }}
         >
-          GET LIFETIME ACCESS at Rs {product.price.toFixed(2)}
+          GET LIFETIME ACCESS at ₹{pricing.currentPrice.toFixed(0)}
         </Button>
       </section>
     </>

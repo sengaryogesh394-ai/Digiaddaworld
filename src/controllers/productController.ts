@@ -123,6 +123,10 @@ export class ProductController {
   static async createProduct(productData: Partial<IProduct>) {
     await connectDB();
 
+    console.log('🆕 CREATE PRODUCT - Received data:', JSON.stringify(productData, null, 2));
+    console.log('🆕 Promotional Header in create:', productData.promotionalHeader);
+    console.log('✨ Product Benefits in create:', productData.productBenefits);
+
     // Generate slug if not provided
     if (!productData.slug && productData.name) {
       productData.slug = productData.name
@@ -137,8 +141,42 @@ export class ProductController {
       }
     }
 
+    // Ensure promotionalHeader is properly set
+    if (productData.promotionalHeader) {
+      console.log('🔥 Setting promotional header on new product');
+      productData.promotionalHeader = {
+        enabled: productData.promotionalHeader.enabled || false,
+        topBannerText: productData.promotionalHeader.topBannerText || '',
+        topBannerSubtext: productData.promotionalHeader.topBannerSubtext || '',
+        buttonText: productData.promotionalHeader.buttonText || '',
+        buttonPrice: productData.promotionalHeader.buttonPrice || '',
+        buttonSubtext: productData.promotionalHeader.buttonSubtext || '',
+        headlinePart1: productData.promotionalHeader.headlinePart1 || '',
+        headlinePart2: productData.promotionalHeader.headlinePart2 || '',
+        subHeading: productData.promotionalHeader.subHeading || '',
+        platformText: productData.promotionalHeader.platformText || '',
+        highlightText: productData.promotionalHeader.highlightText || '',
+        timerEndDate: productData.promotionalHeader.timerEndDate
+      };
+    }
+
+    // Ensure productBenefits is properly set
+    if (productData.productBenefits) {
+      console.log('✨ Setting product benefits on new product');
+      productData.productBenefits = {
+        enabled: productData.productBenefits.enabled || false,
+        mainTitle: productData.productBenefits.mainTitle || '',
+        subtitle: productData.productBenefits.subtitle || '',
+        benefits: productData.productBenefits.benefits || []
+      };
+    }
+
     const product = new Product(productData);
     await product.save();
+
+    console.log('🆕 Product created and saved');
+    console.log('🆕 Promotional header in saved product:', product.promotionalHeader);
+    console.log('✨ Product benefits in saved product:', product.productBenefits);
 
     return {
       success: true,
@@ -201,32 +239,55 @@ export class ProductController {
     
     // Update promotion
     if (updateData.promotion) {
+      console.log('💰 UPDATING PROMOTION');
       product.promotion = {
         enabled: updateData.promotion.enabled || false,
         discountPercentage: updateData.promotion.discountPercentage || 0,
         timerDuration: updateData.promotion.timerDuration || 24,
         timerEndDate: updateData.promotion.timerEndDate
       };
+      product.markModified('promotion');
+      console.log('💰 Promotion SET:', product.promotion);
     }
     
-    // Update promotionalHeader - CRITICAL FIX
-    if (updateData.promotionalHeader !== undefined) {
+    // Update promotionalHeader - EXACT SAME PATTERN AS PROMOTION
+    if (updateData.promotionalHeader) {
       console.log('🔥 UPDATING PROMOTIONAL HEADER');
       console.log('🔥 Data received:', updateData.promotionalHeader);
       
       product.promotionalHeader = {
         enabled: updateData.promotionalHeader.enabled || false,
-        bannerText: updateData.promotionalHeader.bannerText || '',
-        mainHeading: updateData.promotionalHeader.mainHeading || '',
+        topBannerText: updateData.promotionalHeader.topBannerText || '',
+        topBannerSubtext: updateData.promotionalHeader.topBannerSubtext || '',
+        buttonText: updateData.promotionalHeader.buttonText || '',
+        buttonPrice: updateData.promotionalHeader.buttonPrice || '',
+        buttonSubtext: updateData.promotionalHeader.buttonSubtext || '',
+        headlinePart1: updateData.promotionalHeader.headlinePart1 || '',
+        headlinePart2: updateData.promotionalHeader.headlinePart2 || '',
         subHeading: updateData.promotionalHeader.subHeading || '',
-        backgroundColor: updateData.promotionalHeader.backgroundColor || '#FF6B6B',
-        textColor: updateData.promotionalHeader.textColor || '#000000'
+        platformText: updateData.promotionalHeader.platformText || '',
+        highlightText: updateData.promotionalHeader.highlightText || '',
+        timerEndDate: updateData.promotionalHeader.timerEndDate
       };
       
-      console.log('🔥 Promotional header SET on product:', product.promotionalHeader);
-      
-      // Mark as modified to ensure Mongoose saves it
       product.markModified('promotionalHeader');
+      console.log('🔥 Promotional header SET on product:', product.promotionalHeader);
+    }
+
+    // Update productBenefits - EXACT SAME PATTERN AS PROMOTION
+    if (updateData.productBenefits) {
+      console.log('✨ UPDATING PRODUCT BENEFITS');
+      console.log('✨ Data received:', updateData.productBenefits);
+      
+      product.productBenefits = {
+        enabled: updateData.productBenefits.enabled || false,
+        mainTitle: updateData.productBenefits.mainTitle || '',
+        subtitle: updateData.productBenefits.subtitle || '',
+        benefits: updateData.productBenefits.benefits || []
+      };
+      
+      product.markModified('productBenefits');
+      console.log('✨ Product benefits SET on product:', product.productBenefits);
     }
 
     // Save the product
@@ -242,13 +303,6 @@ export class ProductController {
     console.log('ProductController - Product after save:', JSON.stringify(product, null, 2));
     console.log('ProductController - Saved promotion:', product.promotion);
     console.log('🎯 ProductController - Saved promotional header:', product.promotionalHeader);
-    console.log('🎯 Promotional header fields after save:');
-    console.log('   - enabled:', product.promotionalHeader?.enabled);
-    console.log('   - bannerText:', product.promotionalHeader?.bannerText);
-    console.log('   - mainHeading:', product.promotionalHeader?.mainHeading);
-    console.log('   - subHeading:', product.promotionalHeader?.subHeading);
-    console.log('   - backgroundColor:', product.promotionalHeader?.backgroundColor);
-    console.log('   - textColor:', product.promotionalHeader?.textColor);
 
     return {
       success: true,

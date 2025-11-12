@@ -190,11 +190,11 @@ export default function PaymentPage() {
             </div>
 
             <div className="space-y-2 py-4 border-b">
-              <div key="subtotal" className="flex justify-between">
+              <div className="flex justify-between">
                 <p className="text-muted-foreground">Subtotal</p>
                 <p>Rs {subtotal.toFixed(2)}</p>
               </div>
-              <div key="tax" className="flex justify-between">
+              <div className="flex justify-between">
                 <p className="flex items-center gap-1 text-muted-foreground">
                   Tax <Info className="w-3.5 h-3.5" />
                 </p>
@@ -210,8 +210,8 @@ export default function PaymentPage() {
             <div className="flex justify-between items-center text-xs text-muted-foreground mt-8">
                 <p>Powered by <span className="font-bold">Stripe</span></p>
                 <div className="flex gap-4">
-                    <Link key="terms" href="#" className="hover:text-primary">Terms</Link>
-                    <Link key="privacy" href="#" className="hover:text-primary">Privacy</Link>
+                    <Link href="#" className="hover:text-primary">Terms</Link>
+                    <Link href="#" className="hover:text-primary">Privacy</Link>
                 </div>
             </div>
           </div>
@@ -242,8 +242,8 @@ export default function PaymentPage() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <Input key="expiry" placeholder="MM / YY" />
-                  <Input key="cvc" placeholder="CVC" />
+                  <Input placeholder="MM / YY" />
+                  <Input placeholder="CVC" />
                 </div>
               </div>
 
