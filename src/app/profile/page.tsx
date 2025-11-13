@@ -218,12 +218,20 @@ export default function ProfilePage() {
                 <CardTitle>Quick Actions</CardTitle>
                 <CardDescription>Manage your account settings</CardDescription>
               </CardHeader>
-              <CardContent className="grid gap-4 md:grid-cols-2">
+              <CardContent className="grid gap-4 md:grid-cols-3">
                 <Button variant="outline" className="h-auto py-4" asChild>
                   <a href="/shop">
                     <div className="text-left">
                       <div className="font-semibold">Browse Products</div>
                       <div className="text-sm text-muted-foreground">Explore our digital store</div>
+                    </div>
+                  </a>
+                </Button>
+                <Button variant="outline" className="h-auto py-4" asChild>
+                  <a href="/purchases">
+                    <div className="text-left">
+                      <div className="font-semibold">My Purchases</div>
+                      <div className="text-sm text-muted-foreground">View purchase history & downloads</div>
                     </div>
                   </a>
                 </Button>

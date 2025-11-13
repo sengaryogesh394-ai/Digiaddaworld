@@ -42,8 +42,8 @@ export default function PromotionalHeaderTimer({ endDate }: PromotionalHeaderTim
 
   const TimeUnit = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center">
-      <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center shadow-md">
-        <span className="text-xl md:text-2xl font-bold text-black" style={{ fontFamily: 'Poppins, sans-serif' }}>
+      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white flex items-center justify-center shadow-md">
+        <span className="text-sm md:text-base font-bold text-black" style={{ fontFamily: 'Poppins, sans-serif' }}>
           {String(value).padStart(2, '0')}
         </span>
       </div>
@@ -52,13 +52,10 @@ export default function PromotionalHeaderTimer({ endDate }: PromotionalHeaderTim
   );
 
   return (
-    <div className="flex items-center gap-2 md:gap-3">
+    <div className="flex items-center gap-1 md:gap-2">
       <TimeUnit value={timeLeft.days} label="Days" />
-      <span className="text-white text-2xl font-bold">:</span>
       <TimeUnit value={timeLeft.hours} label="Hours" />
-      <span className="text-white text-2xl font-bold">:</span>
       <TimeUnit value={timeLeft.minutes} label="Mins" />
-      <span className="text-white text-2xl font-bold">:</span>
       <TimeUnit value={timeLeft.seconds} label="Secs" />
     </div>
   );

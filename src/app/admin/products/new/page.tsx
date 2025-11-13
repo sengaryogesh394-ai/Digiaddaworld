@@ -63,6 +63,7 @@ export default function NewProductPage() {
     stock: '999',
     isFeatured: false,
     tags: '',
+    downloadLink: '',
   });
 
   const [promotion, setPromotion] = useState({
@@ -416,10 +417,10 @@ export default function NewProductPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.price || !formData.category || media.length === 0) {
+    if (!formData.name || !formData.price || !formData.category || !formData.downloadLink || media.length === 0) {
       toast({
         title: "Validation Error",
-        description: "Please fill in all required fields and add at least one media item",
+        description: "Please fill in all required fields including download link and add at least one media item",
         variant: "destructive"
       });
       return;
@@ -437,6 +438,7 @@ export default function NewProductPage() {
         stock: parseInt(formData.stock),
         isFeatured: formData.isFeatured,
         tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
+        downloadLink: formData.downloadLink,
         media,
         features,
         promotion: {
@@ -673,6 +675,20 @@ export default function NewProductPage() {
                     onChange={(e) => setFormData({...formData, tags: e.target.value})}
                     placeholder="design, ebook, tutorial"
                   />
+                </div>
+                <div className="grid gap-3">
+                  <Label htmlFor="downloadLink">Download Link *</Label>
+                  <Input
+                    id="downloadLink"
+                    type="url"
+                    value={formData.downloadLink}
+                    onChange={(e) => setFormData({...formData, downloadLink: e.target.value})}
+                    placeholder="https://drive.google.com/file/d/your-file-id/view"
+                    required
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    External link to your digital product (Google Drive, Dropbox, etc.)
+                  </p>
                 </div>
               </div>
             </CardContent>

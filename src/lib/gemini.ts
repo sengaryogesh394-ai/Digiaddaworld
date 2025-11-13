@@ -342,12 +342,6 @@ Return ONLY valid JSON in this exact format:
   } catch (error: any) {
     console.error('Error generating product benefits:', error);
     
-    gghdsfcdhsk nf
-
-
-    kfhjrhfgjlkkoiwqlmm
-
-    jjfdjl
     // Return fallback data instead of throwing error
     console.log('Returning fallback product benefits data...');
     return {
@@ -662,7 +656,54 @@ CRITICAL: Return ONLY the JSON object. No markdown code blocks. No explanations.
     return parsedResponse;
   } catch (error: any) {
     console.error('Error generating product content:', error);
-    throw new Error(`Failed to generate product content: ${error.message}`);
+    
+    // Return fallback data instead of throwing error
+    console.log('Returning fallback product content data...');
+    return {
+      description: `${productName} is a comprehensive ${category.toLowerCase()} solution designed to help you achieve your goals efficiently. This powerful tool combines cutting-edge technology with user-friendly design to deliver exceptional results. Whether you're a beginner or an expert, ${productName} provides everything you need to succeed in today's competitive market.`,
+      features: [
+        {
+          icon: "🚀",
+          title: "Easy to Use",
+          description: "Get started in minutes with our intuitive interface",
+          value: "User-friendly design"
+        },
+        {
+          icon: "⚡",
+          title: "Fast Results",
+          description: "See immediate improvements in your workflow",
+          value: "Instant performance"
+        },
+        {
+          icon: "💎",
+          title: "Premium Quality",
+          description: "Professional-grade features at an affordable price",
+          value: "Professional grade"
+        },
+        {
+          icon: "🛡️",
+          title: "Secure & Reliable",
+          description: "Built with security and reliability in mind",
+          value: "Enterprise security"
+        },
+        {
+          icon: "📱",
+          title: "Mobile Friendly",
+          description: "Works perfectly on all devices and platforms",
+          value: "Cross-platform"
+        }
+      ],
+      tags: [
+        category.toLowerCase(),
+        "digital product",
+        "instant download",
+        "professional",
+        "high quality"
+      ],
+      suggestedPrice: category.toLowerCase().includes('template') ? 29 : 
+                     category.toLowerCase().includes('course') ? 97 : 
+                     category.toLowerCase().includes('software') ? 197 : 49
+    };
   }
 }
 

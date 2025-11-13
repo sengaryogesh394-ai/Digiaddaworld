@@ -1,6 +1,7 @@
 import connectDB from '@/lib/mongodb';
 import Review, { IReview } from '@/models/Review';
 import Product from '@/models/Product';
+import mongoose from 'mongoose';
 
 export class ReviewController {
   // Get all reviews (admin)
@@ -69,14 +70,14 @@ export class ReviewController {
     const skip = (page - 1) * limit;
 
     const [reviews, total, stats] = await Promise.all([
-      Review.find({ productId, status })
+      Review.find({ productId: new mongoose.Types.ObjectId(productId), status })
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
         .lean(),
-      Review.countDocuments({ productId, status }),
+      Review.countDocuments({ productId: new mongoose.Types.ObjectId(productId), status }),
       Review.aggregate([
-        { $match: { productId: productId as any, status } },
+        { $match: { productId: new mongoose.Types.ObjectId(productId), status } },
         {
           $group: {
             _id: null,

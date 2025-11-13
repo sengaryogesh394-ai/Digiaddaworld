@@ -63,6 +63,7 @@ export interface IProduct extends Document {
   media: IMedia[];
   category: string;
   description: string;
+  downloadLink?: string;
   isFeatured: boolean;
   features: IFeature[];
   compatibility?: ICompatibility;
@@ -141,6 +142,11 @@ const ProductSchema = new Schema<IProduct>(
       type: String,
       required: [true, 'Description is required'],
       trim: true
+    },
+    downloadLink: {
+      type: String,
+      trim: true,
+      default: ''
     },
     isFeatured: {
       type: Boolean,

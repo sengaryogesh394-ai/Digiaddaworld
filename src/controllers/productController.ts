@@ -126,6 +126,7 @@ export class ProductController {
     console.log('🆕 CREATE PRODUCT - Received data:', JSON.stringify(productData, null, 2));
     console.log('🆕 Promotional Header in create:', productData.promotionalHeader);
     console.log('✨ Product Benefits in create:', productData.productBenefits);
+    console.log('🔗 Download Link in create:', productData.downloadLink);
 
     // Generate slug if not provided
     if (!productData.slug && productData.name) {
@@ -192,6 +193,7 @@ export class ProductController {
     console.log('ProductController - Received update data:', JSON.stringify(updateData, null, 2));
     console.log('ProductController - Promotion data:', updateData.promotion);
     console.log('ProductController - Promotional Header data:', updateData.promotionalHeader);
+    console.log('🔗 ProductController - Download Link data:', updateData.downloadLink);
 
     // If name is updated, regenerate slug
     if (updateData.name) {
@@ -233,6 +235,10 @@ export class ProductController {
     if (updateData.stock !== undefined) product.stock = updateData.stock;
     if (updateData.isFeatured !== undefined) product.isFeatured = updateData.isFeatured;
     if (updateData.tags) product.tags = updateData.tags;
+    if (updateData.downloadLink !== undefined) {
+      product.downloadLink = updateData.downloadLink;
+      console.log('🔗 Download link updated to:', product.downloadLink);
+    }
     if (updateData.media) product.media = updateData.media;
     if (updateData.features) product.features = updateData.features;
     if (updateData.slug) product.slug = updateData.slug;

@@ -49,8 +49,7 @@ const UserSchema = new Schema<IUser>(
   }
 );
 
-// Index for faster queries
-UserSchema.index({ email: 1 });
+// Note: email index is automatically created by unique: true
 
 const User = models.User || model<IUser>('User', UserSchema);
 

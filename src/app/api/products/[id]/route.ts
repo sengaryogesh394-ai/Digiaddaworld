@@ -1,14 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ProductController } from '@/controllers/productController';
 
-// GET /api/products/[id] - Get product by ID
+// GET /api/products/[id] - Get product by ID or slug
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params;
-    const result = await ProductController.getProductById(id);
+    
+    // Try to get by slug first (for URLs like /shop/canva-templates)
+    // If that fails, try by ID (for admin operations)
+    let result = await ProductController.getProductBySlug(id);
+    
+    if (!result.success) {
+      // If slug lookup failed, try by ID
+      result = await ProductController.getProductById(id);
+    }
     
     if (!result.success) {
       return NextResponse.json(result, { status: 404 });
